@@ -1,0 +1,43 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://schemas.soulverse.world/ssw/json-schema/ssw-recovery-proof.v1.schema.json",
+  "title":"SSW Recovery Proof v1",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["schema","proof_id","recovery_id","holder_did","sera_agent_did","proof_class","assurance_level","challenge","status","issued_at","expires_at","verifier_ref","integrity"],
+  "properties":{
+    "schema":{"const":"ssw.recovery-proof.v1"},
+    "proof_id":{"type":"string","format":"uuid"},
+    "recovery_id":{"type":"string","format":"uuid"},
+    "holder_did":{"type":"string","pattern":"^did:soul:[a-z0-9._:-]+$"},
+    "sera_agent_did":{"type":"string","pattern":"^did:soul:agent:[a-z0-9._:-]+$"},
+    "proof_class":{"type":"string","enum":["RP1","RP2","RP3","RP4","RP5"]},
+    "assurance_level":{"type":"string","enum":["RAL1","RAL2","RAL3","RAL4","RAL5"]},
+    "target_device_id":{"type":["string","null"],"pattern":"^device:[A-Za-z0-9._:-]+$"},
+    "target_runtime_id":{"type":["string","null"],"pattern":"^sera-runtime:[A-Za-z0-9._:-]+$"},
+    "challenge":{
+      "type":"object","additionalProperties":false,
+      "required":["challenge_id","nonce_hash","stage","issued_at","expires_at"],
+      "properties":{
+        "challenge_id":{"type":"string","format":"uuid"},
+        "nonce_hash":{"type":"string","pattern":"^sha256:[0-9a-f]{64}$"},
+        "stage":{"type":"string","enum":["INITIATE","STATE_RESTORE","DEVICE_BIND","RUNTIME_BIND","AUTHORITY_REESTABLISH"]},
+        "issued_at":{"type":"string","format":"date-time"},
+        "expires_at":{"type":"string","format":"date-time"}
+      }
+    },
+    "status":{"type":"string","enum":["PASS","FAIL","EXPIRED"]},
+    "issued_at":{"type":"string","format":"date-time"},
+    "expires_at":{"type":"string","format":"date-time"},
+    "verifier_ref":{"type":"string","minLength":1},
+    "reason_codes":{"type":"array","uniqueItems":true,"items":{"type":"string","pattern":"^[A-Z][A-Z0-9_]*$"}},
+    "integrity":{
+      "type":"object","additionalProperties":false,
+      "required":["evidence_hash"],
+      "properties":{
+        "evidence_hash":{"type":"string","pattern":"^sha256:[0-9a-f]{64}$"},
+        "signature_ref":{"type":["string","null"]}
+      }
+    }
+  }
+}
