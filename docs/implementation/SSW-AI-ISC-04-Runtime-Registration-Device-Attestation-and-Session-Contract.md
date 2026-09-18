@@ -11,11 +11,17 @@
 
 ## 1. Purpose
 
-This specification defines the contract for registering SERA runtime instances, binding them to devices and the persistent SERA Agent DID, evaluating device attestation, issuing scoped runtime sessions, enforcing trust freshness, and revoking or rebinding runtimes when trust changes.
+This specification defines the contract for registering SERA runtime instances under a persistent SERA Agent DID that is governed by the wallet holder's Soul ID, evaluating the security posture of the current device/runtime, issuing scoped runtime sessions, enforcing trust freshness, and revoking or rebinding runtimes when trust changes.
 
-The governing invariant is:
+Soul Super Wallet is **identity-bound, not device-bound**. A holder may recover the wallet on another device by recovering the holder's Soul ID through the SoulScan facial-biometric recovery path. Device and runtime identity therefore describe the current execution environment; they do not define wallet ownership or continuity.
 
-> A SERA Agent DID is persistent identity. A Runtime ID is a scoped execution instance. A Device ID is a trust-bearing device identity. None of these alone creates unrestricted authority.
+The governing invariants are:
+
+> The Holder Soul ID is the root identity for Soul Super Wallet continuity.
+
+> The SERA Agent DID is governed by and bound to that Holder DID.
+
+> A Runtime ID is a scoped execution instance. A Device ID is a security and assurance context. Neither is the root of wallet ownership.
 
 ---
 
@@ -69,16 +75,20 @@ Runtime Session ID
 Relationships:
 
 ```
-Holder DID
+Holder Soul ID
+   ↓ controls / recovers
+Soul Super Wallet
    ↓ governs
 SERA Agent DID
-   ↓ authorizes
+   ↓ represented by
 Runtime ID
-   ↓ hosted on / bound to
-Device ID
-   ↓ receives
+   ↓ executes on
+Device / Environment
+   ↓ receives scoped
 Runtime Session
 ```
+
+The Device ID is replaceable. A new device does not become the owner of the wallet. The wallet context is established from the recovered Holder Soul ID; device/runtime controls are then applied to the current execution environment.
 
 ---
 
@@ -200,8 +210,8 @@ Runtime Registry shall validate:
 
 1. Holder DID exists and is active.
 2. SERA Agent DID is governed by holder.
-3. Device ID belongs to holder where applicable.
-4. Device is not REVOKED.
+3. The runtime is operating inside a Soul Super Wallet context established for the same Holder DID that governs the SERA Agent DID.
+4. Device ID, where present, is registered for the current execution environment and is not REVOKED. Device registration is not proof of wallet ownership.
 5. Runtime class is permitted.
 6. Build/runtime version is allowed.
 7. Runtime key is valid.
@@ -309,9 +319,9 @@ Eligibility evaluation shall consider:
 
 ## 15. Session Issuance
 
-A runtime session is short-lived authority to access specific wallet services.
+A runtime session is a short-lived operational credential for accessing specific wallet services after the Holder DID wallet context has already been established.
 
-A session is not a mandate and cannot create A3/A4 delegation.
+A session is not wallet ownership, is not Soul ID recovery proof, is not a mandate, and cannot create A3/A4 delegation.
 
 Session issuance requires:
 
@@ -508,28 +518,28 @@ Rotation shall:
 
 ---
 
-## 27. Primary Phone Runtime
+## 27. Current Phone Runtime
 
-Typical baseline:
+Any phone on which the holder has validly recovered or opened Soul Super Wallet under the Holder Soul ID may host an eligible runtime.
 
-- device state TRUSTED;
-- runtime state ELIGIBLE;
+Typical baseline after identity recovery and environment checks:
+
+- device assurance evaluated;
+- runtime state ELIGIBLE where policy permits;
 - may receive approval.grant;
 - may receive signing.request;
-- may manage mandates;
-- may manage devices/recovery under strong authentication.
+- may manage mandates under strong holder authentication;
+- may participate in recovery administration under the Soul ID recovery policy.
+
+No phone is the permanent ownership anchor.
 
 ---
 
-## 28. Secondary Phone Runtime
+## 28. Additional Device Runtime
 
-May be:
+An additional device may become ELIGIBLE or LIMITED according to policy after the wallet context is established for the same Holder DID.
 
-- ELIGIBLE with reduced scope;
-- LIMITED;
-- restricted from mandate/manage or recovery/manage.
-
-Its session scope must be explicit.
+Its scope must be explicit. It does not inherit another device's session or assurance, but it also does not require transfer of wallet ownership from another device.
 
 ---
 
@@ -789,14 +799,20 @@ Cloud reasoning runtimes fail by policy.
 
 ## 45. Recovery Integration
 
+Soul Super Wallet recovery is rooted in recovery of the Holder Soul ID through the SoulScan facial-biometric recovery mechanism. That identity recovery may occur on a different device without possession of the former device.
+
 Recovery does not automatically restore prior runtime sessions.
 
-After recovery:
+After Soul ID and wallet context recovery:
 
-- old sessions invalid;
-- old runtimes re-evaluated;
-- new runtime registered;
-- new session issued only after trust re-establishment.
+- verify the SERA Agent DID is governed by the recovered Holder DID;
+- old sessions remain invalid;
+- old runtimes are re-evaluated or retired;
+- the current runtime is registered;
+- device/runtime assurance is evaluated for the current environment;
+- new sessions are issued according to policy.
+
+Device trust affects assurance and permitted operations after wallet recovery; it does not determine whether the holder owns or can recover Soul Super Wallet.
 
 ---
 
@@ -867,12 +883,10 @@ SSW-AI-ISC-04 advances when:
 
 ## 50. Controlled Statement
 
-SERA is persistent through identity, not through one process.
+SERA is persistent through identity, not through one process or one device.
 
-Each runtime must earn its place in the trust fabric.
+Soul Super Wallet follows the holder's Soul ID and may be recovered on a new device through the SoulScan facial-biometric recovery path.
 
-Each session must be scoped.
+Each runtime must earn its place in the trust fabric. Each session must be scoped. Each device is evaluated as a replaceable execution environment.
 
-Each device must remain independently trustworthy.
-
-And no runtime inherits authority merely because it belongs to SERA.
+No device owns the wallet, and no runtime inherits authority merely because it belongs to SERA.
