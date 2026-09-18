@@ -9,11 +9,17 @@
 
 ## 1. Purpose
 
-This specification defines how a holder proves recovery authority for SERA state restoration and how encrypted SERA state keys are wrapped, unwrapped, rotated and re-bound to replacement devices or runtimes.
+This specification defines how, after the holder recovers the Holder Soul ID through the SoulScan facial-biometric path, the system proves the recovered wallet context is authorized to restore the SERA Agent DID and encrypted SERA state, and how SERA state keys are wrapped, unwrapped, rotated and made available to the current runtime.
 
-The governing invariant is:
+Soul Super Wallet itself is not device-bound.
 
-> Recovery material may restore encrypted SERA state. It must not become a substitute for wallet signing authority.
+The governing invariants are:
+
+> Soul ID facial-biometric recovery establishes holder wallet continuity independently of the prior device.
+
+> Recovery material may restore encrypted SERA state inside that Holder DID wallet context. It must not become a substitute for wallet signing authority.
+
+> SERA keys recovered independently remain unusable for consequential wallet operations unless SERA is operating under the same Holder DID to which its Agent DID is bound.
 
 ## 2. Scope
 
@@ -44,9 +50,9 @@ Initial recovery proof classes:
 
 Uses a surviving TRUSTED device with fresh authentication.
 
-### RP2 Soul ID Recovery Proof
+### RP2 Soul ID Facial-Biometric Recovery Proof
 
-Uses a valid Soul ID recovery mechanism.
+Uses the SoulScan facial-biometric recovery mechanism to recover the holder's Soul ID. This is the canonical Soul Super Wallet identity-recovery path and is not dependent on possession of a prior device.
 
 ### RP3 Recovery Credential Proof
 
@@ -77,9 +83,9 @@ Higher assurance requires stronger proof composition.
 Recommended minimums:
 
 - RAL1: one valid proof class
-- RAL2: RP1 or RP2/RP3 equivalent
-- RAL3: strong holder proof + target-device attestation
-- RAL4: strong holder proof + device/runtime attestation + fresh authentication + policy
+- RAL2: RP2 is the canonical wallet-continuity proof; other approved proofs may supplement it where policy allows
+- RAL3: recovered Holder DID context + target runtime/device assurance
+- RAL4: recovered Holder DID context + device/runtime assurance + fresh authentication + policy
 - RAL5: enhanced recovery policy, potentially multi-factor/threshold
 
 Exact thresholds are policy-controlled.
@@ -164,7 +170,9 @@ The SKEK may itself be protected by one or more mechanisms:
 - HSM/MPC-controlled wrapping key;
 - platform keystore wrapping.
 
-The implementation may support multiple wrapping slots.
+The implementation may support multiple wrapping slots, including a **Holder Soul ID recovery wrapping path** that is independent of any one physical device.
+
+Facial biometrics should not be treated as raw encryption-key material. The biometric recovery process authorizes or reconstructs access to the recovery key path; the SDEK/SKEK must remain cryptographically separate from raw biometric data.
 
 ## 11. Wrapped Key Object
 
@@ -189,41 +197,53 @@ To avoid single-device dependency, the system may maintain multiple authorized w
 
 Examples:
 
-- primary phone slot;
-- secondary trusted device slot;
+- Holder Soul ID recovery slot;
+- current device hardware slot;
+- additional device slot;
 - recovery credential slot;
 - threshold recovery slot.
+
+At least one recovery path should avoid dependence on possession of a particular device, otherwise a device loss would contradict the Soul ID recovery model.
 
 Adding a slot is a high-security event and must be evidenced.
 
 ## 13. Planned Migration
 
-For controlled migration:
+For controlled migration, the old device is optional.
 
-1. authenticate holder on old trusted device;
-2. attest new device;
-3. register new Runtime ID;
-4. generate new device-bound wrapping key;
-5. unwrap SDEK in protected environment;
-6. re-wrap SDEK for new device;
-7. verify restore;
-8. optionally revoke old slot/device.
+Canonical sequence:
+
+1. recover/authenticate the Holder Soul ID on the target environment, using SoulScan facial biometrics where recovery is needed;
+2. establish Soul Super Wallet for that Holder DID;
+3. verify that the SERA Agent DID is governed by the same Holder DID;
+4. obtain the authorized Holder Soul ID recovery key path;
+5. unwrap the SDEK in a protected environment;
+6. attest/register the target runtime/device for execution assurance;
+7. optionally create a target-device wrapping slot for convenience and local protection;
+8. verify state restore;
+9. optionally revoke old device-specific slots.
+
+The Holder Soul ID recovery slot remains conceptually distinct from device-specific convenience slots.
 
 Plaintext SDEK should exist only transiently inside protected execution memory.
 
 ## 14. Lost Device Recovery
 
-If original device is unavailable:
+If the original device is unavailable:
 
-1. initiate recovery;
-2. satisfy approved recovery proof threshold;
-3. suspend/revoke lost device;
-4. obtain/reconstruct authorized SKEK path;
-5. unwrap SDEK;
-6. attest target device;
-7. create new device wrapping slot;
-8. restore state;
-9. rotate keys if compromise risk exists.
+1. initiate Soul ID recovery on the replacement device;
+2. complete SoulScan facial-biometric recovery of the Holder DID;
+3. establish Soul Super Wallet for that Holder DID;
+4. verify the bound SERA Agent DID;
+5. obtain/reconstruct the authorized Holder Soul ID recovery SKEK path;
+6. unwrap the SDEK;
+7. restore SERA state;
+8. separately attest/register the target runtime/device for execution assurance;
+9. create a new device wrapping slot if desired;
+10. suspend/revoke the lost device and its runtime/session state;
+11. rotate keys if compromise risk exists.
+
+Possession of the original device is not required.
 
 ## 15. Compromised Device Recovery
 
@@ -307,15 +327,20 @@ Threshold shares must not individually decrypt SERA state.
 
 ## 21. SERA Agent DID Binding
 
-Wrapped state keys must bind to the SERA Agent DID.
+Wrapped state keys must bind to both:
 
-A wrapped key object for one SERA Agent DID cannot be used for another without explicit migration/reissuance.
+- the Holder DID; and
+- the SERA Agent DID governed by that Holder DID.
 
-## 22. Target Device Binding
+A recovered SERA key path must not be usable under a different Holder DID. A wrapped key object for one Holder/SERA relationship cannot be used for another without explicit controlled migration/reissuance.
 
-Device wrapping slots shall bind to canonical Device ID and, where useful, Runtime ID.
+## 22. Device-Specific Wrapping
 
-Replacing a device requires a new wrapping slot.
+Device wrapping slots, when used, bind to canonical Device ID and, where useful, Runtime ID.
+
+They are optional protection/convenience mechanisms and are not the root recovery mechanism for Soul Super Wallet.
+
+Replacing a device requires a new device-specific slot, but it does not require transfer of wallet ownership and does not invalidate the Holder Soul ID recovery slot.
 
 ## 23. Recovery Runtime Restrictions
 
@@ -382,7 +407,8 @@ SAEL shall record:
 - SDEK/SKEK rotation events;
 - state unwrap attempt;
 - state restore;
-- target-device binding.
+- Holder DID and SERA Agent DID governance binding;
+- target-device binding where a device-specific slot is created.
 
 Never log plaintext keys.
 
@@ -428,14 +454,16 @@ Minimum tests:
 2. replayed proof fails;
 3. wrong holder DID fails;
 4. wrong SERA Agent DID fails;
-5. wrong target device fails;
-6. revoked wrapping slot fails;
-7. corrupted wrapped key fails;
-8. state key cannot sign transaction;
-9. recovery runtime cannot sign;
-10. successful state restore does not restore mandate/session authority;
-11. compromised-device recovery rotates/revokes affected slots;
-12. planned migration preserves state while changing device wrapping key.
+5. SERA recovery under the wrong Holder DID fails;
+6. device loss does not prevent recovery through the Holder Soul ID recovery path;
+7. wrong target device fails only for a device-specific wrapping slot;
+8. revoked wrapping slot fails;
+9. corrupted wrapped key fails;
+10. state key cannot sign transaction;
+11. recovery runtime cannot sign;
+12. successful state restore does not restore mandate/session authority;
+13. compromised-device recovery rotates/revokes affected device slots without revoking Holder DID ownership;
+14. planned migration preserves state without requiring the old device.
 
 ## 33. Exit Criteria
 
@@ -443,16 +471,19 @@ REC-01 advances when:
 
 - proof verifier is implemented;
 - wrapping slots are versioned;
-- device-bound key wrapping is implemented;
-- lost-device flow is tested;
+- Holder Soul ID recovery wrapping path is implemented;
+- device-specific wrapping remains optional and subordinate;
+- lost-device flow succeeds without the old device;
 - compromise rotation is tested;
 - SAEL recovery evidence is emitted;
 - signing boundary remains independent.
 
 ## 34. Controlled Statement
 
-Recovery should let the holder regain SERA without making backup material dangerous.
+Soul Super Wallet recovery begins with the holder's Soul ID, recoverable through facial biometrics, not with a device.
 
-The state key opens memory and continuity.
+SERA recovery then restores the agent that belongs to that Holder DID.
 
-It does not open the wallet's authority boundary.
+The state key opens SERA memory and continuity inside the correct Holder DID wallet context.
+
+It does not open the wallet's authority boundary, and recovered SERA keys cannot be transplanted to another holder.
