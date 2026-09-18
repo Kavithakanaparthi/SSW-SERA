@@ -11,11 +11,17 @@
 
 ## 1. Purpose
 
-This specification defines the recovery contract for restoring SERA identity continuity, encrypted portable state, device/runtime participation and scoped wallet operation after device loss, reinstall, compromise, migration or holder-initiated recovery.
+This specification defines the recovery contract for restoring Soul Super Wallet and SERA continuity after device loss, reinstall, compromise, migration or holder-initiated recovery.
 
-The governing invariant is:
+Soul Super Wallet is identity-bound, not device-bound. The holder recovers the Holder Soul ID through the SoulScan facial-biometric recovery mechanism and may establish the wallet on a new device without possession of the former device. SERA recovery occurs inside that recovered Holder DID wallet context.
 
-> Recovery restores continuity. It does not automatically restore authority.
+The governing invariants are:
+
+> Soul ID recovery restores the holder's wallet identity context.
+
+> SERA recovery restores the holder-bound agent identity and portable state inside that wallet context.
+
+> Recovery of SERA state or keys alone does not create wallet authority.
 
 The recovery path must preserve the separation between:
 
@@ -100,7 +106,11 @@ NOT_STARTED
    ↓
 RECOVERY_INITIATED
    ↓
-HOLDER_AUTHENTICATED
+SOUL_ID_BIOMETRIC_RECOVERY
+   ↓
+HOLDER_DID_RECOVERED
+   ↓
+WALLET_CONTEXT_ESTABLISHED
    ↓
 SERA_DID_RESOLVED
    ↓
@@ -165,29 +175,28 @@ Recovery is R5/A5 by default.
 
 ## 7. Holder Authentication
 
-Before state restore or runtime rebinding, the holder must satisfy recovery authentication appropriate to the recovery mode.
+Before SERA state restore or runtime rebinding, the holder must establish the Holder Soul ID wallet context.
 
-Recovery authentication may involve:
+For Soul Super Wallet, the canonical recovery path is SoulScan facial-biometric recovery of the holder's Soul ID. This recovery is designed to work on a replacement device and does not depend on possession of the prior device.
 
-- Soul ID recovery proof;
-- strong device authentication on surviving trusted device;
-- recovery credential;
-- guardian or recovery mechanism where defined;
-- multi-factor recovery policy.
+Additional authentication or security controls may be required by policy for high-risk operations, but a surviving trusted device is not the root proof of wallet ownership.
 
-The recovery runtime shall never treat possession of encrypted state alone as holder authentication.
+The recovery runtime shall never treat possession of encrypted SERA state, SERA keys, or a Device ID as holder authentication.
 
 ---
 
 ## 8. SERA Agent DID Resolution
 
-After holder authentication:
+After Soul ID biometric recovery:
 
-1. resolve holder DID;
-2. resolve governed SERA Agent DID;
-3. verify relationship;
-4. validate current DID state;
-5. verify SERA Agent DID is not revoked/replaced.
+1. recover/resolve the Holder DID;
+2. establish Soul Super Wallet under that Holder DID;
+3. resolve the SERA Agent DID recorded as governed by that Holder DID;
+4. verify the holder-to-SERA governance binding in both the recovered wallet context and SERA identity record;
+5. validate current DID state;
+6. verify SERA Agent DID is not revoked/replaced.
+
+SERA keys recovered independently are inert for consequential wallet operations unless this same Holder DID binding and wallet context are present.
 
 The system must distinguish:
 
@@ -320,17 +329,17 @@ Recovery policy may restore compartments selectively.
 
 ---
 
-## 15. Device Registration During Recovery
+## 15. Device Registration After Wallet Recovery
 
-The target device begins as:
+Device registration occurs **after or alongside establishment of the Holder DID wallet context**. It is an execution-security control, not a wallet-ownership control.
+
+A newly used device begins as:
 
 ```
 UNREGISTERED
 ```
 
-Recovery does not permit direct jump to TRUSTED.
-
-Reference:
+and may progress through:
 
 ```
 UNREGISTERED
@@ -342,7 +351,9 @@ ATTESTED
 TRUSTED or LIMITED
 ```
 
-SCH-03 remains authoritative.
+The holder can still recover Soul Super Wallet on that new device through Soul ID facial biometrics before the device becomes highly trusted for consequential operations.
+
+SCH-03 remains authoritative for device assurance.
 
 ---
 
@@ -532,23 +543,29 @@ The exact window is policy-defined.
 
 ## 28. Cross-Device Controlled Migration
 
-For planned migration with both devices available:
+For planned migration, possession of the old device is convenient but not required for wallet continuity.
+
+Canonical path:
 
 ```
-Old trusted device
-  ↓ authorizes migration
-New device registers
-  ↓ attests
-Runtime registers
+Holder recovers/authenticates Soul ID
   ↓
-Portable state restored
+Soul Super Wallet context established on target device
   ↓
-Authority re-established
+SERA Agent DID governance binding verified
   ↓
-Old device optionally LIMITED/REVOKED
+Portable SERA state restored
+  ↓
+Target runtime registers
+  ↓
+Target device/runtime assurance evaluated
+  ↓
+Action authority re-established according to policy
+  ↓
+Old device optionally retained, LIMITED, SUSPENDED or REVOKED
 ```
 
-Even planned migration requires new Device ID trust evaluation.
+If both devices are available, the old device may assist the migration, but it is never the ownership root.
 
 ---
 
@@ -682,13 +699,15 @@ If one CID source unavailable:
 
 ## 37. Recovery Without Portable State
 
-If SERA portable state is unavailable but holder identity is recoverable:
+If SERA portable state is unavailable but the Holder Soul ID is recoverable through SoulScan facial biometrics:
 
+- Soul Super Wallet can still be restored under the Holder DID;
+- wallet ownership and continuity are not lost with the device or SERA state bundle;
 - wallet may create fresh SERA state;
 - SERA Agent DID may remain or be re-established per policy;
 - personalization may be lost;
 - SAEL remains separate;
-- wallet authority is restored through wallet recovery mechanisms, not portable SERA memory.
+- portable SERA memory is never the authority root.
 
 ---
 
@@ -824,21 +843,25 @@ The summary derives from structured recovery evidence.
 
 ## 46. Security Invariants
 
-1. State restore does not restore authority.
-2. SERA Agent DID resolution does not restore runtime eligibility.
-3. Revoked Device IDs do not reactivate.
-4. Revoked Runtime IDs do not reactivate.
-5. Expired/revoked mandates do not reactivate.
-6. Prior approvals do not survive full recovery by default.
-7. Old Trust/REV PASS does not survive recovery context changes.
-8. Portable state never contains wallet private keys or unrestricted signing handles.
-9. Recovery runtime cannot sign by default.
-10. Recovery is R5/A5 by default.
-11. SAEL history survives device/runtime replacement.
-12. Rollback is detected and policy-controlled.
-13. Cloud storage is not identity authority.
-14. Recovery progressively re-establishes authority.
-15. Compromise recovery prioritizes containment over convenience.
+1. Soul Super Wallet ownership and continuity are anchored to the Holder Soul ID, not to Device ID.
+2. Holder Soul ID may be recovered on a replacement device through the SoulScan facial-biometric recovery mechanism.
+3. State restore does not restore authority.
+4. SERA Agent DID resolution does not restore runtime eligibility.
+5. Revoked Device IDs do not reactivate.
+6. Revoked Runtime IDs do not reactivate.
+7. Expired/revoked mandates do not reactivate.
+8. Prior approvals do not survive full recovery by default.
+9. Old Trust/REV PASS does not survive recovery context changes.
+10. Portable state never contains wallet private keys or unrestricted signing handles.
+11. Recovery runtime cannot sign by default.
+12. Recovery is R5/A5 by default.
+13. SAEL history survives device/runtime replacement.
+14. Rollback is detected and policy-controlled.
+15. Cloud storage is not identity authority.
+16. Recovery progressively re-establishes authority.
+17. Device assurance may restrict execution but cannot redefine wallet ownership.
+18. SERA keys alone cannot operate outside the wallet context of the Holder DID to which SERA is bound.
+19. Compromise recovery prioritizes containment over convenience.
 
 ---
 
@@ -862,8 +885,8 @@ It also strengthens:
 
 Still required:
 
-- exact holder recovery proof protocol;
-- Soul ID recovery integration;
+- SoulScan facial-biometric Holder Soul ID recovery integration;
+- binding proof between recovered Holder DID, Soul Super Wallet and SERA Agent DID;
 - encryption key-wrapping profile;
 - state bundle format;
 - conflict-resolution UI;
@@ -888,12 +911,14 @@ Minimum tests:
 7. wrong SERA Agent DID bundle rejected;
 8. tampered CID rejected;
 9. recovery runtime cannot sign;
-10. new device starts UNREGISTERED;
-11. new runtime requires independent registration;
-12. post-recovery action requires fresh Trust/REV;
-13. portable state restore does not recreate sessions;
-14. compromised-device recovery revokes sessions;
-15. SAEL continuity survives migration.
+10. holder can recover Soul Super Wallet on a new UNREGISTERED device through Soul ID facial biometrics;
+11. wallet recovery does not require possession of the prior device;
+12. new runtime requires independent registration;
+13. independently recovered SERA keys cannot operate under a different Holder DID;
+14. post-recovery action requires fresh Trust/REV where policy requires;
+15. portable state restore does not recreate sessions;
+16. compromised-device recovery revokes affected sessions;
+17. SAEL continuity survives migration.
 
 ---
 
@@ -916,10 +941,10 @@ SSW-AI-ISC-06 advances when:
 
 ## 51. Controlled Statement
 
-SERA should feel continuous to the holder even when devices change.
+Soul Super Wallet follows the holder's Soul ID, not a device.
 
-But continuity must never become a shortcut around trust.
+A lost phone therefore does not mean a lost wallet. The holder may recover the Soul ID through SoulScan facial biometrics and establish the wallet on another device.
 
-Recovery restores identity and state first.
+SERA follows that Holder DID governance relationship. Device and runtime controls determine execution assurance after recovery, not ownership.
 
-Authority must be earned again through the control plane.
+SERA state and keys recovered outside the correct Holder DID wallet context remain inert for consequential wallet operations.
