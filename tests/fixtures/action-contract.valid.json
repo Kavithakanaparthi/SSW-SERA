@@ -1,0 +1,66 @@
+{
+  "schema": "ssw.action-contract.v1",
+  "action_id": "11111111-1111-4111-8111-111111111111",
+  "intent_id": "22222222-2222-4222-8222-222222222222",
+  "correlation_id": "33333333-3333-4333-8333-333333333333",
+  "action_type": "tx.prepare_send",
+  "version": 1,
+  "created_at": "2026-09-18T20:00:00Z",
+  "expires_at": "2026-09-18T20:05:00Z",
+  "principal": {
+    "holder_did": "did:soul:bootstrap-holder",
+    "sera_agent_did": "did:soul:agent:bootstrap-sera",
+    "sera_runtime_id": "sera-runtime:bootstrap-runtime",
+    "device_id": "device:bootstrap-device"
+  },
+  "authority": {
+    "class": "A2",
+    "approval_required": true,
+    "mandate_id": null
+  },
+  "risk": {
+    "class": "R2",
+    "reasons": []
+  },
+  "material_terms": {
+    "asset": "USDC",
+    "amount": {
+      "atomic": "5000000",
+      "decimals": 6
+    },
+    "counterparty_id": "did:soul:merchant-example",
+    "chain_id": "eip155:137"
+  },
+  "policy": {
+    "policy_refs": [
+      "policy:ssw-default-v1"
+    ],
+    "device_eligible": true,
+    "runtime_eligible": true
+  },
+  "trust": {
+    "trust_protocol_required": true,
+    "trust_protocol_ref": "trust:bootstrap",
+    "rev_required": true,
+    "rev_ref": "rev:bootstrap"
+  },
+  "presentation": {
+    "concealed": false,
+    "reveal_required": false,
+    "authenticated_reveal_required": false,
+    "review_hash": null
+  },
+  "approval": {
+    "status": "APPROVED",
+    "approval_id": "44444444-4444-4444-8444-444444444444",
+    "approved_terms_hash": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "execution": {
+    "idempotency_key": "bootstrap-idempotency-001",
+    "replay_token": "bootstrap-replay-001",
+    "status": "READY"
+  },
+  "evidence": {
+    "sael_correlation_id": "55555555-5555-4555-8555-555555555555"
+  }
+}
