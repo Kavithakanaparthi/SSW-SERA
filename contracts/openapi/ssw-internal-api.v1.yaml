@@ -1,0 +1,1085 @@
+openapi: 3.1.0
+info:
+  title: Soul Super Wallet SERA Internal API
+  version: 1.0.0
+  description: >
+    Internal service contract baseline for the SERA-first Soul Super Wallet.
+servers:
+  - url: https://internal.ssw.soulverse.invalid/internal/v1
+    description: Logical internal service base URL
+
+security:
+  - mutualTLS: []
+
+tags:
+  - name: Authority
+  - name: Risk
+  - name: DeviceTrust
+  - name: Mandates
+  - name: TrustProtocol
+  - name: REV
+  - name: Approvals
+  - name: Signing
+  - name: Execution
+  - name: SAEL
+  - name: RuntimeRegistry
+  - name: Recovery
+
+paths:
+  /authority/evaluate:
+    post:
+      tags: [Authority]
+      operationId: evaluateAuthority
+      parameters:
+        - $ref: '#/components/parameters/XCorrelationID'
+        - $ref: '#/components/parameters/XRequestID'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [action]
+              properties:
+                action:
+                  $ref: '../json-schema/ssw-action-contract.v1.schema.json'
+      responses:
+        '200':
+          description: Authority evaluation result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorityEvaluation'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /risk/evaluate:
+    post:
+      tags: [Risk]
+      operationId: evaluateRisk
+      parameters:
+        - $ref: '#/components/parameters/XCorrelationID'
+        - $ref: '#/components/parameters/XRequestID'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [action]
+              properties:
+                action:
+                  $ref: '../json-schema/ssw-action-contract.v1.schema.json'
+      responses:
+        '200':
+          description: Risk evaluation result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RiskEvaluation'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
+  /devices/{device_id}/evaluate:
+    post:
+      tags: [DeviceTrust]
+      operationId: evaluateDeviceTrust
+      parameters:
+        - $ref: '#/components/parameters/XCorrelationID'
+        - $ref: '#/components/parameters/XRequestID'
+        - name: device_id
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: '^device:[A-Za-z0-9._:-]+$'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeviceEvaluationRequest'
+      responses:
+        '200':
+          description: Device trust evaluation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceEvaluationResult'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /mandates:
+    post:
+      tags: [Mandates]
+      operationId: createMandate
+      parameters:
+        - $ref: '#/components/parameters/XCorrelationID'
+        - $ref: '#/components/parameters/XRequestID'
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '../json-schema/ssw-mandate.v1.schema.json'
+      responses:
+        '201':
+          description: Mandate created
+          content:
+            application/json:
+              schema:
+                $ref: '../json-schema/ssw-mandate.v1.schema.json'
+        '409':
+          $ref: '#/components/responses/Conflict'
+
+  /mandates/{mandate_id}/evaluate:
+    post:
+      tags: [Mandates]
+      operationId: evaluateMandate
+      parameters:
+        - $ref: '#/components/parameters/XCorrelationID'
+        - $ref: '#/components/parameters/XRequestID'
+        - name: mandate_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [action]
+              properties:
+                action:
+                  $ref: '../json-schema/ssw-action-contract.v1.schema.json'
+      responses:
+        '200':
+          description: Mandate evaluation result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MandateEvaluationResult'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /mandates/{mandate_id}/reserve:
+    post:
+      tags: [Mandates]
+      operationId: reserveMandateUsage
+      parameters:
+        - $ref: '#/components/parameters/XCorrelationID'
+        - $ref: '#/components/parameters/XRequestID'
+        - $ref: '#/components/parameters/IdempotencyKey'
+        - name: mandate_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MandateUsageRequest'
+      responses:
+        '200':
+          description: Usage reservation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MandateUsageResult'
+        '409':
+          $ref: '#/components/responses/Conflict'
+
+  /mandates/{mandate_id}/finalize:
+    post:
+      tags: [Mandates]
+      operationId: finalizeMandateUsage
+      parameters:
+        - $ref: '#/components/parameters/XCorrelationID'
+        - $ref: '#/components/parameters/XRequestID'
+        - $ref: '#/components/parameters/IdempotencyKey'
+        - name: mandate_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MandateUsageRequest'
+      responses:
+        '200':
+          description: Usage finalized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MandateUsageResult'
+
+  /trust-protocol/evaluate:
+    post:
+      tags: [TrustProtocol]
+      operationId: evaluateTrustProtocol
+      parameters:
+        - $ref: '#/components/parameters/XCorrelationID'
+        - $ref: '#/components/parameters/XRequestID'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TrustDecisionRequest'
+      responses:
+        '200':
+          description: Trust Protocol decision
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrustDecisionResult'
+        '503':
+          $ref: '#/components/responses/Unavailable'
+
+  /rev/evaluate:
+    post:
+      tags: [REV]
+      operationId: evaluateREV
+      parameters:
+        - $ref: '#/components/parameters/XCorrelationID'
+        - $ref: '#/components/parameters/XRequestID'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/REVDecisionRequest'
+      responses:
+        '200':
+          description: REV decision
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/REVDecisionResult'
+        '503':
+          $ref: '#/components/responses/Unavailable'
+
+  /approvals:
+    post:
+      tags: [Approvals]
+      operationId: createApproval
+      parameters:
+        - $ref: '#/components/parameters/XCorrelationID'
+        - $ref: '#/components/parameters/XRequestID'
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApprovalCreateRequest'
+      responses:
+        '201':
+          description: Approval request created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApprovalRecord'
+
+  /approvals/{approval_id}/grant:
+    post:
+      tags: [Approvals]
+      operationId: grantApproval
+      parameters:
+        - $ref: '#/components/parameters/XCorrelationID'
+        - $ref: '#/components/parameters/XRequestID'
+        - $ref: '#/components/parameters/IdempotencyKey'
+        - name: approval_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApprovalGrantRequest'
+      responses:
+        '200':
+          description: Approval granted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApprovalRecord'
+        '409':
+          $ref: '#/components/responses/Conflict'
+
+  /signing/requests:
+    post:
+      tags: [Signing]
+      operationId: createSigningRequest
+      parameters:
+        - $ref: '#/components/parameters/XCorrelationID'
+        - $ref: '#/components/parameters/XRequestID'
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SigningRequest'
+      responses:
+        '200':
+          description: Signing result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SigningResult'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '409':
+          $ref: '#/components/responses/Conflict'
+
+  /executions:
+    post:
+      tags: [Execution]
+      operationId: createExecution
+      parameters:
+        - $ref: '#/components/parameters/XCorrelationID'
+        - $ref: '#/components/parameters/XRequestID'
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExecutionRequest'
+      responses:
+        '202':
+          description: Execution accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExecutionResult'
+        '409':
+          $ref: '#/components/responses/Conflict'
+
+  /executions/{execution_id}:
+    get:
+      tags: [Execution]
+      operationId: getExecution
+      parameters:
+        - $ref: '#/components/parameters/XCorrelationID'
+        - name: execution_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Current execution state
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExecutionResult'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /executions/{execution_id}/reconcile:
+    post:
+      tags: [Execution]
+      operationId: reconcileExecution
+      parameters:
+        - $ref: '#/components/parameters/XCorrelationID'
+        - $ref: '#/components/parameters/XRequestID'
+        - $ref: '#/components/parameters/IdempotencyKey'
+        - name: execution_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Reconciliation result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExecutionResult'
+
+  /sael/events:
+    post:
+      tags: [SAEL]
+      operationId: ingestSAELEvent
+      parameters:
+        - $ref: '#/components/parameters/XCorrelationID'
+        - $ref: '#/components/parameters/XRequestID'
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SAELIngestRequest'
+      responses:
+        '202':
+          description: Event accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SAELIngestResult'
+        '409':
+          $ref: '#/components/responses/Conflict'
+
+  /sael/queries:
+    post:
+      tags: [SAEL]
+      operationId: querySAEL
+      parameters:
+        - $ref: '#/components/parameters/XCorrelationID'
+        - $ref: '#/components/parameters/XRequestID'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SAELQueryRequest'
+      responses:
+        '200':
+          description: SAEL query result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SAELQueryResult'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /runtimes:
+    post:
+      tags: [RuntimeRegistry]
+      operationId: registerRuntime
+      parameters:
+        - $ref: '#/components/parameters/XCorrelationID'
+        - $ref: '#/components/parameters/XRequestID'
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RuntimeRegistrationRequest'
+      responses:
+        '201':
+          description: Runtime registered
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RuntimeRecord'
+        '409':
+          $ref: '#/components/responses/Conflict'
+
+  /runtimes/{runtime_id}/revoke:
+    post:
+      tags: [RuntimeRegistry]
+      operationId: revokeRuntime
+      parameters:
+        - $ref: '#/components/parameters/XCorrelationID'
+        - $ref: '#/components/parameters/XRequestID'
+        - $ref: '#/components/parameters/IdempotencyKey'
+        - name: runtime_id
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: '^sera-runtime:[A-Za-z0-9._:-]+$'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [reason_code]
+              properties:
+                reason_code:
+                  type: string
+      responses:
+        '200':
+          description: Runtime revoked
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RuntimeRecord'
+
+  /recovery/sessions:
+    post:
+      tags: [Recovery]
+      operationId: createRecoverySession
+      parameters:
+        - $ref: '#/components/parameters/XCorrelationID'
+        - $ref: '#/components/parameters/XRequestID'
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecoverySessionCreateRequest'
+      responses:
+        '201':
+          description: Recovery session created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecoverySession'
+
+  /recovery/{recovery_id}/authenticate:
+    post:
+      tags: [Recovery]
+      operationId: authenticateRecoveryHolder
+      parameters:
+        - $ref: '#/components/parameters/XCorrelationID'
+        - $ref: '#/components/parameters/XRequestID'
+        - name: recovery_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [auth_ref]
+              properties:
+                auth_ref:
+                  type: string
+      responses:
+        '200':
+          description: Recovery authentication result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecoverySession'
+
+  /recovery/{recovery_id}/restore-state:
+    post:
+      tags: [Recovery]
+      operationId: restoreRecoveryState
+      parameters:
+        - $ref: '#/components/parameters/XCorrelationID'
+        - $ref: '#/components/parameters/XRequestID'
+        - $ref: '#/components/parameters/IdempotencyKey'
+        - name: recovery_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: State restore result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecoverySession'
+
+components:
+  securitySchemes:
+    mutualTLS:
+      type: mutualTLS
+
+  parameters:
+    XCorrelationID:
+      name: X-Correlation-ID
+      in: header
+      required: true
+      schema:
+        type: string
+        format: uuid
+    XRequestID:
+      name: X-Request-ID
+      in: header
+      required: true
+      schema:
+        type: string
+        format: uuid
+    IdempotencyKey:
+      name: Idempotency-Key
+      in: header
+      required: true
+      schema:
+        type: string
+        minLength: 8
+        maxLength: 200
+
+  responses:
+    BadRequest:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorEnvelope'
+    Forbidden:
+      description: Request not authorized or control decision failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorEnvelope'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorEnvelope'
+    Conflict:
+      description: Idempotency, state, replay or version conflict
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorEnvelope'
+    Unavailable:
+      description: Required dependency unavailable
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorEnvelope'
+
+  schemas:
+    ErrorEnvelope:
+      type: object
+      additionalProperties: false
+      required: [error]
+      properties:
+        error:
+          type: object
+          additionalProperties: false
+          required: [code, category, retryable]
+          properties:
+            code:
+              type: string
+              pattern: '^[A-Z][A-Z0-9_]*$'
+            category:
+              type: string
+              enum: [VALIDATION, AUTHORIZATION, POLICY, TRUST, SIGNING, EXECUTION, INTEGRITY, RECOVERY, AVAILABILITY]
+            retryable:
+              type: boolean
+            details_ref:
+              type: [string, 'null']
+
+    AuthorityEvaluation:
+      type: object
+      additionalProperties: false
+      required: [authority_class, approval_required, mandate_required, reason_codes]
+      properties:
+        authority_class:
+          type: string
+          enum: [A0, A1, A2, A3, A4, A5]
+        approval_required:
+          type: boolean
+        mandate_required:
+          type: boolean
+        reason_codes:
+          type: array
+          items: { type: string }
+
+    RiskEvaluation:
+      type: object
+      additionalProperties: false
+      required: [risk_class, reason_codes, issued_at, expires_at]
+      properties:
+        risk_class:
+          type: string
+          enum: [R0, R1, R2, R3, R4, R5]
+        reason_codes:
+          type: array
+          items: { type: string }
+        issued_at:
+          type: string
+          format: date-time
+        expires_at:
+          type: string
+          format: date-time
+
+    DeviceEvaluationRequest:
+      type: object
+      additionalProperties: false
+      required: [action_id, runtime_id, required_risk_class]
+      properties:
+        action_id: { type: string, format: uuid }
+        runtime_id:
+          type: string
+          pattern: '^sera-runtime:[A-Za-z0-9._:-]+$'
+        required_risk_class:
+          type: string
+          enum: [R0, R1, R2, R3, R4, R5]
+
+    DeviceEvaluationResult:
+      type: object
+      additionalProperties: false
+      required: [evaluation_id, device_id, state, eligible, reason_codes, expires_at]
+      properties:
+        evaluation_id: { type: string, format: uuid }
+        device_id: { type: string }
+        state:
+          type: string
+          enum: [UNREGISTERED, REGISTERED, ATTESTED, TRUSTED, LIMITED, SUSPENDED, REVOKED]
+        eligible: { type: boolean }
+        reason_codes:
+          type: array
+          items: { type: string }
+        expires_at:
+          type: string
+          format: date-time
+
+    MandateEvaluationResult:
+      type: object
+      additionalProperties: false
+      required: [evaluation_id, mandate_id, status, reason_codes, expires_at]
+      properties:
+        evaluation_id: { type: string, format: uuid }
+        mandate_id: { type: string, format: uuid }
+        status:
+          type: string
+          enum: [PASS, FAIL, EXPIRED]
+        reason_codes:
+          type: array
+          items: { type: string }
+        expires_at:
+          type: string
+          format: date-time
+
+    MandateUsageRequest:
+      type: object
+      additionalProperties: false
+      required: [action_id, action_version, material_terms_hash]
+      properties:
+        action_id: { type: string, format: uuid }
+        action_version: { type: integer, minimum: 1 }
+        material_terms_hash:
+          type: string
+          pattern: '^sha256:[0-9a-f]{64}$'
+
+    MandateUsageResult:
+      type: object
+      additionalProperties: false
+      required: [reservation_id, mandate_id, status]
+      properties:
+        reservation_id: { type: string, format: uuid }
+        mandate_id: { type: string, format: uuid }
+        status:
+          type: string
+          enum: [RESERVED, FINALIZED, RELEASED, REJECTED]
+
+    TrustDecisionRequest:
+      type: object
+      additionalProperties: false
+      required: [action_id, action_version, material_terms_hash, authority_class, risk_class, policy_version, device_id, runtime_id]
+      properties:
+        action_id: { type: string, format: uuid }
+        action_version: { type: integer, minimum: 1 }
+        material_terms_hash:
+          type: string
+          pattern: '^sha256:[0-9a-f]{64}$'
+        authority_class:
+          type: string
+          enum: [A0, A1, A2, A3, A4, A5]
+        risk_class:
+          type: string
+          enum: [R0, R1, R2, R3, R4, R5]
+        policy_version: { type: string }
+        device_id: { type: string }
+        runtime_id: { type: string }
+
+    TrustDecisionResult:
+      type: object
+      additionalProperties: false
+      required: [decision_id, status, action_id, action_version, material_terms_hash, policy_version, issued_at, expires_at]
+      properties:
+        decision_id: { type: string, format: uuid }
+        status:
+          type: string
+          enum: [PASS, FAIL, UNAVAILABLE, EXPIRED]
+        action_id: { type: string, format: uuid }
+        action_version: { type: integer }
+        material_terms_hash: { type: string }
+        policy_version: { type: string }
+        reason_codes:
+          type: array
+          items: { type: string }
+        issued_at: { type: string, format: date-time }
+        expires_at: { type: string, format: date-time }
+
+    REVDecisionRequest:
+      allOf:
+        - $ref: '#/components/schemas/TrustDecisionRequest'
+        - type: object
+          properties:
+            trust_protocol_decision_ref:
+              type: [string, 'null']
+            aurion_ref:
+              type: [string, 'null']
+
+    REVDecisionResult:
+      allOf:
+        - $ref: '#/components/schemas/TrustDecisionResult'
+        - type: object
+          properties:
+            trust_protocol_decision_ref:
+              type: [string, 'null']
+
+    ApprovalCreateRequest:
+      type: object
+      additionalProperties: false
+      required: [action_id, action_version, holder_did, device_id, material_terms_hash, expires_at]
+      properties:
+        action_id: { type: string, format: uuid }
+        action_version: { type: integer, minimum: 1 }
+        holder_did: { type: string }
+        device_id: { type: string }
+        material_terms_hash:
+          type: string
+          pattern: '^sha256:[0-9a-f]{64}$'
+        expires_at: { type: string, format: date-time }
+
+    ApprovalGrantRequest:
+      type: object
+      additionalProperties: false
+      required: [authentication_ref, material_terms_hash]
+      properties:
+        authentication_ref: { type: string }
+        material_terms_hash:
+          type: string
+          pattern: '^sha256:[0-9a-f]{64}$'
+
+    ApprovalRecord:
+      type: object
+      additionalProperties: false
+      required: [approval_id, action_id, status, material_terms_hash, expires_at]
+      properties:
+        approval_id: { type: string, format: uuid }
+        action_id: { type: string, format: uuid }
+        status:
+          type: string
+          enum: [PENDING, APPROVED, REJECTED, EXPIRED, INVALIDATED]
+        material_terms_hash: { type: string }
+        authentication_ref:
+          type: [string, 'null']
+        expires_at: { type: string, format: date-time }
+
+    SigningRequest:
+      type: object
+      additionalProperties: false
+      required: [signing_request_id, action_id, action_version, action_contract_hash, material_terms_hash, holder_did, sera_agent_did, sera_runtime_id, device_id, authority, control_refs, payload, replay, issued_at, expires_at]
+      properties:
+        signing_request_id: { type: string, format: uuid }
+        action_id: { type: string, format: uuid }
+        action_version: { type: integer, minimum: 1 }
+        action_contract_hash: { type: string }
+        material_terms_hash: { type: string }
+        holder_did: { type: string }
+        sera_agent_did: { type: string }
+        sera_runtime_id: { type: string }
+        device_id: { type: string }
+        authority: { type: object }
+        control_refs: { type: object }
+        payload: { type: object }
+        replay: { type: object }
+        issued_at: { type: string, format: date-time }
+        expires_at: { type: string, format: date-time }
+
+    SigningResult:
+      type: object
+      additionalProperties: false
+      required: [signing_request_id, action_id, status, reason_codes, sael_event_ref]
+      properties:
+        signing_request_id: { type: string, format: uuid }
+        action_id: { type: string, format: uuid }
+        status:
+          type: string
+          enum: [SIGNED, REJECTED]
+        signed_payload_ref:
+          type: [string, 'null']
+        signed_payload_hash:
+          type: [string, 'null']
+        key_ref:
+          type: [string, 'null']
+        reason_codes:
+          type: array
+          items: { type: string }
+        signed_at:
+          type: [string, 'null']
+          format: date-time
+        sael_event_ref: { type: string }
+
+    ExecutionRequest:
+      type: object
+      additionalProperties: false
+      required: [execution_request_id, action_id, signed_payload_ref, signed_payload_hash, adapter_id]
+      properties:
+        execution_request_id: { type: string, format: uuid }
+        action_id: { type: string, format: uuid }
+        signed_payload_ref: { type: string }
+        signed_payload_hash: { type: string }
+        adapter_id: { type: string }
+
+    ExecutionResult:
+      type: object
+      additionalProperties: false
+      required: [execution_request_id, action_id, status, updated_at]
+      properties:
+        execution_request_id: { type: string, format: uuid }
+        action_id: { type: string, format: uuid }
+        status:
+          type: string
+          enum: [NOT_READY, READY, SUBMITTING, SUBMITTED, CONFIRMED, FAILED, EXECUTION_STATUS_UNKNOWN, CANCELLED, BLOCKED]
+        external_reference:
+          type: [string, 'null']
+        reason_codes:
+          type: array
+          items: { type: string }
+        updated_at: { type: string, format: date-time }
+
+    SAELIngestRequest:
+      type: object
+      additionalProperties: false
+      required: [producer, event, idempotency_key, submitted_at]
+      properties:
+        producer:
+          type: object
+          required: [service_id, service_instance_id]
+          properties:
+            service_id: { type: string }
+            service_instance_id: { type: string }
+        event: { type: object }
+        idempotency_key: { type: string }
+        submitted_at: { type: string, format: date-time }
+
+    SAELIngestResult:
+      type: object
+      additionalProperties: false
+      required: [event_id, accepted, durability, recorded_at]
+      properties:
+        event_id: { type: string, format: uuid }
+        accepted: { type: boolean }
+        sequence: { type: integer, minimum: 0 }
+        event_hash: { type: string }
+        durability:
+          type: string
+          enum: [RECEIVED, JOURNALED, COMMITTED, CHECKPOINTED, ARCHIVED]
+        recorded_at: { type: string, format: date-time }
+
+    SAELQueryRequest:
+      type: object
+      additionalProperties: false
+      required: [query_id, holder_did, disclosure_level, purpose]
+      properties:
+        query_id: { type: string, format: uuid }
+        holder_did: { type: string }
+        disclosure_level:
+          type: string
+          enum: [L0, L1, L2, L3, L4]
+        purpose: { type: string }
+        filters: { type: object }
+
+    SAELQueryResult:
+      type: object
+      additionalProperties: false
+      required: [query_id, disclosure_level, entries]
+      properties:
+        query_id: { type: string, format: uuid }
+        disclosure_level:
+          type: string
+          enum: [L0, L1, L2, L3, L4]
+        entries:
+          type: array
+          items: { type: object }
+        checkpoint_refs:
+          type: array
+          items: { type: string }
+
+    RuntimeRegistrationRequest:
+      type: object
+      additionalProperties: false
+      required: [holder_did, sera_agent_did, runtime_class, environment, runtime_key_ref]
+      properties:
+        holder_did: { type: string }
+        sera_agent_did: { type: string }
+        device_id:
+          type: [string, 'null']
+        runtime_class:
+          type: string
+          enum: [PRIMARY_PHONE, SECONDARY_PHONE, TABLET, DESKTOP, WEARABLE, PROTECTED_CLOUD_REASONING, RECOVERY_RUNTIME, TEST_OR_DEVELOPMENT]
+        environment: { type: object }
+        runtime_key_ref: { type: string }
+        auth_ref:
+          type: [string, 'null']
+        attestation_ref:
+          type: [string, 'null']
+
+    RuntimeRecord:
+      type: object
+      additionalProperties: false
+      required: [sera_runtime_id, holder_did, sera_agent_did, runtime_class, state, registered_at]
+      properties:
+        sera_runtime_id: { type: string }
+        holder_did: { type: string }
+        sera_agent_did: { type: string }
+        runtime_class: { type: string }
+        device_id:
+          type: [string, 'null']
+        state:
+          type: string
+          enum: [UNREGISTERED, REGISTERED, ATTESTED, ELIGIBLE, LIMITED, SUSPENDED, REVOKED]
+        registered_at: { type: string, format: date-time }
+
+    RecoverySessionCreateRequest:
+      type: object
+      additionalProperties: false
+      required: [mode, holder_did, sera_agent_did]
+      properties:
+        mode:
+          type: string
+          enum: [DEVICE_REPLACEMENT, DEVICE_LOSS, DEVICE_COMPROMISE, RUNTIME_REINSTALL, SERA_STATE_RESTORE, SERA_RESET, FULL_WALLET_RECOVERY, CONTROLLED_MIGRATION]
+        holder_did: { type: string }
+        sera_agent_did: { type: string }
+        source_device_id:
+          type: [string, 'null']
+
+    RecoverySession:
+      type: object
+      additionalProperties: false
+      required: [recovery_id, mode, holder_did, sera_agent_did, state, started_at, expires_at]
+      properties:
+        recovery_id: { type: string, format: uuid }
+        mode: { type: string }
+        holder_did: { type: string }
+        sera_agent_did: { type: string }
+        source_device_id:
+          type: [string, 'null']
+        target_device_id:
+          type: [string, 'null']
+        target_runtime_id:
+          type: [string, 'null']
+        state:
+          type: string
+          enum: [RECOVERY_INITIATED, HOLDER_AUTHENTICATED, SERA_DID_RESOLVED, STATE_MANIFEST_VERIFIED, STATE_BUNDLE_VERIFIED, STATE_RESTORED, DEVICE_REGISTERED, RUNTIME_REGISTERED, TRUST_REESTABLISHED, AUTHORITY_REESTABLISHED, RECOVERY_COMPLETED, RECOVERY_FAILED, RECOVERY_SUSPENDED]
+        started_at: { type: string, format: date-time }
+        expires_at: { type: string, format: date-time }
