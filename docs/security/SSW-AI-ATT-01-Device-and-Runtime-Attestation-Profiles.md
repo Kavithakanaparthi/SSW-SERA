@@ -11,14 +11,19 @@
 
 This specification defines platform-neutral attestation semantics for device-bound and cloud-hosted SERA runtimes, together with implementation profiles for iOS, Android, wearables and protected cloud runtimes.
 
-The governing invariant is:
+The governing invariants are:
 
-> Attestation proves properties of a runtime or device. It does not prove holder intent, create authority, or substitute for approval, mandate, Trust Protocol or REV.
+> Attestation proves properties of a runtime or device. It does not prove holder identity ownership, wallet continuity, holder intent, or authority.
+
+> Soul Super Wallet ownership and recovery are anchored to the Holder Soul ID, recoverable through the SoulScan facial-biometric path. Device attestation is applied after that identity context is established to determine execution assurance.
 
 ## 2. Architectural Separation
 
 The system distinguishes:
 
+- Holder Soul ID
+- Soul Super Wallet identity context
+- SERA Agent DID governance binding
 - Device identity
 - Runtime identity
 - Runtime key
@@ -28,7 +33,9 @@ The system distinguishes:
 - Session scope
 - Holder authority
 
-Attestation feeds Device Trust and Runtime Registry. It never writes authority directly.
+The Holder Soul ID is the continuity anchor. Devices are replaceable execution environments.
+
+Attestation feeds Device Trust and Runtime Registry. It never establishes wallet ownership, never performs Soul ID recovery, and never writes authority directly.
 
 ## 3. Canonical Attestation Profile
 
@@ -283,6 +290,8 @@ On EXPIRED:
 
 Attestation contributes to, but does not alone define, device trust state.
 
+Device trust is an execution-security property. It is not a wallet-ownership state. A holder may recover Soul Super Wallet on a new device through Soul ID facial biometrics even while that new device is still UNREGISTERED or LIMITED for higher-risk execution.
+
 Example:
 
 ```
@@ -329,16 +338,21 @@ Attestation evidence is never transferable across devices or runtimes.
 
 ## 23. Recovery
 
+Soul Super Wallet recovery begins with recovery of the Holder Soul ID through SoulScan facial biometrics. It does not depend on the previous device being present or trusted.
+
 Recovery runtimes use RECOVERY_LIMITED_PROFILE.
 
 They may:
 
-- authenticate recovery flow;
-- resolve SERA Agent DID;
-- restore state;
-- register new runtime.
+- support the Soul ID recovery flow;
+- establish the recovered Holder DID wallet context;
+- verify the bound SERA Agent DID;
+- restore SERA state;
+- register the current runtime.
 
-They may not gain normal signing authority until full attestation and trust re-establishment complete.
+They may not gain normal signing authority until the current execution environment satisfies the required attestation, runtime, policy, Trust Protocol and REV controls.
+
+Attestation therefore controls post-recovery execution assurance, not whether the holder is entitled to recover the wallet.
 
 ## 24. Privacy
 
@@ -432,6 +446,10 @@ ATT-01 advances when:
 
 Attestation answers: "What runtime or device is this, and what security properties can I verify about it?"
 
-It does not answer: "What is this runtime allowed to do?"
+It does not answer:
 
-Authority remains a separate decision.
+- "Who owns this Soul Super Wallet?"
+- "Has the holder recovered their Soul ID?"
+- "What is this runtime allowed to do?"
+
+Wallet continuity comes from the Holder Soul ID. Authority remains a separate control-plane decision.
