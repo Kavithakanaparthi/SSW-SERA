@@ -11,7 +11,7 @@
     "holder_did":{"type":"string","pattern":"^did:soul:[a-z0-9._:-]+$"},
     "sera_agent_did":{"type":"string","pattern":"^did:soul:agent:[a-z0-9._:-]+$"},
     "key_version":{"type":"integer","minimum":1},
-    "wrapping_profile":{"type":"string","enum":["DEVICE_HARDWARE","RECOVERY_CREDENTIAL","THRESHOLD_RECOVERY","HSM_MANAGED","PLATFORM_KEYSTORE"]},
+    "wrapping_profile":{"type":"string","enum":["SOUL_ID_RECOVERY","DEVICE_HARDWARE","RECOVERY_CREDENTIAL","THRESHOLD_RECOVERY","HSM_MANAGED","PLATFORM_KEYSTORE"]},
     "target":{
       "type":"object","additionalProperties":false,
       "required":["device_id","runtime_id","recovery_class"],
