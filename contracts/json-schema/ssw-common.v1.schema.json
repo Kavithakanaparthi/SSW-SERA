@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.soulverse.world/ssw/json-schema/ssw-common.v1.schema.json",
+  "title": "SSW Common Types v1",
+  "$defs": {
+    "uuid": {"type":"string","format":"uuid"},
+    "timestamp": {"type":"string","format":"date-time"},
+    "holderDid": {"type":"string","pattern":"^did:soul:[a-z0-9._:-]+$"},
+    "seraAgentDid": {"type":"string","pattern":"^did:soul:agent:[a-z0-9._:-]+$"},
+    "runtimeId": {"type":"string","pattern":"^sera-runtime:[A-Za-z0-9._:-]+$"},
+    "deviceId": {"type":"string","pattern":"^device:[A-Za-z0-9._:-]+$"},
+    "sessionId": {"type":"string","pattern":"^sera-session:[A-Za-z0-9._:-]+$"},
+    "sha256": {"type":"string","pattern":"^sha256:[0-9a-f]{64}$"},
+    "authorityClass": {"type":"string","enum":["A0","A1","A2","A3","A4","A5"]},
+    "riskClass": {"type":"string","enum":["R0","R1","R2","R3","R4","R5"]},
+    "deviceTrustState": {"type":"string","enum":["UNREGISTERED","REGISTERED","ATTESTED","TRUSTED","LIMITED","SUSPENDED","REVOKED"]},
+    "decisionStatus": {"type":"string","enum":["NOT_REQUIRED","PENDING","PASS","FAIL","UNAVAILABLE","EXPIRED"]},
+    "approvalStatus": {"type":"string","enum":["NOT_REQUIRED","REQUIRED","PENDING","APPROVED","REJECTED","EXPIRED","INVALIDATED"]},
+    "executionStatus": {"type":"string","enum":["NOT_READY","READY","SUBMITTING","SUBMITTED","CONFIRMED","FAILED","EXECUTION_STATUS_UNKNOWN","CANCELLED","BLOCKED"]},
+    "atomicAmount": {
+      "type":"object",
+      "additionalProperties":false,
+      "required":["atomic","decimals"],
+      "properties":{
+        "atomic":{"type":"string","pattern":"^[0-9]+$"},
+        "decimals":{"type":"integer","minimum":0,"maximum":255}
+      }
+    },
+    "reasonCodes": {
+      "type":"array",
+      "items":{"type":"string","pattern":"^[A-Z][A-Z0-9_]*$"},
+      "uniqueItems":true
+    }
+  }
+}
