@@ -856,3 +856,65 @@ CI evidence:
 **Dependencies closed:** common executable production service lifecycle and runtime conventions.
 
 **Next:** SSW-AI-PROD-03: Persistence & Durable Event Transport.
+
+
+---
+
+## Entry 027 — PROD-03 Persistence & Durable Event Transport
+
+**Date:** 2026-09-19  
+**Artifact:** SSW-AI-PROD-03  
+**Implementation Commit:** `4cfb80ed34314e09e309a9995596db7c1888fcce`  
+**Migration Runner Fix:** `6abb4dc3f12d89d9d664ecf013447987e20d9caf`  
+**Dependency Refresh Trigger:** `ed40340f14a7fdc133484520a3257827469a6aaf`  
+**Verified Lockfile Commit:** `9b361c4e2c550fd8db2f4d631b8fcf928bfb1b8a`  
+**Temporary Workflow Removal:** `b05f1dfe015dd5917c3a3e4d7e2134a2318ad543`  
+**Steady-State CI Run:** #21, ID `35475173920`  
+**Tracker Completion Commit:** `538da8841c32b2e503d4e0088f14fc76a0635b32`  
+**Status:** COMPLETE  
+**Stack:** TypeScript / Node.js 22 / PostgreSQL 16
+
+Implemented:
+
+- PostgreSQL Phase 1 persistence decision;
+- ordered SQL migration discipline with migration checksums;
+- service-owned durable domain records;
+- optimistic concurrency;
+- persistent idempotency claims;
+- persistent replay claims;
+- single-use REV replay protection substrate;
+- atomic mandate usage reservation;
+- execution reconciliation state;
+- transactional event outbox;
+- deduplicating event inbox;
+- SKIP LOCKED outbox claiming and leases;
+- PostgreSQL migration runner;
+- PostgreSQL CI service;
+- integration tests against an actual PostgreSQL container;
+- verified lockfile refresh for pg and @types/pg.
+
+Security and correctness decisions:
+
+- authoritative state includes explicit service ownership;
+- stale writes fail instead of last-write-wins;
+- conflicting idempotency payloads fail;
+- replay and REV single-use claims persist beyond process lifetime;
+- mandate counters are checked and updated within a transaction;
+- execution uncertainty remains explicitly reconcilable;
+- downstream delivery uses transactional outbox/inbox semantics rather than best-effort memory queues;
+- no production database credentials were introduced.
+
+CI evidence:
+
+- PostgreSQL migrations: PASS;
+- clean npm ci: PASS;
+- scaffold verification: PASS;
+- controlled contract verification: PASS;
+- 115 tests: PASS;
+- strict TypeScript: PASS.
+
+The temporary dependency-refresh workflow was removed after the verified lockfile was committed.
+
+**Dependencies closed:** durable server-side control-plane state and transactional event-delivery baseline.
+
+**Next:** SSW-AI-PROD-04: Production Trust / REV Service Integration.
