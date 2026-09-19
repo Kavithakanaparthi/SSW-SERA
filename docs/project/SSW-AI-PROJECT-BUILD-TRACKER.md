@@ -155,8 +155,8 @@ Immediate next artifact:
 | IMP-09 | Approval & Authentication Binding | COMPLETE | Exact-term approval lifecycle and auth references |
 | IMP-10 | Canonical Signing Gateway Baseline | COMPLETE | Production-grade canonicalization selection, signing dry-run verification |
 | IMP-11 | Execution Router & Chain Adapter Baseline | COMPLETE | Adapter contracts, simulation, no uncontrolled route mutation |
-| IMP-12 | SAEL Runtime Implementation | PLANNED | Append-only ingestion, durability, query and action lineage |
-| IMP-13 | Recovery Runtime Implementation | PLANNED | Soul ID-anchored SERA state recovery and authority re-establishment |
+| IMP-12 | SAEL Runtime Implementation | COMPLETE | Append-only ingestion, durability, query and action lineage |
+| IMP-13 | Recovery Runtime Implementation | COMPLETE | Soul ID-anchored SERA state recovery and authority re-establishment |
 | IMP-14 | Counterparty Resolver Runtime | COMPLETE | Canonical identity resolution with ambiguity/provenance controls |
 | IMP-15 | End-to-End Control Path Integration | COMPLETE | Complete dry-run action path across all control services |
 | IMP-16 | Security / Conformance / Adversarial Test Harness | COMPLETE | Replay, substitution, stale decision, alias poisoning, recovery tests |
@@ -218,9 +218,24 @@ A paired wearable never automatically inherits phone authority.
 | Workload Identity | runtime service identity | PLANNED |
 | Secret Management | KMS / HSM / secure key lifecycle | PLANNED |
 | Observability | logs, traces, metrics without sensitive leakage | PLANNED |
-| CI/CD | contract, security, conformance and release gates | PLANNED |
+| CI/CD | contract, security, conformance and release gates | IN PROGRESS — PROD-01 bootstrap workflow committed |
 | Environment Separation | dev / test / staging / production | PLANNED |
 | Infrastructure-as-Code | reproducible deployments | PLANNED |
+
+## 12A. Productionization Milestones
+
+| Artifact | Scope | Status |
+|---|---|---|
+| PROD-01 | Executable Build & CI Baseline | IN PROGRESS |
+| PROD-02 | Production Service Framework & Runtime Conventions | PLANNED |
+| PROD-03 | Persistence & Durable Event Transport | PLANNED |
+| PROD-04 | Production Trust / REV Service Integration | PLANNED |
+| PROD-05 | HSM / Secure Enclave / MPC Signing Integration | PLANNED |
+| PROD-06 | Production Chain Adapters & Execution Reconciliation | PLANNED |
+| PROD-07 | Production SAEL Persistence / Checkpoint / Archive | PLANNED |
+| PROD-08 | Staging Security Gate & Release Evidence | PLANNED |
+
+PROD-01 is not complete until a clean GitHub-hosted runner generates a lockfile, performs npm ci, passes contract/integration/security tests and strict typecheck, and the steady-state workflow is converted to read-only operation.
 
 ## 13. Phase I — Production Security & Release Gates
 
@@ -285,7 +300,7 @@ Completed controlled design/specification layers: all currently scheduled pre-co
 
 Completed implementation artifacts: 16.
 
-Immediate next implementation phase: Productionization & SERA Product Runtime Integration.
+Immediate next implementation phase: PROD-01 Executable Build & CI Baseline (IN PROGRESS), then Productionization & SERA Product Runtime Integration.
 
 Production signing enabled: no.
 
