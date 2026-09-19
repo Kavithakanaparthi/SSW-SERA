@@ -1,0 +1,35 @@
+{
+  "schema": "ssw.control-services.config.v1",
+  "trust_protocol": {
+    "endpoint": "https://trust.internal.example/v1/evaluate",
+    "expected_service_identity": "trust-service:soulverse-prod",
+    "tls_secret_refs": {
+      "client_cert": "secret://trust-client-cert",
+      "client_key": "secret://trust-client-key",
+      "ca_bundle": "secret://control-plane-ca"
+    },
+    "verification_keys_ref": "keyset://trust-service/prod",
+    "timeout_ms": 3000,
+    "max_attempts": 2,
+    "circuit_breaker": {
+      "threshold": 3,
+      "open_ms": 30000
+    }
+  },
+  "rev": {
+    "endpoint": "https://rev.internal.example/v1/evaluate",
+    "expected_service_identity": "rev-service:soulverse-prod",
+    "tls_secret_refs": {
+      "client_cert": "secret://rev-client-cert",
+      "client_key": "secret://rev-client-key",
+      "ca_bundle": "secret://control-plane-ca"
+    },
+    "verification_keys_ref": "keyset://rev-service/prod",
+    "timeout_ms": 2000,
+    "max_attempts": 2,
+    "circuit_breaker": {
+      "threshold": 3,
+      "open_ms": 30000
+    }
+  }
+}

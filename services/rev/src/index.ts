@@ -2,3 +2,5 @@ export {buildRevRequest,verifyRevDecision,evaluateRev,applyVerifiedRevToAction} 
 export type {RevRequest,RevDecision,RevTransport,RevVerification} from "@soulverse/rev-adapter";
 export const serviceName="rev" as const;
 export const implementationStatus="BASELINE_IMPLEMENTED" as const;
+
+export {ProductionRevTransport,NodeMtlsJsonClient,StaticDecisionKeyResolver,PostgresDecisionPersistence,CircuitBreaker} from "@soulverse/control-service-client";
