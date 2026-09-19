@@ -93,7 +93,7 @@ export function evaluateAuthority(input: AuthorityDecisionInput): AuthorityDecis
     mandate_ref:action.authority.mandate_id,
     evaluated_at:input.evaluatedAt
   };
-  return assertContract("authority-decision",decision) as AuthorityDecision;
+  return assertContract("authority-decision",decision) as unknown as AuthorityDecision;
 }
 
 const baselineByAction:Readonly<Record<string,RiskClass>>={
@@ -158,7 +158,7 @@ export function evaluateRisk(input:RiskDecisionInput):RiskDecision{
     reason_codes:reasons,
     evaluated_at:input.evaluatedAt
   };
-  return assertContract("risk-decision",decision) as RiskDecision;
+  return assertContract("risk-decision",decision) as unknown as RiskDecision;
 }
 
 export interface PolicyProfile {
@@ -241,5 +241,5 @@ export function evaluatePolicy(input:{
     risk_decision_ref:input.riskDecision.decision_id,
     evaluated_at:input.evaluatedAt
   };
-  return assertContract("policy-decision",decision) as PolicyDecision;
+  return assertContract("policy-decision",decision) as unknown as PolicyDecision;
 }

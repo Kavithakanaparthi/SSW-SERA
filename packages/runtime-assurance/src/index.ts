@@ -23,8 +23,8 @@ export function evaluateSessionEligibility(input:{
  action:ActionContract; device:DeviceRecord; runtime:RuntimeRecord; decisionId:string; evaluatedAt:string;
 }):SessionEligibilityDecision{
  const action=assertContract("action-contract",input.action);
- const device=assertContract("device-record",input.device) as DeviceRecord;
- const runtime=assertContract("runtime-record",input.runtime) as RuntimeRecord;
+ const device=assertContract("device-record",input.device) as unknown as DeviceRecord;
+ const runtime=assertContract("runtime-record",input.runtime) as unknown as RuntimeRecord;
  const reasons:string[]=[]; let status:SessionEligibilityDecision["status"]="ELIGIBLE";
 
  if(device.state==="REVOKED"||runtime.state==="REVOKED"){status="REVOKED"; reasons.push(device.state==="REVOKED"?"DEVICE_REVOKED":"RUNTIME_REVOKED");}
@@ -40,12 +40,12 @@ export function evaluateSessionEligibility(input:{
  else if(!["ATTESTED","TRUSTED"].includes(device.state)||!["ATTESTED","ELIGIBLE"].includes(runtime.state)){status="INELIGIBLE"; reasons.push("DEVICE_NOT_ELIGIBLE","RUNTIME_NOT_ELIGIBLE");}
 
  const d:SessionEligibilityDecision={schema:"ssw.session-eligibility-decision.v1",decision_id:input.decisionId,action_id:action.action_id,device_id:device.device_id,runtime_id:runtime.runtime_id,status,device_state:device.state,runtime_state:runtime.state,reason_codes:[...new Set(reasons)],evaluated_at:input.evaluatedAt};
- return assertContract("session-eligibility-decision",d) as SessionEligibilityDecision;
+ return assertContract("session-eligibility-decision",d) as unknown as SessionEligibilityDecision;
 }
 
 export function applyEligibilityToAction(actionInput:ActionContract, decision:SessionEligibilityDecision):ActionContract{
  const action=assertContract("action-contract",actionInput);
- const d=assertContract("session-eligibility-decision",decision) as SessionEligibilityDecision;
+ const d=assertContract("session-eligibility-decision",decision) as unknown as SessionEligibilityDecision;
  if(d.action_id!==action.action_id)throw new Error("Eligibility decision action mismatch.");
  const next=structuredClone(action);
  next.policy.device_eligible=d.status==="ELIGIBLE";

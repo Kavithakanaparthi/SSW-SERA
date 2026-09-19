@@ -27,7 +27,7 @@ export function createReviewRecord(input:{
  const record:ReviewRecord={schema:"ssw.review-record.v1",review_id:input.reviewId,presentation_ref:input.presentationRef,action_id:a.action_id,
  action_version:a.version,material_terms_hash:input.materialTermsHash,holder_did:a.principal.holder_did,device_id:a.principal.device_id,
  runtime_id:a.principal.sera_runtime_id,status:"REVIEWED",reviewed_at:input.reviewedAt};
- return assertContract("review-record",record) as ReviewRecord;
+ return assertContract("review-record",record) as unknown as ReviewRecord;
 }
 
 export function createApprovalRecord(input:{
@@ -35,8 +35,8 @@ export function createApprovalRecord(input:{
  approvalId:string;approvedAt:string;expiresAt:string;approvalHash:string;approvalSignatureRef:string;
 }):ApprovalRecord{
  const a=assertContract("action-contract",input.action);
- const review=assertContract("review-record",input.review) as ReviewRecord;
- const auth=assertContract("authentication-evidence",input.authentication) as AuthenticationEvidence;
+ const review=assertContract("review-record",input.review) as unknown as ReviewRecord;
+ const auth=assertContract("authentication-evidence",input.authentication) as unknown as AuthenticationEvidence;
  if(a.authority.class!=="A2"||!a.authority.approval_required)throw new Error("Approval Record requires A2 approval path.");
  if(Date.parse(a.expires_at)<=Date.parse(input.approvedAt))throw new Error("Action expired before approval.");
  if(review.status!=="REVIEWED")throw new Error("Exact terms were not reviewed.");
@@ -54,13 +54,13 @@ export function createApprovalRecord(input:{
  material_terms_hash:input.materialTermsHash,holder_did:a.principal.holder_did,device_id:a.principal.device_id,runtime_id:a.principal.sera_runtime_id,
  review_ref:review.review_id,authentication_ref:auth.auth_id,status:"APPROVED",approved_at:input.approvedAt,expires_at:input.expiresAt,
  integrity:{approval_hash:input.approvalHash,signature_ref:input.approvalSignatureRef}};
- return assertContract("approval-record",record) as ApprovalRecord;
+ return assertContract("approval-record",record) as unknown as ApprovalRecord;
 }
 
 export function applyApprovalToAction(actionInput:ActionContract,approvalInput:ApprovalRecord,reviewInput:ReviewRecord):ActionContract{
  const a=assertContract("action-contract",actionInput);
- const approval=assertContract("approval-record",approvalInput) as ApprovalRecord;
- const review=assertContract("review-record",reviewInput) as ReviewRecord;
+ const approval=assertContract("approval-record",approvalInput) as unknown as ApprovalRecord;
+ const review=assertContract("review-record",reviewInput) as unknown as ReviewRecord;
  if(approval.status!=="APPROVED")throw new Error("Approval Record is not approved.");
  if(approval.action_id!==a.action_id||approval.action_version!==a.version)throw new Error("Approval action mismatch.");
  if(approval.material_terms_hash!==review.material_terms_hash)throw new Error("Approval/review terms mismatch.");

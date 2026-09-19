@@ -40,12 +40,12 @@ export function buildTrustProtocolRequest(input:{
   policy:{decision_ref:input.policyDecision.decision_id,policy_ref:input.policyDecision.policy_id,policy_version:input.policyVersion},
   context_refs:[...(input.contextRefs??[])],issued_at:input.issuedAt,expires_at:input.expiresAt
  };
- return assertContract("trust-protocol-request",req) as TrustProtocolRequest;
+ return assertContract("trust-protocol-request",req) as unknown as TrustProtocolRequest;
 }
 
 export function verifyTrustProtocolDecision(input:{request:TrustProtocolRequest;decision:unknown;now:string;expectedServiceIdentity:string}):TrustVerification{
- const req=assertContract("trust-protocol-request",input.request) as TrustProtocolRequest;
- const d=assertContract("trust-protocol-decision",input.decision) as TrustProtocolDecision;
+ const req=assertContract("trust-protocol-request",input.request) as unknown as TrustProtocolRequest;
+ const d=assertContract("trust-protocol-decision",input.decision) as unknown as TrustProtocolDecision;
  const reasons:string[]=[];
  if(d.service_identity!==input.expectedServiceIdentity)reasons.push("TRUST_SERVICE_IDENTITY_MISMATCH");
  const pairs:[[unknown,unknown,string]]|any=[

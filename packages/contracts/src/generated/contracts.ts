@@ -148,12 +148,23 @@ export interface ApprovalRecordContract { schema:"ssw.approval-record.v1"; [key:
 export interface SigningRequestContract { schema:"ssw.signing-request.v1"; [key:string]: unknown; }
 export interface SigningResultContract { schema:"ssw.signing-result.v1"; [key:string]: unknown; }
 
+export interface ExecutionRequestContract { schema:"ssw.execution-request.v1"; [key:string]: unknown; }
+export interface ExecutionResultContract { schema:"ssw.execution-result.v1"; [key:string]: unknown; }
+export interface SaelEventContract { schema:"ssw.sael-event.v1"; [key:string]: unknown; }
+export interface SaelIngestResultContract { schema:"ssw.sael-ingest-result.v1"; [key:string]: unknown; }
+export interface RecoverySessionContract { schema:"ssw.recovery-session.v1"; [key:string]: unknown; }
+export interface SeraStateManifestContract { schema:"ssw.sera-state-manifest.v1"; [key:string]: unknown; }
+
 export interface ContractTypeMap {
   "intent-envelope": IntentEnvelope;
   "resolved-intent": ResolvedIntent;
   "action-contract": ActionContract;
   "signing-request": SigningRequestContract;
   "signing-result": SigningResultContract;
+  "execution-request": ExecutionRequestContract;
+  "execution-result": ExecutionResultContract;
+  "sael-event": SaelEventContract;
+  "sael-ingest-result": SaelIngestResultContract;
   "review-record": ReviewRecordContract;
   "authentication-evidence": AuthenticationEvidenceContract;
   "approval-record": ApprovalRecordContract;
@@ -173,6 +184,8 @@ export interface ContractTypeMap {
   "dmcl-expression": DmclExpression;
   "attestation-evidence": AttestationEvidence;
   "recovery-proof": RecoveryProof;
+  "recovery-session": RecoverySessionContract;
+  "sera-state-manifest": SeraStateManifestContract;
   "wrapped-state-key": WrappedStateKey;
   "counterparty-resolution": CounterpartyResolution;
 }

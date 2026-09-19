@@ -18,9 +18,9 @@ export interface SigningResult{
 }
 export interface TrustDecisionLike{schema:"ssw.trust-protocol-decision.v1";decision_id:string;action_id:string;action_version:number;material_terms_hash:string;status:string;
  principal:{holder_did:string;sera_agent_did:string};runtime:{device_id:string;sera_runtime_id:string};authority_class:string;risk_class:RiskClass;policy_version:string;
- service_identity:string;issued_at:string;expires_at:string;[key:string]:unknown;}
+ service_identity:string;issued_at:string;expires_at:string;}
 export interface RevDecisionLike{schema:"ssw.rev-decision.v1";decision_id:string;action_id:string;action_version:number;material_terms_hash:string;status:string;
- authority_class:string;risk_class:RiskClass;policy_version:string;trust_protocol_decision_ref:string;service_identity:string;single_use:boolean;issued_at:string;expires_at:string;[key:string]:unknown;}
+ authority_class:string;risk_class:RiskClass;policy_version:string;trust_protocol_decision_ref:string;service_identity:string;single_use:boolean;issued_at:string;expires_at:string;}
 
 export interface ReplayStore{
  inspect(input:{requestId:string;idempotencyKey:string;replayToken:string;revDecisionId:string;requestHash:string}):"FRESH"|"IDENTICAL_RETRY"|"REPLAY"|"IDEMPOTENCY_CONFLICT"|"REV_CONSUMED";

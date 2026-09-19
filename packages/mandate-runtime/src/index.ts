@@ -17,7 +17,7 @@ export function evaluateMandate(input:{
  deviceState:string; runtimeClass:string; dmclContext?:DmclContext;
 }):MandateEvaluationDecision{
  const action=assertContract("action-contract",input.action);
- const mandate=assertContract("mandate",input.mandate) as Mandate;
+ const mandate=assertContract("mandate",input.mandate) as unknown as Mandate;
  const reasons:string[]=[];const conditionResults:DmclDecision[]=[];
  let status:MandateEvaluationDecision["status"]="PASS";
  const fail=(s:MandateEvaluationDecision["status"],r:string)=>{status=s;reasons.push(r);};
@@ -60,5 +60,5 @@ export function evaluateMandate(input:{
   }
  }
  const decision:MandateEvaluationDecision={schema:"ssw.mandate-evaluation-decision.v1",decision_id:input.decisionId,action_id:action.action_id,action_version:action.version,mandate_id:mandate.mandate_id,mandate_version:mandate.version,material_terms_hash:input.materialTermsHash,mandate_terms_hash:mandate.integrity.mandate_terms_hash,status,condition_results:conditionResults,reason_codes:[...new Set(reasons)],evaluated_at:input.evaluatedAt};
- return assertContract("mandate-evaluation-decision",decision) as MandateEvaluationDecision;
+ return assertContract("mandate-evaluation-decision",decision) as unknown as MandateEvaluationDecision;
 }

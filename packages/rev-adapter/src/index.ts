@@ -35,12 +35,12 @@ export function buildRevRequest(input:{
   approval_ref:a.approval.approval_id,mandate_ref:a.authority.mandate_id,mandate_evaluation_ref:input.mandateEvaluationRef??null,aurion_ref:input.aurionRef??null,
   issued_at:input.issuedAt,expires_at:input.expiresAt
  };
- return assertContract("rev-request",req) as RevRequest;
+ return assertContract("rev-request",req) as unknown as RevRequest;
 }
 
 export function verifyRevDecision(input:{request:RevRequest;decision:unknown;now:string;expectedServiceIdentity:string}):RevVerification{
- const req=assertContract("rev-request",input.request) as RevRequest;
- const d=assertContract("rev-decision",input.decision) as RevDecision;
+ const req=assertContract("rev-request",input.request) as unknown as RevRequest;
+ const d=assertContract("rev-decision",input.decision) as unknown as RevDecision;
  const reasons:string[]=[];
  if(d.service_identity!==input.expectedServiceIdentity)reasons.push("REV_SERVICE_IDENTITY_MISMATCH");
  const pairs:any[]=[

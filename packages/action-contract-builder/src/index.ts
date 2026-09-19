@@ -162,7 +162,7 @@ export function buildPaymentSendAction(
       class: "R3",
       reasons: []
     },
-    material_terms: terms,
+    material_terms: terms as unknown as Record<string, unknown>,
     policy: {
       policy_refs: [],
       device_eligible: false,
