@@ -70,11 +70,11 @@ Production Deployment                        NOT GATED
 
 Current implementation milestone:
 
-**SSW-AI-IMP-07 complete**
+**SSW-AI-IMP-08 complete**
 
 Immediate next artifact:
 
-**SSW-AI-IMP-08: REV Adapter & Runtime Pass/Fail Binding**
+**SSW-AI-IMP-09: Approval, Authentication & Exact-Term Authorization Binding**
 
 ## 5. Phase A — Product & Experience Definition
 
@@ -151,8 +151,8 @@ Immediate next artifact:
 | IMP-05 | Device Trust & Runtime Registry Implementation | COMPLETE | Runtime/device eligibility and session state |
 | IMP-06 | Mandate Runtime & DMCL Evaluator | COMPLETE | A3/A4 mandate evaluation and deterministic conditions |
 | IMP-07 | Trust Protocol Adapter | COMPLETE | Typed Trust request/response and binding |
-| IMP-08 | REV Adapter | NEXT | Runtime pass/fail decision binding |
-| IMP-09 | Approval & Authentication Binding | PLANNED | Exact-term approval lifecycle and auth references |
+| IMP-08 | REV Adapter | COMPLETE | Runtime pass/fail decision binding |
+| IMP-09 | Approval & Authentication Binding | NEXT | Exact-term approval lifecycle and auth references |
 | IMP-10 | Canonical Signing Gateway Baseline | PLANNED | Production-grade canonicalization selection, signing dry-run verification |
 | IMP-11 | Execution Router & Chain Adapter Baseline | PLANNED | Adapter contracts, simulation, no uncontrolled route mutation |
 | IMP-12 | SAEL Runtime Implementation | PLANNED | Append-only ingestion, durability, query and action lineage |
@@ -263,23 +263,23 @@ The following remain mandatory:
 
 ## 15. Current Dependencies
 
-IMP-08 depends on:
+IMP-09 depends on:
 
-- IMP-04 authority/risk/policy decisions;
-- IMP-05 device/runtime/session eligibility;
-- IMP-06 mandate evaluation;
-- IMP-07 verified Trust Protocol decision;
-- ISC-03 REV decision binding.
+- IMP-03 material-term binding;
+- IMP-04 A2 authority evaluation;
+- IMP-05 device/runtime/session context;
+- SCH-04 reveal/approval separation;
+- exact-term approval/authentication requirements.
 
-No signing or execution work should bypass IMP-08 through IMP-09.
+No signing or execution work should bypass IMP-09.
 
 ## 16. Current Build Summary
 
 Completed controlled design/specification layers: all currently scheduled pre-code architecture and security items.
 
-Completed implementation artifacts: 7.
+Completed implementation artifacts: 8.
 
-Immediate next implementation artifact: IMP-08.
+Immediate next implementation artifact: IMP-09.
 
 Production signing enabled: no.
 
