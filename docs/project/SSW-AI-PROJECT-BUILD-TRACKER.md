@@ -63,18 +63,18 @@ Implementation Readiness Gate                COMPLETE
 Repository Scaffold                          COMPLETE
 Runtime Contract Validation                  COMPLETE
 Action Contract Construction                 COMPLETE
-Authority / Risk / Policy Runtime             NEXT
+Authority / Risk / Policy Runtime             COMPLETE
 Production Signing                           NOT GATED
 Production Deployment                        NOT GATED
 ```
 
 Current implementation milestone:
 
-**SSW-AI-IMP-03 complete**
+**SSW-AI-IMP-04 complete**
 
 Immediate next artifact:
 
-**SSW-AI-IMP-04: Authority, Risk & Policy Evaluation Baseline**
+**SSW-AI-IMP-05: Device Trust, Runtime Registry & Session Eligibility Implementation**
 
 ## 5. Phase A — Product & Experience Definition
 
@@ -147,8 +147,8 @@ Immediate next artifact:
 | IMP-01 | Repository Scaffold, Package Boundaries & Build Bootstrap | COMPLETE | TypeScript workspace, packages, services, tests, dry-run path |
 | IMP-02 | Common Contracts, Generated Types & Schema Validation Runtime | COMPLETE | Runtime contract validation, schema registry, semantic identity checks |
 | IMP-03 | Action Contract Builder, Intent Normalization & Material-Term Binding | COMPLETE | Intent/Resolved Intent schemas, payment.send builder, ambiguity blocking, material hash |
-| IMP-04 | Authority, Risk & Policy Evaluation Baseline | NEXT | Deterministic authority/risk/policy decisions |
-| IMP-05 | Device Trust & Runtime Registry Implementation | PLANNED | Runtime/device eligibility and session state |
+| IMP-04 | Authority, Risk & Policy Evaluation Baseline | COMPLETE | Deterministic authority/risk/policy decisions with exact material-term binding |
+| IMP-05 | Device Trust & Runtime Registry Implementation | NEXT | Runtime/device eligibility and session state |
 | IMP-06 | Mandate Runtime & DMCL Evaluator | PLANNED | A3/A4 mandate evaluation and deterministic conditions |
 | IMP-07 | Trust Protocol Adapter | PLANNED | Typed Trust request/response and binding |
 | IMP-08 | REV Adapter | PLANNED | Runtime pass/fail decision binding |
@@ -263,23 +263,23 @@ The following remain mandatory:
 
 ## 15. Current Dependencies
 
-IMP-04 depends on:
+IMP-05 depends on:
 
-- IMP-02 validated Action Contracts;
-- IMP-03 material-term construction and binding;
-- canonical A0-A5 authority classes;
-- canonical R0-R5 risk classes;
-- controlled policy references.
+- IMP-04 authority/risk/policy decision objects;
+- SCH-03 device trust state model;
+- ISC-04 runtime registration and session contract;
+- ATT-01 attestation evidence profiles;
+- CF-A02 identity-bound, device-independent wallet continuity.
 
-No signing or execution work should bypass IMP-04 through IMP-09.
+No signing or execution work should bypass IMP-05 through IMP-09.
 
 ## 16. Current Build Summary
 
 Completed controlled design/specification layers: all currently scheduled pre-code architecture and security items.
 
-Completed implementation artifacts: 3.
+Completed implementation artifacts: 4.
 
-Immediate next implementation artifact: IMP-04.
+Immediate next implementation artifact: IMP-05.
 
 Production signing enabled: no.
 
