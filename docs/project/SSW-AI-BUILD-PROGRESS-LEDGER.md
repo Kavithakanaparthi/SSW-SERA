@@ -368,3 +368,46 @@ CF-A02 remains authoritative:
 **Dependencies closed:** real device/runtime/session eligibility for control-plane policy evaluation.
 
 **Next:** SSW-AI-IMP-06: Mandate Runtime & Deterministic DMCL Evaluator.
+
+
+---
+
+## Entry 013 — IMP-06 Mandate Runtime & Deterministic DMCL Evaluator
+
+**Date:** 2026-09-19  
+**Artifact:** SSW-AI-IMP-06  
+**Commit:** e77ee84a55fd045df283fb2ad5a65b5e6b457a9c  
+**Status:** COMPLETE  
+**Stack:** TypeScript / Node.js
+
+Implemented:
+
+- Mandate Evaluation Decision schema;
+- deterministic A3/A4 mandate runtime;
+- exact Holder DID and SERA Agent DID mandate binding;
+- mandate lifecycle and temporal validity checks;
+- action-type, asset, chain and counterparty scope enforcement;
+- per-action atomic amount limit enforcement;
+- mandate risk ceiling and prohibited-reason enforcement;
+- device and runtime mandate restrictions;
+- cloud and wearable execution restrictions;
+- deterministic DMCL runtime;
+- exact integer-string comparisons using BigInt;
+- logical, comparison, membership, presence, timestamp and counter operators;
+- fail-closed INDETERMINATE behavior for missing inputs;
+- A4 mandatory-condition enforcement;
+- contract tests for scope, limits, risk, identity, device/runtime and DMCL behavior.
+
+A3 now requires a valid bounded mandate.
+
+A4 requires a valid conditional mandate and all execution-time DMCL conditions to evaluate TRUE.
+
+Natural-language interpretation remains outside the execution-time authorization path.
+
+time_of_day_between remains intentionally INDETERMINATE until a controlled production timezone profile is selected.
+
+Cumulative/frequency reservation and concurrency-safe allowance accounting remain future implementation work before production execution.
+
+**Dependencies closed:** deterministic delegated-authority evaluation for A3/A4.
+
+**Next:** SSW-AI-IMP-07: Trust Protocol Adapter & Decision Binding Runtime.
