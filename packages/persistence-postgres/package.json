@@ -7,5 +7,6 @@
   "types": "./src/index.ts",
   "dependencies": {
     "pg": "8.23.0"
-  }
+  },
+  "description": "PostgreSQL persistence and transactional outbox/inbox runtime for SSW-SERA."
 }
