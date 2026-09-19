@@ -74,7 +74,7 @@ Current implementation milestone:
 
 Immediate next artifact:
 
-**SSW-AI-PROD-03: Persistence & Durable Event Transport**
+**SSW-AI-PROD-04: Production Trust / REV Service Integration**
 
 ## 5. Phase A — Product & Experience Definition
 
@@ -213,8 +213,8 @@ A paired wearable never automatically inherits phone authority.
 | Area | Deliverable | Status |
 |---|---|---|
 | Service Framework Selection | production framework / runtime conventions | COMPLETE — Node 22 + @soulverse/service-host |
-| Database Architecture | state ownership / persistence implementation | PLANNED |
-| Event Transport | durable event/message transport | PLANNED |
+| Database Architecture | state ownership / persistence implementation | COMPLETE — PostgreSQL baseline |
+| Event Transport | durable event/message transport | COMPLETE — transactional outbox/inbox baseline |
 | Workload Identity | runtime service identity | PLANNED |
 | Secret Management | KMS / HSM / secure key lifecycle | PLANNED |
 | Observability | logs, traces, metrics without sensitive leakage | PLANNED |
@@ -228,8 +228,8 @@ A paired wearable never automatically inherits phone authority.
 |---|---|---|
 | PROD-01 | Executable Build & CI Baseline | COMPLETE |
 | PROD-02 | Production Service Framework & Runtime Conventions | COMPLETE |
-| PROD-03 | Persistence & Durable Event Transport | NEXT |
-| PROD-04 | Production Trust / REV Service Integration | PLANNED |
+| PROD-03 | Persistence & Durable Event Transport | COMPLETE |
+| PROD-04 | Production Trust / REV Service Integration | NEXT |
 | PROD-05 | HSM / Secure Enclave / MPC Signing Integration | PLANNED |
 | PROD-06 | Production Chain Adapters & Execution Reconciliation | PLANNED |
 | PROD-07 | Production SAEL Persistence / Checkpoint / Archive | PLANNED |
@@ -300,9 +300,9 @@ Completed controlled design/specification layers: all currently scheduled pre-co
 
 Completed implementation artifacts: 16.
 
-Completed productionization artifacts: 2.
+Completed productionization artifacts: 3.
 
-Immediate next implementation phase: PROD-03 Persistence & Durable Event Transport.
+Immediate next implementation phase: PROD-04 Production Trust / REV Service Integration.
 
 Production signing enabled: no.
 
