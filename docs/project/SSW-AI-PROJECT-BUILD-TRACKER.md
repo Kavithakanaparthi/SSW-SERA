@@ -70,11 +70,11 @@ Production Deployment                        NOT GATED
 
 Current implementation milestone:
 
-**SSW-AI-IMP-04 complete**
+**SSW-AI-IMP-05 complete**
 
 Immediate next artifact:
 
-**SSW-AI-IMP-05: Device Trust, Runtime Registry & Session Eligibility Implementation**
+**SSW-AI-IMP-06: Mandate Runtime & Deterministic DMCL Evaluator**
 
 ## 5. Phase A — Product & Experience Definition
 
@@ -148,8 +148,8 @@ Immediate next artifact:
 | IMP-02 | Common Contracts, Generated Types & Schema Validation Runtime | COMPLETE | Runtime contract validation, schema registry, semantic identity checks |
 | IMP-03 | Action Contract Builder, Intent Normalization & Material-Term Binding | COMPLETE | Intent/Resolved Intent schemas, payment.send builder, ambiguity blocking, material hash |
 | IMP-04 | Authority, Risk & Policy Evaluation Baseline | COMPLETE | Deterministic authority/risk/policy decisions with exact material-term binding |
-| IMP-05 | Device Trust & Runtime Registry Implementation | NEXT | Runtime/device eligibility and session state |
-| IMP-06 | Mandate Runtime & DMCL Evaluator | PLANNED | A3/A4 mandate evaluation and deterministic conditions |
+| IMP-05 | Device Trust & Runtime Registry Implementation | COMPLETE | Runtime/device eligibility and session state |
+| IMP-06 | Mandate Runtime & DMCL Evaluator | NEXT | A3/A4 mandate evaluation and deterministic conditions |
 | IMP-07 | Trust Protocol Adapter | PLANNED | Typed Trust request/response and binding |
 | IMP-08 | REV Adapter | PLANNED | Runtime pass/fail decision binding |
 | IMP-09 | Approval & Authentication Binding | PLANNED | Exact-term approval lifecycle and auth references |
@@ -263,23 +263,23 @@ The following remain mandatory:
 
 ## 15. Current Dependencies
 
-IMP-05 depends on:
+IMP-06 depends on:
 
-- IMP-04 authority/risk/policy decision objects;
-- SCH-03 device trust state model;
-- ISC-04 runtime registration and session contract;
-- ATT-01 attestation evidence profiles;
-- CF-A02 identity-bound, device-independent wallet continuity.
+- IMP-04 authority decision objects;
+- IMP-05 device/runtime/session eligibility;
+- SCH-02 mandate schema;
+- POL-02 deterministic mandate condition language;
+- canonical A3/A4 authority semantics.
 
-No signing or execution work should bypass IMP-05 through IMP-09.
+No signing or execution work should bypass IMP-06 through IMP-09.
 
 ## 16. Current Build Summary
 
 Completed controlled design/specification layers: all currently scheduled pre-code architecture and security items.
 
-Completed implementation artifacts: 4.
+Completed implementation artifacts: 5.
 
-Immediate next implementation artifact: IMP-05.
+Immediate next implementation artifact: IMP-06.
 
 Production signing enabled: no.
 
