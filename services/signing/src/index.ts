@@ -3,3 +3,6 @@ export type {SigningRequest,SigningResult,ReplayStore} from "@soulverse/signing-
 export const serviceName="signing" as const;
 export const implementationStatus="DRY_RUN_BASELINE_IMPLEMENTED" as const;
 export const SIGNING_MODE="DRY_RUN_ONLY" as const;
+
+export {SignerCoordinator,IsolatedTestSignerProvider,DenySigningDigestVerifier,SignerRuntimeError} from "@soulverse/signer-runtime";
+export type {SignerProvider,SignerKeyDescriptor,SigningDigestVerifier,PreparedSigningDigest} from "@soulverse/signer-runtime";

@@ -127,6 +127,30 @@ export class PostgresSession{
   const current=await this.db.query(`SELECT payload_hash FROM ssw.event_inbox WHERE consumer_service=$1 AND event_id=$2::uuid`,[input.consumerService,input.eventId]);
   return current.rows[0]?.payload_hash===input.payloadHash?"IDENTICAL_RETRY":"CONFLICT";
  }
+
+ async registerSignerKey(input:{keyRef:string;holderDid:string;keyClass:string;providerClass:string;algorithm:string;publicKeyRef:string;allowedChains:string[];allowedActionTypes:string[];status:string}){
+  await this.db.query(`INSERT INTO ssw.signer_key_registry(key_ref,holder_did,key_class,provider_class,algorithm,public_key_ref,allowed_chains,allowed_action_types,status)
+    VALUES($1,$2,$3,$4,$5,$6,$7::text[],$8::text[],$9)
+    ON CONFLICT(key_ref) DO UPDATE SET status=EXCLUDED.status,allowed_chains=EXCLUDED.allowed_chains,allowed_action_types=EXCLUDED.allowed_action_types`,
+    [input.keyRef,input.holderDid,input.keyClass,input.providerClass,input.algorithm,input.publicKeyRef,input.allowedChains,input.allowedActionTypes,input.status]);
+ }
+ async findEligibleSignerKeys(input:{holderDid:string;keyClass:string;chainId:string;actionType:string}){
+  const r=await this.db.query(`SELECT * FROM ssw.signer_key_registry WHERE holder_did=$1 AND key_class=$2 AND status='ACTIVE'
+    AND ($3=ANY(allowed_chains) OR cardinality(allowed_chains)=0)
+    AND ($4=ANY(allowed_action_types) OR cardinality(allowed_action_types)=0)`,
+    [input.holderDid,input.keyClass,input.chainId,input.actionType]);return r.rows;
+ }
+ async beginSigningOperation(input:{operationId:string;signingRequestId:string;actionId:string;requestHash:string;payloadHash:string;signingDigest:string;digestProfile:string;keyRef:string;revDecisionId:string}){
+  await this.db.query(`INSERT INTO ssw.signing_operation(operation_id,signing_request_id,action_id,request_hash,payload_hash,signing_digest,digest_profile,key_ref,rev_decision_id,status)
+    VALUES($1::uuid,$2,$3,$4,$5,$6,$7,$8,$9,'RESERVED')`,
+    [input.operationId,input.signingRequestId,input.actionId,input.requestHash,input.payloadHash,input.signingDigest,input.digestProfile,input.keyRef,input.revDecisionId]);
+ }
+ async getSigningOperationByRequest(signingRequestId:string){const r=await this.db.query(`SELECT * FROM ssw.signing_operation WHERE signing_request_id=$1`,[signingRequestId]);return r.rows[0]??null;}
+ async markSigningOperationSigning(operationId:string){await this.db.query(`UPDATE ssw.signing_operation SET status='SIGNING',updated_at=now() WHERE operation_id=$1::uuid`,[operationId]);}
+ async completeSigningOperation(input:{operationId:string;status:"SIGNED"|"REJECTED"|"SIGNER_STATUS_UNKNOWN";providerOperationRef:string|null;signatureRef:string|null;reasonCode?:string|null}){
+  await this.db.query(`UPDATE ssw.signing_operation SET status=$2,provider_operation_ref=$3,signature_ref=$4,reason_code=$5,updated_at=now() WHERE operation_id=$1::uuid`,
+    [input.operationId,input.status,input.providerOperationRef,input.signatureRef,input.reasonCode??null]);
+ }
 }
 
 export async function applyMigrations(pool:Pool,migrationsDir:string){

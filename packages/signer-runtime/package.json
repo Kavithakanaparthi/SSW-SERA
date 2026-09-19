@@ -1,12 +1,13 @@
 {
-  "name": "@soulverse/service-signing",
-  "version": "0.2.0",
+  "name": "@soulverse/signer-runtime",
+  "version": "0.1.0",
   "private": true,
   "type": "module",
   "main": "./src/index.ts",
   "types": "./src/index.ts",
   "dependencies": {
     "@soulverse/signing-gateway": "0.1.0",
-    "@soulverse/signer-runtime": "0.1.0"
+    "@soulverse/persistence-postgres": "0.1.0",
+    "@soulverse/canonicalization": "0.2.0"
   }
 }
