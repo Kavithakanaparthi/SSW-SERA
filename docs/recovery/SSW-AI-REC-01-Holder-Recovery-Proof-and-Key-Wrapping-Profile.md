@@ -143,7 +143,7 @@ State Key Encryption Key (SKEK)
 Recovery / Device Wrapping Profiles
 ```
 
-Wallet private keys are outside this hierarchy.
+General SERA state keys remain separate from signing keys. Soul ID and SERA signing keys use their own DID-bound encrypted key-recovery hierarchy, authorized through SoulScan and persisted through encrypted IPFS/content-addressed key objects.
 
 ## 9. SDEK
 
@@ -279,11 +279,16 @@ Rotation events must be versioned and evidenced.
 
 Strict separation:
 
-- SDEK: state confidentiality
-- SKEK: state-key protection
+- SDEK: SERA state confidentiality
+- SKEK: SERA state-key protection
 - Runtime key: runtime identity/session
-- Wallet private key: transaction signing
+- Soul ID signing key: Holder DID transaction signing
+- SERA signing key: SERA DID signing within delegated authority
 - Recovery credential key: recovery proof/wrapping only
+
+Soul ID and SERA signing keys may both use the SoulScan/IPFS recovery method, but remain separate keys with separate DID bindings and authority semantics.
+
+Encrypted signing-key objects are not ordinary SERA state bundles.
 
 No key should serve more than one trust purpose unless explicitly reviewed.
 

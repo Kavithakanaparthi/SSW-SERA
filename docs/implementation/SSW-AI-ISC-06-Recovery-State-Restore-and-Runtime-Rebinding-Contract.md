@@ -297,9 +297,9 @@ Portable state may restore:
 - non-secret automation preferences;
 - selected personalization.
 
-Portable state must not restore:
+General SERA portable state must not itself contain:
 
-- wallet private keys;
+- plaintext wallet or SERA private keys;
 - seed phrases;
 - raw recovery secrets;
 - raw biometric templates;
@@ -307,6 +307,8 @@ Portable state must not restore:
 - revoked Device IDs;
 - expired/revoked mandates;
 - unrestricted signing handles.
+
+Wallet/SERA signing-key recovery is a separate protected compartment. Under the SoulScan/IPFS model, recovery may restore encrypted DID-bound signing key material through the authorized key-recovery path. That recovered key material is not treated as ordinary portable SERA state and does not by itself restore execution authority.
 
 ---
 
@@ -470,14 +472,16 @@ Recovery should reduce authority before restoring it.
 
 Signing eligibility requires:
 
+- a successfully recovered and current DID-bound signing key through the SoulScan/IPFS key-recovery path;
 - eligible Device ID;
 - eligible Runtime ID;
 - valid runtime session;
-- signer-key availability;
 - current authentication;
 - policy pass;
 - action-specific Trust Protocol/REV;
 - any required post-recovery waiting or step-up controls.
+
+The key is portable. Device/runtime eligibility remains an execution-assurance control and does not define key ownership.
 
 State restore alone never restores signing.
 

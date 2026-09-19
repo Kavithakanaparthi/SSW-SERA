@@ -1,8 +1,8 @@
-# SSW-AI-PROD-05: HSM / Secure Enclave / MPC Signing Integration
+# SSW-AI-PROD-05: SoulScan / IPFS Portable Signing Key Integration
 
 **Program:** Soul Super Wallet AI-First / SERA Companion Architecture  
 **Artifact ID:** SSW-AI-PROD-05  
-**Status:** IN PROGRESS — Provider-Neutral Boundary Complete  
+**Status:** IN PROGRESS — Portable Key Custody Model Adopted  
 **Date:** 2026-09-19  
 **Parent:** SSW-AI-PROD-04
 
@@ -14,25 +14,16 @@ The governing invariant is:
 
 > The signing system may receive an approved digest and an opaque key reference. It may never receive free-form instructions or export private key material.
 
-## 2. Provider-Neutral Contract
+## 2. Canonical Signer Model
 
-The signer runtime defines:
+Soul ID and SERA keys are portable and DID-bound.
 
-- key descriptors;
-- signer provider classes;
-- digest-signing requests;
-- digest-signing results;
-- provider operation references;
-- signer-key eligibility;
-- durable signing-operation state.
+The canonical provider model is:
 
-Provider classes:
+- SOULSCAN_IPFS_PORTABLE;
+- TEST_PORTABLE.
 
-- HSM;
-- DEVICE_SECURE_ENCLAVE;
-- MPC;
-- CLOUD_KMS;
-- TEST_ISOLATED.
+Hardware-bound, HSM, MPC and cloud-KMS modes are not the canonical custody path for Soul ID or SERA.
 
 ## 3. Key Registry
 
@@ -111,22 +102,21 @@ CI uses an isolated ephemeral Ed25519 signer solely to prove:
 
 It is not an EVM production signer.
 
-## 9. Production Provider Choice
+## 9. Production Integration Choice
 
-A real provider adapter is deliberately not selected in this artifact.
+The remaining integration is not a custody-provider choice.
 
-The choice among:
+The required production providers are:
 
-- cloud HSM/KMS;
-- dedicated HSM;
-- MPC;
-- device Secure Enclave / hardware-backed keystore
+- SoulScan recovery authorization;
+- IPFS/content-addressed encrypted key-object storage;
+- DID/key-manifest resolution.
 
-is consequential because it changes custody, availability, recovery, device topology, compliance and operational assumptions.
+Hardware protection may remain optional and subordinate.
 
 ## 10. Current Production Gate
 
 Production signing remains NOT GATED.
 
-The provider-neutral boundary is complete, but PROD-05 remains IN PROGRESS until at least one real production signer provider and its workload-identity / secret-delivery mechanism are selected and integrated.
+The signing control boundary is complete, but PROD-05 remains IN PROGRESS until the SoulScan recovery adapter, IPFS encrypted-key adapter and cryptographic key-envelope profile are integrated.
 

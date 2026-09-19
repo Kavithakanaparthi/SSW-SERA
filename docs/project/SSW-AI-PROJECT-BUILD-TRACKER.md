@@ -74,7 +74,7 @@ Current implementation milestone:
 
 Immediate next artifact:
 
-**SSW-AI-PROD-05: HSM / Secure Enclave / MPC Signing Integration**
+**SSW-AI-PROD-05: SoulScan / IPFS Portable Signing Key Integration**
 
 ## 5. Phase A — Product & Experience Definition
 
@@ -216,7 +216,7 @@ A paired wearable never automatically inherits phone authority.
 | Database Architecture | state ownership / persistence implementation | COMPLETE — PostgreSQL baseline |
 | Event Transport | durable event/message transport | COMPLETE — transactional outbox/inbox baseline |
 | Workload Identity | runtime service identity | PLANNED |
-| Secret Management | KMS / HSM / secure key lifecycle | PLANNED |
+| Secret Management | SoulScan/IPFS portable key lifecycle + service secrets | IN PROGRESS |
 | Observability | logs, traces, metrics without sensitive leakage | PLANNED |
 | CI/CD | contract, security, conformance and release gates | BASELINE COMPLETE — steady-state read-only CI active |
 | Environment Separation | dev / test / staging / production | PLANNED |
@@ -230,7 +230,7 @@ A paired wearable never automatically inherits phone authority.
 | PROD-02 | Production Service Framework & Runtime Conventions | COMPLETE |
 | PROD-03 | Persistence & Durable Event Transport | COMPLETE |
 | PROD-04 | Production Trust / REV Service Integration | COMPLETE |
-| PROD-05 | HSM / Secure Enclave / MPC Signing Integration | IN PROGRESS — provider-neutral boundary complete; production provider selection required |
+| PROD-05 | SoulScan / IPFS Portable Signing Key Integration | IN PROGRESS — custody model corrected; SoulScan/IPFS adapters next |
 | PROD-06 | Production Chain Adapters & Execution Reconciliation | PLANNED |
 | PROD-07 | Production SAEL Persistence / Checkpoint / Archive | PLANNED |
 | PROD-08 | Staging Security Gate & Release Evidence | PLANNED |
@@ -284,7 +284,7 @@ The next phase depends on:
 
 - production service framework and deployment topology;
 - persistent database and durable event transport;
-- HSM / Secure Enclave / MPC signer integration;
+- SoulScan/IPFS portable signer integration;
 - production Trust Protocol and REV transports with cryptographic service verification;
 - persistent replay, idempotency and mandate-usage reservation;
 - production SAEL persistence, checkpointing and archive;
@@ -300,9 +300,9 @@ Completed controlled design/specification layers: all currently scheduled pre-co
 
 Completed implementation artifacts: 16.
 
-Completed productionization artifacts: 4. Provider-neutral PROD-05 substrate implemented and CI-verified; artifact remains open pending provider choice.
+Completed productionization artifacts: 4. PROD-05 control boundary is implemented and CI-verified; custody model amended to SoulScan/IPFS portable keys and remains open pending concrete recovery/storage integration.
 
-Immediate next implementation phase: PROD-05 production signer provider selection and concrete adapter integration.
+Immediate next implementation phase: PROD-05 SoulScan recovery adapter + encrypted IPFS key-object adapter + key-manifest profile.
 
 Production signing enabled: no.
 

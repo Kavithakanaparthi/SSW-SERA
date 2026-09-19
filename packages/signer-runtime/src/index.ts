@@ -4,7 +4,7 @@ import {dryRunVerifySigning,type ReplayStore} from "@soulverse/signing-gateway";
 import {sha256DomainSeparated,type CanonicalJson} from "@soulverse/canonicalization";
 import {PostgresPersistence,PersistenceConflict} from "@soulverse/persistence-postgres";
 
-export type SignerProviderClass="HSM"|"DEVICE_SECURE_ENCLAVE"|"MPC"|"CLOUD_KMS"|"TEST_ISOLATED";
+export type SignerProviderClass="SOULSCAN_IPFS_PORTABLE"|"TEST_PORTABLE";
 export type SignerKeyStatus="ACTIVE"|"SUSPENDED"|"REVOKED"|"RETIRED";
 
 export interface SignerKeyDescriptor{
@@ -31,7 +31,7 @@ export interface SignerProvider{
 export class SignerRuntimeError extends Error{constructor(public readonly code:string,public readonly outcomeUnknown:boolean){super(code);}}
 
 export class IsolatedTestSignerProvider implements SignerProvider{
- readonly providerClass="TEST_ISOLATED" as const;
+ readonly providerClass="TEST_PORTABLE" as const;
  private readonly keys=new Map<string,{privateKey:KeyObject;descriptor:SignerKeyDescriptor}>();
  createTestKey(input:{keyRef:string;holderDid:string;keyClass:string;allowedChains:string[];allowedActionTypes:string[]}){
   const pair=generateKeyPairSync("ed25519");

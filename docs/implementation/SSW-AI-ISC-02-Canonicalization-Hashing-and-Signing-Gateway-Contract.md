@@ -532,15 +532,21 @@ The caller may request a key class but may not supply arbitrary secret key mater
 
 ## 27. Key Isolation
 
-Private keys shall remain within:
+Soul ID and SERA signing keys are portable and DID-bound rather than hardware-bound.
 
-- Secure Enclave;
-- TEE;
-- hardware-backed keystore;
-- approved HSM/MPC signer;
-- equivalent isolated cryptographic boundary.
+Encrypted key material may be persisted through IPFS/content-addressed storage under the SoulScan-authorized recovery model.
 
-The Signing Gateway returns signatures or signed payloads, never raw private keys.
+Required controls:
+
+- plaintext private keys are never published to IPFS;
+- plaintext private keys are never persisted in PostgreSQL, SAEL or logs;
+- the active encrypted key object is selected through a signed DID-bound key manifest;
+- SoulScan authorizes/reconstructs access to the recovery path;
+- recovered plaintext key material exists only within the controlled signing runtime for the bounded operation;
+- the Signing Gateway receives an opaque key reference and returns a signature or signed payload, never raw private key material;
+- hardware-backed storage may be used as an optional local protection/cache layer but is not the custody or recovery root.
+
+SERA follows the same model as Soul ID, while remaining subordinate to its Holder DID governance and current Trust/REV/authority controls.
 
 ---
 
