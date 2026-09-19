@@ -758,3 +758,47 @@ Completion requires:
 No production credentials, providers, HSM/KMS integrations, Trust/REV production endpoints or chain broadcast capabilities should be attached before PROD-01 closes.
 
 **Next:** complete the CI bootstrap run, commit the verified lockfile, then convert to steady-state read-only CI.
+
+
+---
+
+## Entry 025 — PROD-01 Executable Build & CI Baseline Complete
+
+**Date:** 2026-09-19  
+**Artifact:** SSW-AI-PROD-01  
+**Status:** COMPLETE  
+**Stack:** TypeScript / Node.js / npm workspaces / GitHub Actions
+
+Completion evidence:
+
+- Bootstrap workflow commit: `a0fc3b6bfa8f251ad07fca82590a46c23193feb5`
+- Test-fixture conformance fix: `c742ca7dd45c2933d82fd109194d0a7f0ddee1a3`
+- SAEL idempotency and conformance-test fix: `078e93d40be9ccc651172dd20aaef51ced33b054`
+- Strict TypeScript baseline fix: `27716c342a20f0c6f89ba3dbb660a6a27a9234a8`
+- Remaining TypeScript interop fix: `8bd193ab754936043c0de803598e4d00901171b1`
+- Successful GitHub Actions run: Run #8, ID `35474348335`
+- Verified lockfile commit: `37fd223b8cb1643c57c2140a62d5678a7bb246af`
+- package-lock.json blob SHA: `091afc15bfb02cae0ac97f20324ce591eaa367b0`
+- Steady-state read-only CI workflow commit: `c2f72f2025b8c43895cea2f241c8613a2ee8c8e2`
+- PROD-01 closure document commit: `bd8a08f6b97fd63664f3026d5da657f21257d8ac`
+- Tracker completion commit: `6bac31ada53621cf2e9debfa9daaf2d3da4c18f5`
+
+Verified green gates:
+
+- Node 22 toolchain;
+- lockfile generation;
+- clean npm ci;
+- scaffold verification;
+- controlled schema / enum / OpenAPI verification;
+- 104 contract, integration and security tests;
+- strict TypeScript typecheck.
+
+The executable CI gate surfaced and closed one real SAEL idempotent-retry ordering defect, stale conformance expectations, invalid test fixtures, incomplete TypeScript contract-map coverage and module-typing issues before any production credentials or provider integrations were introduced.
+
+The temporary repository-write permission used only for lockfile bootstrap has been removed from the workflow. Steady-state CI is read-only and uses the committed package-lock.json.
+
+Production signing remains NOT GATED. Production asset movement remains disabled.
+
+**Dependencies closed:** reproducible executable repository baseline and CI quality gate.
+
+**Next:** SSW-AI-PROD-02: Production Service Framework & Runtime Conventions.
