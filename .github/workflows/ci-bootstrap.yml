@@ -19,6 +19,22 @@ jobs:
     name: Node 22 build and verification
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: ssw
+          POSTGRES_PASSWORD: ssw_ci
+          POSTGRES_DB: ssw_sera
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U ssw -d ssw_sera"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      DATABASE_URL: postgresql://ssw:ssw_ci@127.0.0.1:5432/ssw_sera
 
     steps:
       - name: Checkout
@@ -38,6 +54,9 @@ jobs:
 
       - name: Clean install from committed lockfile
         run: npm ci --ignore-scripts --no-audit --no-fund
+
+      - name: Apply PostgreSQL migrations
+        run: npm run db:migrate
 
       - name: Verify scaffold
         run: npm run verify:scaffold

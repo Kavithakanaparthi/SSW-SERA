@@ -1,0 +1,11 @@
+{
+  "name": "@soulverse/persistence-postgres",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "dependencies": {
+    "pg": "8.23.0"
+  }
+}
