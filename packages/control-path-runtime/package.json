@@ -1,0 +1,19 @@
+{
+  "name": "@soulverse/control-path-runtime",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "dependencies": {
+    "@soulverse/action-contract-builder": "0.1.0",
+    "@soulverse/approval-runtime": "0.1.0",
+    "@soulverse/control-decisions": "0.1.0",
+    "@soulverse/runtime-assurance": "0.1.0",
+    "@soulverse/trust-adapter": "0.1.0",
+    "@soulverse/rev-adapter": "0.1.0",
+    "@soulverse/signing-gateway": "0.1.0",
+    "@soulverse/execution-router": "0.1.0",
+    "@soulverse/sael-runtime": "0.1.0"
+  }
+}

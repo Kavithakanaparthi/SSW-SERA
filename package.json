@@ -1,6 +1,6 @@
 {
   "name": "@soulverse/ssw-sera",
-  "version": "0.14.0",
+  "version": "0.15.0",
   "private": true,
   "description": "Soul Super Wallet SERA implementation workspace",
   "engines": {
@@ -16,7 +16,7 @@
     "verify:scaffold": "node scripts/verify-scaffold.mjs",
     "verify:contracts": "node scripts/verify-contracts.mjs",
     "validate:fixture": "tsx scripts/validate-action-fixture.ts",
-    "test": "tsx --test tests/contract/*.test.mjs tests/contract/*.test.ts",
+    "test": "tsx --test tests/contract/*.test.mjs tests/contract/*.test.ts tests/integration/*.test.ts",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "check": "npm run verify:scaffold && npm run verify:contracts && npm test && npm run typecheck",
     "build:payment-fixture": "tsx scripts/build-payment-action-fixture.ts"
