@@ -1,0 +1,28 @@
+{
+ "$schema":"https://json-schema.org/draft/2020-12/schema",
+ "$id":"https://schemas.soulverse.world/ssw/json-schema/ssw-authentication-evidence.v1.schema.json",
+ "title":"SSW Authentication Evidence v1","type":"object","additionalProperties":false,
+ "required":["schema","auth_id","purpose","method","assurance_level","status","holder_did","action_id","action_version","material_terms_hash","device_id","runtime_id","challenge_ref","verifier_identity","issued_at","expires_at","integrity"],
+ "properties":{
+  "schema":{"const":"ssw.authentication-evidence.v1"},
+  "auth_id":{"$ref":"ssw-common.v1.schema.json#/$defs/uuid"},
+  "purpose":{"type":"string","enum":["REVEAL","ACTION_APPROVAL","MANDATE_CREATION","RECOVERY","SECURITY_ACTION"]},
+  "method":{"type":"string","enum":["DEVICE_BIOMETRIC","DEVICE_PASSCODE","HARDWARE_KEY","PLATFORM_CREDENTIAL","WALLET_KEY_CONFIRMATION","SOULSCAN_FACE"]},
+  "assurance_level":{"type":"string","enum":["AL1","AL2","AL3","AL4"]},
+  "status":{"type":"string","enum":["PASS","FAIL","EXPIRED","CANCELLED"]},
+  "holder_did":{"$ref":"ssw-common.v1.schema.json#/$defs/holderDid"},
+  "action_id":{"anyOf":[{"$ref":"ssw-common.v1.schema.json#/$defs/uuid"},{"type":"null"}]},
+  "action_version":{"type":["integer","null"],"minimum":1},
+  "material_terms_hash":{"anyOf":[{"$ref":"ssw-common.v1.schema.json#/$defs/sha256"},{"type":"null"}]},
+  "device_id":{"$ref":"ssw-common.v1.schema.json#/$defs/deviceId"},
+  "runtime_id":{"$ref":"ssw-common.v1.schema.json#/$defs/runtimeId"},
+  "challenge_ref":{"type":"string","minLength":1},
+  "verifier_identity":{"type":"string","minLength":1},
+  "issued_at":{"$ref":"ssw-common.v1.schema.json#/$defs/timestamp"},
+  "expires_at":{"$ref":"ssw-common.v1.schema.json#/$defs/timestamp"},
+  "integrity":{"type":"object","additionalProperties":false,"required":["evidence_hash","signature_ref"],"properties":{
+   "evidence_hash":{"$ref":"ssw-common.v1.schema.json#/$defs/sha256"},
+   "signature_ref":{"type":"string","minLength":1}
+  }}
+ }
+}

@@ -1,0 +1,25 @@
+{
+ "$schema":"https://json-schema.org/draft/2020-12/schema",
+ "$id":"https://schemas.soulverse.world/ssw/json-schema/ssw-approval-record.v1.schema.json",
+ "title":"SSW Approval Record v1","type":"object","additionalProperties":false,
+ "required":["schema","approval_id","action_id","action_version","material_terms_hash","holder_did","device_id","runtime_id","review_ref","authentication_ref","status","approved_at","expires_at","integrity"],
+ "properties":{
+  "schema":{"const":"ssw.approval-record.v1"},
+  "approval_id":{"$ref":"ssw-common.v1.schema.json#/$defs/uuid"},
+  "action_id":{"$ref":"ssw-common.v1.schema.json#/$defs/uuid"},
+  "action_version":{"type":"integer","minimum":1},
+  "material_terms_hash":{"$ref":"ssw-common.v1.schema.json#/$defs/sha256"},
+  "holder_did":{"$ref":"ssw-common.v1.schema.json#/$defs/holderDid"},
+  "device_id":{"$ref":"ssw-common.v1.schema.json#/$defs/deviceId"},
+  "runtime_id":{"$ref":"ssw-common.v1.schema.json#/$defs/runtimeId"},
+  "review_ref":{"$ref":"ssw-common.v1.schema.json#/$defs/uuid"},
+  "authentication_ref":{"$ref":"ssw-common.v1.schema.json#/$defs/uuid"},
+  "status":{"type":"string","enum":["APPROVED","REJECTED","EXPIRED","INVALIDATED"]},
+  "approved_at":{"$ref":"ssw-common.v1.schema.json#/$defs/timestamp"},
+  "expires_at":{"$ref":"ssw-common.v1.schema.json#/$defs/timestamp"},
+  "integrity":{"type":"object","additionalProperties":false,"required":["approval_hash","signature_ref"],"properties":{
+   "approval_hash":{"$ref":"ssw-common.v1.schema.json#/$defs/sha256"},
+   "signature_ref":{"type":"string","minLength":1}
+  }}
+ }
+}

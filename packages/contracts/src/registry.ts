@@ -2,6 +2,9 @@ export const contractSchemaIds = {
   intentEnvelope: "https://schemas.soulverse.world/ssw/json-schema/ssw-intent-envelope.v1.schema.json",
   resolvedIntent: "https://schemas.soulverse.world/ssw/json-schema/ssw-resolved-intent.v1.schema.json",
   actionContract: "https://schemas.soulverse.world/ssw/json-schema/ssw-action-contract.v1.schema.json",
+  reviewRecord: "https://schemas.soulverse.world/ssw/json-schema/ssw-review-record.v1.schema.json",
+  authenticationEvidence: "https://schemas.soulverse.world/ssw/json-schema/ssw-authentication-evidence.v1.schema.json",
+  approvalRecord: "https://schemas.soulverse.world/ssw/json-schema/ssw-approval-record.v1.schema.json",
   trustProtocolRequest: "https://schemas.soulverse.world/ssw/json-schema/ssw-trust-protocol-request.v1.schema.json",
   trustProtocolDecision: "https://schemas.soulverse.world/ssw/json-schema/ssw-trust-protocol-decision.v1.schema.json",
   revRequest: "https://schemas.soulverse.world/ssw/json-schema/ssw-rev-request.v1.schema.json",
@@ -26,6 +29,9 @@ export type ContractKind =
   | "intent-envelope"
   | "resolved-intent"
   | "action-contract"
+  | "review-record"
+  | "authentication-evidence"
+  | "approval-record"
   | "trust-protocol-request"
   | "trust-protocol-decision"
   | "rev-request"
@@ -49,6 +55,9 @@ export const contractKindToSchemaId: Readonly<Record<ContractKind, string>> = {
   "intent-envelope": contractSchemaIds.intentEnvelope,
   "resolved-intent": contractSchemaIds.resolvedIntent,
   "action-contract": contractSchemaIds.actionContract,
+  "review-record": contractSchemaIds.reviewRecord,
+  "authentication-evidence": contractSchemaIds.authenticationEvidence,
+  "approval-record": contractSchemaIds.approvalRecord,
   "trust-protocol-request": contractSchemaIds.trustProtocolRequest,
   "trust-protocol-decision": contractSchemaIds.trustProtocolDecision,
   "rev-request": contractSchemaIds.revRequest,

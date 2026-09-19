@@ -141,10 +141,17 @@ export interface TrustProtocolDecisionContract { schema:"ssw.trust-protocol-deci
 export interface RevRequestContract { schema:"ssw.rev-request.v1"; [key:string]: unknown; }
 export interface RevDecisionContract { schema:"ssw.rev-decision.v1"; [key:string]: unknown; }
 
+export interface ReviewRecordContract { schema:"ssw.review-record.v1"; [key:string]: unknown; }
+export interface AuthenticationEvidenceContract { schema:"ssw.authentication-evidence.v1"; [key:string]: unknown; }
+export interface ApprovalRecordContract { schema:"ssw.approval-record.v1"; [key:string]: unknown; }
+
 export interface ContractTypeMap {
   "intent-envelope": IntentEnvelope;
   "resolved-intent": ResolvedIntent;
   "action-contract": ActionContract;
+  "review-record": ReviewRecordContract;
+  "authentication-evidence": AuthenticationEvidenceContract;
+  "approval-record": ApprovalRecordContract;
   "trust-protocol-request": TrustProtocolRequestContract;
   "trust-protocol-decision": TrustProtocolDecisionContract;
   "rev-request": RevRequestContract;
