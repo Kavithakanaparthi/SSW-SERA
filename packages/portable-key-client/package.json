@@ -1,0 +1,13 @@
+{
+  "name": "@soulverse/portable-key-client",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "dependencies": {
+    "@soulverse/control-service-client": "0.1.0",
+    "@soulverse/schema-validation": "0.2.0",
+    "@soulverse/signer-runtime": "0.1.0"
+  }
+}
