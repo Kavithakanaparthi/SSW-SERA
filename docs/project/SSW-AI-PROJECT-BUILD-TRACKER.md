@@ -74,7 +74,7 @@ Current implementation milestone:
 
 Immediate next artifact:
 
-**SSW-AI-PROD-04: Production Trust / REV Service Integration**
+**SSW-AI-PROD-05: HSM / Secure Enclave / MPC Signing Integration**
 
 ## 5. Phase A — Product & Experience Definition
 
@@ -229,8 +229,8 @@ A paired wearable never automatically inherits phone authority.
 | PROD-01 | Executable Build & CI Baseline | COMPLETE |
 | PROD-02 | Production Service Framework & Runtime Conventions | COMPLETE |
 | PROD-03 | Persistence & Durable Event Transport | COMPLETE |
-| PROD-04 | Production Trust / REV Service Integration | NEXT |
-| PROD-05 | HSM / Secure Enclave / MPC Signing Integration | PLANNED |
+| PROD-04 | Production Trust / REV Service Integration | COMPLETE |
+| PROD-05 | HSM / Secure Enclave / MPC Signing Integration | NEXT |
 | PROD-06 | Production Chain Adapters & Execution Reconciliation | PLANNED |
 | PROD-07 | Production SAEL Persistence / Checkpoint / Archive | PLANNED |
 | PROD-08 | Staging Security Gate & Release Evidence | PLANNED |
@@ -300,9 +300,9 @@ Completed controlled design/specification layers: all currently scheduled pre-co
 
 Completed implementation artifacts: 16.
 
-Completed productionization artifacts: 3.
+Completed productionization artifacts: 4.
 
-Immediate next implementation phase: PROD-04 Production Trust / REV Service Integration.
+Immediate next implementation phase: PROD-05 HSM / Secure Enclave / MPC Signing Integration.
 
 Production signing enabled: no.
 
