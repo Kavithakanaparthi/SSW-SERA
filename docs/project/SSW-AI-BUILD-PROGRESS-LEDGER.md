@@ -279,3 +279,55 @@ The tracker includes the complete known forward build queue through:
 The implementation stack is explicitly recorded as TypeScript / Node.js.
 
 **Next:** IMP-04.
+
+
+---
+
+## Entry 011 — IMP-04 Authority, Risk & Policy Evaluation Baseline
+
+**Date:** 2026-09-19  
+**Artifact:** SSW-AI-IMP-04  
+**Commit:** 08684ef96b004cd83e35f23e884dcc3f312ea2c2  
+**Status:** COMPLETE  
+**Stack:** TypeScript / Node.js
+
+Implemented:
+
+- canonical Authority Decision schema;
+- canonical Risk Decision schema;
+- canonical Policy Decision schema;
+- deterministic authority evaluation for A0-A5;
+- deterministic risk baseline and explicit risk-signal elevation;
+- baseline Phase 1 policy profile;
+- material-terms hash binding across all three decision objects;
+- authority, risk and policy service baselines;
+- contract tests for approval requirements, material-term mismatch, A3/A4 mandate gating, A5 prohibition, risk elevation and policy stopping conditions.
+
+Canonical authority semantics follow CF-A01:
+
+- A0 Informational;
+- A1 Prepare / Retrieve;
+- A2 Explicit Approval;
+- A3 Bounded Delegation;
+- A4 Conditional Autonomous Execution;
+- A5 Prohibited Autonomous Authority.
+
+The implementation preserves authority and risk as independent axes.
+
+A policy `ALLOW_CONTINUE` result is not execution authority. Consequential actions still require all downstream controls.
+
+Current `payment.send` behavior remains fail-closed:
+
+- without approval → REQUIRE_APPROVAL;
+- mismatched approval hash → FAIL;
+- matching A2 approval → authority PASS only;
+- missing device/runtime eligibility → REQUIRE_DEVICE_RUNTIME;
+- R5 → DENY;
+- A3/A4 → REQUIRE_MANDATE_VALIDATION;
+- A5 → PROHIBITED.
+
+Trust Protocol, REV, signing and execution remain unimplemented as active production controls.
+
+**Dependencies closed:** deterministic early control-plane evaluation after Action Contract construction.
+
+**Next:** SSW-AI-IMP-05: Device Trust, Runtime Registry & Session Eligibility Implementation.
