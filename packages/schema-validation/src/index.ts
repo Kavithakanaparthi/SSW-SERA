@@ -49,6 +49,8 @@ const schemaFiles = [
   "ssw-dmcl-expression.v1.schema.json",
   "ssw-attestation-evidence.v1.schema.json",
   "ssw-recovery-proof.v1.schema.json",
+  "ssw-recovery-session.v1.schema.json",
+  "ssw-sera-state-manifest.v1.schema.json",
   "ssw-wrapped-state-key.v1.schema.json",
   "ssw-counterparty-resolution.v1.schema.json"
 ] as const;

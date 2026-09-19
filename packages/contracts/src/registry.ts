@@ -27,6 +27,8 @@ export const contractSchemaIds = {
   dmclExpression: "https://schemas.soulverse.world/ssw/json-schema/ssw-dmcl-expression.v1.schema.json",
   attestationEvidence: "https://schemas.soulverse.world/ssw/json-schema/ssw-attestation-evidence.v1.schema.json",
   recoveryProof: "https://schemas.soulverse.world/ssw/json-schema/ssw-recovery-proof.v1.schema.json",
+  recoverySession: "https://schemas.soulverse.world/ssw/json-schema/ssw-recovery-session.v1.schema.json",
+  seraStateManifest: "https://schemas.soulverse.world/ssw/json-schema/ssw-sera-state-manifest.v1.schema.json",
   wrappedStateKey: "https://schemas.soulverse.world/ssw/json-schema/ssw-wrapped-state-key.v1.schema.json",
   counterpartyResolution: "https://schemas.soulverse.world/ssw/json-schema/ssw-counterparty-resolution.v1.schema.json"
 } as const;
@@ -60,6 +62,8 @@ export type ContractKind =
   | "dmcl-expression"
   | "attestation-evidence"
   | "recovery-proof"
+  | "recovery-session"
+  | "sera-state-manifest"
   | "wrapped-state-key"
   | "counterparty-resolution";
 
@@ -92,6 +96,8 @@ export const contractKindToSchemaId: Readonly<Record<ContractKind, string>> = {
   "dmcl-expression": contractSchemaIds.dmclExpression,
   "attestation-evidence": contractSchemaIds.attestationEvidence,
   "recovery-proof": contractSchemaIds.recoveryProof,
+  "recovery-session": contractSchemaIds.recoverySession,
+  "sera-state-manifest": contractSchemaIds.seraStateManifest,
   "wrapped-state-key": contractSchemaIds.wrappedStateKey,
   "counterparty-resolution": contractSchemaIds.counterpartyResolution
 };

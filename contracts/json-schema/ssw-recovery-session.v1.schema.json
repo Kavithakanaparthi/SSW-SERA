@@ -1,0 +1,22 @@
+{
+ "$schema":"https://json-schema.org/draft/2020-12/schema",
+ "$id":"https://schemas.soulverse.world/ssw/json-schema/ssw-recovery-session.v1.schema.json",
+ "title":"SSW Recovery Session v1","type":"object","additionalProperties":false,
+ "required":["schema","recovery_id","mode","holder_did","sera_agent_did","source_device_id","target_device_id","target_runtime_id","state","started_at","expires_at","risk_class","authority_class","sael_correlation_id"],
+ "properties":{
+  "schema":{"const":"ssw.recovery-session.v1"},
+  "recovery_id":{"$ref":"ssw-common.v1.schema.json#/$defs/uuid"},
+  "mode":{"type":"string","enum":["DEVICE_REPLACEMENT","DEVICE_LOSS","DEVICE_COMPROMISE","RUNTIME_REINSTALL","SERA_STATE_RESTORE","SERA_RESET","FULL_WALLET_RECOVERY","CONTROLLED_MIGRATION"]},
+  "holder_did":{"$ref":"ssw-common.v1.schema.json#/$defs/holderDid"},
+  "sera_agent_did":{"$ref":"ssw-common.v1.schema.json#/$defs/seraAgentDid"},
+  "source_device_id":{"type":["string","null"]},
+  "target_device_id":{"type":["string","null"]},
+  "target_runtime_id":{"type":["string","null"]},
+  "state":{"type":"string","enum":["RECOVERY_INITIATED","HOLDER_DID_RECOVERED","WALLET_CONTEXT_ESTABLISHED","SERA_DID_RESOLVED","STATE_MANIFEST_VERIFIED","STATE_RESTORED","DEVICE_REGISTERED","RUNTIME_REGISTERED","TRUST_REESTABLISHED","AUTHORITY_REESTABLISHED","RECOVERY_COMPLETED","RECOVERY_FAILED","RECOVERY_SUSPENDED"]},
+  "started_at":{"$ref":"ssw-common.v1.schema.json#/$defs/timestamp"},
+  "expires_at":{"$ref":"ssw-common.v1.schema.json#/$defs/timestamp"},
+  "risk_class":{"const":"R5"},
+  "authority_class":{"const":"A5"},
+  "sael_correlation_id":{"$ref":"ssw-common.v1.schema.json#/$defs/uuid"}
+ }
+}
