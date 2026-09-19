@@ -230,7 +230,7 @@ A paired wearable never automatically inherits phone authority.
 | PROD-02 | Production Service Framework & Runtime Conventions | COMPLETE |
 | PROD-03 | Persistence & Durable Event Transport | COMPLETE |
 | PROD-04 | Production Trust / REV Service Integration | COMPLETE |
-| PROD-05 | HSM / Secure Enclave / MPC Signing Integration | NEXT |
+| PROD-05 | HSM / Secure Enclave / MPC Signing Integration | IN PROGRESS — provider-neutral boundary complete; production provider selection required |
 | PROD-06 | Production Chain Adapters & Execution Reconciliation | PLANNED |
 | PROD-07 | Production SAEL Persistence / Checkpoint / Archive | PLANNED |
 | PROD-08 | Staging Security Gate & Release Evidence | PLANNED |
@@ -300,9 +300,9 @@ Completed controlled design/specification layers: all currently scheduled pre-co
 
 Completed implementation artifacts: 16.
 
-Completed productionization artifacts: 4.
+Completed productionization artifacts: 4. Provider-neutral PROD-05 substrate implemented and CI-verified; artifact remains open pending provider choice.
 
-Immediate next implementation phase: PROD-05 HSM / Secure Enclave / MPC Signing Integration.
+Immediate next implementation phase: PROD-05 production signer provider selection and concrete adapter integration.
 
 Production signing enabled: no.
 
