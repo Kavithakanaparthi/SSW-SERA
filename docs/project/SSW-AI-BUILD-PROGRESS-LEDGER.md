@@ -331,3 +331,40 @@ Trust Protocol, REV, signing and execution remain unimplemented as active produc
 **Dependencies closed:** deterministic early control-plane evaluation after Action Contract construction.
 
 **Next:** SSW-AI-IMP-05: Device Trust, Runtime Registry & Session Eligibility Implementation.
+
+
+---
+
+## Entry 012 — IMP-05 Device Trust, Runtime Registry & Session Eligibility
+
+**Date:** 2026-09-19  
+**Artifact:** SSW-AI-IMP-05  
+**Commit:** 8754776ca715ce59b44e96c6897b1ce9c1953224  
+**Status:** COMPLETE  
+**Stack:** TypeScript / Node.js
+
+Implemented:
+
+- Device Record schema;
+- Runtime Record schema;
+- Session Eligibility Decision schema;
+- deterministic device/runtime/session eligibility evaluation;
+- Holder DID, SERA DID, Device ID and Runtime ID binding checks;
+- consequential-action requirement for TRUSTED device + ELIGIBLE runtime;
+- session expiry checks;
+- REVOKED and SUSPENDED fail-closed handling;
+- protected cloud reasoning restriction for consequential execution;
+- immutable application of successful eligibility to a copied Action Contract;
+- runtime/device service baselines;
+- contract tests for trusted, registered, revoked, suspended, expired and identity-mismatch conditions.
+
+CF-A02 remains authoritative:
+
+- wallet ownership follows the Holder Soul ID;
+- device trust does not create or revoke wallet ownership;
+- a newly recovered wallet may exist on a device before that device becomes trusted;
+- consequential operations remain blocked until the current environment earns eligibility.
+
+**Dependencies closed:** real device/runtime/session eligibility for control-plane policy evaluation.
+
+**Next:** SSW-AI-IMP-06: Mandate Runtime & Deterministic DMCL Evaluator.
