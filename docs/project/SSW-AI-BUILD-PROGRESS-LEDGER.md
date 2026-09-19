@@ -975,3 +975,55 @@ CI evidence:
 **Dependencies closed:** authenticated, signed, durable production-shaped Trust/REV service boundary.
 
 **Next:** SSW-AI-PROD-05: HSM / Secure Enclave / MPC Signing Integration.
+
+
+---
+
+## Entry 029 — PROD-05 Provider-Neutral Signer Boundary
+
+**Date:** 2026-09-19  
+**Artifact:** SSW-AI-PROD-05  
+**Implementation Commit:** `74bf2db525c2ac22b4d5187668195b1358ba2ab9`  
+**Fixture Completion Fix:** `0ed82a1e5551ea678a19c56765fa02001d9aacc7`  
+**CI Run:** #29, ID `35475606019`  
+**Tracker Gate Commit:** `e3078e49a8a4a3843a675a753c0d081700320a22`  
+**Status:** IN PROGRESS — PROVIDER-NEUTRAL BOUNDARY COMPLETE  
+**Stack:** TypeScript / Node.js 22 / PostgreSQL 16
+
+Implemented:
+
+- provider-neutral signer runtime;
+- signer provider classes for HSM, Secure Enclave, MPC, cloud KMS and isolated test signer;
+- opaque key descriptors with no private-key material;
+- PostgreSQL signer key registry;
+- persistent signer-operation state;
+- persistent replay / single-use REV reservation before signer invocation;
+- deterministic signer-key eligibility by holder DID, requested key class, chain and action type;
+- provider-class binding;
+- chain-specific SigningDigestVerifier boundary;
+- deny-by-default digest verifier;
+- isolated test signer proving key isolation and opaque key-ref operation;
+- signing operation states RESERVED / SIGNING / SIGNED / REJECTED / SIGNER_STATUS_UNKNOWN;
+- idempotent retry behavior;
+- preservation of authorization reservation on unknown signer outcome.
+
+Security decisions:
+
+- caller cannot submit arbitrary key material;
+- caller cannot select an arbitrary key outside the key-eligibility registry;
+- caller cannot ask the signer to sign arbitrary bytes because a chain-specific digest verifier is mandatory;
+- default digest verifier denies signing;
+- unknown signer outcome does not release replay/REV claims;
+- private key material never enters the signer coordinator, database, logs or Action Contract.
+
+CI evidence:
+
+- migrations: PASS;
+- npm ci: PASS;
+- 123 tests: PASS;
+- strict TypeScript: PASS.
+
+PROD-05 remains open because selecting a concrete production signer changes custody, recovery, device, availability and compliance assumptions.
+
+**Decision Gate:** choose the first concrete production signer architecture/provider.
+
