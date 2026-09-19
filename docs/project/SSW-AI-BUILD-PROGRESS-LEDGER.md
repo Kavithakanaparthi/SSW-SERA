@@ -802,3 +802,57 @@ Production signing remains NOT GATED. Production asset movement remains disabled
 **Dependencies closed:** reproducible executable repository baseline and CI quality gate.
 
 **Next:** SSW-AI-PROD-02: Production Service Framework & Runtime Conventions.
+
+
+---
+
+## Entry 026 — PROD-02 Production Service Framework & Runtime Conventions
+
+**Date:** 2026-09-19  
+**Artifact:** SSW-AI-PROD-02  
+**Implementation Commit:** `998db3efc1fea9c18caa8d23826b1236e4cfb303`  
+**CI Run:** #15, ID `35474814724`  
+**Tracker Completion Commit:** `385f758e1f5344254684f840cf10102fc0a82a93`  
+**Status:** COMPLETE  
+**Stack:** TypeScript / Node.js 22
+
+Implemented:
+
+- `@soulverse/service-host` production runtime chassis;
+- Node 22 built-in HTTP transport baseline;
+- explicit runtime configuration validation;
+- standard service lifecycle states;
+- `/health/live`, `/health/ready` and `/meta` endpoints;
+- request/correlation/action context propagation;
+- injected service-identity verifier interface;
+- fail-closed default identity verifier;
+- static verifier for controlled tests only;
+- typed internal ServiceError contract;
+- structured JSON logging;
+- sensitive-field redaction;
+- readiness dependency registry;
+- request body limits;
+- request timeouts;
+- graceful shutdown behavior;
+- controlled service-topology manifest preserving DB15 trust zones and authoritative state ownership;
+- service-host contract tests.
+
+Security decisions:
+
+- asserted HTTP identity headers are not authoritative by default;
+- the default identity verifier denies callers until a production workload-identity verifier is injected;
+- no production credentials or secrets were introduced;
+- no signing or execution authority was widened;
+- operational consolidation does not collapse logical security boundaries.
+
+CI evidence:
+
+- clean npm ci from the committed lockfile: PASS;
+- scaffold verification: PASS;
+- controlled contract verification: PASS;
+- 110 contract/integration/security/runtime tests: PASS;
+- strict TypeScript typecheck: PASS.
+
+**Dependencies closed:** common executable production service lifecycle and runtime conventions.
+
+**Next:** SSW-AI-PROD-03: Persistence & Durable Event Transport.
