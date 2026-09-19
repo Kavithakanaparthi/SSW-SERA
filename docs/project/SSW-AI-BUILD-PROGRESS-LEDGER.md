@@ -535,3 +535,61 @@ The resulting Action Contract remains NOT_READY and still requires downstream Tr
 **Dependencies closed:** first-class exact-term A2 holder authorization.
 
 **Next:** SSW-AI-IMP-10: Canonical Signing Gateway Baseline.
+
+
+---
+
+## Entry 017 — IMP-10 Canonical Signing Gateway Baseline
+
+**Date:** 2026-09-19  
+**Artifact:** SSW-AI-IMP-10  
+**Primary Commit:** 3816152a4ff5c58b174487299ef7eaaca2eef199  
+**Dependency Alignment Commit:** d8c703c2d39d6eab29a3495bfb7aa229fc930a89  
+**Status:** COMPLETE — DRY-RUN BASELINE  
+**Stack:** TypeScript / Node.js
+
+Implemented:
+
+- RFC 8785 / JCS canonicalization as the signing-boundary serialization profile;
+- SHA-256 domain-separated action, request and EVM payload hashing;
+- Signing Request schema;
+- Signing Result schema;
+- dry-run Signing Gateway package;
+- independent Action Contract revalidation;
+- Action Contract hash verification;
+- material-terms hash verification;
+- Holder DID / SERA DID / Device ID / Runtime ID revalidation;
+- A2 Approval Record revalidation;
+- A3/A4 mandate-decision interface path;
+- Trust Protocol PASS revalidation;
+- REV PASS revalidation;
+- policy/risk/version binding;
+- caller allowlist enforcement;
+- EVM payload hash and semantic checks;
+- replay-token and idempotency checks;
+- single-use REV consumption baseline;
+- identical idempotent dry-run retry handling;
+- Signing service upgraded from scaffold to DRY_RUN_BASELINE_IMPLEMENTED;
+- contract tests for stale/mismatched evidence, replay and dry-run acceptance.
+
+The Signing Gateway remains DRY_RUN_ONLY.
+
+A successful result is DRY_RUN_ACCEPTED and contains no signature, no signed payload and no private key material.
+
+Production signing remains NOT GATED.
+
+Still required before production signing:
+
+- HSM / Secure Enclave / MPC signer integration;
+- signer workload identity;
+- Trust and REV cryptographic service-signature verification;
+- persistent atomic replay/consumption store;
+- production chain-specific payload conformance;
+- mandate usage reservation;
+- signer-key eligibility policy;
+- SAEL signing evidence reservation;
+- adversarial signing tests.
+
+**Dependencies closed:** independent pre-signing verification boundary and RFC 8785 canonical signing profile.
+
+**Next:** SSW-AI-IMP-11: Execution Router & Chain Adapter Baseline.
