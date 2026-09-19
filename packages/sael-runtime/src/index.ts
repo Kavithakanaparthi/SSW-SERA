@@ -15,7 +15,7 @@ export class InMemorySaelStore{
  constructor(private producerPrefixes:Record<string,readonly string[]>){}
 
  ingest(input:{producerId:string;event:SaelEvent;idempotencyKey:string;recordedAt:string}):SaelIngestResult{
-  const event=assertContract("sael-event",input.event) as SaelEvent;
+  const event=assertContract("sael-event",input.event) as unknown as SaelEvent;
   const allowed=this.producerPrefixes[input.producerId]??[];
   if(!allowed.some(p=>event.event_type.startsWith(p)))throw new Error("SAEL_PRODUCER_NOT_AUTHORIZED");
   const hash=sha256DomainSeparated(SAEL_EVENT_HASH_DOMAIN,event as unknown as CanonicalJson).hash;

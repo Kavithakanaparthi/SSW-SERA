@@ -55,23 +55,23 @@ export function buildSigningRequest(input:{action:ActionContract;materialTermsHa
   runtime_ref:a.principal.sera_runtime_id,trust_protocol_ref:a.trust.trust_protocol_ref,rev_ref:a.trust.rev_ref},payload:{payload_type:"evm.transaction",payload_ref:input.payloadRef,
   payload_hash:hashEvmPayload(input.payloadBody),body:structuredClone(input.payloadBody)},replay:{idempotency_key:a.execution.idempotency_key,replay_token:a.execution.replay_token,
   nonce:String((input.payloadBody as any).nonce??"")||null},requested_key_class:input.requestedKeyClass,issued_at:input.issuedAt,expires_at:input.expiresAt};
- return assertContract("signing-request",request) as SigningRequest;
+ return assertContract("signing-request",request) as unknown as SigningRequest;
 }
 
 function rejected(req:SigningRequest,code:string):SigningResult{
  const requestHash=sha256DomainSeparated(SIGNING_REQUEST_HASH_DOMAIN,req as unknown as CanonicalJson).hash;
  const result:SigningResult={schema:"ssw.signing-result.v1",signing_request_id:req.signing_request_id,action_id:req.action_id,status:"REJECTED",request_hash:requestHash,
  payload_hash:req.payload.payload_hash,key_class:null,reason_codes:[code],signed_payload_ref:null,signed_payload_hash:null,signed_at:null};
- return assertContract("signing-result",result) as SigningResult;
+ return assertContract("signing-result",result) as unknown as SigningResult;
 }
 
 export function dryRunVerifySigning(input:{request:SigningRequest;action:ActionContract;materialTermsHash:string;callerIdentity:string;allowedCallerIdentities:readonly string[];
  approval?:ApprovalRecord;mandateDecision?:any;trustDecision:TrustDecisionLike;revDecision:RevDecisionLike;policyVersion:string;riskClass:RiskClass;
  expectedTrustServiceIdentity:string;expectedRevServiceIdentity:string;now:string;replayStore:ReplayStore;}):SigningResult{
- const req=assertContract("signing-request",input.request) as SigningRequest;
+ const req=assertContract("signing-request",input.request) as unknown as SigningRequest;
  const action=assertContract("action-contract",input.action);
- const trust=assertContract("trust-protocol-decision",input.trustDecision) as TrustDecisionLike;
- const rev=assertContract("rev-decision",input.revDecision) as RevDecisionLike;
+ const trust=assertContract("trust-protocol-decision",input.trustDecision) as unknown as TrustDecisionLike;
+ const rev=assertContract("rev-decision",input.revDecision) as unknown as RevDecisionLike;
  const fail=(c:string)=>rejected(req,c);
  if(Date.parse(req.expires_at)<=Date.parse(input.now))return fail("SIGNING_REQUEST_EXPIRED");
  if(!input.allowedCallerIdentities.includes(input.callerIdentity))return fail("CALLER_NOT_AUTHORIZED");
@@ -83,7 +83,7 @@ export function dryRunVerifySigning(input:{request:SigningRequest;action:ActionC
  if(!action.policy.device_eligible)return fail("DEVICE_NOT_ELIGIBLE");if(!action.policy.runtime_eligible)return fail("RUNTIME_NOT_ELIGIBLE");
  if(action.authority.class==="A2"){
   if(!input.approval)return fail("APPROVAL_INVALID");
-  const ap=assertContract("approval-record",input.approval) as ApprovalRecord;
+  const ap=assertContract("approval-record",input.approval) as unknown as ApprovalRecord;
   if(ap.status!=="APPROVED"||ap.action_id!==action.action_id||ap.action_version!==action.version||ap.material_terms_hash!==input.materialTermsHash||ap.holder_did!==action.principal.holder_did||ap.device_id!==action.principal.device_id||ap.runtime_id!==action.principal.sera_runtime_id)return fail("APPROVAL_INVALID");
   if(Date.parse(ap.expires_at)<=Date.parse(input.now))return fail("APPROVAL_EXPIRED");
   if(req.authority.approval_ref!==ap.approval_id)return fail("APPROVAL_INVALID");
@@ -110,5 +110,5 @@ export function dryRunVerifySigning(input:{request:SigningRequest;action:ActionC
  if(replay==="FRESH")input.replayStore.consume({requestId:req.signing_request_id,idempotencyKey:req.replay.idempotency_key,replayToken:req.replay.replay_token,revDecisionId:rev.decision_id,requestHash});
  const result:SigningResult={schema:"ssw.signing-result.v1",signing_request_id:req.signing_request_id,action_id:req.action_id,status:"DRY_RUN_ACCEPTED",request_hash:requestHash,
  payload_hash:req.payload.payload_hash,key_class:req.requested_key_class,reason_codes:replay==="IDENTICAL_RETRY"?["IDEMPOTENT_RETRY"]:[],signed_payload_ref:null,signed_payload_hash:null,signed_at:null};
- return assertContract("signing-result",result) as SigningResult;
+ return assertContract("signing-result",result) as unknown as SigningResult;
 }

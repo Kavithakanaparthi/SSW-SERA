@@ -59,11 +59,13 @@ function loadSchema(file: string): object {
   return JSON.parse(readFileSync(path.resolve(process.cwd(), "contracts/json-schema", file), "utf8")) as object;
 }
 
-const ajv = new Ajv2020({
+const Ajv2020Ctor = Ajv2020 as unknown as new (options?: Record<string, unknown>) => any;
+const addFormatsFn = addFormats as unknown as (ajv: any) => void;
+const ajv = new Ajv2020Ctor({
   allErrors: true, strict: true, validateFormats: true, allowUnionTypes: true,
   coerceTypes: false, useDefaults: false, removeAdditional: false
 });
-addFormats(ajv);
+addFormatsFn(ajv);
 for (const file of schemaFiles) ajv.addSchema(loadSchema(file));
 
 const validators = new Map<ContractKind, ValidateFunction>();

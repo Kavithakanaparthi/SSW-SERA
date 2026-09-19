@@ -7,10 +7,10 @@ export interface RecoveryPlan{recoveryId:string;holderDid:string;seraAgentDid:st
 const allowedCompartments=new Set(["preferences","language","voice_adaptation","aliases","notifications","concealment","memory","non_secret_automation_preferences"]);
 
 export function createRecoveryPlan(input:{session:RecoverySession;proof:unknown;manifest:StateManifest;wrappedStateKey:unknown;latestKnownStateVersion:number;requestedCompartments:string[];now:string}):RecoveryPlan{
- const s=assertContract("recovery-session",input.session) as RecoverySession;
- const proof=assertContract("recovery-proof",input.proof) as any;
- const manifest=assertContract("sera-state-manifest",input.manifest) as StateManifest;
- const key=assertContract("wrapped-state-key",input.wrappedStateKey) as any;
+ const s=assertContract("recovery-session",input.session) as unknown as RecoverySession;
+ const proof=assertContract("recovery-proof",input.proof) as unknown as any;
+ const manifest=assertContract("sera-state-manifest",input.manifest) as unknown as StateManifest;
+ const key=assertContract("wrapped-state-key",input.wrappedStateKey) as unknown as any;
  if(Date.parse(s.expires_at)<=Date.parse(input.now))throw new Error("RECOVERY_SESSION_EXPIRED");
  if(proof.status!=="PASS"||Date.parse(proof.expires_at)<=Date.parse(input.now))throw new Error("RECOVERY_PROOF_INVALID");
  if(proof.recovery_id!==s.recovery_id||proof.holder_did!==s.holder_did||proof.sera_agent_did!==s.sera_agent_did)throw new Error("RECOVERY_IDENTITY_MISMATCH");
@@ -25,7 +25,7 @@ export function createRecoveryPlan(input:{session:RecoverySession;proof:unknown;
 
 export function advanceRecoveryState(session:RecoverySession,next:RecoverySession["state"]):RecoverySession{
  const order=["RECOVERY_INITIATED","HOLDER_DID_RECOVERED","WALLET_CONTEXT_ESTABLISHED","SERA_DID_RESOLVED","STATE_MANIFEST_VERIFIED","STATE_RESTORED","DEVICE_REGISTERED","RUNTIME_REGISTERED","TRUST_REESTABLISHED","AUTHORITY_REESTABLISHED","RECOVERY_COMPLETED"];
- const s=assertContract("recovery-session",session) as RecoverySession;if(next==="RECOVERY_FAILED"||next==="RECOVERY_SUSPENDED")return assertContract("recovery-session",{...s,state:next}) as RecoverySession;
+ const s=assertContract("recovery-session",session) as unknown as RecoverySession;if(next==="RECOVERY_FAILED"||next==="RECOVERY_SUSPENDED")return assertContract("recovery-session",{...s,state:next}) as unknown as RecoverySession;
  if(order.indexOf(next)!==order.indexOf(s.state)+1)throw new Error("RECOVERY_STATE_TRANSITION_INVALID");
- return assertContract("recovery-session",{...s,state:next}) as RecoverySession;
+ return assertContract("recovery-session",{...s,state:next}) as unknown as RecoverySession;
 }
