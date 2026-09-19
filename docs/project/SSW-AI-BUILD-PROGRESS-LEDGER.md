@@ -593,3 +593,126 @@ Still required before production signing:
 **Dependencies closed:** independent pre-signing verification boundary and RFC 8785 canonical signing profile.
 
 **Next:** SSW-AI-IMP-11: Execution Router & Chain Adapter Baseline.
+
+
+---
+
+## Entry 018 — IMP-11 Execution Router & Chain Adapter Baseline
+
+**Date:** 2026-09-19  
+**Artifact:** SSW-AI-IMP-11  
+**Commit:** 96366662a69f542fef35dc89c2c7db9576de469e  
+**Status:** COMPLETE  
+**Stack:** TypeScript / Node.js
+
+Implemented execution request/result contracts, EVM simulation, adapter isolation, idempotency/replay controls, explicit EXECUTION_STATUS_UNKNOWN handling and submission transport abstraction.
+
+Production submission remains disabled by default and signed payload evidence is mandatory before any enabled submission path.
+
+**Dependencies closed:** execution-routing and simulation boundary.
+
+**Next:** SSW-AI-IMP-12.
+
+---
+
+## Entry 019 — IMP-12 SAEL Runtime
+
+**Date:** 2026-09-19  
+**Artifact:** SSW-AI-IMP-12  
+**Commit:** b27a80fb4c0ec3b8bd2d4e15a217b356269e0f2b  
+**Status:** COMPLETE  
+**Stack:** TypeScript / Node.js
+
+Implemented canonical SAEL events, producer namespace authorization, RFC 8785 event hashing, append-only per-stream chaining, monotonic sequences, idempotent ingestion, COMMITTED durability semantics, evidence reservations, disclosure-bounded query and integrity verification.
+
+The current store is an in-memory reference implementation. Durable database, journal, signed checkpoints and archive remain production work.
+
+**Dependencies closed:** executable evidence/audit runtime baseline.
+
+**Next:** SSW-AI-IMP-13.
+
+---
+
+## Entry 020 — IMP-13 Recovery Runtime
+
+**Date:** 2026-09-19  
+**Artifact:** SSW-AI-IMP-13  
+**Commit:** 7321d1ffff77a835c22419231c46f6c302b4f360  
+**Status:** COMPLETE  
+**Stack:** TypeScript / Node.js
+
+Implemented Recovery Session and SERA State Manifest contracts, Recovery Proof validation, holder/SERA identity binding, rollback detection, wrapped-state-key eligibility, controlled compartment restore and recovery state transitions.
+
+Recovery explicitly invalidates old sessions, preserves revoked-device state and does not restore approvals or mandate authority.
+
+**Dependencies closed:** holder-anchored state recovery baseline.
+
+**Next:** SSW-AI-IMP-14.
+
+---
+
+## Entry 021 — IMP-14 Counterparty Resolver Runtime
+
+**Date:** 2026-09-19  
+**Artifact:** SSW-AI-IMP-14  
+**Commit:** 9523fb21ce486b061d80e38f5c61ce820936cfc5  
+**Status:** COMPLETE  
+**Stack:** TypeScript / Node.js
+
+Implemented deterministic canonical counterparty resolution using the controlled resolution schema.
+
+The runtime enforces ambiguity blocking, canonical identifier typing, chain qualification, verification/freshness, external-profile non-authority and executable UNIQUE-only resolution.
+
+**Dependencies closed:** canonical counterparty resolution runtime.
+
+**Next:** SSW-AI-IMP-15.
+
+---
+
+## Entry 022 — IMP-15 End-to-End Control Path Integration
+
+**Date:** 2026-09-19  
+**Artifact:** SSW-AI-IMP-15  
+**Commit:** 1398b874ca5d604ac9e127f15c61c4f626d03140  
+**Status:** COMPLETE  
+**Stack:** TypeScript / Node.js
+
+Integrated the A2 payment dry-run path across:
+
+- Action Contract construction;
+- review/authentication/approval;
+- authority;
+- risk;
+- device/runtime eligibility;
+- policy;
+- Trust Protocol;
+- REV;
+- Signing Gateway dry run;
+- execution simulation;
+- SAEL evidence.
+
+The integrated path ends at DRY_RUN_ACCEPTED and SIMULATED. No real signature or broadcast is produced.
+
+**Dependencies closed:** first complete deterministic control-path integration.
+
+**Next:** SSW-AI-IMP-16.
+
+---
+
+## Entry 023 — IMP-16 Security / Conformance / Adversarial Harness
+
+**Date:** 2026-09-19  
+**Artifact:** SSW-AI-IMP-16  
+**Commit:** 9e8f6c3a6edf2c8b01406ab1fc335a9e17ba4253  
+**Status:** COMPLETE  
+**Stack:** TypeScript / Node.js
+
+Implemented a reusable security-conformance manifest and adversarial mutation harness covering replay, idempotency conflict, action/material mutation, approval substitution, mandate bypass, stale Trust/REV, identity-context mismatch, alias ambiguity, recovery rollback, model-to-signer attempts, execution payload mutation and SAEL spoof/tamper/disclosure escalation.
+
+The repository now has a controlled security matrix and a dedicated security test command.
+
+A source-level harness is not a production security certification. CI/staging execution evidence remains mandatory.
+
+**Dependencies closed:** implementation-stage adversarial/conformance harness.
+
+**Next Phase:** Productionization & SERA Product Runtime Integration.
