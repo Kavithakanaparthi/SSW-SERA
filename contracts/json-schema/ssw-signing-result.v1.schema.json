@@ -1,0 +1,19 @@
+{
+ "$schema":"https://json-schema.org/draft/2020-12/schema",
+ "$id":"https://schemas.soulverse.world/ssw/json-schema/ssw-signing-result.v1.schema.json",
+ "title":"SSW Signing Result v1","type":"object","additionalProperties":false,
+ "required":["schema","signing_request_id","action_id","status","request_hash","payload_hash","key_class","reason_codes","signed_payload_ref","signed_payload_hash","signed_at"],
+ "properties":{
+  "schema":{"const":"ssw.signing-result.v1"},
+  "signing_request_id":{"$ref":"ssw-common.v1.schema.json#/$defs/uuid"},
+  "action_id":{"$ref":"ssw-common.v1.schema.json#/$defs/uuid"},
+  "status":{"type":"string","enum":["DRY_RUN_ACCEPTED","REJECTED"]},
+  "request_hash":{"$ref":"ssw-common.v1.schema.json#/$defs/sha256"},
+  "payload_hash":{"$ref":"ssw-common.v1.schema.json#/$defs/sha256"},
+  "key_class":{"type":["string","null"]},
+  "reason_codes":{"$ref":"ssw-common.v1.schema.json#/$defs/reasonCodes"},
+  "signed_payload_ref":{"type":"null"},
+  "signed_payload_hash":{"type":"null"},
+  "signed_at":{"type":"null"}
+ }
+}

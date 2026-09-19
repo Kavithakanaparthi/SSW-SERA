@@ -145,10 +145,15 @@ export interface ReviewRecordContract { schema:"ssw.review-record.v1"; [key:stri
 export interface AuthenticationEvidenceContract { schema:"ssw.authentication-evidence.v1"; [key:string]: unknown; }
 export interface ApprovalRecordContract { schema:"ssw.approval-record.v1"; [key:string]: unknown; }
 
+export interface SigningRequestContract { schema:"ssw.signing-request.v1"; [key:string]: unknown; }
+export interface SigningResultContract { schema:"ssw.signing-result.v1"; [key:string]: unknown; }
+
 export interface ContractTypeMap {
   "intent-envelope": IntentEnvelope;
   "resolved-intent": ResolvedIntent;
   "action-contract": ActionContract;
+  "signing-request": SigningRequestContract;
+  "signing-result": SigningResultContract;
   "review-record": ReviewRecordContract;
   "authentication-evidence": AuthenticationEvidenceContract;
   "approval-record": ApprovalRecordContract;

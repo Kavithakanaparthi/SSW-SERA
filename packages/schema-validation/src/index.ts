@@ -24,6 +24,8 @@ const schemaFiles = [
   "ssw-intent-envelope.v1.schema.json",
   "ssw-resolved-intent.v1.schema.json",
   "ssw-action-contract.v1.schema.json",
+  "ssw-signing-request.v1.schema.json",
+  "ssw-signing-result.v1.schema.json",
   "ssw-review-record.v1.schema.json",
   "ssw-authentication-evidence.v1.schema.json",
   "ssw-approval-record.v1.schema.json",
