@@ -74,7 +74,7 @@ Current implementation milestone:
 
 Immediate next artifact:
 
-**SSW-AI-PROD-02: Production Service Framework & Runtime Conventions**
+**SSW-AI-PROD-03: Persistence & Durable Event Transport**
 
 ## 5. Phase A — Product & Experience Definition
 
@@ -212,7 +212,7 @@ A paired wearable never automatically inherits phone authority.
 
 | Area | Deliverable | Status |
 |---|---|---|
-| Service Framework Selection | production framework / runtime conventions | PLANNED |
+| Service Framework Selection | production framework / runtime conventions | COMPLETE — Node 22 + @soulverse/service-host |
 | Database Architecture | state ownership / persistence implementation | PLANNED |
 | Event Transport | durable event/message transport | PLANNED |
 | Workload Identity | runtime service identity | PLANNED |
@@ -227,8 +227,8 @@ A paired wearable never automatically inherits phone authority.
 | Artifact | Scope | Status |
 |---|---|---|
 | PROD-01 | Executable Build & CI Baseline | COMPLETE |
-| PROD-02 | Production Service Framework & Runtime Conventions | NEXT |
-| PROD-03 | Persistence & Durable Event Transport | PLANNED |
+| PROD-02 | Production Service Framework & Runtime Conventions | COMPLETE |
+| PROD-03 | Persistence & Durable Event Transport | NEXT |
 | PROD-04 | Production Trust / REV Service Integration | PLANNED |
 | PROD-05 | HSM / Secure Enclave / MPC Signing Integration | PLANNED |
 | PROD-06 | Production Chain Adapters & Execution Reconciliation | PLANNED |
@@ -300,9 +300,9 @@ Completed controlled design/specification layers: all currently scheduled pre-co
 
 Completed implementation artifacts: 16.
 
-Completed productionization artifacts: 1.
+Completed productionization artifacts: 2.
 
-Immediate next implementation phase: PROD-02 Production Service Framework & Runtime Conventions.
+Immediate next implementation phase: PROD-03 Persistence & Durable Event Transport.
 
 Production signing enabled: no.
 
