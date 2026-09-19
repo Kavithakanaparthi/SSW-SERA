@@ -450,3 +450,46 @@ IMP-07 intentionally does not yet provide production endpoint networking, mTLS/w
 **Dependencies closed:** typed Trust Protocol request/response binding and verified Trust PASS consumption.
 
 **Next:** SSW-AI-IMP-08: REV Adapter & Runtime Pass/Fail Binding.
+
+
+---
+
+## Entry 015 — IMP-08 REV Adapter & Runtime Pass/Fail Binding
+
+**Date:** 2026-09-19  
+**Artifact:** SSW-AI-IMP-08  
+**Commit:** e74331b64e4be3ab2d4f86c163b7b7c1c82d5ec0  
+**Status:** COMPLETE  
+**Stack:** TypeScript / Node.js
+
+Implemented:
+
+- REV Request schema;
+- REV Decision schema;
+- injected REV transport interface;
+- exact REV request construction from the verified control context;
+- binding validation for action ID/version and material-terms hash;
+- authority-class, risk-class and policy-version binding;
+- verified Trust Protocol decision reference binding;
+- device eligibility and runtime references;
+- approval, mandate, mandate-evaluation and optional AURION references;
+- expected REV service-identity check;
+- decision freshness and expiry checks;
+- fail-closed UNAVAILABLE handling;
+- authoritative FAIL handling;
+- consequential single-use decision marker;
+- immutable Action Contract enrichment only after verified REV PASS;
+- REV service baseline;
+- contract tests for action mismatch, material mismatch, Trust reference mismatch, provenance mismatch, expiry, UNAVAILABLE and FAIL.
+
+REV now occupies the final runtime gate before the Signing Gateway.
+
+A REV PASS does not itself mark an action READY and does not sign or execute anything.
+
+The Action Contract remains NOT_READY after REV PASS.
+
+IMP-08 intentionally defers production endpoint networking, mTLS/workload identity, cryptographic REV service-signature verification, emergency kill-state distribution, single-use consumption persistence, idempotent retry persistence and SAEL integration.
+
+**Dependencies closed:** typed final runtime PASS/FAIL gate before signing.
+
+**Next:** SSW-AI-IMP-09: Approval, Authentication & Exact-Term Authorization Binding.
