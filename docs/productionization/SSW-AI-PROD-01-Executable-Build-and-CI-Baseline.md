@@ -2,7 +2,7 @@
 
 **Program:** Soul Super Wallet AI-First / SERA Companion Architecture  
 **Artifact ID:** SSW-AI-PROD-01  
-**Status:** Productionization Bootstrap  
+**Status:** COMPLETE  
 **Date:** 2026-09-19  
 **Parent Phase:** IMP-01 through IMP-16 complete
 
@@ -15,50 +15,86 @@ Establish an executable, reproducible repository gate before connecting credenti
 - TypeScript / Node.js
 - Node major: 22
 - npm workspaces
+- package-lock.json lockfile v3
 - no production credentials
 - no production signing
 - no production execution
 
-## 3. CI Gate
+## 3. Verified CI Gate
 
-Every accepted baseline must pass:
+GitHub Actions Run #8 completed successfully on 2026-09-19.
 
-1. clean dependency installation;
-2. scaffold verification;
-3. contract readability/validation checks;
-4. contract + integration + security tests;
-5. TypeScript strict typecheck.
+The successful run verified:
 
-## 4. Lockfile Bootstrap
+1. clean dependency resolution;
+2. package-lock.json generation;
+3. clean npm ci;
+4. scaffold verification;
+5. 34 controlled JSON Schemas plus enum/OpenAPI verification;
+6. 104 contract, integration and security tests;
+7. strict TypeScript typecheck;
+8. verified lockfile commit.
 
-The repository currently has no package-lock.json.
+Successful workflow run ID:
 
-The first CI run therefore:
+`35474348335`
 
-1. generates package-lock.json with lifecycle scripts disabled;
-2. performs a clean npm ci from that lockfile;
-3. runs the entire CI gate;
-4. commits package-lock.json only if all checks pass.
+Verified lockfile commit:
 
-After the lockfile is committed, the temporary bootstrap write permission must be removed and CI becomes read-only.
+`37fd223b8cb1643c57c2140a62d5678a7bb246af`
 
-## 5. Security Posture
+Lockfile blob SHA:
+
+`091afc15bfb02cae0ac97f20324ce591eaa367b0`
+
+## 4. Defects Closed During Bootstrap
+
+The executable CI gate surfaced and closed:
+
+- invalid short idempotency/replay test fixtures;
+- stale scaffold expectations after execution baseline advancement;
+- stale schema-registry test expectations;
+- SAEL idempotent retry ordering defect;
+- missing Node type declarations;
+- incomplete generated ContractTypeMap coverage;
+- strict TypeScript validation-boundary casts;
+- Ajv / ajv-formats declaration interop issues.
+
+These were corrected before the lockfile was committed.
+
+## 5. Steady-State CI
+
+The temporary lockfile bootstrap workflow has been converted to normal CI.
+
+Steady-state properties:
+
+- contents: read;
+- committed package-lock.json required;
+- npm ci only;
+- npm cache keyed from package-lock.json;
+- contract/integration/security tests required;
+- strict TypeScript typecheck required;
+- no workflow ability to push repository contents.
+
+## 6. Security Posture
 
 CI uses no application secrets.
 
-Dependency lifecycle scripts are disabled during installation for this baseline.
+Dependency lifecycle scripts remain disabled during installation.
 
-GitHub Actions permissions are minimized. The temporary contents:write permission exists solely to commit the verified initial lockfile and is removed after bootstrap.
+No production provider credentials, HSM/KMS credentials, signing keys, Trust/REV production credentials or chain-broadcast credentials were introduced.
 
-## 6. Exit Criteria
+## 7. Exit Criteria
 
-PROD-01 advances when:
+All PROD-01 exit criteria are satisfied:
 
-- package-lock.json is committed from a successful clean CI run;
+- package-lock.json committed from a successful clean CI run;
 - npm ci succeeds;
 - repository tests succeed;
 - typecheck succeeds;
-- CI workflow is converted to steady-state read-only operation;
-- build status is recorded in the Project Build Tracker and Build Progress Ledger.
+- workflow converted to steady-state read-only operation;
+- project tracker and append-only ledger updated.
 
-No production integration work should begin before these conditions are satisfied.
+## 8. Next Controlled Artifact
+
+**SSW-AI-PROD-02: Production Service Framework & Runtime Conventions**
