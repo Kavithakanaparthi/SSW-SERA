@@ -493,3 +493,45 @@ IMP-08 intentionally defers production endpoint networking, mTLS/workload identi
 **Dependencies closed:** typed final runtime PASS/FAIL gate before signing.
 
 **Next:** SSW-AI-IMP-09: Approval, Authentication & Exact-Term Authorization Binding.
+
+
+---
+
+## Entry 016 — IMP-09 Approval, Authentication & Exact-Term Authorization Binding
+
+**Date:** 2026-09-19  
+**Artifact:** SSW-AI-IMP-09  
+**Commit:** 2ddac87b28c53bf0365f18d2676a747a7dae78c5  
+**Status:** COMPLETE  
+**Stack:** TypeScript / Node.js
+
+Implemented:
+
+- Review Record schema;
+- Authentication Evidence schema;
+- Approval Record schema;
+- exact Action Contract/version/material-terms review binding;
+- explicit authentication purpose binding;
+- Holder DID, Device ID and Runtime ID authentication binding;
+- authentication assurance levels;
+- R3 A2 payment baseline requiring AL2 or stronger;
+- exact-term Approval Record construction;
+- immutable application of verified approval to a copied Action Contract;
+- approval service baseline;
+- tests for material mismatch, version mismatch, identity mismatch, device/runtime mismatch, expiry, purpose separation and assurance insufficiency.
+
+Security separation now enforced:
+
+- reveal is not approval;
+- review is not approval;
+- authentication is not approval unless purpose is ACTION_APPROVAL and exact terms match;
+- RECOVERY-purpose authentication cannot authorize a transaction;
+- SOULSCAN_FACE recovery evidence cannot silently become spending authority.
+
+A successful Approval Record binds the exact material-terms hash and Action Contract version.
+
+The resulting Action Contract remains NOT_READY and still requires downstream Trust Protocol, REV and Signing Gateway controls.
+
+**Dependencies closed:** first-class exact-term A2 holder authorization.
+
+**Next:** SSW-AI-IMP-10: Canonical Signing Gateway Baseline.
