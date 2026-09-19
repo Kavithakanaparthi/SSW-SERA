@@ -125,10 +125,17 @@ export interface RecoveryProof { schema:"ssw.recovery-proof.v1"; holder_did:stri
 export interface WrappedStateKey { schema:"ssw.wrapped-state-key.v1"; holder_did:string; sera_agent_did:string; [key:string]: unknown; }
 export interface CounterpartyResolution { schema:"ssw.counterparty-resolution.v1"; holder_did:string; [key:string]: unknown; }
 
+export interface AuthorityDecisionContract { schema:"ssw.authority-decision.v1"; [key:string]: unknown; }
+export interface RiskDecisionContract { schema:"ssw.risk-decision.v1"; [key:string]: unknown; }
+export interface PolicyDecisionContract { schema:"ssw.policy-decision.v1"; [key:string]: unknown; }
+
 export interface ContractTypeMap {
   "intent-envelope": IntentEnvelope;
   "resolved-intent": ResolvedIntent;
   "action-contract": ActionContract;
+  "authority-decision": AuthorityDecisionContract;
+  "risk-decision": RiskDecisionContract;
+  "policy-decision": PolicyDecisionContract;
   mandate: Mandate;
   "offline-authorization-package": OfflineAuthorizationPackage;
   "dmcl-expression": DmclExpression;

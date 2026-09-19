@@ -2,6 +2,9 @@ export const contractSchemaIds = {
   intentEnvelope: "https://schemas.soulverse.world/ssw/json-schema/ssw-intent-envelope.v1.schema.json",
   resolvedIntent: "https://schemas.soulverse.world/ssw/json-schema/ssw-resolved-intent.v1.schema.json",
   actionContract: "https://schemas.soulverse.world/ssw/json-schema/ssw-action-contract.v1.schema.json",
+  authorityDecision: "https://schemas.soulverse.world/ssw/json-schema/ssw-authority-decision.v1.schema.json",
+  riskDecision: "https://schemas.soulverse.world/ssw/json-schema/ssw-risk-decision.v1.schema.json",
+  policyDecision: "https://schemas.soulverse.world/ssw/json-schema/ssw-policy-decision.v1.schema.json",
   mandate: "https://schemas.soulverse.world/ssw/json-schema/ssw-mandate.v1.schema.json",
   offlineAuthorizationPackage: "https://schemas.soulverse.world/ssw/json-schema/ssw-offline-authorization-package.v1.schema.json",
   dmclExpression: "https://schemas.soulverse.world/ssw/json-schema/ssw-dmcl-expression.v1.schema.json",
@@ -15,6 +18,9 @@ export type ContractKind =
   | "intent-envelope"
   | "resolved-intent"
   | "action-contract"
+  | "authority-decision"
+  | "risk-decision"
+  | "policy-decision"
   | "mandate"
   | "offline-authorization-package"
   | "dmcl-expression"
@@ -27,6 +33,9 @@ export const contractKindToSchemaId: Readonly<Record<ContractKind, string>> = {
   "intent-envelope": contractSchemaIds.intentEnvelope,
   "resolved-intent": contractSchemaIds.resolvedIntent,
   "action-contract": contractSchemaIds.actionContract,
+  "authority-decision": contractSchemaIds.authorityDecision,
+  "risk-decision": contractSchemaIds.riskDecision,
+  "policy-decision": contractSchemaIds.policyDecision,
   mandate: contractSchemaIds.mandate,
   "offline-authorization-package": contractSchemaIds.offlineAuthorizationPackage,
   "dmcl-expression": contractSchemaIds.dmclExpression,
