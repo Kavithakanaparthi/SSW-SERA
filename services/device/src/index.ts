@@ -1,2 +1,3 @@
-export const serviceName = 'device' as const;
-export const implementationStatus = 'SCAFFOLDED' as const;
+export type { DeviceRecord } from "@soulverse/runtime-assurance";
+export const serviceName="device" as const;
+export const implementationStatus="BASELINE_IMPLEMENTED" as const;

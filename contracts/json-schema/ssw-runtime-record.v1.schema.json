@@ -1,0 +1,18 @@
+{
+ "$schema":"https://json-schema.org/draft/2020-12/schema",
+ "$id":"https://schemas.soulverse.world/ssw/json-schema/ssw-runtime-record.v1.schema.json",
+ "title":"SSW Runtime Record v1","type":"object","additionalProperties":false,
+ "required":["schema","runtime_id","sera_agent_did","device_id","runtime_class","state","registered_at","session_id","session_expires_at","attestation_ref"],
+ "properties":{
+  "schema":{"const":"ssw.runtime-record.v1"},
+  "runtime_id":{"$ref":"ssw-common.v1.schema.json#/$defs/runtimeId"},
+  "sera_agent_did":{"$ref":"ssw-common.v1.schema.json#/$defs/seraAgentDid"},
+  "device_id":{"anyOf":[{"$ref":"ssw-common.v1.schema.json#/$defs/deviceId"},{"type":"null"}]},
+  "runtime_class":{"type":"string","enum":["PRIMARY_PHONE","SECONDARY_PHONE","TABLET","DESKTOP","WEARABLE","PROTECTED_CLOUD_REASONING","RECOVERY_RUNTIME","TEST_OR_DEVELOPMENT"]},
+  "state":{"type":"string","enum":["UNREGISTERED","REGISTERED","ATTESTED","ELIGIBLE","LIMITED","SUSPENDED","REVOKED"]},
+  "registered_at":{"$ref":"ssw-common.v1.schema.json#/$defs/timestamp"},
+  "session_id":{"anyOf":[{"$ref":"ssw-common.v1.schema.json#/$defs/sessionId"},{"type":"null"}]},
+  "session_expires_at":{"type":["string","null"],"format":"date-time"},
+  "attestation_ref":{"type":["string","null"]}
+ }
+}

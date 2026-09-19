@@ -129,10 +129,17 @@ export interface AuthorityDecisionContract { schema:"ssw.authority-decision.v1";
 export interface RiskDecisionContract { schema:"ssw.risk-decision.v1"; [key:string]: unknown; }
 export interface PolicyDecisionContract { schema:"ssw.policy-decision.v1"; [key:string]: unknown; }
 
+export interface DeviceRecordContract { schema:"ssw.device-record.v1"; [key:string]: unknown; }
+export interface RuntimeRecordContract { schema:"ssw.runtime-record.v1"; [key:string]: unknown; }
+export interface SessionEligibilityDecisionContract { schema:"ssw.session-eligibility-decision.v1"; [key:string]: unknown; }
+
 export interface ContractTypeMap {
   "intent-envelope": IntentEnvelope;
   "resolved-intent": ResolvedIntent;
   "action-contract": ActionContract;
+  "device-record": DeviceRecordContract;
+  "runtime-record": RuntimeRecordContract;
+  "session-eligibility-decision": SessionEligibilityDecisionContract;
   "authority-decision": AuthorityDecisionContract;
   "risk-decision": RiskDecisionContract;
   "policy-decision": PolicyDecisionContract;

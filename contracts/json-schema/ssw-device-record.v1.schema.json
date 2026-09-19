@@ -1,0 +1,20 @@
+{
+ "$schema":"https://json-schema.org/draft/2020-12/schema",
+ "$id":"https://schemas.soulverse.world/ssw/json-schema/ssw-device-record.v1.schema.json",
+ "title":"SSW Device Record v1","type":"object","additionalProperties":false,
+ "required":["schema","device_id","holder_did","sera_agent_did","device_type","platform","state","registered_at","last_attested_at","trust_expires_at","attestation_ref","risk_flags"],
+ "properties":{
+  "schema":{"const":"ssw.device-record.v1"},
+  "device_id":{"$ref":"ssw-common.v1.schema.json#/$defs/deviceId"},
+  "holder_did":{"$ref":"ssw-common.v1.schema.json#/$defs/holderDid"},
+  "sera_agent_did":{"$ref":"ssw-common.v1.schema.json#/$defs/seraAgentDid"},
+  "device_type":{"type":"string","enum":["PHONE","TABLET","WEARABLE","DESKTOP","HARDWARE_CARD","OTHER"]},
+  "platform":{"type":"string","minLength":1},
+  "state":{"type":"string","enum":["UNREGISTERED","REGISTERED","ATTESTED","TRUSTED","LIMITED","SUSPENDED","REVOKED"]},
+  "registered_at":{"$ref":"ssw-common.v1.schema.json#/$defs/timestamp"},
+  "last_attested_at":{"type":["string","null"],"format":"date-time"},
+  "trust_expires_at":{"type":["string","null"],"format":"date-time"},
+  "attestation_ref":{"type":["string","null"]},
+  "risk_flags":{"type":"array","uniqueItems":true,"items":{"type":"string","pattern":"^[A-Z][A-Z0-9_]*$"}}
+ }
+}

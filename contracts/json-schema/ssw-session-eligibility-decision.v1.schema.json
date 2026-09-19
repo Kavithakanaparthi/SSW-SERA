@@ -1,0 +1,18 @@
+{
+ "$schema":"https://json-schema.org/draft/2020-12/schema",
+ "$id":"https://schemas.soulverse.world/ssw/json-schema/ssw-session-eligibility-decision.v1.schema.json",
+ "title":"SSW Session Eligibility Decision v1","type":"object","additionalProperties":false,
+ "required":["schema","decision_id","action_id","device_id","runtime_id","status","device_state","runtime_state","reason_codes","evaluated_at"],
+ "properties":{
+  "schema":{"const":"ssw.session-eligibility-decision.v1"},
+  "decision_id":{"$ref":"ssw-common.v1.schema.json#/$defs/uuid"},
+  "action_id":{"$ref":"ssw-common.v1.schema.json#/$defs/uuid"},
+  "device_id":{"$ref":"ssw-common.v1.schema.json#/$defs/deviceId"},
+  "runtime_id":{"$ref":"ssw-common.v1.schema.json#/$defs/runtimeId"},
+  "status":{"type":"string","enum":["ELIGIBLE","LIMITED","INELIGIBLE","EXPIRED","SUSPENDED","REVOKED"]},
+  "device_state":{"type":"string","enum":["UNREGISTERED","REGISTERED","ATTESTED","TRUSTED","LIMITED","SUSPENDED","REVOKED"]},
+  "runtime_state":{"type":"string","enum":["UNREGISTERED","REGISTERED","ATTESTED","ELIGIBLE","LIMITED","SUSPENDED","REVOKED"]},
+  "reason_codes":{"$ref":"ssw-common.v1.schema.json#/$defs/reasonCodes"},
+  "evaluated_at":{"$ref":"ssw-common.v1.schema.json#/$defs/timestamp"}
+ }
+}
