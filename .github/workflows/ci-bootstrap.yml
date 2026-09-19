@@ -1,0 +1,79 @@
+name: SSW-SERA CI Bootstrap
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ssw-sera-ci-bootstrap-main
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    name: Node 22 build and verification
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          package-manager-cache: false
+
+      - name: Toolchain versions
+        run: |
+          node --version
+          npm --version
+
+      - name: Detect lockfile
+        id: lock
+        shell: bash
+        run: |
+          if [[ -f package-lock.json ]]; then
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Bootstrap lockfile
+        if: steps.lock.outputs.present == 'false'
+        run: npm install --package-lock-only --ignore-scripts --no-audit --no-fund
+
+      - name: Clean install from lockfile
+        run: npm ci --ignore-scripts --no-audit --no-fund
+
+      - name: Verify scaffold
+        run: npm run verify:scaffold
+
+      - name: Verify contracts
+        run: npm run verify:contracts
+
+      - name: Run contract, integration and security tests
+        run: npm test
+
+      - name: Strict TypeScript check
+        run: npm run typecheck
+
+      - name: Commit verified initial lockfile
+        if: success() && steps.lock.outputs.present == 'false' && github.ref == 'refs/heads/main'
+        shell: bash
+        run: |
+          if git diff --quiet -- package-lock.json && git ls-files --error-unmatch package-lock.json >/dev/null 2>&1; then
+            echo "Lockfile already tracked."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add package-lock.json
+          git commit -m "Bootstrap verified npm lockfile [skip ci]"
+          git push
