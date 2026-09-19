@@ -411,3 +411,42 @@ Cumulative/frequency reservation and concurrency-safe allowance accounting remai
 **Dependencies closed:** deterministic delegated-authority evaluation for A3/A4.
 
 **Next:** SSW-AI-IMP-07: Trust Protocol Adapter & Decision Binding Runtime.
+
+
+---
+
+## Entry 014 — IMP-07 Trust Protocol Adapter & Decision Binding Runtime
+
+**Date:** 2026-09-19  
+**Artifact:** SSW-AI-IMP-07  
+**Commit:** da4f163b7c227033f6c13817db8963c2f0cc7426  
+**Status:** COMPLETE  
+**Stack:** TypeScript / Node.js
+
+Implemented:
+
+- Trust Protocol Request schema;
+- Trust Protocol Decision schema;
+- injected Trust Protocol transport interface;
+- exact request construction from Action Contract and upstream control-plane decisions;
+- binding validation for action ID/version and material-terms hash;
+- Holder DID and SERA Agent DID binding;
+- Device ID and Runtime ID binding;
+- authority-class, risk-class and policy-version binding;
+- expected service-identity check;
+- decision freshness and expiry checks;
+- fail-closed UNAVAILABLE handling;
+- verified FAIL handling;
+- immutable Action Contract enrichment only after verified PASS;
+- Trust service baseline;
+- contract tests for action mismatch, material mismatch, provenance mismatch, expiry, UNAVAILABLE and transport evaluation.
+
+A Trust Protocol PASS is now treated as action-scoped and short-lived.
+
+It is not a reusable trust badge and cannot be attached to an unrelated or materially changed action.
+
+IMP-07 intentionally does not yet provide production endpoint networking, mTLS/workload identity, service-signature cryptographic verification, Trust decision key rotation, caching or SAEL persistence. Those remain controlled production integration work.
+
+**Dependencies closed:** typed Trust Protocol request/response binding and verified Trust PASS consumption.
+
+**Next:** SSW-AI-IMP-08: REV Adapter & Runtime Pass/Fail Binding.
