@@ -9,6 +9,7 @@ export const contractSchemaIds = {
   riskDecision: "https://schemas.soulverse.world/ssw/json-schema/ssw-risk-decision.v1.schema.json",
   policyDecision: "https://schemas.soulverse.world/ssw/json-schema/ssw-policy-decision.v1.schema.json",
   mandate: "https://schemas.soulverse.world/ssw/json-schema/ssw-mandate.v1.schema.json",
+  mandateEvaluationDecision: "https://schemas.soulverse.world/ssw/json-schema/ssw-mandate-evaluation-decision.v1.schema.json",
   offlineAuthorizationPackage: "https://schemas.soulverse.world/ssw/json-schema/ssw-offline-authorization-package.v1.schema.json",
   dmclExpression: "https://schemas.soulverse.world/ssw/json-schema/ssw-dmcl-expression.v1.schema.json",
   attestationEvidence: "https://schemas.soulverse.world/ssw/json-schema/ssw-attestation-evidence.v1.schema.json",
@@ -28,6 +29,7 @@ export type ContractKind =
   | "risk-decision"
   | "policy-decision"
   | "mandate"
+  | "mandate-evaluation-decision"
   | "offline-authorization-package"
   | "dmcl-expression"
   | "attestation-evidence"
@@ -46,6 +48,7 @@ export const contractKindToSchemaId: Readonly<Record<ContractKind, string>> = {
   "risk-decision": contractSchemaIds.riskDecision,
   "policy-decision": contractSchemaIds.policyDecision,
   mandate: contractSchemaIds.mandate,
+  "mandate-evaluation-decision": contractSchemaIds.mandateEvaluationDecision,
   "offline-authorization-package": contractSchemaIds.offlineAuthorizationPackage,
   "dmcl-expression": contractSchemaIds.dmclExpression,
   "attestation-evidence": contractSchemaIds.attestationEvidence,

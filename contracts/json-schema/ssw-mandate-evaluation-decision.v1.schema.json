@@ -1,0 +1,21 @@
+{
+ "$schema":"https://json-schema.org/draft/2020-12/schema",
+ "$id":"https://schemas.soulverse.world/ssw/json-schema/ssw-mandate-evaluation-decision.v1.schema.json",
+ "title":"SSW Mandate Evaluation Decision v1",
+ "type":"object","additionalProperties":false,
+ "required":["schema","decision_id","action_id","action_version","mandate_id","mandate_version","material_terms_hash","mandate_terms_hash","status","condition_results","reason_codes","evaluated_at"],
+ "properties":{
+  "schema":{"const":"ssw.mandate-evaluation-decision.v1"},
+  "decision_id":{"$ref":"ssw-common.v1.schema.json#/$defs/uuid"},
+  "action_id":{"$ref":"ssw-common.v1.schema.json#/$defs/uuid"},
+  "action_version":{"type":"integer","minimum":1},
+  "mandate_id":{"$ref":"ssw-common.v1.schema.json#/$defs/uuid"},
+  "mandate_version":{"type":"integer","minimum":1},
+  "material_terms_hash":{"$ref":"ssw-common.v1.schema.json#/$defs/sha256"},
+  "mandate_terms_hash":{"$ref":"ssw-common.v1.schema.json#/$defs/sha256"},
+  "status":{"type":"string","enum":["PASS","OUT_OF_SCOPE","LIMIT_EXCEEDED","CONDITION_FALSE","CONDITION_INDETERMINATE","INACTIVE","EXPIRED","IDENTITY_MISMATCH","DEVICE_RUNTIME_MISMATCH","RISK_EXCEEDED","FAIL"]},
+  "condition_results":{"type":"array","items":{"type":"string","enum":["TRUE","FALSE","INDETERMINATE"]}},
+  "reason_codes":{"$ref":"ssw-common.v1.schema.json#/$defs/reasonCodes"},
+  "evaluated_at":{"$ref":"ssw-common.v1.schema.json#/$defs/timestamp"}
+ }
+}

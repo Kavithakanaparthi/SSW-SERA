@@ -133,6 +133,8 @@ export interface DeviceRecordContract { schema:"ssw.device-record.v1"; [key:stri
 export interface RuntimeRecordContract { schema:"ssw.runtime-record.v1"; [key:string]: unknown; }
 export interface SessionEligibilityDecisionContract { schema:"ssw.session-eligibility-decision.v1"; [key:string]: unknown; }
 
+export interface MandateEvaluationDecisionContract { schema:"ssw.mandate-evaluation-decision.v1"; [key:string]: unknown; }
+
 export interface ContractTypeMap {
   "intent-envelope": IntentEnvelope;
   "resolved-intent": ResolvedIntent;
@@ -144,6 +146,7 @@ export interface ContractTypeMap {
   "risk-decision": RiskDecisionContract;
   "policy-decision": PolicyDecisionContract;
   mandate: Mandate;
+  "mandate-evaluation-decision": MandateEvaluationDecisionContract;
   "offline-authorization-package": OfflineAuthorizationPackage;
   "dmcl-expression": DmclExpression;
   "attestation-evidence": AttestationEvidence;

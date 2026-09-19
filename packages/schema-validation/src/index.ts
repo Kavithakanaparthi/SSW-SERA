@@ -31,6 +31,7 @@ const schemaFiles = [
   "ssw-risk-decision.v1.schema.json",
   "ssw-policy-decision.v1.schema.json",
   "ssw-mandate.v1.schema.json",
+  "ssw-mandate-evaluation-decision.v1.schema.json",
   "ssw-offline-authorization-package.v1.schema.json",
   "ssw-dmcl-expression.v1.schema.json",
   "ssw-attestation-evidence.v1.schema.json",
