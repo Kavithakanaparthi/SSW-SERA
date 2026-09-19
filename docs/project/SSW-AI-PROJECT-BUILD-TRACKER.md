@@ -70,11 +70,11 @@ Production Deployment                        NOT GATED
 
 Current implementation milestone:
 
-**SSW-AI-IMP-10 complete**
+**SSW-AI-IMP-16 complete**
 
 Immediate next artifact:
 
-**SSW-AI-IMP-11: Execution Router & Chain Adapter Baseline**
+**Productionization & SERA Product Runtime Integration**
 
 ## 5. Phase A — Product & Experience Definition
 
@@ -154,12 +154,12 @@ Immediate next artifact:
 | IMP-08 | REV Adapter | COMPLETE | Runtime pass/fail decision binding |
 | IMP-09 | Approval & Authentication Binding | COMPLETE | Exact-term approval lifecycle and auth references |
 | IMP-10 | Canonical Signing Gateway Baseline | COMPLETE | Production-grade canonicalization selection, signing dry-run verification |
-| IMP-11 | Execution Router & Chain Adapter Baseline | NEXT | Adapter contracts, simulation, no uncontrolled route mutation |
+| IMP-11 | Execution Router & Chain Adapter Baseline | COMPLETE | Adapter contracts, simulation, no uncontrolled route mutation |
 | IMP-12 | SAEL Runtime Implementation | PLANNED | Append-only ingestion, durability, query and action lineage |
 | IMP-13 | Recovery Runtime Implementation | PLANNED | Soul ID-anchored SERA state recovery and authority re-establishment |
-| IMP-14 | Counterparty Resolver Runtime | PLANNED | Canonical identity resolution with ambiguity/provenance controls |
-| IMP-15 | End-to-End Control Path Integration | PLANNED | Complete dry-run action path across all control services |
-| IMP-16 | Security / Conformance / Adversarial Test Harness | PLANNED | Replay, substitution, stale decision, alias poisoning, recovery tests |
+| IMP-14 | Counterparty Resolver Runtime | COMPLETE | Canonical identity resolution with ambiguity/provenance controls |
+| IMP-15 | End-to-End Control Path Integration | COMPLETE | Complete dry-run action path across all control services |
+| IMP-16 | Security / Conformance / Adversarial Test Harness | COMPLETE | Replay, substitution, stale decision, alias poisoning, recovery tests |
 
 ## 9. Phase E — SERA Product Runtime
 
@@ -263,23 +263,29 @@ The following remain mandatory:
 
 ## 15. Current Dependencies
 
-IMP-11 depends on:
+Implementation baseline IMP-01 through IMP-16 is complete.
 
-- IMP-10 dry-run Signing Gateway verification;
-- chain-specific execution contracts;
-- execution-state and idempotency requirements;
-- REV freshness at submission time;
-- SAEL execution evidence requirements.
+The next phase depends on:
 
-Production signing remains NOT GATED. IMP-10 is a dry-run verification baseline only; HSM/MPC integration, persistent replay state, cryptographic service-verification, chain payload conformance and adversarial security testing remain required.
+- production service framework and deployment topology;
+- persistent database and durable event transport;
+- HSM / Secure Enclave / MPC signer integration;
+- production Trust Protocol and REV transports with cryptographic service verification;
+- persistent replay, idempotency and mandate-usage reservation;
+- production SAEL persistence, checkpointing and archive;
+- production recovery storage/manifest verification;
+- mobile SERA runtime integration;
+- CI/staging execution of the conformance and adversarial harness.
+
+Production signing remains NOT GATED. Production asset movement remains disabled.
 
 ## 16. Current Build Summary
 
 Completed controlled design/specification layers: all currently scheduled pre-code architecture and security items.
 
-Completed implementation artifacts: 10.
+Completed implementation artifacts: 16.
 
-Immediate next implementation artifact: IMP-11.
+Immediate next implementation phase: Productionization & SERA Product Runtime Integration.
 
 Production signing enabled: no.
 
