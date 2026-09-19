@@ -4,6 +4,8 @@ export const contractSchemaIds = {
   actionContract: "https://schemas.soulverse.world/ssw/json-schema/ssw-action-contract.v1.schema.json",
   trustProtocolRequest: "https://schemas.soulverse.world/ssw/json-schema/ssw-trust-protocol-request.v1.schema.json",
   trustProtocolDecision: "https://schemas.soulverse.world/ssw/json-schema/ssw-trust-protocol-decision.v1.schema.json",
+  revRequest: "https://schemas.soulverse.world/ssw/json-schema/ssw-rev-request.v1.schema.json",
+  revDecision: "https://schemas.soulverse.world/ssw/json-schema/ssw-rev-decision.v1.schema.json",
   deviceRecord: "https://schemas.soulverse.world/ssw/json-schema/ssw-device-record.v1.schema.json",
   runtimeRecord: "https://schemas.soulverse.world/ssw/json-schema/ssw-runtime-record.v1.schema.json",
   sessionEligibilityDecision: "https://schemas.soulverse.world/ssw/json-schema/ssw-session-eligibility-decision.v1.schema.json",
@@ -26,6 +28,8 @@ export type ContractKind =
   | "action-contract"
   | "trust-protocol-request"
   | "trust-protocol-decision"
+  | "rev-request"
+  | "rev-decision"
   | "device-record"
   | "runtime-record"
   | "session-eligibility-decision"
@@ -47,6 +51,8 @@ export const contractKindToSchemaId: Readonly<Record<ContractKind, string>> = {
   "action-contract": contractSchemaIds.actionContract,
   "trust-protocol-request": contractSchemaIds.trustProtocolRequest,
   "trust-protocol-decision": contractSchemaIds.trustProtocolDecision,
+  "rev-request": contractSchemaIds.revRequest,
+  "rev-decision": contractSchemaIds.revDecision,
   "device-record": contractSchemaIds.deviceRecord,
   "runtime-record": contractSchemaIds.runtimeRecord,
   "session-eligibility-decision": contractSchemaIds.sessionEligibilityDecision,

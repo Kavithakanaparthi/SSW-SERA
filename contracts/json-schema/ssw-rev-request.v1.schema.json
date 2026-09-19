@@ -1,0 +1,27 @@
+{
+ "$schema":"https://json-schema.org/draft/2020-12/schema",
+ "$id":"https://schemas.soulverse.world/ssw/json-schema/ssw-rev-request.v1.schema.json",
+ "title":"SSW REV Request v1",
+ "type":"object","additionalProperties":false,
+ "required":["schema","request_id","action_id","action_version","material_terms_hash","authority_class","risk_class","policy_ref","policy_version","trust_protocol_decision_ref","device_eligibility_ref","runtime_ref","approval_ref","mandate_ref","mandate_evaluation_ref","aurion_ref","issued_at","expires_at"],
+ "properties":{
+  "schema":{"const":"ssw.rev-request.v1"},
+  "request_id":{"$ref":"ssw-common.v1.schema.json#/$defs/uuid"},
+  "action_id":{"$ref":"ssw-common.v1.schema.json#/$defs/uuid"},
+  "action_version":{"type":"integer","minimum":1},
+  "material_terms_hash":{"$ref":"ssw-common.v1.schema.json#/$defs/sha256"},
+  "authority_class":{"$ref":"ssw-common.v1.schema.json#/$defs/authorityClass"},
+  "risk_class":{"$ref":"ssw-common.v1.schema.json#/$defs/riskClass"},
+  "policy_ref":{"type":"string","minLength":1},
+  "policy_version":{"type":"string","minLength":1},
+  "trust_protocol_decision_ref":{"$ref":"ssw-common.v1.schema.json#/$defs/uuid"},
+  "device_eligibility_ref":{"$ref":"ssw-common.v1.schema.json#/$defs/uuid"},
+  "runtime_ref":{"$ref":"ssw-common.v1.schema.json#/$defs/runtimeId"},
+  "approval_ref":{"type":["string","null"]},
+  "mandate_ref":{"type":["string","null"]},
+  "mandate_evaluation_ref":{"type":["string","null"]},
+  "aurion_ref":{"type":["string","null"]},
+  "issued_at":{"$ref":"ssw-common.v1.schema.json#/$defs/timestamp"},
+  "expires_at":{"$ref":"ssw-common.v1.schema.json#/$defs/timestamp"}
+ }
+}

@@ -138,12 +138,17 @@ export interface MandateEvaluationDecisionContract { schema:"ssw.mandate-evaluat
 export interface TrustProtocolRequestContract { schema:"ssw.trust-protocol-request.v1"; [key:string]: unknown; }
 export interface TrustProtocolDecisionContract { schema:"ssw.trust-protocol-decision.v1"; [key:string]: unknown; }
 
+export interface RevRequestContract { schema:"ssw.rev-request.v1"; [key:string]: unknown; }
+export interface RevDecisionContract { schema:"ssw.rev-decision.v1"; [key:string]: unknown; }
+
 export interface ContractTypeMap {
   "intent-envelope": IntentEnvelope;
   "resolved-intent": ResolvedIntent;
   "action-contract": ActionContract;
   "trust-protocol-request": TrustProtocolRequestContract;
   "trust-protocol-decision": TrustProtocolDecisionContract;
+  "rev-request": RevRequestContract;
+  "rev-decision": RevDecisionContract;
   "device-record": DeviceRecordContract;
   "runtime-record": RuntimeRecordContract;
   "session-eligibility-decision": SessionEligibilityDecisionContract;

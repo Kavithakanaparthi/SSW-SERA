@@ -26,6 +26,8 @@ const schemaFiles = [
   "ssw-action-contract.v1.schema.json",
   "ssw-trust-protocol-request.v1.schema.json",
   "ssw-trust-protocol-decision.v1.schema.json",
+  "ssw-rev-request.v1.schema.json",
+  "ssw-rev-decision.v1.schema.json",
   "ssw-device-record.v1.schema.json",
   "ssw-runtime-record.v1.schema.json",
   "ssw-session-eligibility-decision.v1.schema.json",
