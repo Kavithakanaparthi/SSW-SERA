@@ -70,11 +70,11 @@ Production Deployment                        NOT GATED
 
 Current implementation milestone:
 
-**SSW-AI-IMP-05 complete**
+**SSW-AI-IMP-06 complete**
 
 Immediate next artifact:
 
-**SSW-AI-IMP-06: Mandate Runtime & Deterministic DMCL Evaluator**
+**SSW-AI-IMP-07: Trust Protocol Adapter & Decision Binding Runtime**
 
 ## 5. Phase A — Product & Experience Definition
 
@@ -149,8 +149,8 @@ Immediate next artifact:
 | IMP-03 | Action Contract Builder, Intent Normalization & Material-Term Binding | COMPLETE | Intent/Resolved Intent schemas, payment.send builder, ambiguity blocking, material hash |
 | IMP-04 | Authority, Risk & Policy Evaluation Baseline | COMPLETE | Deterministic authority/risk/policy decisions with exact material-term binding |
 | IMP-05 | Device Trust & Runtime Registry Implementation | COMPLETE | Runtime/device eligibility and session state |
-| IMP-06 | Mandate Runtime & DMCL Evaluator | NEXT | A3/A4 mandate evaluation and deterministic conditions |
-| IMP-07 | Trust Protocol Adapter | PLANNED | Typed Trust request/response and binding |
+| IMP-06 | Mandate Runtime & DMCL Evaluator | COMPLETE | A3/A4 mandate evaluation and deterministic conditions |
+| IMP-07 | Trust Protocol Adapter | NEXT | Typed Trust request/response and binding |
 | IMP-08 | REV Adapter | PLANNED | Runtime pass/fail decision binding |
 | IMP-09 | Approval & Authentication Binding | PLANNED | Exact-term approval lifecycle and auth references |
 | IMP-10 | Canonical Signing Gateway Baseline | PLANNED | Production-grade canonicalization selection, signing dry-run verification |
@@ -263,23 +263,23 @@ The following remain mandatory:
 
 ## 15. Current Dependencies
 
-IMP-06 depends on:
+IMP-07 depends on:
 
-- IMP-04 authority decision objects;
+- IMP-04 authority/risk/policy decisions;
 - IMP-05 device/runtime/session eligibility;
-- SCH-02 mandate schema;
-- POL-02 deterministic mandate condition language;
-- canonical A3/A4 authority semantics.
+- IMP-06 mandate evaluation;
+- ISC-03 Trust Protocol decision binding;
+- Trust Protocol request/response contracts.
 
-No signing or execution work should bypass IMP-06 through IMP-09.
+No signing or execution work should bypass IMP-07 through IMP-09.
 
 ## 16. Current Build Summary
 
 Completed controlled design/specification layers: all currently scheduled pre-code architecture and security items.
 
-Completed implementation artifacts: 5.
+Completed implementation artifacts: 6.
 
-Immediate next implementation artifact: IMP-06.
+Immediate next implementation artifact: IMP-07.
 
 Production signing enabled: no.
 
