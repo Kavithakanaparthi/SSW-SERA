@@ -28,6 +28,8 @@ const schemaFiles = [
   "ssw-signing-result.v1.schema.json",
   "ssw-execution-request.v1.schema.json",
   "ssw-execution-result.v1.schema.json",
+  "ssw-sael-event.v1.schema.json",
+  "ssw-sael-ingest-result.v1.schema.json",
   "ssw-review-record.v1.schema.json",
   "ssw-authentication-evidence.v1.schema.json",
   "ssw-approval-record.v1.schema.json",

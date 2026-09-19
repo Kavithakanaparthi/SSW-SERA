@@ -6,6 +6,8 @@ export const contractSchemaIds = {
   signingResult: "https://schemas.soulverse.world/ssw/json-schema/ssw-signing-result.v1.schema.json",
   executionRequest: "https://schemas.soulverse.world/ssw/json-schema/ssw-execution-request.v1.schema.json",
   executionResult: "https://schemas.soulverse.world/ssw/json-schema/ssw-execution-result.v1.schema.json",
+  saelEvent: "https://schemas.soulverse.world/ssw/json-schema/ssw-sael-event.v1.schema.json",
+  saelIngestResult: "https://schemas.soulverse.world/ssw/json-schema/ssw-sael-ingest-result.v1.schema.json",
   reviewRecord: "https://schemas.soulverse.world/ssw/json-schema/ssw-review-record.v1.schema.json",
   authenticationEvidence: "https://schemas.soulverse.world/ssw/json-schema/ssw-authentication-evidence.v1.schema.json",
   approvalRecord: "https://schemas.soulverse.world/ssw/json-schema/ssw-approval-record.v1.schema.json",
@@ -37,6 +39,8 @@ export type ContractKind =
   | "signing-result"
   | "execution-request"
   | "execution-result"
+  | "sael-event"
+  | "sael-ingest-result"
   | "review-record"
   | "authentication-evidence"
   | "approval-record"
@@ -67,6 +71,8 @@ export const contractKindToSchemaId: Readonly<Record<ContractKind, string>> = {
   "signing-result": contractSchemaIds.signingResult,
   "execution-request": contractSchemaIds.executionRequest,
   "execution-result": contractSchemaIds.executionResult,
+  "sael-event": contractSchemaIds.saelEvent,
+  "sael-ingest-result": contractSchemaIds.saelIngestResult,
   "review-record": contractSchemaIds.reviewRecord,
   "authentication-evidence": contractSchemaIds.authenticationEvidence,
   "approval-record": contractSchemaIds.approvalRecord,

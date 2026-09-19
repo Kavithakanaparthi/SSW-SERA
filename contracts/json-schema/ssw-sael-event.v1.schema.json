@@ -1,0 +1,21 @@
+{
+ "$schema":"https://json-schema.org/draft/2020-12/schema",
+ "$id":"https://schemas.soulverse.world/ssw/json-schema/ssw-sael-event.v1.schema.json",
+ "title":"SSW SAEL Event v1","type":"object","additionalProperties":false,
+ "required":["schema","event_id","stream_id","event_type","event_version","occurred_at","correlation","principal","origin","classification","payload","privacy","previous_event_hash"],
+ "properties":{
+  "schema":{"const":"ssw.sael-event.v1"},
+  "event_id":{"$ref":"ssw-common.v1.schema.json#/$defs/uuid"},
+  "stream_id":{"type":"string","minLength":1},
+  "event_type":{"type":"string","pattern":"^[A-Z][A-Z0-9_]*(\\.[A-Z][A-Z0-9_]*)+$"},
+  "event_version":{"type":"integer","minimum":1},
+  "occurred_at":{"$ref":"ssw-common.v1.schema.json#/$defs/timestamp"},
+  "correlation":{"type":"object"},
+  "principal":{"type":"object"},
+  "origin":{"type":"object"},
+  "classification":{"type":"object"},
+  "payload":{"type":"object"},
+  "privacy":{"type":"object"},
+  "previous_event_hash":{"anyOf":[{"$ref":"ssw-common.v1.schema.json#/$defs/sha256"},{"type":"null"}]}
+ }
+}

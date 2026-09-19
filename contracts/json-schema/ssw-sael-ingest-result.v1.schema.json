@@ -1,0 +1,15 @@
+{
+ "$schema":"https://json-schema.org/draft/2020-12/schema",
+ "$id":"https://schemas.soulverse.world/ssw/json-schema/ssw-sael-ingest-result.v1.schema.json",
+ "title":"SSW SAEL Ingest Result v1","type":"object","additionalProperties":false,
+ "required":["schema","event_id","accepted","sequence","event_hash","durability","recorded_at"],
+ "properties":{
+  "schema":{"const":"ssw.sael-ingest-result.v1"},
+  "event_id":{"$ref":"ssw-common.v1.schema.json#/$defs/uuid"},
+  "accepted":{"type":"boolean"},
+  "sequence":{"type":"integer","minimum":1},
+  "event_hash":{"$ref":"ssw-common.v1.schema.json#/$defs/sha256"},
+  "durability":{"type":"string","enum":["RECEIVED","JOURNALED","COMMITTED","CHECKPOINTED","ARCHIVED"]},
+  "recorded_at":{"$ref":"ssw-common.v1.schema.json#/$defs/timestamp"}
+ }
+}
