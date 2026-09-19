@@ -1,0 +1,63 @@
+{
+  "schema": "ssw.resolved-intent.v1",
+  "intent_id": "66666666-6666-4666-8666-666666666666",
+  "correlation_id": "77777777-7777-4777-8777-777777777777",
+  "intent_type": "payment.send",
+  "holder_did": "did:soul:holder-alice",
+  "sera_agent_did": "did:soul:agent:sera-alice",
+  "sera_runtime_id": "sera-runtime:phone-001",
+  "device_id": "device:phone-001",
+  "entities": {
+    "asset": {
+      "value": {
+        "asset_id": "USDC",
+        "decimals": 6
+      },
+      "resolution": "EXPLICIT",
+      "source_ref": "utterance:asset"
+    },
+    "amount": {
+      "value": {
+        "atomic": "5000000",
+        "decimals": 6
+      },
+      "resolution": "EXPLICIT",
+      "source_ref": "utterance:amount"
+    },
+    "counterparty": {
+      "value": {
+        "canonical_id": "did:soul:merchant-example",
+        "resolution_source": "COUNTERPARTY_RESOLUTION"
+      },
+      "resolution": "RESOLVED",
+      "source_ref": "counterparty:resolution-001"
+    },
+    "chain": {
+      "value": {
+        "chain_id": "eip155:137"
+      },
+      "resolution": "RESOLVED",
+      "source_ref": "route:polygon"
+    }
+  },
+  "context_refs": [
+    "counterparty:resolution-001"
+  ],
+  "authority_requested": "A2",
+  "risk_preliminary": "R3",
+  "confidence": {
+    "overall": 0.99,
+    "material_terms": {
+      "asset": 1,
+      "amount": 1,
+      "counterparty": 0.99,
+      "chain": 0.98
+    }
+  },
+  "ambiguity": {
+    "material": false,
+    "items": []
+  },
+  "created_at": "2026-09-19T16:00:00Z",
+  "expires_at": "2026-09-19T16:05:00Z"
+}

@@ -1,0 +1,39 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://schemas.soulverse.world/ssw/json-schema/ssw-payment-send-material-terms.v1.schema.json",
+  "title":"SSW Payment Send Material Terms v1",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["asset","amount","counterparty","network"],
+  "properties":{
+    "asset":{
+      "type":"object","additionalProperties":false,
+      "required":["asset_id","decimals"],
+      "properties":{
+        "asset_id":{"type":"string","minLength":1},
+        "decimals":{"type":"integer","minimum":0,"maximum":255}
+      }
+    },
+    "amount":{
+      "type":"object","additionalProperties":false,
+      "required":["atomic","decimals"],
+      "properties":{
+        "atomic":{"type":"string","pattern":"^[0-9]+$"},
+        "decimals":{"type":"integer","minimum":0,"maximum":255}
+      }
+    },
+    "counterparty":{
+      "type":"object","additionalProperties":false,
+      "required":["canonical_id","resolution_source"],
+      "properties":{
+        "canonical_id":{"type":"string","minLength":1},
+        "resolution_source":{"type":"string","minLength":1}
+      }
+    },
+    "network":{
+      "type":"object","additionalProperties":false,
+      "required":["chain_id"],
+      "properties":{"chain_id":{"type":"string","minLength":1}}
+    }
+  }
+}

@@ -2,6 +2,8 @@
 // Do not treat these TypeScript types as runtime validation.
 // Regenerate with: npm run generate:types
 
+import type { IntentEnvelope, ResolvedIntent } from "./intent-types.js";
+
 export type AuthorityClass = "A0" | "A1" | "A2" | "A3" | "A4" | "A5";
 export type RiskClass = "R0" | "R1" | "R2" | "R3" | "R4" | "R5";
 export type ApprovalStatus =
@@ -118,71 +120,14 @@ export interface OfflineAuthorizationPackage {
 }
 
 export type DmclExpression = Record<string, unknown>;
-
-export interface AttestationEvidence {
-  schema: "ssw.attestation-evidence.v1";
-  attestation_id: string;
-  profile: string;
-  provider: string;
-  subject: Record<string, unknown>;
-  challenge: Record<string, unknown>;
-  status: "PASS" | "FAIL" | "UNAVAILABLE" | "EXPIRED" | "UNSUPPORTED";
-  issued_at: string;
-  expires_at: string;
-  claims: Record<string, unknown>;
-  integrity: Record<string, unknown>;
-  reason_codes?: string[];
-}
-
-export interface RecoveryProof {
-  schema: "ssw.recovery-proof.v1";
-  proof_id: string;
-  recovery_id: string;
-  holder_did: string;
-  sera_agent_did: string;
-  proof_class: "RP1" | "RP2" | "RP3" | "RP4" | "RP5";
-  assurance_level: "RAL1" | "RAL2" | "RAL3" | "RAL4" | "RAL5";
-  target_device_id?: string | null;
-  target_runtime_id?: string | null;
-  challenge: Record<string, unknown>;
-  status: "PASS" | "FAIL" | "EXPIRED";
-  issued_at: string;
-  expires_at: string;
-  verifier_ref: string;
-  reason_codes?: string[];
-  integrity: Record<string, unknown>;
-}
-
-export interface WrappedStateKey {
-  schema: "ssw.wrapped-state-key.v1";
-  wrapped_key_id: string;
-  holder_did: string;
-  sera_agent_did: string;
-  key_version: number;
-  wrapping_profile: string;
-  target: Record<string, unknown>;
-  cipher_suite: string;
-  wrapped_key: string;
-  created_at: string;
-  expires_at?: string | null;
-  status: "ACTIVE" | "REVOKED" | "SUPERSEDED";
-  integrity: Record<string, unknown>;
-}
-
-export interface CounterpartyResolution {
-  schema: "ssw.counterparty-resolution.v1";
-  resolution_id: string;
-  holder_did: string;
-  original_reference: string;
-  status: "UNIQUE" | "MULTIPLE_CANDIDATES" | "LOW_CONFIDENCE" | "UNRESOLVED" | "CONFLICTING_IDENTIFIERS";
-  candidates: Record<string, unknown>[];
-  selected: Record<string, unknown> | null;
-  created_at: string;
-  expires_at: string;
-  integrity: Record<string, unknown>;
-}
+export interface AttestationEvidence { schema:"ssw.attestation-evidence.v1"; [key:string]: unknown; }
+export interface RecoveryProof { schema:"ssw.recovery-proof.v1"; holder_did:string; sera_agent_did:string; [key:string]: unknown; }
+export interface WrappedStateKey { schema:"ssw.wrapped-state-key.v1"; holder_did:string; sera_agent_did:string; [key:string]: unknown; }
+export interface CounterpartyResolution { schema:"ssw.counterparty-resolution.v1"; holder_did:string; [key:string]: unknown; }
 
 export interface ContractTypeMap {
+  "intent-envelope": IntentEnvelope;
+  "resolved-intent": ResolvedIntent;
   "action-contract": ActionContract;
   mandate: Mandate;
   "offline-authorization-package": OfflineAuthorizationPackage;

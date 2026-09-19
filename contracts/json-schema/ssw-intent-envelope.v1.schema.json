@@ -1,0 +1,41 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://schemas.soulverse.world/ssw/json-schema/ssw-intent-envelope.v1.schema.json",
+  "title":"SSW Intent Envelope v1",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["schema","intent_id","correlation_id","created_at","expires_at","holder_did","sera_agent_did","sera_runtime_id","device_id","source","interpretation"],
+  "properties":{
+    "schema":{"const":"ssw.intent-envelope.v1"},
+    "intent_id":{"$ref":"ssw-common.v1.schema.json#/$defs/uuid"},
+    "correlation_id":{"$ref":"ssw-common.v1.schema.json#/$defs/uuid"},
+    "created_at":{"$ref":"ssw-common.v1.schema.json#/$defs/timestamp"},
+    "expires_at":{"anyOf":[{"$ref":"ssw-common.v1.schema.json#/$defs/timestamp"},{"type":"null"}]},
+    "holder_did":{"$ref":"ssw-common.v1.schema.json#/$defs/holderDid"},
+    "sera_agent_did":{"$ref":"ssw-common.v1.schema.json#/$defs/seraAgentDid"},
+    "sera_runtime_id":{"$ref":"ssw-common.v1.schema.json#/$defs/runtimeId"},
+    "device_id":{"$ref":"ssw-common.v1.schema.json#/$defs/deviceId"},
+    "source":{
+      "type":"object","additionalProperties":false,
+      "required":["modality","channel","raw_input_ref"],
+      "properties":{
+        "modality":{"type":"string","enum":["text","voice","notification","external_request","scheduled_trigger","system_event"]},
+        "channel":{"type":"string","enum":["wallet","widget","wearable","voice","walletconnect","api","other"]},
+        "raw_input_ref":{"type":["string","null"]}
+      }
+    },
+    "interpretation":{
+      "type":"object","additionalProperties":false,
+      "required":["intent_type","confidence","ambiguity","ambiguity_reasons"],
+      "properties":{
+        "intent_type":{"type":"string","pattern":"^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)+$"},
+        "confidence":{"type":"number","minimum":0,"maximum":1},
+        "ambiguity":{"type":"boolean"},
+        "ambiguity_reasons":{
+          "type":"array","uniqueItems":true,
+          "items":{"type":"string","pattern":"^[A-Z][A-Z0-9_]*$"}
+        }
+      }
+    }
+  }
+}
