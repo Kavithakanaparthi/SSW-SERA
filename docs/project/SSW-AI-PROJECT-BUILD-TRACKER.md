@@ -70,11 +70,11 @@ Production Deployment                        NOT GATED
 
 Current implementation milestone:
 
-**SSW-AI-IMP-08 complete**
+**SSW-AI-IMP-09 complete**
 
 Immediate next artifact:
 
-**SSW-AI-IMP-09: Approval, Authentication & Exact-Term Authorization Binding**
+**SSW-AI-IMP-10: Canonical Signing Gateway Baseline**
 
 ## 5. Phase A — Product & Experience Definition
 
@@ -152,8 +152,8 @@ Immediate next artifact:
 | IMP-06 | Mandate Runtime & DMCL Evaluator | COMPLETE | A3/A4 mandate evaluation and deterministic conditions |
 | IMP-07 | Trust Protocol Adapter | COMPLETE | Typed Trust request/response and binding |
 | IMP-08 | REV Adapter | COMPLETE | Runtime pass/fail decision binding |
-| IMP-09 | Approval & Authentication Binding | NEXT | Exact-term approval lifecycle and auth references |
-| IMP-10 | Canonical Signing Gateway Baseline | PLANNED | Production-grade canonicalization selection, signing dry-run verification |
+| IMP-09 | Approval & Authentication Binding | COMPLETE | Exact-term approval lifecycle and auth references |
+| IMP-10 | Canonical Signing Gateway Baseline | NEXT | Production-grade canonicalization selection, signing dry-run verification |
 | IMP-11 | Execution Router & Chain Adapter Baseline | PLANNED | Adapter contracts, simulation, no uncontrolled route mutation |
 | IMP-12 | SAEL Runtime Implementation | PLANNED | Append-only ingestion, durability, query and action lineage |
 | IMP-13 | Recovery Runtime Implementation | PLANNED | Soul ID-anchored SERA state recovery and authority re-establishment |
@@ -263,23 +263,24 @@ The following remain mandatory:
 
 ## 15. Current Dependencies
 
-IMP-09 depends on:
+IMP-10 depends on:
 
-- IMP-03 material-term binding;
-- IMP-04 A2 authority evaluation;
-- IMP-05 device/runtime/session context;
-- SCH-04 reveal/approval separation;
-- exact-term approval/authentication requirements.
+- IMP-02 schema validation;
+- IMP-03 deterministic material-term binding;
+- IMP-07 verified Trust Protocol decisions;
+- IMP-08 verified REV decisions;
+- IMP-09 exact-term approval/authentication binding;
+- ISC-02 canonicalization, hashing and signer requirements.
 
-No signing or execution work should bypass IMP-09.
+Production signing remains NOT GATED until IMP-10 and its security tests are complete.
 
 ## 16. Current Build Summary
 
 Completed controlled design/specification layers: all currently scheduled pre-code architecture and security items.
 
-Completed implementation artifacts: 8.
+Completed implementation artifacts: 9.
 
-Immediate next implementation artifact: IMP-09.
+Immediate next implementation artifact: IMP-10.
 
 Production signing enabled: no.
 
