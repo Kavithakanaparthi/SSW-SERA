@@ -7,9 +7,9 @@ test("controlled contract anchors remain present", async () => {
   await access("contracts/openapi/ssw-internal-api.v1.yaml");
 });
 
-test("signing and execution are safe in IMP-01", async () => {
+test("signing and execution remain safely gated", async () => {
   const signing = await readFile("services/signing/src/index.ts", "utf8");
   const execution = await readFile("services/execution/src/index.ts", "utf8");
   assert.match(signing, /DRY_RUN_ONLY/);
-  assert.match(execution, /STUB_ONLY/);
+  assert.match(execution, /SUBMISSION_DISABLED_BY_DEFAULT/);
 });

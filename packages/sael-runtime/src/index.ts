@@ -18,11 +18,11 @@ export class InMemorySaelStore{
   const event=assertContract("sael-event",input.event) as SaelEvent;
   const allowed=this.producerPrefixes[input.producerId]??[];
   if(!allowed.some(p=>event.event_type.startsWith(p)))throw new Error("SAEL_PRODUCER_NOT_AUTHORIZED");
-  const list=this.streams.get(event.stream_id)??[];const previous=list.length?list[list.length-1]!.hash:null;
-  if(event.previous_event_hash!==previous)throw new Error("SAEL_PREVIOUS_HASH_MISMATCH");
   const hash=sha256DomainSeparated(SAEL_EVENT_HASH_DOMAIN,event as unknown as CanonicalJson).hash;
   const existing=this.idem.get(input.idempotencyKey);
   if(existing){if(existing.hash!==hash)throw new Error("IDEMPOTENCY_CONFLICT");return existing.result;}
+  const list=this.streams.get(event.stream_id)??[];const previous=list.length?list[list.length-1]!.hash:null;
+  if(event.previous_event_hash!==previous)throw new Error("SAEL_PREVIOUS_HASH_MISMATCH");
   const result:SaelIngestResult={schema:"ssw.sael-ingest-result.v1",event_id:event.event_id,accepted:true,sequence:list.length+1,event_hash:hash,durability:"COMMITTED",recorded_at:input.recordedAt};
   assertContract("sael-ingest-result",result);
   list.push({event:structuredClone(event),sequence:result.sequence,hash});this.streams.set(event.stream_id,list);this.idem.set(input.idempotencyKey,{hash,result});

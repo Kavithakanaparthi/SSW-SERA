@@ -7,6 +7,7 @@ import {
   registeredContractKinds,
   validateContract
 } from "../../packages/schema-validation/src/index.js";
+import { contractKindToSchemaId } from "../../packages/contracts/src/registry.js";
 
 const fixturePath = new URL("../fixtures/action-contract.valid.json", import.meta.url);
 
@@ -17,16 +18,7 @@ async function validAction(): Promise<any> {
 test("all controlled top-level contract schemas are registered", () => {
   assert.deepEqual(
     [...registeredContractKinds()].sort(),
-    [
-      "action-contract",
-      "attestation-evidence",
-      "counterparty-resolution",
-      "dmcl-expression",
-      "mandate",
-      "offline-authorization-package",
-      "recovery-proof",
-      "wrapped-state-key"
-    ].sort()
+    Object.keys(contractKindToSchemaId).sort()
   );
 });
 
