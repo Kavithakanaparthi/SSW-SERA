@@ -123,6 +123,9 @@ export type DmclExpression = Record<string, unknown>;
 export interface AttestationEvidence { schema:"ssw.attestation-evidence.v1"; [key:string]: unknown; }
 export interface RecoveryProof { schema:"ssw.recovery-proof.v1"; holder_did:string; sera_agent_did:string; [key:string]: unknown; }
 export interface WrappedStateKey { schema:"ssw.wrapped-state-key.v1"; holder_did:string; sera_agent_did:string; [key:string]: unknown; }
+export interface PortableKeyManifestContract { schema:"ssw.portable-key-manifest.v1"; subject_did:string; governing_holder_did:string; [key:string]: unknown; }
+export interface SoulScanRecoveryAuthorizationContract { schema:"ssw.soulscan-recovery-authorization.v1"; holder_did:string; sera_agent_did:string|null; [key:string]: unknown; }
+export interface EncryptedKeyObjectRefContract { schema:"ssw.encrypted-key-object-ref.v1"; subject_did:string; governing_holder_did:string; [key:string]: unknown; }
 export interface CounterpartyResolution { schema:"ssw.counterparty-resolution.v1"; holder_did:string; [key:string]: unknown; }
 
 export interface AuthorityDecisionContract { schema:"ssw.authority-decision.v1"; [key:string]: unknown; }
@@ -187,5 +190,8 @@ export interface ContractTypeMap {
   "recovery-session": RecoverySessionContract;
   "sera-state-manifest": SeraStateManifestContract;
   "wrapped-state-key": WrappedStateKey;
+  "portable-key-manifest": PortableKeyManifestContract;
+  "soulscan-recovery-authorization": SoulScanRecoveryAuthorizationContract;
+  "encrypted-key-object-ref": EncryptedKeyObjectRefContract;
   "counterparty-resolution": CounterpartyResolution;
 }

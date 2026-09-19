@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.soulverse.world/ssw/json-schema/ssw-soulscan-recovery-authorization.v1.schema.json",
+  "title": "SSW SoulScan Recovery Authorization v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "authorization_id",
+    "recovery_id",
+    "holder_did",
+    "sera_agent_did",
+    "key_ref",
+    "purpose",
+    "proof_class",
+    "assurance_level",
+    "status",
+    "issued_at",
+    "expires_at",
+    "verifier_ref",
+    "evidence_ref",
+    "integrity"
+  ],
+  "properties": {
+    "schema": {
+      "const": "ssw.soulscan-recovery-authorization.v1"
+    },
+    "authorization_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "recovery_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "holder_did": {
+      "type": "string",
+      "pattern": "^did:soul:[a-z0-9._:-]+$"
+    },
+    "sera_agent_did": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^did:soul:agent:[a-z0-9._:-]+$"
+    },
+    "key_ref": {
+      "type": "string",
+      "pattern": "^keyref:[A-Za-z0-9._:-]+$"
+    },
+    "purpose": {
+      "const": "SIGN"
+    },
+    "proof_class": {
+      "const": "RP2"
+    },
+    "assurance_level": {
+      "type": "string",
+      "enum": [
+        "RAL4",
+        "RAL5"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "PASS",
+        "FAIL",
+        "EXPIRED"
+      ]
+    },
+    "issued_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "verifier_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evidence_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reason_codes": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Z][A-Z0-9_]*$"
+      }
+    },
+    "integrity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "authorization_hash",
+        "signature_ref"
+      ],
+      "properties": {
+        "authorization_hash": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "signature_ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

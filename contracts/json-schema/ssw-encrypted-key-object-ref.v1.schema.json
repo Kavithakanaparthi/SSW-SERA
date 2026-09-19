@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.soulverse.world/ssw/json-schema/ssw-encrypted-key-object-ref.v1.schema.json",
+  "title": "SSW Encrypted Key Object Reference v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "key_ref",
+    "cid",
+    "ciphertext_hash",
+    "encryption_profile",
+    "key_version",
+    "subject_did",
+    "governing_holder_did",
+    "created_at"
+  ],
+  "properties": {
+    "schema": {
+      "const": "ssw.encrypted-key-object-ref.v1"
+    },
+    "key_ref": {
+      "type": "string",
+      "pattern": "^keyref:[A-Za-z0-9._:-]+$"
+    },
+    "cid": {
+      "type": "string",
+      "minLength": 8
+    },
+    "ciphertext_hash": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "encryption_profile": {
+      "type": "string",
+      "minLength": 1
+    },
+    "key_version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "subject_did": {
+      "type": "string",
+      "pattern": "^did:soul:[a-z0-9._:-]+$"
+    },
+    "governing_holder_did": {
+      "type": "string",
+      "pattern": "^did:soul:[a-z0-9._:-]+$"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.soulverse.world/ssw/json-schema/ssw-portable-key-manifest.v1.schema.json",
+  "title": "SSW Portable Key Manifest v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "manifest_id",
+    "key_ref",
+    "subject_did",
+    "governing_holder_did",
+    "key_class",
+    "key_version",
+    "encrypted_key_cid",
+    "encryption_profile",
+    "recovery_policy_ref",
+    "status",
+    "created_at",
+    "integrity"
+  ],
+  "properties": {
+    "schema": {
+      "const": "ssw.portable-key-manifest.v1"
+    },
+    "manifest_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "key_ref": {
+      "type": "string",
+      "pattern": "^keyref:[A-Za-z0-9._:-]+$"
+    },
+    "subject_did": {
+      "type": "string",
+      "pattern": "^did:soul:[a-z0-9._:-]+$"
+    },
+    "governing_holder_did": {
+      "type": "string",
+      "pattern": "^did:soul:[a-z0-9._:-]+$"
+    },
+    "key_class": {
+      "type": "string",
+      "enum": [
+        "HOLDER_EVM_ACCOUNT",
+        "HOLDER_GENERIC_SIGNING",
+        "SERA_AGENT_SIGNING"
+      ]
+    },
+    "key_version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "encrypted_key_cid": {
+      "type": "string",
+      "minLength": 8
+    },
+    "encryption_profile": {
+      "type": "string",
+      "minLength": 1
+    },
+    "recovery_policy_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "supersedes_manifest_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uuid"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ACTIVE",
+        "ROTATED",
+        "REVOKED"
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expires_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "integrity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "manifest_hash",
+        "signature_ref"
+      ],
+      "properties": {
+        "manifest_hash": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "signature_ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

@@ -52,6 +52,9 @@ const schemaFiles = [
   "ssw-recovery-session.v1.schema.json",
   "ssw-sera-state-manifest.v1.schema.json",
   "ssw-wrapped-state-key.v1.schema.json",
+  "ssw-portable-key-manifest.v1.schema.json",
+  "ssw-soulscan-recovery-authorization.v1.schema.json",
+  "ssw-encrypted-key-object-ref.v1.schema.json",
   "ssw-counterparty-resolution.v1.schema.json"
 ] as const;
 
@@ -91,6 +94,10 @@ function getIdentityPair(kind: ContractKind, value: unknown): { holderDid?: unkn
   if (kind === "intent-envelope" || kind === "resolved-intent" || kind === "offline-authorization-package" || kind === "recovery-proof" || kind === "wrapped-state-key") {
     return {holderDid:v.holder_did,seraDid:v.sera_agent_did};
   }
+  if (kind === "portable-key-manifest" || kind === "encrypted-key-object-ref") {
+    return {holderDid:v.governing_holder_did,seraDid:typeof v.subject_did==="string"&&v.subject_did.startsWith("did:soul:agent:")?v.subject_did:undefined};
+  }
+  if (kind === "soulscan-recovery-authorization") return {holderDid:v.holder_did,seraDid:v.sera_agent_did??undefined};
   if (kind === "counterparty-resolution") return {holderDid:v.holder_did};
   return {};
 }

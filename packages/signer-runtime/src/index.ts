@@ -113,3 +113,7 @@ export class SignerCoordinator{
   }
  }
 }
+
+export {evaluatePortableKeyRuntime} from "./portable-key-runtime.js";
+export type {PortableKeyRuntimeInput,PortableKeyRuntimeDecision} from "./portable-key-runtime.js";
+export type {PortableKeyManifest,SoulScanRecoveryAuthorization,PortableEncryptedKeyObject,PortableKeyRecoveryProvider,PortableSigningSession} from "./portable-key.js";

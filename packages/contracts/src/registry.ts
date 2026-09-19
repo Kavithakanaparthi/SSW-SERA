@@ -30,6 +30,9 @@ export const contractSchemaIds = {
   recoverySession: "https://schemas.soulverse.world/ssw/json-schema/ssw-recovery-session.v1.schema.json",
   seraStateManifest: "https://schemas.soulverse.world/ssw/json-schema/ssw-sera-state-manifest.v1.schema.json",
   wrappedStateKey: "https://schemas.soulverse.world/ssw/json-schema/ssw-wrapped-state-key.v1.schema.json",
+  portableKeyManifest: "https://schemas.soulverse.world/ssw/json-schema/ssw-portable-key-manifest.v1.schema.json",
+  soulscanRecoveryAuthorization: "https://schemas.soulverse.world/ssw/json-schema/ssw-soulscan-recovery-authorization.v1.schema.json",
+  encryptedKeyObjectRef: "https://schemas.soulverse.world/ssw/json-schema/ssw-encrypted-key-object-ref.v1.schema.json",
   counterpartyResolution: "https://schemas.soulverse.world/ssw/json-schema/ssw-counterparty-resolution.v1.schema.json"
 } as const;
 
@@ -65,6 +68,9 @@ export type ContractKind =
   | "recovery-session"
   | "sera-state-manifest"
   | "wrapped-state-key"
+  | "portable-key-manifest"
+  | "soulscan-recovery-authorization"
+  | "encrypted-key-object-ref"
   | "counterparty-resolution";
 
 export const contractKindToSchemaId: Readonly<Record<ContractKind, string>> = {
@@ -99,5 +105,8 @@ export const contractKindToSchemaId: Readonly<Record<ContractKind, string>> = {
   "recovery-session": contractSchemaIds.recoverySession,
   "sera-state-manifest": contractSchemaIds.seraStateManifest,
   "wrapped-state-key": contractSchemaIds.wrappedStateKey,
+  "portable-key-manifest": contractSchemaIds.portableKeyManifest,
+  "soulscan-recovery-authorization": contractSchemaIds.soulscanRecoveryAuthorization,
+  "encrypted-key-object-ref": contractSchemaIds.encryptedKeyObjectRef,
   "counterparty-resolution": contractSchemaIds.counterpartyResolution
 };
