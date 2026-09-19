@@ -1,5 +1,5 @@
 import {request as httpsRequest} from "node:https";
-import {createPublicKey,verify as verifySignature,type KeyObject} from "node:crypto";
+import {createPublicKey,verify as verifySignature,KeyObject} from "node:crypto";
 import type {TrustProtocolRequest,TrustProtocolDecision,TrustProtocolTransport} from "@soulverse/trust-adapter";
 import type {RevRequest,RevDecision,RevTransport} from "@soulverse/rev-adapter";
 import {assertContract} from "@soulverse/schema-validation";
