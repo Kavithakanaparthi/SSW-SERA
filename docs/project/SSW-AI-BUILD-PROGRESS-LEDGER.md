@@ -1027,3 +1027,64 @@ PROD-05 remains open because selecting a concrete production signer changes cust
 
 **Decision Gate:** choose the first concrete production signer architecture/provider.
 
+
+
+---
+
+## Entry 030 — PROD-05A SoulScan / IPFS Portable Key Custody Amendment
+
+**Date:** 2026-09-19  
+**Artifact:** SSW-AI-PROD-05A  
+**Architecture Amendment Commit:** `439bde44485ea2ba2fb6150e4b6d57bc3a584a8c`  
+**Portable Key Contract Commit:** `69f831e7dbea35cfbae480b08d27d9680f392042`  
+**SoulScan/IPFS Transport Commit:** `8a6e0a041d50c40276345efd4d925c43170ccae4`  
+**CI Runs:** #32, #33, #34 — PASS  
+**Latest CI Run ID:** `35477255984`  
+**Status:** CONTROLLED AMENDMENT APPLIED / PROD-05 IN PROGRESS
+
+Architecture correction:
+
+Soul ID and SERA signing keys are not hardware-bound. The canonical custody and continuity model is DID-bound portable key recovery using SoulScan authorization and encrypted IPFS/content-addressed key storage.
+
+The prior HSM / Secure Enclave / MPC-first custody assumption is superseded for the canonical Soul ID/SERA wallet architecture.
+
+Implemented:
+
+- controlled SoulScan/IPFS custody amendment;
+- corrected ISC-02 signing-key isolation profile;
+- corrected ISC-06 recovery semantics;
+- corrected REC-01 key-separation/recovery profile;
+- portable key manifest contract;
+- SoulScan recovery authorization contract;
+- encrypted key-object reference contract;
+- runtime holder/SERA/key-version/CID binding checks;
+- stale key-version rollback detection;
+- CID substitution detection;
+- no-device-dependency conformance test;
+- configurable SoulScan authorization client;
+- HTTPS IPFS gateway encrypted-key fetcher;
+- ciphertext SHA-256 verification;
+- portable key recovery coordinator;
+- injected key-envelope opener for the existing Soul ID cryptographic implementation.
+
+Security invariants:
+
+- plaintext private keys are never stored in IPFS;
+- plaintext private keys are never stored in PostgreSQL, SAEL or logs;
+- IPFS stores encrypted key material only;
+- signed manifests bind the active key reference, DID, key version and encrypted key CID;
+- SoulScan authorizes/reconstructs access to the key recovery path;
+- raw biometric material is not cryptographic key material;
+- SERA key recovery binds to the governing Holder Soul ID;
+- recovered SERA key material alone does not restore A3/A4 authority;
+- device/runtime trust remains an execution-assurance control, not the custody root;
+- optional hardware protection may be used locally but does not redefine key ownership or recovery.
+
+CI evidence:
+
+- Run #32: amendment baseline PASS;
+- Run #33: 128 tests PASS, strict TypeScript PASS;
+- Run #34: SoulScan/IPFS transport layer PASS, strict TypeScript PASS.
+
+**Remaining PROD-05 dependency:** bind the adapter interfaces to the existing Soul ID SoulScan recovery service and existing production key-envelope cryptographic implementation. No new custody-provider decision is required.
+
