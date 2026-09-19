@@ -918,3 +918,60 @@ The temporary dependency-refresh workflow was removed after the verified lockfil
 **Dependencies closed:** durable server-side control-plane state and transactional event-delivery baseline.
 
 **Next:** SSW-AI-PROD-04: Production Trust / REV Service Integration.
+
+
+---
+
+## Entry 028 — PROD-04 Production Trust / REV Service Integration
+
+**Date:** 2026-09-19  
+**Artifact:** SSW-AI-PROD-04  
+**Implementation Commit:** `f03db1f676a7338c0e3a91784e56426a0f7e2ce9`  
+**Runtime Import Fix:** `64fc060e57c8f762f16a6a8f2ff74c3b8c378292`  
+**CI Run:** #25, ID `35475378016`  
+**Tracker Completion Commit:** `7b3e989561fb229e6d3bf3782ec84bd46390beac`  
+**Status:** COMPLETE  
+**Stack:** TypeScript / Node.js 22 / PostgreSQL 16 / HTTPS mTLS / Ed25519
+
+Implemented:
+
+- production-shaped Trust Protocol transport;
+- production-shaped REV transport;
+- HTTPS-only mTLS JSON client;
+- injected client certificate / key / CA material boundary;
+- explicit server-name verification;
+- response size and timeout limits;
+- retryable transport classification;
+- circuit breaker;
+- RFC 8785 / domain-separated decision hashing;
+- Ed25519 decision-signature verification;
+- signature profile `ed25519:<key-id>:<base64url-signature>`;
+- injected decision verification-key resolver;
+- service identity pinning;
+- persistent outbound request idempotency;
+- persistent verified-decision storage;
+- decision-ID conflict detection;
+- service package exports for production Trust/REV clients;
+- example control-service configuration using secret/key references only.
+
+Security decisions:
+
+- successful TLS does not by itself authorize a decision;
+- every decision must also pass cryptographic integrity verification;
+- cryptographic integrity does not replace exact action/material/runtime/policy binding;
+- unknown or revoked verification keys fail closed;
+- request-ID conflicts are blocked before network calls;
+- retry/circuit behavior never converts FAIL/UNAVAILABLE into PASS;
+- no real production certificate, private key or Trust/REV signing key was committed.
+
+CI evidence:
+
+- PostgreSQL migration: PASS;
+- clean npm ci: PASS;
+- scaffold and contract verification: PASS;
+- 122 tests: PASS;
+- strict TypeScript: PASS.
+
+**Dependencies closed:** authenticated, signed, durable production-shaped Trust/REV service boundary.
+
+**Next:** SSW-AI-PROD-05: HSM / Secure Enclave / MPC Signing Integration.
