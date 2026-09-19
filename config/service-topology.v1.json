@@ -1,0 +1,104 @@
+{
+  "schema": "ssw.service-topology.v1",
+  "version": 1,
+  "trust_zones": {
+    "Z2": "WALLET_CONTROL_PLANE",
+    "Z3": "SERA_INTELLIGENCE",
+    "Z4": "EXECUTION_ADAPTERS",
+    "Z6": "EVIDENCE_ASSURANCE",
+    "Z7": "OPERATIONS_ADMINISTRATION"
+  },
+  "services": [
+    {
+      "service": "orchestrator",
+      "zone": "Z3",
+      "state_owner": false,
+      "external_state_change": false
+    },
+    {
+      "service": "authority",
+      "zone": "Z2",
+      "state_owner": false,
+      "external_state_change": false
+    },
+    {
+      "service": "risk",
+      "zone": "Z2",
+      "state_owner": false,
+      "external_state_change": false
+    },
+    {
+      "service": "policy",
+      "zone": "Z2",
+      "state_owner": true,
+      "external_state_change": false
+    },
+    {
+      "service": "device",
+      "zone": "Z2",
+      "state_owner": true,
+      "external_state_change": false
+    },
+    {
+      "service": "runtime",
+      "zone": "Z2",
+      "state_owner": true,
+      "external_state_change": false
+    },
+    {
+      "service": "mandate",
+      "zone": "Z2",
+      "state_owner": true,
+      "external_state_change": false
+    },
+    {
+      "service": "approval",
+      "zone": "Z2",
+      "state_owner": true,
+      "external_state_change": false
+    },
+    {
+      "service": "trust",
+      "zone": "Z2",
+      "state_owner": true,
+      "external_state_change": false
+    },
+    {
+      "service": "rev",
+      "zone": "Z2",
+      "state_owner": true,
+      "external_state_change": false
+    },
+    {
+      "service": "signing",
+      "zone": "Z2",
+      "state_owner": true,
+      "external_state_change": true,
+      "key_zone_separate": true
+    },
+    {
+      "service": "execution",
+      "zone": "Z4",
+      "state_owner": true,
+      "external_state_change": true
+    },
+    {
+      "service": "counterparty",
+      "zone": "Z2",
+      "state_owner": false,
+      "external_state_change": false
+    },
+    {
+      "service": "recovery",
+      "zone": "Z2",
+      "state_owner": true,
+      "external_state_change": false
+    },
+    {
+      "service": "sael",
+      "zone": "Z6",
+      "state_owner": true,
+      "external_state_change": false
+    }
+  ]
+}
