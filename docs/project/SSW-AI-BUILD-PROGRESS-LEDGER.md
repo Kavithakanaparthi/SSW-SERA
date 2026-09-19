@@ -1,0 +1,281 @@
+# SSW-AI Build Progress Ledger
+
+**Program:** Soul Super Wallet AI-First / SERA Companion  
+**Ledger ID:** SSW-AI-BUILD-PROGRESS-LEDGER  
+**Status:** Append-Only  
+**Repository:** Kavithakanaparthi/SSW-SERA  
+**Implementation Stack:** TypeScript / Node.js  
+**Created:** 2026-09-19
+
+## Ledger Rules
+
+This file is append-only.
+
+Each completed or materially changed build milestone must append:
+
+- date;
+- artifact / milestone ID;
+- status;
+- commit SHA where applicable;
+- what changed;
+- dependencies closed;
+- security / architectural significance;
+- next controlled item.
+
+Prior entries must not be overwritten or reworded except to correct an objective transcription error, and such correction must itself be recorded as a later ledger entry.
+
+---
+
+## Entry 001 — Drawing Board Program Established
+
+**Milestone:** SSW-SERA DB01 through DB18 family  
+**Status:** COMPLETE
+
+The program established the AI-first Soul Super Wallet direction with SERA as the primary interaction surface.
+
+The design sequence covered:
+
+- experience model;
+- wallet capability inventory;
+- adaptive workspace;
+- platform feasibility;
+- wearables constraints;
+- privacy / trust / authority boundaries;
+- user journeys;
+- intent / tool / execution contracts;
+- memory and context;
+- proactive intelligence;
+- delegated authority;
+- evidence and explainability;
+- concealed detail;
+- resilience;
+- control plane;
+- runtime state machines;
+- service topology;
+- Phase 1 scope;
+- architecture gap review;
+- SERA DID and portable state;
+- SAEL;
+- pre-freeze closure.
+
+**Result:** architecture ready for Candidate Freeze.
+
+---
+
+## Entry 002 — Candidate Freeze Completed
+
+**Milestone:** SSW-AI-01 / SSW-AI-02 / CFR-01 / CF-A01  
+**Status:** COMPLETE
+
+The platform and SERA interaction architectures were formally frozen at candidate level.
+
+CF-A01 harmonized:
+
+- authority classes A0-A5;
+- risk classes R0-R5;
+- runtime/device identity terminology;
+- offline Trust/REV behavior.
+
+**Result:** machine-contract work authorized.
+
+---
+
+## Entry 003 — Soul ID-Anchored Wallet Continuity Clarified
+
+**Milestone:** SSW-AI-CF-A02  
+**Status:** COMPLETE
+
+Soul Super Wallet continuity was formally corrected to be identity-bound rather than device-bound.
+
+Canonical hierarchy:
+
+```
+Holder Soul ID
+  → Soul Super Wallet
+  → governed SERA Agent DID
+  → SERA Runtime
+  → current device/environment
+```
+
+SoulScan facial-biometric recovery of the Holder Soul ID is the root wallet recovery path.
+
+Device/runtime attestation affects execution assurance, not wallet ownership.
+
+Recovered SERA keys alone do not create wallet authority outside the Holder DID wallet context.
+
+**Result:** device-centric recovery ambiguity closed.
+
+---
+
+## Entry 004 — Machine Contract & Security Layer Completed
+
+**Milestone:** SCH-01 through SCH-05, TM-01, ISC-01 through ISC-06, API-01, API-02, POL-01, POL-02, ATT-01, REC-01, ID-01  
+**Status:** COMPLETE
+
+The program defined:
+
+- canonical Action Contract;
+- delegated mandates;
+- device trust state;
+- concealed detail state;
+- SAEL schema;
+- threat model;
+- service/API boundaries;
+- signing/canonicalization requirements;
+- Trust Protocol / REV binding;
+- runtime registration;
+- SAEL durability;
+- recovery;
+- JSON Schema and OpenAPI contracts;
+- offline authorization;
+- deterministic mandate conditions;
+- attestation;
+- recovery key wrapping;
+- canonical counterparty identity.
+
+**Result:** all SG-01 through SG-10 specification-level security gaps closed.
+
+---
+
+## Entry 005 — Post-Closure Implementation Gate
+
+**Milestone:** SSW-AI-IRR-02  
+**Commit:** 6d0d785fe90d2a843889cc0d1692d1bd46bd6aef  
+**Status:** COMPLETE
+
+Gate decision:
+
+**GO FOR REPOSITORY SCAFFOLDING AND CONCRETE IMPLEMENTATION**
+
+Production signing and production deployment remained ungated.
+
+**Next:** IMP-01.
+
+---
+
+## Entry 006 — Pre-Code Record Frozen
+
+**Milestone:** Consolidated pre-code GitHub archive  
+**Commit:** 7489806af25028155ac733b6e1b765ed85c3fece  
+**Status:** COMPLETE
+
+The pre-code architecture/specification corpus was frozen before implementation scaffolding.
+
+This preserves a traceable baseline against implementation drift.
+
+**Next:** IMP-01.
+
+---
+
+## Entry 007 — IMP-01 Repository Scaffold
+
+**Artifact:** SSW-AI-IMP-01  
+**Commit:** f1ebffb5c475bc5bfb7cca6a3b258102a108132b  
+**Status:** COMPLETE  
+**Stack:** TypeScript / Node.js
+
+Created:
+
+- TypeScript workspace;
+- shared package boundaries;
+- service boundaries;
+- test lanes;
+- dry-run control path;
+- repository verification scripts.
+
+Signing remained DRY_RUN_ONLY.
+
+Execution remained STUB_ONLY.
+
+Trust Protocol and REV remained explicit stub adapters.
+
+**Dependencies closed:** repository organization / build bootstrap.
+
+**Next:** IMP-02.
+
+---
+
+## Entry 008 — IMP-02 Contract Validation Runtime
+
+**Artifact:** SSW-AI-IMP-02  
+**Commit:** 9337e5d7f62b85a8fdb25834cdff07e8edf5e1c3  
+**Status:** COMPLETE  
+**Stack:** TypeScript / Node.js
+
+Implemented:
+
+- runtime JSON Schema validation;
+- controlled contract registry;
+- TypeScript contract snapshots / generation path;
+- fail-closed validation;
+- semantic Holder DID / SERA Agent DID separation;
+- canonical valid Action Contract fixture;
+- contract mutation tests.
+
+The schema remains authoritative over generated TypeScript.
+
+**Dependencies closed:** executable contract validation boundary.
+
+**Next:** IMP-03.
+
+---
+
+## Entry 009 — IMP-03 Action Contract Builder
+
+**Artifact:** SSW-AI-IMP-03  
+**Commit:** e2100ab6417c8c155c82e7067f8af14fb1d63f1b  
+**Status:** COMPLETE  
+**Stack:** TypeScript / Node.js
+
+Implemented:
+
+- Intent Envelope schema;
+- Resolved Intent schema;
+- payment.send material terms schema;
+- payment.send Action Contract builder;
+- explicit ambiguity blocking;
+- deterministic material-term canonicalization;
+- domain-separated SHA-256 binding;
+- conservative Action Contract defaults;
+- intent/action construction tests.
+
+New Action Contracts remain:
+
+- A2;
+- approval REQUIRED;
+- Trust Protocol required;
+- REV required;
+- device/runtime eligibility false until evaluated;
+- execution NOT_READY.
+
+Production canonicalization remains ungated.
+
+**Dependencies closed:** deterministic intent-to-Action-Contract construction.
+
+**Next:** SSW-AI-IMP-04: Authority, Risk & Policy Evaluation Baseline.
+
+---
+
+## Entry 010 — Build Tracking System Established
+
+**Date:** 2026-09-19  
+**Milestone:** Project Build Tracker + Build Progress Ledger  
+**Status:** COMPLETE
+
+Two persistent project-control records were established:
+
+1. `docs/project/SSW-AI-PROJECT-BUILD-TRACKER.md` — mutable living tracker.
+2. `docs/project/SSW-AI-BUILD-PROGRESS-LEDGER.md` — append-only historical ledger.
+
+The tracker includes the complete known forward build queue through:
+
+- control-plane implementation;
+- SERA runtime;
+- mobile integration;
+- wearables;
+- infrastructure/deployment;
+- production release gates.
+
+The implementation stack is explicitly recorded as TypeScript / Node.js.
+
+**Next:** IMP-04.
