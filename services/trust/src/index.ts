@@ -1,4 +1,4 @@
-export const serviceName = 'trust' as const;
-export const implementationStatus = 'SCAFFOLDED' as const;
-export const ADAPTER_MODE = 'STUB' as const;
-
+export {buildTrustProtocolRequest,verifyTrustProtocolDecision,evaluateTrustProtocol,applyVerifiedTrustToAction} from "@soulverse/trust-adapter";
+export type {TrustProtocolRequest,TrustProtocolDecision,TrustProtocolTransport,TrustVerification} from "@soulverse/trust-adapter";
+export const serviceName="trust" as const;
+export const implementationStatus="BASELINE_IMPLEMENTED" as const;
