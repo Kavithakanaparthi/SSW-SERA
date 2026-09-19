@@ -74,7 +74,7 @@ Current implementation milestone:
 
 Immediate next artifact:
 
-**Productionization & SERA Product Runtime Integration**
+**SSW-AI-PROD-02: Production Service Framework & Runtime Conventions**
 
 ## 5. Phase A — Product & Experience Definition
 
@@ -218,7 +218,7 @@ A paired wearable never automatically inherits phone authority.
 | Workload Identity | runtime service identity | PLANNED |
 | Secret Management | KMS / HSM / secure key lifecycle | PLANNED |
 | Observability | logs, traces, metrics without sensitive leakage | PLANNED |
-| CI/CD | contract, security, conformance and release gates | IN PROGRESS — PROD-01 bootstrap workflow committed |
+| CI/CD | contract, security, conformance and release gates | BASELINE COMPLETE — steady-state read-only CI active |
 | Environment Separation | dev / test / staging / production | PLANNED |
 | Infrastructure-as-Code | reproducible deployments | PLANNED |
 
@@ -226,8 +226,8 @@ A paired wearable never automatically inherits phone authority.
 
 | Artifact | Scope | Status |
 |---|---|---|
-| PROD-01 | Executable Build & CI Baseline | IN PROGRESS |
-| PROD-02 | Production Service Framework & Runtime Conventions | PLANNED |
+| PROD-01 | Executable Build & CI Baseline | COMPLETE |
+| PROD-02 | Production Service Framework & Runtime Conventions | NEXT |
 | PROD-03 | Persistence & Durable Event Transport | PLANNED |
 | PROD-04 | Production Trust / REV Service Integration | PLANNED |
 | PROD-05 | HSM / Secure Enclave / MPC Signing Integration | PLANNED |
@@ -235,13 +235,13 @@ A paired wearable never automatically inherits phone authority.
 | PROD-07 | Production SAEL Persistence / Checkpoint / Archive | PLANNED |
 | PROD-08 | Staging Security Gate & Release Evidence | PLANNED |
 
-PROD-01 is not complete until a clean GitHub-hosted runner generates a lockfile, performs npm ci, passes contract/integration/security tests and strict typecheck, and the steady-state workflow is converted to read-only operation.
+PROD-01 is complete. GitHub Actions Run #8 generated and verified the committed lockfile, npm ci passed, all 104 tests passed, strict TypeScript passed, and CI was converted to steady-state read-only operation.
 
 ## 13. Phase I — Production Security & Release Gates
 
 | Gate | Requirement | Status |
 |---|---|---|
-| Contract Gate | all schemas / OpenAPI / generated types consistent | IN PROGRESS |
+| Contract Gate | all schemas / OpenAPI / generated types consistent | COMPLETE |
 | Control-Plane Gate | authority/risk/policy/device/mandate/Trust/REV complete | PLANNED |
 | Signing Gate | production canonicalization and signer validated | NOT GATED |
 | Execution Gate | chain adapters / simulation / replay safety validated | NOT GATED |
@@ -300,7 +300,9 @@ Completed controlled design/specification layers: all currently scheduled pre-co
 
 Completed implementation artifacts: 16.
 
-Immediate next implementation phase: PROD-01 Executable Build & CI Baseline (IN PROGRESS), then Productionization & SERA Product Runtime Integration.
+Completed productionization artifacts: 1.
+
+Immediate next implementation phase: PROD-02 Production Service Framework & Runtime Conventions.
 
 Production signing enabled: no.
 
