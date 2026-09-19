@@ -5,7 +5,7 @@ import {buildSigningRequest,dryRunVerifySigning,InMemoryReplayStore} from "../..
 
 async function fixture(){
  const intent=JSON.parse(await readFile(new URL("../fixtures/resolved-intent.payment-send.valid.json",import.meta.url),"utf8"));
- const b=buildPaymentSendAction(intent,{actionId:"88888888-8888-4888-8888-888888888888",saelCorrelationId:"99999999-9999-4999-8999-999999999999",idempotencyKey:"idem-10",replayToken:"replay-10",createdAt:"2026-09-19T21:00:00Z",expiresAt:"2026-09-19T21:30:00Z"});
+ const b=buildPaymentSendAction(intent,{actionId:"88888888-8888-4888-8888-888888888888",saelCorrelationId:"99999999-9999-4999-8999-999999999999",idempotencyKey:"idem-0010",replayToken:"replay-10",createdAt:"2026-09-19T21:00:00Z",expiresAt:"2026-09-19T21:30:00Z"});
  if(b.status!=="BUILT")throw new Error();
  let a=structuredClone(b.actionContract);a.policy.device_eligible=true;a.policy.runtime_eligible=true;
  const review=createReviewRecord({action:a,materialTermsHash:b.materialTermsHash,reviewId:"11111111-1111-4111-8111-111111111111",presentationRef:"presentation:1",reviewedAt:"2026-09-19T21:02:00Z"});
@@ -26,5 +26,5 @@ test("approval expiry rejected",async()=>{const x=await fixture();x.approval.exp
 test("stale Trust rejected",async()=>{const x=await fixture();x.trust.expires_at="2026-09-19T21:04:00Z";assert.equal(verify(x).reason_codes[0],"TRUST_PROTOCOL_EXPIRED");});
 test("stale REV rejected",async()=>{const x=await fixture();x.rev.expires_at="2026-09-19T21:04:00Z";assert.equal(verify(x).reason_codes[0],"REV_EXPIRED");});
 test("payload hash mutation rejected",async()=>{const x=await fixture();x.req.payload.body.value_atomic="5000001";assert.equal(verify(x).reason_codes[0],"PAYLOAD_HASH_MISMATCH");});
-test("single-use REV cannot authorize second distinct request",async()=>{const x=await fixture();const store=new InMemoryReplayStore();assert.equal(verify(x,store).status,"DRY_RUN_ACCEPTED");const y=await fixture();y.req.signing_request_id="aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa";y.req.replay.idempotency_key="other";y.req.replay.replay_token="other-token";assert.equal(verify(y,store).reason_codes[0],"REV_CONSUMED");});
+test("single-use REV cannot authorize second distinct request",async()=>{const x=await fixture();const store=new InMemoryReplayStore();assert.equal(verify(x,store).status,"DRY_RUN_ACCEPTED");const y=await fixture();y.req.signing_request_id="aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa";y.req.replay.idempotency_key="other-idem";y.req.replay.replay_token="other-token";assert.equal(verify(y,store).reason_codes[0],"REV_CONSUMED");});
 test("identical idempotent retry is accepted",async()=>{const x=await fixture();const store=new InMemoryReplayStore();const a=verify(x,store);const b=verify(x,store);assert.equal(a.status,"DRY_RUN_ACCEPTED");assert.equal(b.status,"DRY_RUN_ACCEPTED");assert.ok(b.reason_codes.includes("IDEMPOTENT_RETRY"));});

@@ -5,7 +5,7 @@ import {buildRevRequest,verifyRevDecision,applyVerifiedRevToAction,evaluateRev} 
 
 async function setup(){
  const intent=JSON.parse(await readFile(new URL("../fixtures/resolved-intent.payment-send.valid.json",import.meta.url),"utf8"));
- const b=buildPaymentSendAction(intent,{actionId:"88888888-8888-4888-8888-888888888888",saelCorrelationId:"99999999-9999-4999-8999-999999999999",idempotencyKey:"i",replayToken:"r",createdAt:"2026-09-19T16:00:00Z",expiresAt:"2026-09-19T16:20:00Z"});
+ const b=buildPaymentSendAction(intent,{actionId:"88888888-8888-4888-8888-888888888888",saelCorrelationId:"99999999-9999-4999-8999-999999999999",idempotencyKey:"idem-test-001",replayToken:"replay-test-001",createdAt:"2026-09-19T16:00:00Z",expiresAt:"2026-09-19T16:20:00Z"});
  if(b.status!=="BUILT")throw new Error();
  const a=structuredClone(b.actionContract);a.policy.device_eligible=true;a.policy.runtime_eligible=true;a.approval.status="APPROVED";a.approval.approval_id="11111111-1111-4111-8111-111111111111";a.approval.approved_terms_hash=b.materialTermsHash;
  const tr=buildTrustProtocolRequest({action:a,materialTermsHash:b.materialTermsHash,requestId:"22222222-2222-4222-8222-222222222222",eligibilityDecisionRef:"33333333-3333-4333-8333-333333333333",authorityDecision:{status:"PASS",decision_id:"44444444-4444-4444-8444-444444444444"},riskDecision:{final_class:"R3",reason_codes:[],decision_id:"55555555-5555-4555-8555-555555555555"},policyDecision:{status:"REQUIRE_TRUST_REV",decision_id:"66666666-6666-4666-8666-666666666666",policy_id:"policy:ssw-phase1-default-v1"},policyVersion:"1",issuedAt:"2026-09-19T16:05:00Z",expiresAt:"2026-09-19T16:10:00Z"});
