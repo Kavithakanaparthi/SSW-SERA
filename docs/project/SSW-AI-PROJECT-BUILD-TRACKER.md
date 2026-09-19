@@ -70,11 +70,11 @@ Production Deployment                        NOT GATED
 
 Current implementation milestone:
 
-**SSW-AI-IMP-09 complete**
+**SSW-AI-IMP-10 complete**
 
 Immediate next artifact:
 
-**SSW-AI-IMP-10: Canonical Signing Gateway Baseline**
+**SSW-AI-IMP-11: Execution Router & Chain Adapter Baseline**
 
 ## 5. Phase A — Product & Experience Definition
 
@@ -153,8 +153,8 @@ Immediate next artifact:
 | IMP-07 | Trust Protocol Adapter | COMPLETE | Typed Trust request/response and binding |
 | IMP-08 | REV Adapter | COMPLETE | Runtime pass/fail decision binding |
 | IMP-09 | Approval & Authentication Binding | COMPLETE | Exact-term approval lifecycle and auth references |
-| IMP-10 | Canonical Signing Gateway Baseline | NEXT | Production-grade canonicalization selection, signing dry-run verification |
-| IMP-11 | Execution Router & Chain Adapter Baseline | PLANNED | Adapter contracts, simulation, no uncontrolled route mutation |
+| IMP-10 | Canonical Signing Gateway Baseline | COMPLETE | Production-grade canonicalization selection, signing dry-run verification |
+| IMP-11 | Execution Router & Chain Adapter Baseline | NEXT | Adapter contracts, simulation, no uncontrolled route mutation |
 | IMP-12 | SAEL Runtime Implementation | PLANNED | Append-only ingestion, durability, query and action lineage |
 | IMP-13 | Recovery Runtime Implementation | PLANNED | Soul ID-anchored SERA state recovery and authority re-establishment |
 | IMP-14 | Counterparty Resolver Runtime | PLANNED | Canonical identity resolution with ambiguity/provenance controls |
@@ -263,24 +263,23 @@ The following remain mandatory:
 
 ## 15. Current Dependencies
 
-IMP-10 depends on:
+IMP-11 depends on:
 
-- IMP-02 schema validation;
-- IMP-03 deterministic material-term binding;
-- IMP-07 verified Trust Protocol decisions;
-- IMP-08 verified REV decisions;
-- IMP-09 exact-term approval/authentication binding;
-- ISC-02 canonicalization, hashing and signer requirements.
+- IMP-10 dry-run Signing Gateway verification;
+- chain-specific execution contracts;
+- execution-state and idempotency requirements;
+- REV freshness at submission time;
+- SAEL execution evidence requirements.
 
-Production signing remains NOT GATED until IMP-10 and its security tests are complete.
+Production signing remains NOT GATED. IMP-10 is a dry-run verification baseline only; HSM/MPC integration, persistent replay state, cryptographic service-verification, chain payload conformance and adversarial security testing remain required.
 
 ## 16. Current Build Summary
 
 Completed controlled design/specification layers: all currently scheduled pre-code architecture and security items.
 
-Completed implementation artifacts: 9.
+Completed implementation artifacts: 10.
 
-Immediate next implementation artifact: IMP-10.
+Immediate next implementation artifact: IMP-11.
 
 Production signing enabled: no.
 
