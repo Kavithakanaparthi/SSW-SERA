@@ -1,0 +1,16 @@
+{
+ "$schema":"https://json-schema.org/draft/2020-12/schema",
+ "$id":"https://schemas.soulverse.world/ssw/json-schema/ssw-execution-result.v1.schema.json",
+ "title":"SSW Execution Result v1","type":"object","additionalProperties":false,
+ "required":["schema","execution_request_id","action_id","status","reason_codes","submission_ref","network_tx_id","observed_at"],
+ "properties":{
+  "schema":{"const":"ssw.execution-result.v1"},
+  "execution_request_id":{"$ref":"ssw-common.v1.schema.json#/$defs/uuid"},
+  "action_id":{"$ref":"ssw-common.v1.schema.json#/$defs/uuid"},
+  "status":{"type":"string","enum":["SIMULATED","READY_TO_SUBMIT","SUBMITTED","CONFIRMED","FAILED","EXECUTION_STATUS_UNKNOWN","BLOCKED"]},
+  "reason_codes":{"$ref":"ssw-common.v1.schema.json#/$defs/reasonCodes"},
+  "submission_ref":{"type":["string","null"]},
+  "network_tx_id":{"type":["string","null"]},
+  "observed_at":{"$ref":"ssw-common.v1.schema.json#/$defs/timestamp"}
+ }
+}

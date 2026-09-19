@@ -1,0 +1,20 @@
+{
+ "$schema":"https://json-schema.org/draft/2020-12/schema",
+ "$id":"https://schemas.soulverse.world/ssw/json-schema/ssw-execution-request.v1.schema.json",
+ "title":"SSW Execution Request v1","type":"object","additionalProperties":false,
+ "required":["schema","execution_request_id","action_id","action_version","payload_type","payload_hash","signed_payload_ref","signed_payload_hash","chain_id","idempotency_key","issued_at","expires_at"],
+ "properties":{
+  "schema":{"const":"ssw.execution-request.v1"},
+  "execution_request_id":{"$ref":"ssw-common.v1.schema.json#/$defs/uuid"},
+  "action_id":{"$ref":"ssw-common.v1.schema.json#/$defs/uuid"},
+  "action_version":{"type":"integer","minimum":1},
+  "payload_type":{"type":"string","enum":["evm.transaction"]},
+  "payload_hash":{"$ref":"ssw-common.v1.schema.json#/$defs/sha256"},
+  "signed_payload_ref":{"type":["string","null"]},
+  "signed_payload_hash":{"anyOf":[{"$ref":"ssw-common.v1.schema.json#/$defs/sha256"},{"type":"null"}]},
+  "chain_id":{"type":"string","minLength":1},
+  "idempotency_key":{"type":"string","minLength":1},
+  "issued_at":{"$ref":"ssw-common.v1.schema.json#/$defs/timestamp"},
+  "expires_at":{"$ref":"ssw-common.v1.schema.json#/$defs/timestamp"}
+ }
+}
