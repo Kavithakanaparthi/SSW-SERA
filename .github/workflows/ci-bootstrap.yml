@@ -15,15 +15,6 @@ on:
         options:
           - CI
           - STAGING
-      staging_attack_execution:
-        description: Dedicated deployed-staging security exercise state
-        required: false
-        default: NOT_RUN
-        type: choice
-        options:
-          - NOT_RUN
-          - PARTIAL
-          - COMPLETE
 
 permissions:
   contents: read
@@ -54,7 +45,6 @@ jobs:
     env:
       DATABASE_URL: postgresql://ssw:ssw_ci@127.0.0.1:5432/ssw_sera
       RELEASE_EVIDENCE_ENVIRONMENT: ${{ inputs.evidence_environment || 'CI' }}
-      STAGING_ATTACK_EXECUTION: ${{ inputs.staging_attack_execution || 'NOT_RUN' }}
 
     steps:
       - name: Checkout
