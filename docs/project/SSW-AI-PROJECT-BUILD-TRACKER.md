@@ -74,7 +74,7 @@ Current implementation milestone:
 
 Immediate next artifact:
 
-**SSW-AI-REL-01: Consolidated Production Release Gate & Pilot Readiness Baseline — IN PROGRESS**
+**SSW-AI-REL-GATE-01: Consolidated Release Gate Evidence Package**
 
 ## 5. Phase A — Product & Experience Definition
 
@@ -265,6 +265,7 @@ Authoritative handoff record:
 | DEV-OPEN-018 | Live environment separation / secret namespace / promotion binding | OPEN | live environment separation / production release gating |
 | DEV-OPEN-019 | Provider-specific IaC / network / deployment binding | OPEN | Production Deployment Gate |
 | DEV-OPEN-020 | Live deployment evidence / Production Deployment Gate closure | OPEN | Production Deployment Gate |
+| DEV-OPEN-021 | Controlled pilot execution / final release evidence | OPEN | Pilot Gate / Production Release Gate |
 
 These items do not block continued controlled repository construction.
 
@@ -285,8 +286,9 @@ Open developer integrations, infrastructure blockers and release gates remain au
 | Security Gate | threat-model test suite passed | NOT GATED |
 | Mobile Integration Gate | iOS / Android control-path integration verified | REPOSITORY BASELINE COMPLETE — LIVE BLOCKED by DEV-OPEN-006, DEV-OPEN-011..015 |
 | Pilot Gate | controlled user pilot | NOT GATED |
-| Release Consolidation | pilot and production readiness aggregation | IN PROGRESS — REL-01 |
+| Release Consolidation | pilot and production readiness aggregation | COMPLETE — REL-01; live pilot binding DEV-OPEN-021 |
 | Production Release Gate | final release readiness review | NOT GATED |
+| Release Gate Evidence | consolidated blocker and readiness package | NEXT — REL-GATE-01 |
 
 ## 14. Required Security Tests Before Production Signing
 
@@ -338,7 +340,7 @@ Completed implementation artifacts: 16.
 
 Completed productionization artifacts: 8. PROD-05 platform boundary is implemented and CI-verified; live Soul ID/SoulScan bindings are maintained as developer-owned open integration items DEV-OPEN-001 through DEV-OPEN-003.
 
-Immediate next implementation phase: REL-01 Consolidated Production Release Gate & Pilot Readiness Baseline.
+Immediate next implementation phase: REL-GATE-01 Consolidated Release Gate Evidence Package.
 
 Production signing enabled: no.
 
