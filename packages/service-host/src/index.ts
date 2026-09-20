@@ -110,3 +110,5 @@ export class ServiceHost{
  }
  async stop(){if(!this.server){this.state="STOPPED";return;}this.state="DRAINING";const server=this.server;await new Promise<void>((resolve,reject)=>{const timer=setTimeout(()=>{server.closeAllConnections();},this.options.config.shutdownGraceMs);server.close(err=>{clearTimeout(timer);err?reject(err):resolve();});});this.server=null;this.state="STOPPED";this.logger.info("service.stopped",{service:this.options.config.serviceName});}
 }
+
+export * from "./workload-identity.js";
