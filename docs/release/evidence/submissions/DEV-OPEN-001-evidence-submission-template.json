@@ -1,0 +1,93 @@
+{
+  "schema": "ssw.live-integration-evidence-submission.v1",
+  "item_id": "DEV-OPEN-001",
+  "artifact_id": "SSW-AI-LIVE-01",
+  "status": "TEMPLATE_ONLY",
+  "environment": "staging",
+  "integration_version": "",
+  "commit_sha": "",
+  "submitted_at": "",
+  "submitted_by": "",
+  "evidence": [
+    {
+      "id": "E1",
+      "name": "Production Interface Mapping",
+      "kind": "CONFIG_ATTESTATION",
+      "ref": "",
+      "notes": ""
+    },
+    {
+      "id": "E2",
+      "name": "Environment Configuration References",
+      "kind": "CONFIG_ATTESTATION",
+      "ref": "",
+      "notes": ""
+    },
+    {
+      "id": "E3",
+      "name": "Manifest Resolution Test",
+      "kind": "STAGING_TEST",
+      "ref": "",
+      "notes": ""
+    },
+    {
+      "id": "E4",
+      "name": "IPFS CID / Hash Verification",
+      "kind": "STAGING_TEST",
+      "ref": "",
+      "notes": ""
+    },
+    {
+      "id": "E5",
+      "name": "Replacement-Device Recovery",
+      "kind": "STAGING_TEST",
+      "ref": "",
+      "notes": ""
+    },
+    {
+      "id": "E6",
+      "name": "Stale Key-Version Rejection",
+      "kind": "SECURITY_TEST",
+      "ref": "",
+      "notes": ""
+    },
+    {
+      "id": "E7",
+      "name": "Wrong Holder DID Rejection",
+      "kind": "SECURITY_TEST",
+      "ref": "",
+      "notes": ""
+    },
+    {
+      "id": "E8",
+      "name": "No-Plaintext-Key Persistence Verification",
+      "kind": "SECURITY_TEST",
+      "ref": "",
+      "notes": ""
+    },
+    {
+      "id": "E9",
+      "name": "Integration Test Results",
+      "kind": "STAGING_TEST",
+      "ref": "",
+      "notes": ""
+    },
+    {
+      "id": "E10",
+      "name": "Security Review",
+      "kind": "MANUAL_APPROVAL",
+      "ref": "",
+      "notes": ""
+    }
+  ],
+  "reviewer": {
+    "verified_by": "",
+    "verified_at": "",
+    "decision": "PENDING",
+    "notes": []
+  },
+  "restrictions": {
+    "production_signing_enabled": false,
+    "production_asset_movement_enabled": false
+  }
+}
