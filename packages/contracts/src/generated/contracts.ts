@@ -139,6 +139,7 @@ export interface RouteRequestContract { schema:"ssw.route-request.v1"; holder_di
 export interface RouteDecisionContract { schema:"ssw.route-decision.v1"; holder_did:string; sera_agent_did:string; [key:string]: unknown; }
 export interface ExternalContextRecordContract { schema:"ssw.external-context-record.v1"; [key:string]: unknown; }
 export interface CounterpartyResolution { schema:"ssw.counterparty-resolution.v1"; holder_did:string; [key:string]: unknown; }
+export interface HolderIdentityContextContract { schema:"ssw.holder-identity-context.v1"; holder_did:string; sera_agent_did:string; [key:string]: unknown; }
 
 export interface AuthorityDecisionContract { schema:"ssw.authority-decision.v1"; [key:string]: unknown; }
 export interface RiskDecisionContract { schema:"ssw.risk-decision.v1"; [key:string]: unknown; }
@@ -218,4 +219,5 @@ export interface ContractTypeMap {
   "route-decision": RouteDecisionContract;
   "external-context-record": ExternalContextRecordContract;
   "counterparty-resolution": CounterpartyResolution;
+  "holder-identity-context": HolderIdentityContextContract;
 }
