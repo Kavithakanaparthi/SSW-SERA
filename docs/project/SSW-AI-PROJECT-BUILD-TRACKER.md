@@ -74,7 +74,7 @@ Current implementation milestone:
 
 Immediate next artifact:
 
-**SSW-AI-LIVE-01: DEV-OPEN-001 Signing Evidence Packet — IN PROGRESS**
+**SSW-AI-LIVE-01: DEV-OPEN-001 Signing Evidence Packet — PREPARED; AWAITING LIVE EVIDENCE**
 
 ## 5. Phase A — Product & Experience Definition
 
@@ -292,7 +292,7 @@ Open developer integrations, infrastructure blockers and release gates remain au
 | Live Integration Evidence Registry | structured DEV-OPEN evidence intake | COMPLETE — REL-02 |
 | Automated Gate Status Derivation | derive gate state from verified evidence | COMPLETE — REL-03 |
 | Evidence / Tracker Drift Guard | fail CI on contradictory gate claims | COMPLETE — REL-04 |
-| DEV-OPEN-001 Evidence Packet | Soul ID signing-key live evidence intake | IN PROGRESS — LIVE-01 |
+| DEV-OPEN-001 Evidence Packet | Soul ID signing-key live evidence intake | PREPARED — live evidence not yet submitted |
 
 ## 14. Required Security Tests Before Production Signing
 
@@ -344,7 +344,7 @@ Completed implementation artifacts: 16.
 
 Completed productionization artifacts: 8. PROD-05 platform boundary is implemented and CI-verified; live Soul ID/SoulScan bindings are maintained as developer-owned open integration items DEV-OPEN-001 through DEV-OPEN-003.
 
-Immediate next implementation phase: LIVE-01 DEV-OPEN-001 Signing Evidence Packet.
+Immediate next implementation phase: DEV-OPEN-001 live evidence submission and independent verification.
 
 Production signing enabled: no.
 
