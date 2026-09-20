@@ -74,7 +74,7 @@ Current implementation milestone:
 
 Immediate next artifact:
 
-**SSW-AI-MOB-02: Adaptive Workspace & Deterministic Fallback View Contract — IN PROGRESS**
+**SSW-AI-MOB-03: Voice/Text Interaction & Concealed Detail Presentation Binding**
 
 ## 5. Phase A — Product & Experience Definition
 
@@ -185,10 +185,10 @@ Immediate next artifact:
 |---|---|---|
 | iOS SERA Shell | SERA-first primary wallet experience | COMPLETE — MOB-01 shared shell baseline; native binding DEV-OPEN-011 |
 | Android SERA Shell | SERA-first primary wallet experience | COMPLETE — MOB-01 shared shell baseline; native binding DEV-OPEN-011 |
-| Adaptive Workspace | Contextual structured views instead of static tabs | IN PROGRESS — MOB-02 |
-| Deterministic Fallback UI | Assets / Send / Receive / Swap / Credentials / Activity / Security | IN PROGRESS — MOB-02 |
-| Voice UI | Text + voice parity and safe confirmation | PLANNED |
-| Concealed Details UX | Reveal/re-hide / approval separation | PLANNED |
+| Adaptive Workspace | Contextual structured views instead of static tabs | COMPLETE — MOB-02; native rendering DEV-OPEN-012 |
+| Deterministic Fallback UI | Assets / Send / Receive / Swap / Credentials / Activity / Security | COMPLETE — MOB-02; native rendering DEV-OPEN-012 |
+| Voice UI | Text + voice parity and safe confirmation | NEXT — MOB-03 |
+| Concealed Details UX | Reveal/re-hide / approval separation | NEXT — MOB-03 |
 | Cross-Device Handoff | Phone / desktop / wearable-safe task continuation | PLANNED |
 | Notifications / Widgets | OS-native proactive SERA surfaces | PLANNED |
 | Migration from Current SSW | staged SERA-first rollout with rollback | PLANNED |
@@ -256,6 +256,7 @@ Authoritative handoff record:
 | DEV-OPEN-009 | Soul ID holder context / SERA governance live binding | OPEN | live Soul ID holder-context capability claims |
 | DEV-OPEN-010 | SVID4AI agent identity / holder delegation live binding | OPEN | live SVID4AI capability claims |
 | DEV-OPEN-011 | Native iOS / Android SERA shell binding | OPEN | Mobile Integration Gate / live SERA-first shell claims |
+| DEV-OPEN-012 | Native adaptive workspace / fallback rendering | OPEN | Mobile Integration Gate / native workspace completion |
 
 These items do not block continued controlled repository construction.
 
@@ -328,7 +329,7 @@ Completed implementation artifacts: 16.
 
 Completed productionization artifacts: 8. PROD-05 platform boundary is implemented and CI-verified; live Soul ID/SoulScan bindings are maintained as developer-owned open integration items DEV-OPEN-001 through DEV-OPEN-003.
 
-Immediate next implementation phase: MOB-02 Adaptive Workspace & Deterministic Fallback View Contract.
+Immediate next implementation phase: MOB-03 Voice/Text Interaction & Concealed Detail Presentation Binding.
 
 Production signing enabled: no.
 
