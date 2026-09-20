@@ -51,6 +51,378 @@ Only the relevant production gates remain blocked until developers provide the r
 
 ---
 
+
+
+---
+
+# STAGE-WISE LIVE INTEGRATION TEST & EVIDENCE EXECUTION PLAN
+
+## Purpose
+
+DEV-OPEN-001 through DEV-OPEN-004 shall be executed as one controlled sequence.
+
+Each stage must:
+
+1. complete the required live integration in the approved staging environment;
+2. run the defined positive and negative tests;
+3. capture stable evidence references;
+4. submit evidence through the live integration evidence registry;
+5. undergo independent review;
+6. move to VERIFIED only after review;
+7. allow the derived gate status to update automatically.
+
+No stage may be declared complete based only on implementation claims, screenshots, unit tests, or developer confirmation.
+
+The required sequence is:
+
+```text
+DEV-OPEN-001
+  -> DEV-OPEN-002
+  -> DEV-OPEN-003
+  -> Signing Gate eligible for COMPLETE
+  -> DEV-OPEN-004
+  -> Execution Gate eligible for COMPLETE
+```
+
+Production signing and production asset movement remain disabled until their separate activation and release controls are satisfied.
+
+---
+
+## Stage 1 — DEV-OPEN-001: Soul ID Portable Signing-Key Integration
+
+### Objective
+
+Prove that the live Soul ID portable signing-key path works end to end without changing the controlled custody model.
+
+### Live Test Path
+
+```text
+Holder Soul ID
+  -> authoritative signed/current key manifest
+  -> encrypted key object retrieval
+  -> CID/hash verification
+  -> SoulScan-authorized key access
+  -> envelope opening
+  -> ephemeral signing session
+  -> controlled signing operation
+  -> session expiry / cleanup
+```
+
+### Mandatory Positive Tests
+
+- current manifest resolves successfully;
+- manifest signature/integrity validates;
+- encrypted key object resolves from the configured content-addressed path;
+- CID/hash matches the manifest;
+- SoulScan authorization is accepted where required;
+- envelope opens successfully;
+- ephemeral signing session is created;
+- controlled signing operation succeeds;
+- session expires/cleans up correctly;
+- replacement-device recovery succeeds.
+
+### Mandatory Negative Tests
+
+- wrong CID/hash rejection;
+- stale key-version rejection;
+- wrong Holder DID rejection;
+- expired/invalid recovery authorization rejection;
+- expired signing-session rejection;
+- plaintext-key persistence/exposure scan;
+- API response inspection for private-key leakage.
+
+### Required Evidence
+
+Submit E1-E10 from:
+
+`docs/release/evidence/submissions/DEV-OPEN-001-evidence-submission-template.json`
+
+Evidence must include:
+
+- production interface mapping;
+- environment configuration references;
+- manifest-resolution run;
+- CID/hash verification;
+- replacement-device recovery;
+- stale-version rejection;
+- wrong-holder rejection;
+- no-plaintext-key persistence verification;
+- integration test results;
+- independent security review.
+
+### Submission and Review
+
+1. populate the DEV-OPEN-001 submission template;
+2. change submission status to `EVIDENCE_SUBMITTED`;
+3. update DEV-OPEN-001 in the live evidence registry to `EVIDENCE_SUBMITTED`;
+4. commit the submission and registry update together;
+5. request independent review;
+6. reviewer marks VERIFIED or REJECTED.
+
+### Gate Effect
+
+If VERIFIED:
+
+- DEV-OPEN-001 satisfies one Signing Gate dependency;
+- Signing Gate remains BLOCKED until DEV-OPEN-002 and DEV-OPEN-003 are also VERIFIED or validly WAIVED.
+
+---
+
+## Stage 2 — DEV-OPEN-002: SoulScan Recovery Authorization Integration
+
+### Objective
+
+Prove that live SoulScan recovery authorization is valid, replay-safe, identity-bound, and cannot become transaction authorization.
+
+### Live Test Path
+
+```text
+Recovery request
+  -> SoulScan live authorization
+  -> signed response verification
+  -> Holder DID / SERA DID binding
+  -> purpose / assurance validation
+  -> expiry / replay validation
+  -> controlled recovery path
+  -> signing boundary re-entry
+```
+
+### Mandatory Positive Tests
+
+- live SoulScan endpoint/interface resolves correctly;
+- signed authorization response verifies;
+- Holder DID binding validates;
+- SERA Agent DID binding validates where applicable;
+- purpose matches recovery;
+- required RP2 / RAL4-RAL5 assurance is present;
+- issued/expiry time is valid;
+- verifier/evidence references are preserved;
+- valid recovery authorization enables recovery path entry only.
+
+### Mandatory Negative Tests
+
+- expired authorization rejection;
+- Holder DID mismatch rejection;
+- SERA DID mismatch rejection;
+- replay rejection;
+- altered/integrity-failed response rejection;
+- wrong-purpose rejection;
+- recovery-to-signing boundary test;
+- proof that SoulScan PASS alone cannot execute or approve a transaction;
+- proof that Trust Protocol and REV are not bypassed.
+
+### Required Evidence
+
+Evidence must include:
+
+- production endpoint/interface mapping;
+- signed response verification profile;
+- successful authorization run;
+- expired authorization rejection;
+- Holder DID mismatch rejection;
+- SERA DID mismatch rejection;
+- replay rejection;
+- recovery-to-signing boundary test;
+- explicit proof that SoulScan recovery alone cannot execute a transaction;
+- independent security review.
+
+### Submission and Review
+
+1. create the DEV-OPEN-002 evidence submission record;
+2. set status to `EVIDENCE_SUBMITTED`;
+3. update DEV-OPEN-002 in the live evidence registry;
+4. attach stable run IDs, environment, commit SHA, submitter and timestamps;
+5. request independent review;
+6. reviewer marks VERIFIED or REJECTED.
+
+### Gate Effect
+
+If VERIFIED:
+
+- DEV-OPEN-002 satisfies one Signing Gate dependency;
+- DEV-OPEN-002 also satisfies the mapped Recovery Gate dependency;
+- Signing Gate remains BLOCKED until DEV-OPEN-001 and DEV-OPEN-003 are satisfied.
+
+---
+
+## Stage 3 — DEV-OPEN-003: SERA Portable Signing-Key Integration
+
+### Objective
+
+Prove that SERA uses the same portable, DID-bound recovery/signing method while remaining governed by the Holder Soul ID and without restoring delegated authority automatically.
+
+### Live Test Path
+
+```text
+Holder Soul ID
+  -> governance binding
+  -> SERA Agent DID
+  -> current SERA key manifest
+  -> encrypted SERA key object
+  -> SoulScan-authorized recovery
+  -> ephemeral SERA signing session
+  -> fresh Trust / REV evaluation
+  -> mandate revalidation where applicable
+```
+
+### Mandatory Positive Tests
+
+- Holder/SERA governance binding validates;
+- current SERA manifest resolves;
+- encrypted SERA key object validates;
+- replacement-device recovery succeeds;
+- ephemeral SERA signing session is established;
+- fresh Trust/REV evaluation occurs after recovery;
+- A3/A4 mandate revalidation occurs before delegated execution.
+
+### Mandatory Negative Tests
+
+- wrong-holder transplant rejection;
+- stale key manifest rejection;
+- revoked SERA DID rejection;
+- governance-binding mismatch rejection;
+- expired recovery authorization rejection;
+- attempt to reuse pre-recovery Trust/REV decision rejection;
+- attempt to reuse stale A3/A4 mandate state rejection;
+- proof that key recovery does not automatically restore delegated authority.
+
+### Required Evidence
+
+Evidence must include:
+
+- Holder/SERA governance-binding test;
+- replacement-device recovery;
+- wrong-holder transplant rejection;
+- stale-manifest rejection;
+- revoked SERA DID rejection;
+- fresh Trust/REV requirement;
+- A3/A4 mandate revalidation evidence;
+- no-plaintext-key persistence verification;
+- independent security review.
+
+### Submission and Review
+
+1. create the DEV-OPEN-003 evidence submission record;
+2. set status to `EVIDENCE_SUBMITTED`;
+3. update DEV-OPEN-003 in the live evidence registry;
+4. commit all evidence references together;
+5. request independent review;
+6. reviewer marks VERIFIED or REJECTED.
+
+### Gate Effect
+
+When DEV-OPEN-001, DEV-OPEN-002 and DEV-OPEN-003 are all VERIFIED or validly WAIVED:
+
+- the automated gate derivation may advance the Signing Gate to COMPLETE;
+- tracker and release manifest must be updated in the same controlled change;
+- CI drift verification must pass;
+- production signing remains disabled until explicit activation under release controls.
+
+---
+
+## Stage 4 — DEV-OPEN-004: Production EVM RPC & Signed Payload Resolver Binding
+
+### Objective
+
+Prove that an already authorized and signed payload can be submitted and reconciled through the production-equivalent EVM execution path without route mutation, replay, blind resubmission, or chain ambiguity.
+
+### Live Test Path
+
+```text
+Authorized action
+  -> exact signed payload resolution
+  -> payload hash verification
+  -> chain-ID verification
+  -> production-equivalent EVM RPC
+  -> transaction submission
+  -> transaction hash verification
+  -> reconciliation
+  -> idempotent retry / unknown-outcome handling
+```
+
+### Mandatory Positive Tests
+
+- approved RPC endpoint/provider resolves;
+- environment-specific credential delivery works;
+- SignedPayloadResolver returns the exact raw signed transaction;
+- signed payload hash matches;
+- chain ID matches the authorized action;
+- expected EVM transaction hash matches;
+- staging submission succeeds;
+- reconciliation reaches an authoritative state;
+- identical retry is handled idempotently.
+
+### Mandatory Negative Tests
+
+- chain-ID mismatch rejection;
+- signed-payload hash mismatch rejection;
+- expected/network transaction-hash mismatch rejection;
+- altered raw transaction rejection;
+- timeout/unknown-outcome reconciliation test;
+- no blind resubmission after uncertain outcome;
+- provider failover without duplicate broadcast;
+- route/chain substitution rejection.
+
+### Required Evidence
+
+Evidence must include:
+
+- provider/endpoint mapping;
+- credential-delivery mechanism;
+- signed-payload resolver mapping;
+- chain-ID mismatch rejection;
+- payload-hash mismatch rejection;
+- transaction-hash mismatch rejection;
+- timeout/unknown-outcome reconciliation;
+- identical retry / no-resubmission evidence;
+- successful staging transaction evidence;
+- independent review.
+
+### Submission and Review
+
+1. create the DEV-OPEN-004 evidence submission record;
+2. set status to `EVIDENCE_SUBMITTED`;
+3. update DEV-OPEN-004 in the live evidence registry;
+4. commit evidence references and registry update together;
+5. request independent review;
+6. reviewer marks VERIFIED or REJECTED.
+
+### Gate Effect
+
+If VERIFIED:
+
+- DEV-OPEN-004 satisfies the mapped Execution Gate dependency;
+- the automated derivation may advance the Execution Gate to COMPLETE if no other mapped blocker exists;
+- tracker and release manifest must advance atomically with the evidence state;
+- CI drift verification must pass;
+- production asset movement remains disabled until the remaining release gates and explicit activation controls are satisfied.
+
+---
+
+## Evidence Submission Rules for All Four Stages
+
+For DEV-OPEN-001 through DEV-OPEN-004:
+
+- use stable run IDs or durable evidence references;
+- record staging environment;
+- record integration version;
+- record commit/build SHA where applicable;
+- record submission timestamp;
+- record submitting team/person;
+- do not include secrets in the repository;
+- preserve failed/rejected evidence history;
+- do not mark VERIFIED without independent review;
+- do not manually override derived gate state;
+- submit tracker/manifest advancement together with the registry change when verification changes a gate;
+- require `npm run verify:release-drift` and full CI to pass before accepting the state change.
+
+The live evidence registry remains authoritative:
+
+`docs/release/evidence/SSW-SERA-Live-Integration-Evidence-Registry.json`
+
+The controlling release-gate derivation and drift controls remain REL-03 and REL-04.
+
+
 # OPEN INTEGRATION ITEMS
 
 ## DEV-OPEN-001 — Soul ID Portable Signing-Key Integration
