@@ -74,7 +74,7 @@ Current implementation milestone:
 
 Immediate next artifact:
 
-**SSW-AI-PROD-06: Production Chain Adapters & Execution Reconciliation**
+**SSW-AI-PROD-07: Production SAEL Persistence / Checkpoint / Archive**
 
 ## 5. Phase A — Product & Experience Definition
 
@@ -231,8 +231,8 @@ A paired wearable never automatically inherits phone authority.
 | PROD-03 | Persistence & Durable Event Transport | COMPLETE |
 | PROD-04 | Production Trust / REV Service Integration | COMPLETE |
 | PROD-05 | SoulScan / IPFS Portable Signing Key Integration | COMPLETE — platform boundary; live Soul ID/SoulScan bindings delegated to DEV-OPEN-001..003 |
-| PROD-06 | Production Chain Adapters & Execution Reconciliation | NEXT |
-| PROD-07 | Production SAEL Persistence / Checkpoint / Archive | PLANNED |
+| PROD-06 | Production Chain Adapters & Execution Reconciliation | COMPLETE |
+| PROD-07 | Production SAEL Persistence / Checkpoint / Archive | NEXT |
 | PROD-08 | Staging Security Gate & Release Evidence | PLANNED |
 
 PROD-01 is complete. GitHub Actions Run #8 generated and verified the committed lockfile, npm ci passed, all 104 tests passed, strict TypeScript passed, and CI was converted to steady-state read-only operation.
@@ -314,9 +314,9 @@ Completed controlled design/specification layers: all currently scheduled pre-co
 
 Completed implementation artifacts: 16.
 
-Completed productionization artifacts: 5. PROD-05 platform boundary is implemented and CI-verified; live Soul ID/SoulScan bindings are maintained as developer-owned open integration items DEV-OPEN-001 through DEV-OPEN-003.
+Completed productionization artifacts: 6. PROD-05 platform boundary is implemented and CI-verified; live Soul ID/SoulScan bindings are maintained as developer-owned open integration items DEV-OPEN-001 through DEV-OPEN-003.
 
-Immediate next implementation phase: PROD-06 Production Chain Adapters & Execution Reconciliation.
+Immediate next implementation phase: PROD-07 Production SAEL Persistence / Checkpoint / Archive.
 
 Production signing enabled: no.
 
