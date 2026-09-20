@@ -74,7 +74,7 @@ Current implementation milestone:
 
 Immediate next artifact:
 
-**SSW-AI-MOB-04: Cross-Device Handoff & OS-Native Proactive Surface Binding**
+**SSW-AI-MOB-04: Cross-Device Handoff & OS-Native Proactive Surface Binding — IN PROGRESS**
 
 ## 5. Phase A — Product & Experience Definition
 
@@ -189,8 +189,8 @@ Immediate next artifact:
 | Deterministic Fallback UI | Assets / Send / Receive / Swap / Credentials / Activity / Security | COMPLETE — MOB-02; native rendering DEV-OPEN-012 |
 | Voice UI | Text + voice parity and safe confirmation | COMPLETE — MOB-03; native binding DEV-OPEN-013 |
 | Concealed Details UX | Reveal/re-hide / approval separation | COMPLETE — MOB-03; native binding DEV-OPEN-013 |
-| Cross-Device Handoff | Phone / desktop / wearable-safe task continuation | NEXT — MOB-04 |
-| Notifications / Widgets | OS-native proactive SERA surfaces | NEXT — MOB-04 |
+| Cross-Device Handoff | Phone / desktop / wearable-safe task continuation | IN PROGRESS — MOB-04 |
+| Notifications / Widgets | OS-native proactive SERA surfaces | IN PROGRESS — MOB-04 |
 | Migration from Current SSW | staged SERA-first rollout with rollback | PLANNED |
 
 ## 11. Phase G — Wearables
