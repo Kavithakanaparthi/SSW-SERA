@@ -122,3 +122,5 @@ export * from "./deployment-manifest.js";
 export * from "./deployment-evidence.js";
 
 export * from "./release-readiness.js";
+
+export * from "./integration-evidence-registry.js";
