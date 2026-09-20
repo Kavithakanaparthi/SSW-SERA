@@ -2026,3 +2026,61 @@ CI evidence:
 **Dependencies closed:** mobile voice/text parity, concealed-detail behavior, reveal/review/approval separation.
 
 **Next:** SSW-AI-MOB-04: Cross-Device Handoff & OS-Native Proactive Surface Binding.
+
+
+---
+
+## Entry 042 — MOB-04 Cross-Device Handoff & OS-Native Proactive Surface Binding
+
+**Date:** 2026-09-19  
+**Artifact:** SSW-AI-MOB-04  
+**Runtime Commit:** `728ae252a2b1cbbbdeb2357cd6d020a96f9c11e7`  
+**Contract Test Commit:** `5e65be3bc0203cd3e541c5fcf17f1adec53f14e8`  
+**Controlled Specification Commit:** `cc16fee9570c0b226ea03df2875c7bee7858e556`  
+**Final CI Head:** `a7bb1093cea8ce5c79534936f944adf0a51ede64`  
+**CI Run:** #145, ID `35485965717`  
+**Release Evidence Hash:** `sha256:fe2d7c7a567c23f40d3be48619dbb263ba046c968f37c9e2b07bebcdbed896b9`  
+**Status:** COMPLETE
+
+Implemented:
+
+- device-neutral cross-device task handoff;
+- explicit source/target device trust and capability checks;
+- target attestation freshness validation;
+- machine-enforced `authorityTransferred: false`;
+- mandatory fresh control-plane evaluation after handoff;
+- fresh authentication for high-risk/wearable continuation;
+- high-risk wearable redirect to a full trusted surface;
+- portable proactive-surface decision model;
+- privacy-filtered lock-screen/notification/widget/Live Activity/Dynamic Island/wearable rendering;
+- proactive event freshness handling;
+- P4 low-value suppression;
+- OS-surface review affordances without direct execution.
+
+Security decisions:
+
+- device pairing does not grant authority;
+- handoff transfers task state, not approval/signing/mandate/Trust/REV state;
+- target device capabilities are explicit;
+- stale target attestation fails closed;
+- ambient surfaces cannot directly execute consequential wallet actions;
+- locked surfaces remain concealed;
+- every consequential continuation re-enters the deterministic control path.
+
+Developer handoff:
+
+- DEV-OPEN-014 records native cross-device and proactive-surface binding.
+
+CI evidence:
+
+- PostgreSQL migrations: PASS;
+- contract verification: PASS — 51 JSON Schemas;
+- 237 tests: PASS;
+- failures: 0;
+- strict TypeScript: PASS;
+- hashed release evidence: PASS;
+- release decision remains `CI_BASELINE_PASS_PRODUCTION_BLOCKED`.
+
+**Dependencies closed:** shared cross-device task continuity and OS-native proactive surface semantics.
+
+**Next:** SSW-AI-MOB-05: Staged SERA-First Migration, Cohort Rollout & Rollback Control.
