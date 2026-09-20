@@ -124,3 +124,5 @@ export * from "./deployment-evidence.js";
 export * from "./release-readiness.js";
 
 export * from "./integration-evidence-registry.js";
+
+export * from "./gate-status-derivation.js";
