@@ -60,6 +60,7 @@ const schemaFiles = [
   "ssw-context-request.v1.schema.json",
   "ssw-context-manifest.v1.schema.json",
   "ssw-memory-item.v1.schema.json",
+  "ssw-voice-confidence-envelope.v1.schema.json",
   "ssw-counterparty-resolution.v1.schema.json"
 ] as const;
 
@@ -103,6 +104,7 @@ function getIdentityPair(kind: ContractKind, value: unknown): { holderDid?: unkn
     return {holderDid:v.governing_holder_did,seraDid:typeof v.subject_did==="string"&&v.subject_did.startsWith("did:soul:agent:")?v.subject_did:undefined};
   }
   if (kind === "soulscan-recovery-authorization") return {holderDid:v.holder_did,seraDid:v.sera_agent_did??undefined};
+  if (kind === "voice-confidence-envelope") return {holderDid:v.holder_did,seraDid:v.sera_agent_did};
   if (kind === "counterparty-resolution") return {holderDid:v.holder_did};
   return {};
 }

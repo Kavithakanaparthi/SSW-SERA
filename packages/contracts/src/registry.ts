@@ -38,6 +38,7 @@ export const contractSchemaIds = {
   contextRequest: "https://schemas.soulverse.world/ssw/json-schema/ssw-context-request.v1.schema.json",
   contextManifest: "https://schemas.soulverse.world/ssw/json-schema/ssw-context-manifest.v1.schema.json",
   memoryItem: "https://schemas.soulverse.world/ssw/json-schema/ssw-memory-item.v1.schema.json",
+  voiceConfidenceEnvelope: "https://schemas.soulverse.world/ssw/json-schema/ssw-voice-confidence-envelope.v1.schema.json",
   counterpartyResolution: "https://schemas.soulverse.world/ssw/json-schema/ssw-counterparty-resolution.v1.schema.json"
 } as const;
 
@@ -81,6 +82,7 @@ export type ContractKind =
   | "context-request"
   | "context-manifest"
   | "memory-item"
+  | "voice-confidence-envelope"
   | "counterparty-resolution";
 
 export const contractKindToSchemaId: Readonly<Record<ContractKind, string>> = {
@@ -123,5 +125,6 @@ export const contractKindToSchemaId: Readonly<Record<ContractKind, string>> = {
   "context-request": contractSchemaIds.contextRequest,
   "context-manifest": contractSchemaIds.contextManifest,
   "memory-item": contractSchemaIds.memoryItem,
+  "voice-confidence-envelope": contractSchemaIds.voiceConfidenceEnvelope,
   "counterparty-resolution": contractSchemaIds.counterpartyResolution
 };

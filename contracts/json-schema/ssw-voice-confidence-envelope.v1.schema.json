@@ -1,0 +1,167 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.soulverse.world/ssw/json-schema/ssw-voice-confidence-envelope.v1.schema.json",
+  "title": "SSW Voice Confidence Envelope v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "voice_event_id",
+    "holder_did",
+    "sera_agent_did",
+    "risk_class",
+    "signals",
+    "ambiguity",
+    "decision",
+    "reason_codes",
+    "created_at"
+  ],
+  "properties": {
+    "schema": {
+      "const": "ssw.voice-confidence-envelope.v1"
+    },
+    "voice_event_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "holder_did": {
+      "type": "string",
+      "pattern": "^did:soul:[a-z0-9._:-]+$"
+    },
+    "sera_agent_did": {
+      "type": "string",
+      "pattern": "^did:soul:agent:[a-z0-9._:-]+$"
+    },
+    "risk_class": {
+      "type": "string",
+      "enum": [
+        "V0",
+        "V1",
+        "V2",
+        "V3",
+        "V4",
+        "V5"
+      ]
+    },
+    "signals": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "acoustic",
+        "transcript",
+        "intent",
+        "entity",
+        "numeric",
+        "negation",
+        "context",
+        "environment"
+      ],
+      "properties": {
+        "acoustic": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "transcript": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "holder_adaptation": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "intent": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "entity": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "numeric": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "negation": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "context": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "environment": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "ambiguity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "protected_numeric",
+        "recipient",
+        "asset",
+        "negation",
+        "multiple_speakers"
+      ],
+      "properties": {
+        "protected_numeric": {
+          "type": "boolean"
+        },
+        "recipient": {
+          "type": "boolean"
+        },
+        "asset": {
+          "type": "boolean"
+        },
+        "negation": {
+          "type": "boolean"
+        },
+        "multiple_speakers": {
+          "type": "boolean"
+        }
+      }
+    },
+    "protected_numeric_candidates": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 10
+    },
+    "decision": {
+      "type": "string",
+      "enum": [
+        "CONTINUE",
+        "CLARIFY",
+        "STOP",
+        "REQUIRE_INDEPENDENT_AUTHORIZATION"
+      ]
+    },
+    "reason_codes": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Z][A-Z0-9_]*$"
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}
