@@ -1,0 +1,12 @@
+{
+  "name": "@soulverse/external-context-adapters",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "dependencies": {
+    "@soulverse/schema-validation": "0.2.0",
+    "@soulverse/context-broker": "0.1.0"
+  }
+}

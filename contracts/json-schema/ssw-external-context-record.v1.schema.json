@@ -1,0 +1,136 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.soulverse.world/ssw/json-schema/ssw-external-context-record.v1.schema.json",
+  "title": "SSW External Context Record v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "record_id",
+    "category",
+    "source",
+    "subject",
+    "data",
+    "content_role",
+    "identity_authority",
+    "authority_effect",
+    "observed_at",
+    "valid_until",
+    "created_at"
+  ],
+  "properties": {
+    "schema": {
+      "const": "ssw.external-context-record.v1"
+    },
+    "record_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "NEWS",
+        "PROFESSIONAL_CONTEXT",
+        "ASSET_RISK"
+      ]
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_id",
+        "source_class",
+        "confidence",
+        "veracity",
+        "source_ref"
+      ],
+      "properties": {
+        "source_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "source_class": {
+          "type": "string",
+          "enum": [
+            "EXTERNAL_NEWS",
+            "EXTERNAL_PROFESSIONAL",
+            "SECURITY_ENGINE"
+          ]
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "veracity": {
+          "type": "string",
+          "enum": [
+            "CONFIRMED",
+            "HIGH_CONFIDENCE",
+            "CORROBORATED",
+            "UNCONFIRMED",
+            "CONFLICTING",
+            "STALE"
+          ]
+        },
+        "source_ref": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        }
+      }
+    },
+    "subject": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "id"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512
+        }
+      }
+    },
+    "data": {
+      "type": "object"
+    },
+    "content_role": {
+      "type": "string",
+      "enum": [
+        "UNTRUSTED_EXTERNAL_TEXT",
+        "STRUCTURED_RISK_SIGNAL"
+      ]
+    },
+    "identity_authority": {
+      "const": false
+    },
+    "authority_effect": {
+      "const": "NONE"
+    },
+    "observed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "valid_until": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

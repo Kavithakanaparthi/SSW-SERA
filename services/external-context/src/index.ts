@@ -1,0 +1,4 @@
+export {sanitizeExternalText,normalizeNewsRecord,normalizeProfessionalRecord,normalizeAssetRiskRecord,NewsContextSource,ProfessionalContextSource,AssetRiskContextSource,ExternalContextError} from "@soulverse/external-context-adapters";
+export type {NewsProviderAdapter,ProfessionalContextProviderAdapter,AssetRiskProviderAdapter,NewsProviderRecord,ProfessionalProviderRecord,AssetRiskProviderRecord,Veracity,AssetRiskStatus} from "@soulverse/external-context-adapters";
+export const serviceName="external-context" as const;
+export const implementationStatus="CONTROLLED_EXTERNAL_CONTEXT_ADAPTER_BOUNDARY_IMPLEMENTED" as const;

@@ -137,6 +137,7 @@ export interface ProactiveSignalContract { schema:"ssw.proactive-signal.v1"; hol
 export interface ProactiveAssessmentContract { schema:"ssw.proactive-assessment.v1"; holder_did:string; sera_agent_did:string; [key:string]: unknown; }
 export interface RouteRequestContract { schema:"ssw.route-request.v1"; holder_did:string; sera_agent_did:string; [key:string]: unknown; }
 export interface RouteDecisionContract { schema:"ssw.route-decision.v1"; holder_did:string; sera_agent_did:string; [key:string]: unknown; }
+export interface ExternalContextRecordContract { schema:"ssw.external-context-record.v1"; [key:string]: unknown; }
 export interface CounterpartyResolution { schema:"ssw.counterparty-resolution.v1"; holder_did:string; [key:string]: unknown; }
 
 export interface AuthorityDecisionContract { schema:"ssw.authority-decision.v1"; [key:string]: unknown; }
@@ -215,5 +216,6 @@ export interface ContractTypeMap {
   "proactive-assessment": ProactiveAssessmentContract;
   "route-request": RouteRequestContract;
   "route-decision": RouteDecisionContract;
+  "external-context-record": ExternalContextRecordContract;
   "counterparty-resolution": CounterpartyResolution;
 }

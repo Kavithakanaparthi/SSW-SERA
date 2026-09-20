@@ -66,6 +66,7 @@ const schemaFiles = [
   "ssw-proactive-assessment.v1.schema.json",
   "ssw-route-request.v1.schema.json",
   "ssw-route-decision.v1.schema.json",
+  "ssw-external-context-record.v1.schema.json",
   "ssw-counterparty-resolution.v1.schema.json"
 ] as const;
 

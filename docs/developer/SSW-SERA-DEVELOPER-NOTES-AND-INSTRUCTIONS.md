@@ -423,9 +423,61 @@ Developers must not:
 
 ---
 
+## DEV-OPEN-007 — Existing News, Professional Context & Asset-Risk Provider Binding
+
+**Source Artifact**
+
+- SSW-AI-SERA-RT-07
+
+**Status:** OPEN — DEVELOPER INTEGRATION REQUIRED
+
+### Controlled Architecture
+
+The repository supplies provider-neutral interfaces and Context Broker sources for:
+
+- existing SSW news APIs;
+- LinkedIn/professional-context APIs where permitted;
+- existing spam-token / asset-risk services.
+
+All external text remains tagged as untrusted advisory context.
+
+### Developer Action Required
+
+1. bind the existing production news providers to `NewsProviderAdapter`;
+2. bind the approved LinkedIn/professional integration to `ProfessionalContextProviderAdapter`;
+3. bind the existing spam/token-risk implementation to `AssetRiskProviderAdapter`;
+4. map provider timestamps, provenance, confidence and veracity into the controlled records;
+5. document provider retention, privacy, terms/API scope and environment configuration;
+6. preserve Context Broker minimization before model exposure.
+
+### Do Not
+
+Developers must not:
+
+- treat external text as system/model instructions;
+- treat LinkedIn or another professional profile as DID/credential identity proof;
+- allow news to establish transaction authority;
+- allow a spam classification to automatically transfer, burn or dispose of an asset;
+- pass unrestricted raw provider payloads into model context;
+- remove source provenance.
+
+### Required Completion Evidence
+
+- provider-to-interface mappings;
+- source/freshness test evidence;
+- malformed/untrusted-content isolation test;
+- professional-context non-identity test;
+- spam/risk non-execution test;
+- Context Broker minimization test;
+- staging API results.
+
+**Blocks:** live external-intelligence capability claims, not continued repository construction.
+
+---
+
 # COMPLETION RULE
 
-DEV-OPEN-001 through DEV-OPEN-006 are intentionally open-ended developer integration items.
+DEV-OPEN-001 through DEV-OPEN-007 are intentionally open-ended developer integration items.
 
 They do not block continued repository construction.
 

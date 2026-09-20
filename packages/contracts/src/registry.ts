@@ -44,6 +44,7 @@ export const contractSchemaIds = {
   proactiveAssessment: "https://schemas.soulverse.world/ssw/json-schema/ssw-proactive-assessment.v1.schema.json",
   routeRequest: "https://schemas.soulverse.world/ssw/json-schema/ssw-route-request.v1.schema.json",
   routeDecision: "https://schemas.soulverse.world/ssw/json-schema/ssw-route-decision.v1.schema.json",
+  externalContextRecord: "https://schemas.soulverse.world/ssw/json-schema/ssw-external-context-record.v1.schema.json",
   counterpartyResolution: "https://schemas.soulverse.world/ssw/json-schema/ssw-counterparty-resolution.v1.schema.json"
 } as const;
 
@@ -93,6 +94,7 @@ export type ContractKind =
   | "proactive-assessment"
   | "route-request"
   | "route-decision"
+  | "external-context-record"
   | "counterparty-resolution";
 
 export const contractKindToSchemaId: Readonly<Record<ContractKind, string>> = {
@@ -141,5 +143,6 @@ export const contractKindToSchemaId: Readonly<Record<ContractKind, string>> = {
   "proactive-assessment": contractSchemaIds.proactiveAssessment,
   "route-request": contractSchemaIds.routeRequest,
   "route-decision": contractSchemaIds.routeDecision,
+  "external-context-record": contractSchemaIds.externalContextRecord,
   "counterparty-resolution": contractSchemaIds.counterpartyResolution
 };
