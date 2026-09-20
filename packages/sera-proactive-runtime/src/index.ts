@@ -86,7 +86,7 @@ export class ProactiveRuntime{
   else decision="RECORD";
 
   const assessment=assertContract("proactive-assessment",{
-   schema:"ssw.proactive-assessment.v1",assessment_id:input.assessmentId??randomUUID(),signal_id:signal.signal_id,grant_id:grant?.grant_id??null,
+   schema:"ssw.proactive-assessment.v1",assessment_id:input.assessmentId??randomUUID(),signal_id:String(ingested.signal.signal_id),grant_id:grant?.grant_id??null,
    holder_did:signal.holder_did,sera_agent_did:signal.sera_agent_did,
    factors:{exposure:input.factors.exposure,relationship:input.factors.relationship,actionability:input.factors.actionability,risk_impact:input.factors.riskImpact,holder_preference:input.factors.holderPreference,recency:input.factors.recency,duplicate_penalty:input.factors.duplicatePenalty,fatigue_penalty:input.factors.fatiguePenalty},
    relevance_score:Number(score.toFixed(6)),urgency,notification_class:notification,decision,reason_codes:reasons,evidence_refs:signal.evidence_refs,authority_effect:"NONE",created_at:input.now
