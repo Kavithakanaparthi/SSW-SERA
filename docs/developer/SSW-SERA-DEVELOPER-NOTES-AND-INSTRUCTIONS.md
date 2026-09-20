@@ -595,3 +595,30 @@ For the SSW-SERA holder-bound profile:
 - SERA must never self-expand or self-renew delegated authority.
 
 This item blocks claims of live SVID4AI production integration but does not block continued controlled repository construction.
+
+
+---
+
+## DEV-OPEN-011 — Native iOS / Android SERA Shell Binding
+
+**Status:** OPEN  
+**Introduced by:** SSW-AI-MOB-01
+
+Developers shall bind the existing Soul Super Wallet mobile applications to the MOB-01 shared shell decision contract.
+
+Required production responsibilities include:
+
+- map existing iOS and Android application startup state into the shared MOB-01 shell inputs;
+- implement feature-flag delivery by cohort, platform, app version and jurisdiction where applicable;
+- preserve direct deterministic access to balances, send, receive, swap, credentials, activity, WalletConnect, settings, security and recovery;
+- implement SERA outage fallback to the conventional wallet;
+- implement control-plane outage degradation to safe read-only SERA behavior;
+- ensure signer unavailability blocks delegated/autonomous execution;
+- keep recovery and security controls independently accessible when SERA is the default home;
+- prevent platform-specific UI code from widening capabilities beyond the shared shell decision;
+- record migration-stage and fallback telemetry without sensitive wallet or conversational contents;
+- support deterministic rollback of `sera_primary_home` and other SERA feature flags.
+
+MOB-01 is platform-neutral. Native Swift/SwiftUI, Kotlin/Compose or existing application-framework bindings remain implementation choices of the mobile codebase and must consume, not redefine, the shared authority/fallback semantics.
+
+This item blocks the Mobile Integration Gate and live SERA-first mobile claims.
