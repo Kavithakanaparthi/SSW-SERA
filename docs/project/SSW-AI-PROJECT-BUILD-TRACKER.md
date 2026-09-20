@@ -74,7 +74,7 @@ Current implementation milestone:
 
 Immediate next artifact:
 
-**SSW-AI-SERA-RT-06: Multi-Chain Routing & Existing SSW Capability Adapters**
+**SSW-AI-SERA-RT-07: External Intelligence & Risk Context Adapters**
 
 ## 5. Phase A — Product & Experience Definition
 
@@ -170,9 +170,9 @@ Immediate next artifact:
 | SERA Memory | Holder preference / voice / alias memory domains | COMPLETE — SERA-RT-03 |
 | Voice Runtime | Voice adaptation, numerical safety, correction learning | COMPLETE — SERA-RT-04 |
 | Proactive Intelligence | Monitoring, prioritization, notification policy | COMPLETE — SERA-RT-05 |
-| Multi-Chain Routing | Chain / fee / compatibility route evaluation | NEXT — SERA-RT-06 |
-| Existing SSW Capability Adapters | balances, send, receive, swap, WalletConnect, credentials | PLANNED |
-| News Integration Adapter | Existing news APIs through Context Broker | PLANNED |
+| Multi-Chain Routing | Chain / fee / compatibility route evaluation | COMPLETE — SERA-RT-06 |
+| Existing SSW Capability Adapters | balances, send, receive, swap, WalletConnect, credentials | COMPLETE — typed boundary; live bindings DEV-OPEN-006 |
+| News Integration Adapter | Existing news APIs through Context Broker | NEXT — SERA-RT-07 |
 | LinkedIn Context Adapter | Existing LinkedIn API context under privacy rules | PLANNED |
 | Spam / Risk Signal Adapter | Existing spam filter into risk/control path | PLANNED |
 | Credential Runtime | Soulogram / VC / proof presentation integration | PLANNED |
@@ -250,6 +250,7 @@ Authoritative handoff record:
 | DEV-OPEN-003 | SERA portable signing-key production binding | OPEN | Signing Gate / Release Gate |
 | DEV-OPEN-004 | Production EVM RPC / signed-payload resolver binding | OPEN | Execution Gate / Release Gate |
 | DEV-OPEN-005 | SAEL checkpoint signer / encrypted archive binding | OPEN | SAEL Gate / Release Gate |
+| DEV-OPEN-006 | Existing SSW capability / multi-chain provider binding | OPEN | Mobile Integration Gate / live capability claims |
 
 These items do not block continued controlled repository construction.
 
@@ -322,7 +323,7 @@ Completed implementation artifacts: 16.
 
 Completed productionization artifacts: 8. PROD-05 platform boundary is implemented and CI-verified; live Soul ID/SoulScan bindings are maintained as developer-owned open integration items DEV-OPEN-001 through DEV-OPEN-003.
 
-Immediate next implementation phase: SERA-RT-03 SERA Memory Domains & Holder-Controlled Personalization.
+Immediate next implementation phase: SERA-RT-07 External Intelligence & Risk Context Adapters.
 
 Production signing enabled: no.
 
