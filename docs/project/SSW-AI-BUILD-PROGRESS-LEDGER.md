@@ -1789,3 +1789,68 @@ CI evidence:
 **Dependencies closed:** controlled Holder Soul ID resolution, Soul Super Wallet identity anchoring, and SERA governance-context verification.
 
 **Next:** SSW-AI-SERA-RT-10: SVID4AI Runtime & Holder-Bound SERA Agent DID / Delegation Integration.
+
+
+---
+
+## Entry 038 — SERA-RT-10 SVID4AI Runtime & Holder-Bound SERA Agent DID / Delegation Integration
+
+**Date:** 2026-09-19  
+**Artifact:** SSW-AI-SERA-RT-10  
+**Schema Commit:** `34b632f828582ed91ce7483075f5e062bd276d0e`  
+**Runtime Commit:** `a923aca740faa670ab3e61714adbdb7ad0c7128c`  
+**Contract Test Commit:** `4929a5034669ebb2711d673487819db0ac516b34`  
+**Controlled Specification Commit:** `90aea9b5bc8ea133c538c84afae746b6c5177f3c`  
+**Final CI Head:** `a63ff4af868d8e0a63175596b25ea6e67f758b6b`  
+**CI Run:** #113, ID `35483997863`  
+**Release Evidence Hash:** `sha256:34e5d7c5e2998f583032fe4f07e565689278be8bed43b58f154200aa3e74fbab`  
+**Status:** COMPLETE
+
+Implemented:
+
+- SVID4AI Agent Context machine contract;
+- provider-neutral SVID4AI agent-resolution interface;
+- SERA `did:soul:agent` namespace validation;
+- exact governing Holder DID binding;
+- exact Operator DID binding for the holder-bound SERA profile;
+- ACTIVE / SUSPENDED / REVOKED agent-state handling;
+- DID-document and governance-binding version checks;
+- deterministic verification-method normalization;
+- integrity/provenance requirements;
+- stale-context rejection;
+- machine-enforced holder-issued mandate as the delegated authority source;
+- machine-enforced no self-expansion;
+- machine-enforced no self-renewal;
+- exact Holder/SERA mandate principal binding;
+- explicit `executionAuthorized: false`;
+- explicit `requiresExecutionTimeControlPlane: true`;
+- preservation of Trust Protocol, REV and AURION requirements.
+
+Security decisions:
+
+- SVID4AI proves agent identity and governance relationship, not execution authority;
+- an ACTIVE SERA Agent DID cannot authorize an action by itself;
+- only a holder-issued controlled mandate may provide delegated execution authority;
+- a valid mandate must still pass action-time scope, limits, conditions, device/runtime, policy, Trust Protocol and REV evaluation;
+- stale or revoked SVID4AI identity fails closed;
+- stale or inactive mandates fail closed;
+- SERA cannot widen, renew or restore its own authority;
+- recovery does not automatically reactivate prior mandates.
+
+Developer handoff:
+
+- DEV-OPEN-010 records live SVID4AI agent identity and Holder delegation service binding.
+
+CI evidence:
+
+- PostgreSQL migrations: PASS;
+- contract verification: PASS — 51 JSON Schemas;
+- 209 tests: PASS;
+- failures: 0;
+- strict TypeScript: PASS;
+- hashed release evidence: PASS;
+- release decision remains `CI_BASELINE_PASS_PRODUCTION_BLOCKED`.
+
+**Dependencies closed:** controlled SVID4AI agent identity, Holder/Operator governance binding, and identity-to-mandate separation.
+
+**Next:** SSW-AI-MOB-01: Mobile SERA Shell Integration Baseline, Feature Flags & Deterministic Fallback.
