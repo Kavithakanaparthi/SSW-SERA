@@ -116,3 +116,5 @@ export * from "./workload-identity.js";
 export * from "./observability.js";
 
 export * from "./environment-controls.js";
+
+export * from "./deployment-manifest.js";
