@@ -1911,3 +1911,61 @@ CI evidence:
 **Dependencies closed:** shared mobile migration semantics, shell fallback, feature-flag capability gating.
 
 **Next:** SSW-AI-MOB-02: Adaptive Workspace & Deterministic Fallback View Contract.
+
+
+---
+
+## Entry 040 — MOB-02 Adaptive Workspace & Deterministic Fallback View Contract
+
+**Date:** 2026-09-19  
+**Artifact:** SSW-AI-MOB-02  
+**Runtime Commit:** `a945237a0208f3ed461bd5daa701f95371f03742`  
+**Contract Test Commit:** `f1f88e9cc93e3a2b47538980d8a639576840f48f`  
+**Controlled Specification Commit:** `71124e855749dbe4bdcbae29ef58787782122d74`  
+**Final CI Head:** `921b1458aecd7a56b0fe44d30991e5b7ef40380c`  
+**CI Run:** #129, ID `35485066276`  
+**Release Evidence Hash:** `sha256:acd4db34b2119ad8badf07ab2ef991d03430c66c383898ea20ca490c02fc4a13`  
+**Status:** COMPLETE
+
+Implemented:
+
+- shared adaptive workspace semantic contract;
+- workspace classes for assets, transaction review, credentials, identity, intelligence, routes, counterparties, WalletConnect, policy/REV, activity/evidence, settings and security;
+- authoritative and external source-reference classification;
+- consequential-workspace authoritative-source requirement;
+- READ / PREPARE / NAVIGATE workspace effects;
+- workspace-local AUTHORIZE effect prohibition;
+- inspectability path to underlying state and canonical wallet surfaces;
+- external-context labeling;
+- dynamic workspace expiry;
+- deterministic fallback tray for Assets, Send, Receive, Swap, Credentials, Activity, Security, Identity, WalletConnect and Settings;
+- capability-aware fallback disabling;
+- critical Security and Identity fallback enforcement.
+
+Security decisions:
+
+- generated UI is presentation state, never canonical wallet state;
+- generated UI cannot create or exercise authorization;
+- consequential workspaces require authoritative sources;
+- external information cannot masquerade as wallet authority;
+- stale dynamic surfaces fail closed;
+- PREPARE always remains review-bound;
+- platform-specific rendering may not widen effects.
+
+Developer handoff:
+
+- DEV-OPEN-012 records native iOS / Android adaptive workspace and fallback rendering.
+
+CI evidence:
+
+- PostgreSQL migrations: PASS;
+- contract verification: PASS — 51 JSON Schemas;
+- 223 tests: PASS;
+- failures: 0;
+- strict TypeScript: PASS;
+- hashed release evidence: PASS;
+- release decision remains `CI_BASELINE_PASS_PRODUCTION_BLOCKED`.
+
+**Dependencies closed:** shared adaptive workspace semantics, inspectability, and deterministic fallback-view contract.
+
+**Next:** SSW-AI-MOB-03: Voice/Text Interaction & Concealed Detail Presentation Binding.
