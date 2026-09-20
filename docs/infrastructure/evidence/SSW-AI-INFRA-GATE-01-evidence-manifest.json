@@ -1,0 +1,39 @@
+{
+  "schema": "ssw.infrastructure-gate-evidence.v1",
+  "artifact_id": "SSW-AI-INFRA-GATE-01",
+  "date": "2026-09-20",
+  "repository": "Kavithakanaparthi/SSW-SERA",
+  "decision": "INFRASTRUCTURE_REPOSITORY_BASELINE_PASS_LIVE_DEPLOYMENT_BLOCKED",
+  "repository_baseline": "PASS",
+  "live_infrastructure_gate": "BLOCKED",
+  "production_deployment_gate": "BLOCKED",
+  "final_infra_ci": {
+    "run_number": 198,
+    "run_id": 35514425022,
+    "head_sha": "8e119bf4e14aae42bedb3c75c91f85731116b03c",
+    "tests": 281,
+    "passed": 281,
+    "failed": 0,
+    "schemas": 51,
+    "typecheck": "PASS",
+    "postgres_migrations": "PASS",
+    "evidence_hash": "sha256:6751fa8fe43fd3694362b2e6b309847de85b9b448b2db90bb4188a755b918213"
+  },
+  "infrastructure_artifacts": [
+    "INFRA-01",
+    "INFRA-02",
+    "INFRA-03",
+    "INFRA-04",
+    "INFRA-05"
+  ],
+  "direct_live_blockers": [
+    "DEV-OPEN-016",
+    "DEV-OPEN-017",
+    "DEV-OPEN-018",
+    "DEV-OPEN-019",
+    "DEV-OPEN-020"
+  ],
+  "production_signing_enabled": false,
+  "production_asset_movement_enabled": false,
+  "production_release_approved": false
+}
