@@ -1283,3 +1283,58 @@ Production remains blocked by the machine-visible developer, infrastructure, mob
 **Dependencies closed:** machine-auditable release-evidence and staging-gate framework.
 
 **Next:** SSW-AI-SERA-RT-01: Production Orchestrator Runtime.
+
+
+---
+
+## Entry 035 — SERA-RT-01 Production Orchestrator Runtime
+
+**Date:** 2026-09-19  
+**Artifact:** SSW-AI-SERA-RT-01  
+**Implementation Commit:** `f9d36411234ad1bb2dc24ff101c53b2918af929d`  
+**CI Run:** #52, ID `35479170546`  
+**Release Evidence Artifact ID:** `10594977574`  
+**Release Evidence Hash:** `sha256:ce3760d24cd6501d011942ed5d4e3deddf71b7528ea72d48ca7061bb78e23d4d`  
+**Tracker Completion Commit:** `9709325eb6017c81b3193d070b761904a6aced96`  
+**Status:** COMPLETE  
+**Stack:** TypeScript / Node.js 22 / PostgreSQL 16
+
+Implemented:
+
+- persistent production-shaped SERA orchestration record;
+- exact Action Contract construction from validated Resolved Intent;
+- exact review record generation;
+- AWAITING_APPROVAL pause state;
+- holder authentication / approval resume path;
+- deterministic authority evaluation;
+- risk evaluation;
+- device/runtime eligibility;
+- policy evaluation;
+- Trust Protocol evaluation;
+- REV evaluation;
+- READY_TO_SIGN pause boundary;
+- PostgreSQL orchestration persistence;
+- optimistic concurrency;
+- transactional outbox evidence for state transitions;
+- restart/resume semantics;
+- expiry fail-closed behavior;
+- no direct model-to-signer path.
+
+Security decisions:
+
+- orchestrator accepts typed Resolved Intent, not conversational execution instructions;
+- signing is not invoked by this runtime while DEV-OPEN-001..003 remain open;
+- Trust/REV remain separate deterministic controls;
+- every material persisted state transition has an outbox evidence record;
+- expired actions must be rebuilt rather than reused.
+
+CI evidence:
+
+- PostgreSQL migrations: PASS;
+- npm ci: PASS;
+- 152 tests: PASS;
+- strict TypeScript: PASS;
+- release evidence generation/upload: PASS;
+- release decision remains CI_BASELINE_PASS_PRODUCTION_BLOCKED.
+
+**Next:** SSW-AI-SERA-RT-02: Context Broker & Purpose-Bound Context Retrieval.
