@@ -650,3 +650,30 @@ Required production responsibilities include:
 Platform-specific presentation code may change layout, animation and native component selection, but may not widen the shared workspace effect model.
 
 This item blocks native adaptive-workspace completion under the Mobile Integration Gate.
+
+
+---
+
+## DEV-OPEN-013 — Native Voice/Text & Concealed-Detail Interaction Binding
+
+**Status:** OPEN  
+**Introduced by:** SSW-AI-MOB-03
+
+Developers shall bind the existing iOS and Android interaction layers to the MOB-03 shared voice/text and concealed-presentation contract.
+
+Required production responsibilities include:
+
+- route voice commands through the SERA-RT-04 voice safety envelope before mobile action progression;
+- preserve text/voice intent parity without treating either modality as authorization;
+- implement H0-H3 concealed-detail presentation across in-app, lock-screen, notification, widget, Live Activity and other supported OS surfaces;
+- keep reveal, review and approval as separate state transitions and separate SAEL evidence;
+- enforce authentication before H3 reveal where required;
+- implement auto-rehide on app backgrounding, screen lock, device change, timeout and explicit hide;
+- prevent concealed values from being spoken by SERA or accessibility output until permitted;
+- enforce required-review fields before an approval control becomes eligible;
+- ensure approval always routes to the deterministic approval/authentication runtime rather than being executed by the presentation component;
+- keep presentation state separate from the canonical action object and material-term hash.
+
+Native code may apply stricter privacy rules but may not weaken the shared concealment or authority separation.
+
+This item blocks completion of native Voice UI and Concealed Details UX under the Mobile Integration Gate.
