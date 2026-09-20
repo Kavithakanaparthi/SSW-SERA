@@ -74,7 +74,7 @@ Current implementation milestone:
 
 Immediate next artifact:
 
-**SSW-AI-INFRA-04: Infrastructure-as-Code & Deployment Manifest Baseline**
+**SSW-AI-INFRA-04: Infrastructure-as-Code & Deployment Manifest Baseline — IN PROGRESS**
 
 ## 5. Phase A — Product & Experience Definition
 
