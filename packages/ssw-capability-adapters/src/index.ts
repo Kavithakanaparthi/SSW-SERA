@@ -51,3 +51,5 @@ export * from "./mobile-shell.js";
 export * from "./mobile-workspace.js";
 
 export * from "./mobile-interaction.js";
+
+export * from "./mobile-handoff.js";
