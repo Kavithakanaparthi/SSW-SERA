@@ -2284,3 +2284,50 @@ CI evidence:
 **Dependencies closed:** repository-level privacy-safe observability and operational-signal baseline.
 
 **Next:** SSW-AI-INFRA-03: Environment Separation & Promotion Controls.
+
+
+---
+
+## Entry 047 — INFRA-03 Environment Separation & Promotion Controls
+
+**Date:** 2026-09-20  
+**Artifact:** SSW-AI-INFRA-03  
+**Runtime Commit:** `0afb8232b7b4eb055568eb011f5dcd86bd50a1d3`  
+**Contract Test Commit:** `5bdcd2f9f3f5e3c8fe58ae4cd2eb35c097b69a45`  
+**Controlled Specification Commit:** `58f24b8845faf0f353f81eba9a6ff8ea05909651`  
+**Final CI Head:** `943386a6a61939678e3e692c08fa25acdb328a0c`  
+**CI Run:** #182, ID `35514008253`  
+**Release Evidence Hash:** `sha256:a8ad217301b4034cd9e5f1982f8172a553c4ad3aa32cb34f283f5211448868c7`  
+**Status:** COMPLETE
+
+Implemented:
+
+- development/test/staging/production environment profiles;
+- sequential promotion enforcement;
+- database/secret/workload-identity/telemetry namespace isolation;
+- non-production signing and asset-movement prohibition;
+- staging prerequisites for workload identity, observability and controlled secrets;
+- production-candidate evidence requirement;
+- zero-blocker requirement for production promotion;
+- dedicated staging security execution requirement;
+- manual production release approval requirement;
+- synthetic-data rejection in production;
+- explicit rule that promotion does not itself enable signing or asset movement.
+
+Developer handoff:
+
+- DEV-OPEN-018 records live environment provisioning and promotion binding.
+
+CI evidence:
+
+- PostgreSQL migrations: PASS;
+- contract verification: PASS — 51 JSON Schemas;
+- 267 tests: PASS;
+- failures: 0;
+- strict TypeScript: PASS;
+- hashed release evidence: PASS;
+- release decision remains `CI_BASELINE_PASS_PRODUCTION_BLOCKED`.
+
+**Dependencies closed:** repository-level environment separation and promotion-control baseline.
+
+**Next:** SSW-AI-INFRA-04: Infrastructure-as-Code & Deployment Manifest Baseline.
