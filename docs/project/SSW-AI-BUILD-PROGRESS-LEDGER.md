@@ -1445,3 +1445,59 @@ CI evidence:
 - hashed release evidence generation: PASS.
 
 **Next:** SSW-AI-SERA-RT-04: Voice Runtime, Numerical Safety & Correction Learning.
+
+
+---
+
+## Entry 032 — SERA-RT-04 Voice Runtime, Numerical Safety & Correction Learning
+
+**Date:** 2026-09-19  
+**Artifact:** SSW-AI-SERA-RT-04  
+**Implementation Commit:** `8367602cd42d84f14014f5fad8863eeb3a86994a`  
+**Lockfile Workspace Fix:** `3b937f914cede6293e6ed2681e007881a08b4749`  
+**CI Race Stabilization:** `d41aac2a687251ca5b78845b0b12c6ded2a35c10`  
+**CI Run:** #65, ID `35479762945`  
+**Tracker Completion Commit:** `ad6652f8cbb4b3c187a38780d93351952ccc37c1`  
+**Status:** COMPLETE
+
+Implemented:
+
+- provider-neutral Voice Confidence Envelope;
+- voice risk classes V0 through V5;
+- deterministic confidence thresholds by risk class;
+- protected numeric ambiguity handling;
+- recipient ambiguity handling;
+- asset ambiguity handling;
+- negation fail-safe behavior;
+- multiple-speaker fail-safe handling;
+- V4/V5 independent-authorization requirement;
+- voice correction learning;
+- M2 language/voice correction routing;
+- M3 entity-alias correction routing;
+- machine-enforced no-authority effect for correction memory;
+- voice service package.
+
+Security decisions:
+
+- speech provider confidence is not authorization;
+- numeric ambiguity is never silently resolved for consequential actions;
+- uncertain negation at V3+ stops rather than continues;
+- entity aliases remain interpretive only and still require canonical counterparty resolution;
+- V4/V5 voice commands may only advance to independent authorization;
+- raw audio is not persisted by this runtime;
+- correction learning cannot create mandates or transaction authority.
+
+CI stabilization:
+
+A sporadic integration-test failure was traced to shared PostgreSQL tables being truncated by concurrently executing test files. Repository test execution is now serialized at file level to remove that nondeterministic CI race.
+
+CI evidence:
+
+- clean npm ci: PASS;
+- PostgreSQL migrations: PASS;
+- scaffold / contract verification: PASS;
+- 169 tests: PASS;
+- strict TypeScript: PASS;
+- hashed release evidence: PASS.
+
+**Next:** SSW-AI-SERA-RT-05: Proactive Intelligence, Monitoring & Notification Runtime.
