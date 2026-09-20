@@ -705,3 +705,28 @@ Required production responsibilities include:
 Pairing, push-delivery success, watch proximity or device synchronization must never be treated as authority.
 
 This item blocks native cross-device and proactive-surface completion under the Mobile Integration Gate.
+
+
+---
+
+## DEV-OPEN-015 — Production Feature-Flag, Cohort, Telemetry & Rollback Binding
+
+**Status:** OPEN  
+**Introduced by:** SSW-AI-MOB-05
+
+Developers shall bind the live mobile release-control stack to the MOB-05 migration and rollback runtime.
+
+Required production responsibilities include:
+
+- deliver feature flags by cohort, platform, app version and jurisdiction where applicable;
+- record non-sensitive migration telemetry for transaction success, crash-free sessions, fallback success, supportability and stage adoption;
+- prohibit migration-stage skipping;
+- preserve conventional-wallet rollback at every stage;
+- enforce opt-in before SERA-first default where the release step requires it;
+- prevent M3 expansion without required M2 non-regression evidence and release-gate evidence;
+- prevent M4 delegation unless production signing is enabled and the release is explicitly in the delegation-pilot stage;
+- provide deterministic remote rollback for SERA-first home, voice, proactive intelligence, external providers and delegated execution;
+- preserve Soul ID, wallet keys, credentials, transaction history, WalletConnect and existing wallet state across rollout/rollback;
+- avoid logging private conversational contents, keys, raw credentials or concealed details in rollout telemetry.
+
+This item blocks production rollout governance and the live Mobile Integration Gate.
