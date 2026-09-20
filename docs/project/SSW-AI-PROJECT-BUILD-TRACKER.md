@@ -74,7 +74,7 @@ Current implementation milestone:
 
 Immediate next artifact:
 
-**SSW-AI-REL-03: Automated Gate Status Derivation — IN PROGRESS**
+**SSW-AI-REL-04: Evidence/Tracker Drift Guard — IN PROGRESS**
 
 ## 5. Phase A — Product & Experience Definition
 
@@ -290,7 +290,8 @@ Open developer integrations, infrastructure blockers and release gates remain au
 | Production Release Gate | final release readiness review | NOT GATED |
 | Release Gate Evidence | consolidated blocker and readiness package | COMPLETE — repository baseline; pilot/production live blocked |
 | Live Integration Evidence Registry | structured DEV-OPEN evidence intake | COMPLETE — REL-02 |
-| Automated Gate Status Derivation | derive gate state from verified evidence | IN PROGRESS — REL-03 |
+| Automated Gate Status Derivation | derive gate state from verified evidence | COMPLETE — REL-03 |
+| Evidence / Tracker Drift Guard | fail CI on contradictory gate claims | IN PROGRESS — REL-04 |
 
 ## 14. Required Security Tests Before Production Signing
 
@@ -342,7 +343,7 @@ Completed implementation artifacts: 16.
 
 Completed productionization artifacts: 8. PROD-05 platform boundary is implemented and CI-verified; live Soul ID/SoulScan bindings are maintained as developer-owned open integration items DEV-OPEN-001 through DEV-OPEN-003.
 
-Immediate next implementation phase: REL-03 Automated Gate Status Derivation.
+Immediate next implementation phase: REL-04 Evidence/Tracker Drift Guard.
 
 Production signing enabled: no.
 
