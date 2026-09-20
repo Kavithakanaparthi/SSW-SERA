@@ -2382,3 +2382,55 @@ CI evidence:
 **Dependencies closed:** repository-level provider-neutral deployment/IaC contract.
 
 **Next:** SSW-AI-INFRA-05: Deployment Evidence & Production Deployment Gate Baseline.
+
+
+---
+
+## Entry 049 — INFRA-05 Deployment Evidence & Production Deployment Gate Baseline
+
+**Date:** 2026-09-20  
+**Artifact:** SSW-AI-INFRA-05  
+**Runtime Commit:** `27418508f29fdc4be01fc546e7c97caf6448250b`  
+**Contract Test Commit:** `a97c620748f68ead054a2774e9dd1519f2a46d9a`  
+**Controlled Specification Commit:** `00cb7b0213f1c00a9f5ee556434aecf137a0fbb1`  
+**Final CI Head:** `8e119bf4e14aae42bedb3c75c91f85731116b03c`  
+**CI Run:** #198, ID `35514425022`  
+**Release Evidence Hash:** `sha256:6751fa8fe43fd3694362b2e6b309847de85b9b448b2db90bb4188a755b918213`  
+**Status:** COMPLETE
+
+Implemented:
+
+- deployment evidence contract;
+- repository/provider/staging/production deployment-state separation;
+- provider-plan requirement;
+- no-inline-secret verification requirement;
+- trust-zone/network verification;
+- workload identity / observability / secret-provider readiness checks;
+- datastore encryption and backup evidence checks;
+- staging deployment execution requirement;
+- health-check requirement;
+- rollback-drill requirement;
+- drift-check requirement;
+- open deployment-blocker enforcement;
+- production-candidate release evidence requirement;
+- dedicated security execution requirement;
+- manual deployment approval requirement;
+- deployment gate remains separate from signing/asset-movement enablement.
+
+Developer handoff:
+
+- DEV-OPEN-020 records live deployment evidence and Production Deployment Gate closure.
+
+CI evidence:
+
+- PostgreSQL migrations: PASS;
+- contract verification: PASS — 51 JSON Schemas;
+- 281 tests: PASS;
+- failures: 0;
+- strict TypeScript: PASS;
+- hashed release evidence: PASS;
+- release decision remains `CI_BASELINE_PASS_PRODUCTION_BLOCKED`.
+
+**Dependencies closed:** repository-level deployment evidence and Production Deployment Gate semantics.
+
+**Next:** SSW-AI-INFRA-GATE-01: Phase H Infrastructure Gate Evidence Package.
