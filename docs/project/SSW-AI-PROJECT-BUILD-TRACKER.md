@@ -74,7 +74,7 @@ Current implementation milestone:
 
 Immediate next artifact:
 
-**SSW-AI-INFRA-04: Infrastructure-as-Code & Deployment Manifest Baseline — IN PROGRESS**
+**SSW-AI-INFRA-05: Deployment Evidence & Production Deployment Gate Baseline**
 
 ## 5. Phase A — Product & Experience Definition
 
@@ -263,6 +263,7 @@ Authoritative handoff record:
 | DEV-OPEN-016 | Production workload identity issuance / mTLS-SPIFFE binding | OPEN | live workload identity / environment release gating |
 | DEV-OPEN-017 | Production observability exporter / retention / residency binding | OPEN | live observability / environment release gating |
 | DEV-OPEN-018 | Live environment separation / secret namespace / promotion binding | OPEN | live environment separation / production release gating |
+| DEV-OPEN-019 | Provider-specific IaC / network / deployment binding | OPEN | Production Deployment Gate |
 
 These items do not block continued controlled repository construction.
 
@@ -335,7 +336,7 @@ Completed implementation artifacts: 16.
 
 Completed productionization artifacts: 8. PROD-05 platform boundary is implemented and CI-verified; live Soul ID/SoulScan bindings are maintained as developer-owned open integration items DEV-OPEN-001 through DEV-OPEN-003.
 
-Immediate next implementation phase: INFRA-04 Infrastructure-as-Code & Deployment Manifest Baseline.
+Immediate next implementation phase: INFRA-05 Deployment Evidence & Production Deployment Gate Baseline.
 
 Production signing enabled: no.
 
