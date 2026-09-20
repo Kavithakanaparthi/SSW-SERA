@@ -2192,3 +2192,50 @@ The package explicitly distinguishes repository-controlled completion from nativ
 **Decision:** `MOBILE_REPOSITORY_BASELINE_PASS_LIVE_INTEGRATION_BLOCKED`
 
 **Next:** SSW-AI-INFRA-01: Production Workload Identity Baseline.
+
+
+---
+
+## Entry 045 — INFRA-01 Production Workload Identity Baseline
+
+**Date:** 2026-09-20  
+**Artifact:** SSW-AI-INFRA-01  
+**Runtime Commit:** `01800332960d3a9f22f945f3e1473332132119d3`  
+**Contract Test Commit:** `28876ea48299dfd0a27659ffda483021d085c7ba`  
+**Controlled Specification Commit:** `12a4b394fa2c62d79a860fddce94c7047d137bc3`  
+**Final CI Head:** `6bd29d34e5ca9301195e1635e3b096dd7a68f354`  
+**CI Run:** #166, ID `35486725371`  
+**Release Evidence Hash:** `sha256:3f0c20f715b2102f34c0fae02aaf74fd9bff02d429ed2afd11b99a2f40679184`  
+**Status:** COMPLETE
+
+Implemented:
+
+- mTLS-backed workload identity verification boundary;
+- SPIFFE-compatible X.509 identity extraction;
+- explicit trust-domain validation;
+- certificate validity and fingerprint requirements;
+- ambiguous SPIFFE identity rejection;
+- optional exact workload-ID allowlisting;
+- explicit caller-to-target-service authorization;
+- optional caller-to-action authorization;
+- fail-closed plain HTTP behavior;
+- asserted identity headers remain non-authoritative;
+- workload identity remains separate from wallet, signing, holder and mandate authority.
+
+Developer handoff:
+
+- DEV-OPEN-016 records production workload identity issuance, trust bundle, mTLS/SPIFFE and rotation binding.
+
+CI evidence:
+
+- PostgreSQL migrations: PASS;
+- contract verification: PASS — 51 JSON Schemas;
+- 252 tests: PASS;
+- failures: 0;
+- strict TypeScript: PASS;
+- hashed release evidence: PASS;
+- release decision remains `CI_BASELINE_PASS_PRODUCTION_BLOCKED`.
+
+**Dependencies closed:** repository-level production workload identity verifier and service authorization baseline.
+
+**Next:** SSW-AI-INFRA-02: Observability, Telemetry Privacy & Operational Signal Baseline.
