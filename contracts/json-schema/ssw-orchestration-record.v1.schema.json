@@ -1,0 +1,183 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.soulverse.world/ssw/json-schema/ssw-orchestration-record.v1.schema.json",
+  "title": "SSW Orchestration Record v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "orchestration_id",
+    "record_version",
+    "action_id",
+    "intent_id",
+    "holder_did",
+    "sera_agent_did",
+    "state",
+    "material_terms_hash",
+    "action_contract",
+    "review_record",
+    "approval_record",
+    "control_refs",
+    "signing_request",
+    "reason_codes",
+    "created_at",
+    "updated_at",
+    "expires_at"
+  ],
+  "properties": {
+    "schema": {
+      "const": "ssw.orchestration-record.v1"
+    },
+    "orchestration_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "record_version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "action_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "intent_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "holder_did": {
+      "type": "string",
+      "pattern": "^did:soul:[a-z0-9._:-]+$"
+    },
+    "sera_agent_did": {
+      "type": "string",
+      "pattern": "^did:soul:agent:[a-z0-9._:-]+$"
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "AWAITING_APPROVAL",
+        "CONTROL_EVALUATION",
+        "TRUST_EVALUATION",
+        "REV_EVALUATION",
+        "READY_TO_SIGN",
+        "BLOCKED",
+        "EXPIRED",
+        "CANCELLED",
+        "FAILED"
+      ]
+    },
+    "material_terms_hash": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "action_contract": {
+      "$ref": "ssw-action-contract.v1.schema.json"
+    },
+    "review_record": {
+      "anyOf": [
+        {
+          "$ref": "ssw-review-record.v1.schema.json"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "approval_record": {
+      "anyOf": [
+        {
+          "$ref": "ssw-approval-record.v1.schema.json"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "control_refs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "authority_decision_id",
+        "risk_decision_id",
+        "policy_decision_id",
+        "eligibility_decision_id",
+        "trust_decision_id",
+        "rev_decision_id"
+      ],
+      "properties": {
+        "authority_decision_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uuid"
+        },
+        "risk_decision_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uuid"
+        },
+        "policy_decision_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uuid"
+        },
+        "eligibility_decision_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uuid"
+        },
+        "trust_decision_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uuid"
+        },
+        "rev_decision_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uuid"
+        }
+      }
+    },
+    "signing_request": {
+      "anyOf": [
+        {
+          "$ref": "ssw-signing-request.v1.schema.json"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "reason_codes": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Z][A-Z0-9_]*$"
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}
