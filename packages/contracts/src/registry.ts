@@ -45,7 +45,8 @@ export const contractSchemaIds = {
   routeRequest: "https://schemas.soulverse.world/ssw/json-schema/ssw-route-request.v1.schema.json",
   routeDecision: "https://schemas.soulverse.world/ssw/json-schema/ssw-route-decision.v1.schema.json",
   externalContextRecord: "https://schemas.soulverse.world/ssw/json-schema/ssw-external-context-record.v1.schema.json",
-  counterpartyResolution: "https://schemas.soulverse.world/ssw/json-schema/ssw-counterparty-resolution.v1.schema.json"
+  counterpartyResolution: "https://schemas.soulverse.world/ssw/json-schema/ssw-counterparty-resolution.v1.schema.json",
+  holderIdentityContext: "https://schemas.soulverse.world/ssw/json-schema/ssw-holder-identity-context.v1.schema.json"
 } as const;
 
 export type ContractKind =
@@ -95,7 +96,8 @@ export type ContractKind =
   | "route-request"
   | "route-decision"
   | "external-context-record"
-  | "counterparty-resolution";
+  | "counterparty-resolution"
+  | "holder-identity-context";
 
 export const contractKindToSchemaId: Readonly<Record<ContractKind, string>> = {
   "intent-envelope": contractSchemaIds.intentEnvelope,
@@ -144,5 +146,6 @@ export const contractKindToSchemaId: Readonly<Record<ContractKind, string>> = {
   "route-request": contractSchemaIds.routeRequest,
   "route-decision": contractSchemaIds.routeDecision,
   "external-context-record": contractSchemaIds.externalContextRecord,
-  "counterparty-resolution": contractSchemaIds.counterpartyResolution
+  "counterparty-resolution": contractSchemaIds.counterpartyResolution,
+  "holder-identity-context": contractSchemaIds.holderIdentityContext
 };
