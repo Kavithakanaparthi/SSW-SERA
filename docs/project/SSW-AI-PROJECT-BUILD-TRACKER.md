@@ -74,7 +74,7 @@ Current implementation milestone:
 
 Immediate next artifact:
 
-**SSW-AI-SERA-RT-07: External Intelligence & Risk Context Adapters**
+**SSW-AI-SERA-RT-08: Credential Runtime & Soulogram Presentation Integration**
 
 ## 5. Phase A — Product & Experience Definition
 
@@ -172,10 +172,10 @@ Immediate next artifact:
 | Proactive Intelligence | Monitoring, prioritization, notification policy | COMPLETE — SERA-RT-05 |
 | Multi-Chain Routing | Chain / fee / compatibility route evaluation | COMPLETE — SERA-RT-06 |
 | Existing SSW Capability Adapters | balances, send, receive, swap, WalletConnect, credentials | COMPLETE — typed boundary; live bindings DEV-OPEN-006 |
-| News Integration Adapter | Existing news APIs through Context Broker | NEXT — SERA-RT-07 |
-| LinkedIn Context Adapter | Existing LinkedIn API context under privacy rules | PLANNED |
-| Spam / Risk Signal Adapter | Existing spam filter into risk/control path | PLANNED |
-| Credential Runtime | Soulogram / VC / proof presentation integration | PLANNED |
+| News Integration Adapter | Existing news APIs through Context Broker | COMPLETE — typed boundary; live binding DEV-OPEN-007 |
+| LinkedIn Context Adapter | Existing LinkedIn API context under privacy rules | COMPLETE — typed boundary; live binding DEV-OPEN-007 |
+| Spam / Risk Signal Adapter | Existing spam filter into risk/control path | COMPLETE — typed boundary; live binding DEV-OPEN-007 |
+| Credential Runtime | Soulogram / VC / proof presentation integration | NEXT — SERA-RT-08 |
 | Soul ID Runtime | did:soul holder context / recovery integration | PLANNED |
 | SVID4AI Runtime | Holder-bound SERA Agent DID / delegation integration | PLANNED |
 
@@ -251,6 +251,7 @@ Authoritative handoff record:
 | DEV-OPEN-004 | Production EVM RPC / signed-payload resolver binding | OPEN | Execution Gate / Release Gate |
 | DEV-OPEN-005 | SAEL checkpoint signer / encrypted archive binding | OPEN | SAEL Gate / Release Gate |
 | DEV-OPEN-006 | Existing SSW capability / multi-chain provider binding | OPEN | Mobile Integration Gate / live capability claims |
+| DEV-OPEN-007 | News / professional context / asset-risk provider binding | OPEN | live external-intelligence capability claims |
 
 These items do not block continued controlled repository construction.
 
