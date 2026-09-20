@@ -2682,3 +2682,36 @@ CI evidence:
 **Repository-controlled evidence automation layer:** COMPLETE.
 
 **Next:** SSW-AI-LIVE-01: DEV-OPEN-001 Signing Evidence Packet.
+
+
+---
+
+## Entry 056 — LIVE-01 DEV-OPEN-001 Soul ID Portable Signing-Key Evidence Packet
+
+**Date:** 2026-09-20  
+**Artifact:** SSW-AI-LIVE-01  
+**Evidence Packet Commit:** `bff1182e45ab306704a510143dac3f3f2eb47a40`  
+**Submission Template Commit:** `49c266b1ac294de7a9414df3e01334de49004a5d`  
+**Status:** PREPARED — LIVE EVIDENCE NOT YET SUBMITTED
+
+Prepared:
+
+- exact production-interface mapping evidence requirement;
+- environment configuration reference requirement;
+- manifest resolution evidence;
+- IPFS CID/hash verification evidence;
+- replacement-device recovery evidence;
+- stale key-version rejection;
+- wrong Holder DID rejection;
+- no-plaintext-key persistence verification;
+- staging integration test evidence;
+- independent security review evidence;
+- machine-readable submission template.
+
+DEV-OPEN-001 remains OPEN.
+
+No live evidence has been claimed or inferred.
+
+Production signing remains disabled.
+
+**Next:** live team submits DEV-OPEN-001 evidence using the controlled template; independent reviewer verifies or rejects it.
