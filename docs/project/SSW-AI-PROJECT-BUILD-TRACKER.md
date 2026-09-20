@@ -74,7 +74,7 @@ Current implementation milestone:
 
 Immediate next artifact:
 
-**SSW-AI-INFRA-03: Environment Separation & Promotion Controls**
+**SSW-AI-INFRA-03: Environment Separation & Promotion Controls — IN PROGRESS**
 
 ## 5. Phase A — Product & Experience Definition
 
@@ -219,7 +219,7 @@ A paired wearable never automatically inherits phone authority.
 | Secret Management | SoulScan/IPFS portable key lifecycle + service secrets | IN PROGRESS |
 | Observability | logs, traces, metrics without sensitive leakage | COMPLETE — INFRA-02; live binding DEV-OPEN-017 |
 | CI/CD | contract, security, conformance and release gates | BASELINE COMPLETE — steady-state read-only CI active |
-| Environment Separation | dev / test / staging / production | NEXT — INFRA-03 |
+| Environment Separation | dev / test / staging / production | IN PROGRESS — INFRA-03 |
 | Infrastructure-as-Code | reproducible deployments | PLANNED |
 
 ## 12A. Productionization Milestones
