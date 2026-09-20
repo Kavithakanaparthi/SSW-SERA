@@ -559,3 +559,39 @@ Holder Soul ID
 ```
 
 This item blocks claims of live Soul ID holder-context integration but does not block continued independent SSW-SERA construction.
+
+
+---
+
+## DEV-OPEN-010 — SVID4AI Agent Identity & Holder Delegation Live Binding
+
+**Status:** OPEN  
+**Introduced by:** SSW-AI-SERA-RT-10
+
+Developers shall bind the live SVID4AI service behind the RT-10 `Svid4AiProvider` interface.
+
+Required production binding responsibilities include:
+
+- resolve the current SERA `did:soul:agent`;
+- return current ACTIVE / SUSPENDED / REVOKED agent status;
+- return the governing Holder DID;
+- return the Operator DID;
+- return current SVID4AI DID-document reference and monotonic version;
+- return controlled verification-method references;
+- return Holder/agent governance-binding reference and version;
+- return integrity/provenance evidence;
+- return authoritative observation and validity timestamps;
+- reject stale, ambiguous or unverifiable agent identity state.
+
+For the SSW-SERA holder-bound profile:
+
+- governing Holder DID must equal the Soul Super Wallet Holder DID;
+- Operator DID must equal the Holder DID;
+- an ACTIVE SVID4AI identity does not grant transaction or credential-disclosure authority;
+- holder-issued mandates remain the only delegated execution-authority objects;
+- mandate scope, limits, conditions, device/runtime restrictions and expiry must remain enforced by the existing deterministic mandate runtime;
+- Trust Protocol and REV remain mandatory where the mandate/policy requires them;
+- AURION remains separately enforced where required;
+- SERA must never self-expand or self-renew delegated authority.
+
+This item blocks claims of live SVID4AI production integration but does not block continued controlled repository construction.
