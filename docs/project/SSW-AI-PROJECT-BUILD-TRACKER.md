@@ -74,7 +74,7 @@ Current implementation milestone:
 
 Immediate next artifact:
 
-**SSW-AI-SERA-RT-09: Soul ID Runtime & did:soul Holder Context Integration — IN PROGRESS**
+**SSW-AI-SERA-RT-10: SVID4AI Runtime & Holder-Bound SERA Agent DID / Delegation Integration**
 
 ## 5. Phase A — Product & Experience Definition
 
@@ -176,8 +176,8 @@ Immediate next artifact:
 | LinkedIn Context Adapter | Existing LinkedIn API context under privacy rules | COMPLETE — typed boundary; live binding DEV-OPEN-007 |
 | Spam / Risk Signal Adapter | Existing spam filter into risk/control path | COMPLETE — typed boundary; live binding DEV-OPEN-007 |
 | Credential Runtime | Soulogram / VC / proof presentation integration | COMPLETE — SERA-RT-08; live binding DEV-OPEN-008 |
-| Soul ID Runtime | did:soul holder context / recovery integration | IN PROGRESS — SERA-RT-09 |
-| SVID4AI Runtime | Holder-bound SERA Agent DID / delegation integration | PLANNED |
+| Soul ID Runtime | did:soul holder context / recovery integration | COMPLETE — SERA-RT-09; live binding DEV-OPEN-009 |
+| SVID4AI Runtime | Holder-bound SERA Agent DID / delegation integration | NEXT — SERA-RT-10 |
 
 ## 10. Phase F — Mobile Product Integration
 
@@ -253,6 +253,7 @@ Authoritative handoff record:
 | DEV-OPEN-006 | Existing SSW capability / multi-chain provider binding | OPEN | Mobile Integration Gate / live capability claims |
 | DEV-OPEN-007 | News / professional context / asset-risk provider binding | OPEN | live external-intelligence capability claims |
 | DEV-OPEN-008 | Soulogram / OpenID4VP live credential presentation binding | OPEN | live credential-presentation capability claims |
+| DEV-OPEN-009 | Soul ID holder context / SERA governance live binding | OPEN | live Soul ID holder-context capability claims |
 
 These items do not block continued controlled repository construction.
 
@@ -325,7 +326,7 @@ Completed implementation artifacts: 16.
 
 Completed productionization artifacts: 8. PROD-05 platform boundary is implemented and CI-verified; live Soul ID/SoulScan bindings are maintained as developer-owned open integration items DEV-OPEN-001 through DEV-OPEN-003.
 
-Immediate next implementation phase: SERA-RT-09 Soul ID Runtime & did:soul Holder Context Integration.
+Immediate next implementation phase: SERA-RT-10 SVID4AI Runtime & Holder-Bound SERA Agent DID / Delegation Integration.
 
 Production signing enabled: no.
 
