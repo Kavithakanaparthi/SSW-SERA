@@ -48,42 +48,41 @@ export class PostgresSaelStore{
   const eventHash=sha256DomainSeparated(SAEL_EVENT_HASH_DOMAIN,event as unknown as CanonicalJson).hash;
 
   return await this.db.transaction(async session=>{
-   const db=(session as any).db ?? null;
-   void db;
-   const existing=await this.db.pool.query(`SELECT event_hash,sequence,event_id,recorded_at FROM ssw.sael_event WHERE producer_id=$1 AND idempotency_key=$2`,[input.producerId,input.idempotencyKey]);
+   const tx=(session as any).db as {query:(text:string,values?:readonly unknown[])=>Promise<{rows:any[];rowCount:number|null}>};
+   const existing=await tx.query(`SELECT event_hash,sequence,event_id,recorded_at FROM ssw.sael_event WHERE producer_id=$1 AND idempotency_key=$2`,[input.producerId,input.idempotencyKey]);
    if(existing.rowCount){
     const row=existing.rows[0]!;
     if(row.event_hash!==eventHash)throw new SaelPersistenceError("IDEMPOTENCY_CONFLICT");
     return assertContract("sael-ingest-result",{schema:"ssw.sael-ingest-result.v1",event_id:row.event_id,accepted:true,sequence:Number(row.sequence),event_hash:row.event_hash,durability:"COMMITTED",recorded_at:new Date(row.recorded_at).toISOString()}) as unknown as SaelIngestResult;
    }
-   const byEvent=await this.db.pool.query(`SELECT event_hash,sequence,recorded_at FROM ssw.sael_event WHERE event_id=$1::uuid`,[event.event_id]);
+   const byEvent=await tx.query(`SELECT event_hash,sequence,recorded_at FROM ssw.sael_event WHERE event_id=$1::uuid`,[event.event_id]);
    if(byEvent.rowCount){
     const row=byEvent.rows[0]!;
     if(row.event_hash!==eventHash)throw new SaelPersistenceError("SAEL_EVENT_ID_CONFLICT");
     return assertContract("sael-ingest-result",{schema:"ssw.sael-ingest-result.v1",event_id:event.event_id,accepted:true,sequence:Number(row.sequence),event_hash:row.event_hash,durability:"COMMITTED",recorded_at:new Date(row.recorded_at).toISOString()}) as unknown as SaelIngestResult;
    }
 
-   await this.db.pool.query(`INSERT INTO ssw.sael_stream_head(stream_id) VALUES($1) ON CONFLICT DO NOTHING`,[event.stream_id]);
-   const headResult=await this.db.pool.query(`SELECT sequence,event_hash FROM ssw.sael_stream_head WHERE stream_id=$1 FOR UPDATE`,[event.stream_id]);
+   await tx.query(`INSERT INTO ssw.sael_stream_head(stream_id) VALUES($1) ON CONFLICT DO NOTHING`,[event.stream_id]);
+   const headResult=await tx.query(`SELECT sequence,event_hash FROM ssw.sael_stream_head WHERE stream_id=$1 FOR UPDATE`,[event.stream_id]);
    const head=headResult.rows[0]!;
    const previous=head.event_hash??null;
    if(event.previous_event_hash!==previous)throw new SaelPersistenceError("SAEL_PREVIOUS_HASH_MISMATCH");
    const sequence=Number(head.sequence)+1;
 
-   await this.db.pool.query(`INSERT INTO ssw.sael_event(stream_id,sequence,event_id,producer_id,idempotency_key,event_type,event_hash,previous_event_hash,event_json,occurred_at,recorded_at)
+   await tx.query(`INSERT INTO ssw.sael_event(stream_id,sequence,event_id,producer_id,idempotency_key,event_type,event_hash,previous_event_hash,event_json,occurred_at,recorded_at)
      VALUES($1,$2,$3::uuid,$4,$5,$6,$7,$8,$9::jsonb,$10::timestamptz,$11::timestamptz)`,
      [event.stream_id,sequence,event.event_id,input.producerId,input.idempotencyKey,event.event_type,eventHash,event.previous_event_hash,JSON.stringify(event),event.occurred_at,input.recordedAt]);
-   await this.db.pool.query(`UPDATE ssw.sael_stream_head SET sequence=$2,event_hash=$3,updated_at=now() WHERE stream_id=$1`,[event.stream_id,sequence,eventHash]);
+   await tx.query(`UPDATE ssw.sael_stream_head SET sequence=$2,event_hash=$3,updated_at=now() WHERE stream_id=$1`,[event.stream_id,sequence,eventHash]);
 
    const actionId=(event.correlation as any).action_id;
    if(typeof actionId==="string"){
-    const reservations=await this.db.pool.query(`SELECT reservation_id,expected_event_types FROM ssw.sael_reservation WHERE action_id=$1::uuid AND completed=false AND expires_at>$2::timestamptz FOR UPDATE`,[actionId,input.recordedAt]);
+    const reservations=await tx.query(`SELECT reservation_id,expected_event_types FROM ssw.sael_reservation WHERE action_id=$1::uuid AND completed=false AND expires_at>$2::timestamptz FOR UPDATE`,[actionId,input.recordedAt]);
     if(reservations.rowCount){
-     const eventTypes=await this.db.pool.query(`SELECT DISTINCT event_type FROM ssw.sael_event WHERE (event_json->'correlation'->>'action_id')=$1`,[actionId]);
+     const eventTypes=await tx.query(`SELECT DISTINCT event_type FROM ssw.sael_event WHERE (event_json->'correlation'->>'action_id')=$1`,[actionId]);
      const types=new Set(eventTypes.rows.map((r:any)=>r.event_type));
      for(const reservation of reservations.rows){
       const expected=reservation.expected_event_types as string[];
-      if(expected.every(t=>types.has(t)))await this.db.pool.query(`UPDATE ssw.sael_reservation SET completed=true,completed_at=$2::timestamptz WHERE reservation_id=$1::uuid`,[reservation.reservation_id,input.recordedAt]);
+      if(expected.every(t=>types.has(t)))await tx.query(`UPDATE ssw.sael_reservation SET completed=true,completed_at=$2::timestamptz WHERE reservation_id=$1::uuid`,[reservation.reservation_id,input.recordedAt]);
      }
     }
    }
