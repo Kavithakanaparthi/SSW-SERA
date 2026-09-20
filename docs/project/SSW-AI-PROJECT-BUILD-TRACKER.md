@@ -74,7 +74,7 @@ Current implementation milestone:
 
 Immediate next artifact:
 
-**SSW-AI-MOB-02: Adaptive Workspace & Deterministic Fallback View Contract**
+**SSW-AI-MOB-02: Adaptive Workspace & Deterministic Fallback View Contract — IN PROGRESS**
 
 ## 5. Phase A — Product & Experience Definition
 
@@ -185,8 +185,8 @@ Immediate next artifact:
 |---|---|---|
 | iOS SERA Shell | SERA-first primary wallet experience | COMPLETE — MOB-01 shared shell baseline; native binding DEV-OPEN-011 |
 | Android SERA Shell | SERA-first primary wallet experience | COMPLETE — MOB-01 shared shell baseline; native binding DEV-OPEN-011 |
-| Adaptive Workspace | Contextual structured views instead of static tabs | NEXT — MOB-02 |
-| Deterministic Fallback UI | Assets / Send / Receive / Swap / Credentials / Activity / Security | NEXT — MOB-02 |
+| Adaptive Workspace | Contextual structured views instead of static tabs | IN PROGRESS — MOB-02 |
+| Deterministic Fallback UI | Assets / Send / Receive / Swap / Credentials / Activity / Security | IN PROGRESS — MOB-02 |
 | Voice UI | Text + voice parity and safe confirmation | PLANNED |
 | Concealed Details UX | Reveal/re-hide / approval separation | PLANNED |
 | Cross-Device Handoff | Phone / desktop / wearable-safe task continuation | PLANNED |
