@@ -1233,3 +1233,53 @@ CI evidence:
 **Dependencies closed:** durable append-only SAEL, checkpoint, archive-provider and integrity-verification baseline.
 
 **Next:** SSW-AI-PROD-08: Staging Security Gate & Release Evidence.
+
+
+---
+
+## Entry 034 — PROD-08 Staging Security Gate & Release Evidence
+
+**Date:** 2026-09-19  
+**Artifact:** SSW-AI-PROD-08  
+**Implementation Commit:** `56c1cf2e940c30a254e915fdc7a7900643de981b`  
+**Fail-Closed Workflow Correction:** `a099e0429843688b74cb5f655db28b2bdcfb4825`  
+**CI Run:** #49, ID `35478950585`  
+**Release Evidence Artifact ID:** `10595236951`  
+**Release Evidence Hash:** `sha256:b626642694ead4ec525e05fbc4d6d185a4d685d096b96983baf7dc07bac2cf20`  
+**Tracker Completion Commit:** `a1e85f64260ba0fb04220b100bb1aaefb758dd8d`  
+**Status:** COMPLETE — REPOSITORY/STAGING-EVIDENCE FRAMEWORK BASELINE
+
+Implemented:
+
+- machine-readable `ssw.release-evidence.v1` contract;
+- machine-readable release blocker registry;
+- hashed release-evidence generator;
+- test-summary extraction from actual CI output;
+- production-gate state calculation;
+- security-manifest reporting;
+- explicit staging-attack execution state;
+- CI/STAGING evidence environment distinction;
+- read-only GitHub Actions artifact upload;
+- release evidence integrity verification;
+- fail-closed rule preventing manual self-assertion of completed staging attack execution.
+
+Run #49 evidence:
+
+- PostgreSQL migrations: PASS;
+- npm ci: PASS;
+- scaffold verification: PASS;
+- contract verification: PASS;
+- 149 tests: PASS;
+- strict TypeScript: PASS;
+- release-evidence generation: PASS;
+- artifact upload: PASS;
+- decision: CI_BASELINE_PASS_PRODUCTION_BLOCKED;
+- open blockers: 12.
+
+The successful repository baseline does not constitute production approval.
+
+Production remains blocked by the machine-visible developer, infrastructure, mobile and pilot blockers.
+
+**Dependencies closed:** machine-auditable release-evidence and staging-gate framework.
+
+**Next:** SSW-AI-SERA-RT-01: Production Orchestrator Runtime.
