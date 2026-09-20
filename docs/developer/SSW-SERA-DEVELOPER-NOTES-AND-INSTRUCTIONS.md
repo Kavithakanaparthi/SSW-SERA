@@ -807,3 +807,44 @@ Required evidence:
 - incident reconstruction drill using references without sensitive payload duplication.
 
 This item blocks live production observability claims and contributes to environment/release gating.
+
+
+---
+
+## DEV-OPEN-018 — Live Environment Separation, Secret Namespace & Promotion Binding
+
+**Status:** OPEN  
+**Introduced by:** SSW-AI-INFRA-03
+
+Developers / platform engineering shall bind the actual development, test, staging and production infrastructure to the INFRA-03 environment-separation contract.
+
+Required production responsibilities include:
+
+- provision distinct database namespaces per environment;
+- provision distinct secret namespaces per environment;
+- provision distinct workload trust domains / credential issuers per environment;
+- provision distinct telemetry namespaces per environment;
+- prevent development/test credentials from authenticating to staging/production;
+- prevent production secrets and production holder data from being copied into lower environments;
+- enforce sequential promotion only;
+- require green tests, contracts, migrations and typecheck for promotion;
+- require workload identity, sanitized observability and controlled secrets before staging;
+- require PRODUCTION_CANDIDATE evidence, zero release blockers, completed staging security execution and manual approval before production promotion;
+- demonstrate rollback using production-safe prior artifacts/configuration rather than state copied from lower environments;
+- preserve separate signing/execution gates so deployment promotion cannot enable production asset movement.
+
+Required evidence:
+
+- environment inventory;
+- database namespace mapping;
+- secret namespace mapping;
+- trust-domain mapping;
+- telemetry namespace mapping;
+- lower-to-higher credential rejection;
+- production-data-to-lower-environment prohibition evidence;
+- staging promotion drill;
+- production promotion dry-run with blockers;
+- rollback drill;
+- audit record of promotion approvals.
+
+This item blocks live environment-separation claims and contributes to production release gating.
