@@ -924,3 +924,39 @@ Required evidence includes:
 A successful deployment-gate result does not enable wallet signing or production asset movement. Those remain separately gated.
 
 This item blocks live Production Deployment Gate closure.
+
+
+---
+
+## DEV-OPEN-021 — Controlled Pilot Execution & Final Release Evidence
+
+**Status:** OPEN  
+**Introduced by:** SSW-AI-REL-01
+
+Product, platform, security and operations teams shall produce the live pilot and final-release evidence required by REL-01.
+
+Required pilot evidence includes:
+
+- all pre-pilot production gates COMPLETE;
+- zero open release blockers;
+- controlled cohort definition and size;
+- rollback readiness;
+- support readiness;
+- sanitized telemetry readiness;
+- privacy review completion;
+- incident response readiness;
+- transaction-success non-regression;
+- recoverability non-regression;
+- security-control-access non-regression;
+- zero unresolved severity-1 incidents.
+
+Required final-release evidence includes:
+
+- Pilot Gate COMPLETE;
+- production-candidate release evidence;
+- manual final release approval;
+- final blocker registry with zero open release blockers.
+
+Pilot and final-release candidacy do not themselves enable signing or production asset movement. Separate activation controls remain required.
+
+This item blocks Pilot Gate and Production Release Gate closure.
