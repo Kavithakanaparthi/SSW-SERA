@@ -16,11 +16,11 @@
     "verify:scaffold": "node scripts/verify-scaffold.mjs",
     "verify:contracts": "node scripts/verify-contracts.mjs",
     "validate:fixture": "tsx scripts/validate-action-fixture.ts",
-    "test": "tsx --test tests/contract/*.test.mjs tests/contract/*.test.ts tests/integration/*.test.ts tests/security/*.test.ts",
+    "test": "tsx --test --test-concurrency=1 tests/contract/*.test.mjs tests/contract/*.test.ts tests/integration/*.test.ts tests/security/*.test.ts",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "check": "npm run verify:scaffold && npm run verify:contracts && npm test && npm run typecheck",
     "build:payment-fixture": "tsx scripts/build-payment-action-fixture.ts",
-    "test:security": "tsx --test tests/security/*.test.ts",
+    "test:security": "tsx --test --test-concurrency=1 tests/security/*.test.ts",
     "ci:verify": "npm run verify:scaffold && npm run verify:contracts && npm test && npm run typecheck",
     "db:migrate": "tsx scripts/migrate-postgres.ts",
     "release:evidence": "tsx scripts/generate-release-evidence.ts"
