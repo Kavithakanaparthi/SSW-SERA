@@ -74,6 +74,9 @@ jobs:
       - name: Verify contracts
         run: npm run verify:contracts
 
+      - name: Verify release evidence drift
+        run: npm run verify:release-drift
+
       - name: Run contract, integration and security tests
         shell: bash
         run: |
