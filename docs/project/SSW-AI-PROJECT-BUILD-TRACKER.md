@@ -74,7 +74,7 @@ Current implementation milestone:
 
 Immediate next artifact:
 
-**SSW-AI-MOB-GATE-01: Mobile Integration Gate Evidence Package**
+**SSW-AI-INFRA-01: Production Workload Identity Baseline**
 
 ## 5. Phase A — Product & Experience Definition
 
@@ -215,7 +215,7 @@ A paired wearable never automatically inherits phone authority.
 | Service Framework Selection | production framework / runtime conventions | COMPLETE — Node 22 + @soulverse/service-host |
 | Database Architecture | state ownership / persistence implementation | COMPLETE — PostgreSQL baseline |
 | Event Transport | durable event/message transport | COMPLETE — transactional outbox/inbox baseline |
-| Workload Identity | runtime service identity | PLANNED |
+| Workload Identity | runtime service identity | NEXT — INFRA-01 |
 | Secret Management | SoulScan/IPFS portable key lifecycle + service secrets | IN PROGRESS |
 | Observability | logs, traces, metrics without sensitive leakage | PLANNED |
 | CI/CD | contract, security, conformance and release gates | BASELINE COMPLETE — steady-state read-only CI active |
@@ -278,7 +278,7 @@ Open developer integrations, infrastructure blockers and release gates remain au
 | Recovery Gate | end-to-end recovery and compromise tests passed | NOT GATED |
 | SAEL Gate | evidence integrity / durability / audit queries verified | NOT GATED |
 | Security Gate | threat-model test suite passed | NOT GATED |
-| Mobile Integration Gate | iOS / Android control-path integration verified | NOT GATED |
+| Mobile Integration Gate | iOS / Android control-path integration verified | REPOSITORY BASELINE COMPLETE — LIVE BLOCKED by DEV-OPEN-006, DEV-OPEN-011..015 |
 | Pilot Gate | controlled user pilot | NOT GATED |
 | Production Release Gate | final release readiness review | NOT GATED |
 
@@ -332,7 +332,7 @@ Completed implementation artifacts: 16.
 
 Completed productionization artifacts: 8. PROD-05 platform boundary is implemented and CI-verified; live Soul ID/SoulScan bindings are maintained as developer-owned open integration items DEV-OPEN-001 through DEV-OPEN-003.
 
-Immediate next implementation phase: MOB-GATE-01 Mobile Integration Gate Evidence Package.
+Immediate next implementation phase: INFRA-01 Production Workload Identity Baseline.
 
 Production signing enabled: no.
 
