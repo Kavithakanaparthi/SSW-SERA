@@ -45,3 +45,5 @@ export interface SswCapabilityAdapters{
 }
 
 export * from "./credential-runtime.js";
+
+export * from "./mobile-shell.js";
