@@ -4,7 +4,7 @@
 **Document ID:** SSW-SERA-DEV-NOTES-001  
 **Status:** Living Controlled Developer Record  
 **Repository:** `Kavithakanaparthi/SSW-SERA`  
-**Last Updated:** 2026-09-19
+**Last Updated:** 2026-09-20
 
 ## 1. Purpose
 
@@ -63,7 +63,32 @@ Only the relevant production gates remain blocked until developers provide the r
 - SSW-AI-ISC-06
 - SSW-AI-REC-01
 
-**Status:** OPEN — DEVELOPER INTEGRATION REQUIRED
+**Status:** OPEN — LIVE SIGNING INTEGRATION TEST AND EVIDENCE SUBMISSION REQUIRED
+
+### Immediate Required Action
+
+The developer shall now execute the DEV-OPEN-001 live Soul ID portable signing integration test in the approved staging environment and submit the resulting evidence for independent verification.
+
+This is the next required action for DEV-OPEN-001. Repository preparation is complete.
+
+The developer shall:
+
+1. deploy or bind the production-equivalent Soul ID portable signing integration in staging;
+2. execute the complete live signing integration test against the controlled interfaces listed below;
+3. execute all mandatory negative tests;
+4. capture stable run IDs, commit/build SHA, environment references and configuration references without exposing secrets;
+5. complete `docs/release/evidence/submissions/DEV-OPEN-001-evidence-submission-template.json` with the resulting evidence references;
+6. submit the completed evidence package by updating the live integration evidence registry entry for DEV-OPEN-001 from `OPEN` to `EVIDENCE_SUBMITTED`;
+7. request independent security/engineering verification;
+8. do not mark DEV-OPEN-001 `VERIFIED` or `COMPLETE` until the independent reviewer accepts the submitted evidence.
+
+The authoritative execution checklist is:
+
+`docs/release/live/SSW-AI-LIVE-01-DEV-OPEN-001-Soul-ID-Portable-Signing-Key-Evidence-Packet.md`
+
+The machine-readable submission template is:
+
+`docs/release/evidence/submissions/DEV-OPEN-001-evidence-submission-template.json`
 
 ### Controlled Architecture
 
@@ -131,9 +156,42 @@ Developers must not:
 
 Optional local hardware protection may be used only as a subordinate cache/protection mechanism.
 
+### Required Live Integration Test
+
+The live staging test must exercise the complete path:
+
+```text
+Holder Soul ID
+  -> current signed key manifest
+  -> encrypted key object retrieval
+  -> CID/hash verification
+  -> SoulScan-authorized key access
+  -> envelope opening
+  -> ephemeral signing session
+  -> controlled signing operation
+  -> session expiry / cleanup
+```
+
+The same integration version must also demonstrate rejection of wrong CID/hash, stale key version, wrong Holder DID, expired/invalid recovery authorization, expired signing session and any API/storage attempt that would expose plaintext key material.
+
+A unit-only or mock-only run does not satisfy this requirement.
+
+### Evidence Submission Procedure
+
+After the live staging test completes:
+
+1. populate every E1-E10 entry in `docs/release/evidence/submissions/DEV-OPEN-001-evidence-submission-template.json`;
+2. set the submission status to `EVIDENCE_SUBMITTED`;
+3. record the staging environment, integration version, commit SHA, submission timestamp and submitter;
+4. add the submitted evidence references to DEV-OPEN-001 in `docs/release/evidence/SSW-SERA-Live-Integration-Evidence-Registry.json`;
+5. change only DEV-OPEN-001 registry status from `OPEN` to `EVIDENCE_SUBMITTED`;
+6. commit the evidence submission, registry update and any required non-secret supporting references together;
+7. allow CI drift verification to confirm that no gate is prematurely marked complete;
+8. request independent review.
+
 ### Required Completion Evidence
 
-Before this item can be marked COMPLETE, provide:
+Before this item can be marked VERIFIED/COMPLETE, provide:
 
 - production interface mapping;
 - environment configuration references;
