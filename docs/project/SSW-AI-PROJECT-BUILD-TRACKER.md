@@ -74,7 +74,7 @@ Current implementation milestone:
 
 Immediate next artifact:
 
-**SSW-AI-SERA-RT-08: Credential Runtime & Soulogram Presentation Integration**
+**SSW-AI-SERA-RT-08: Credential Runtime & Soulogram Presentation Integration — IN PROGRESS**
 
 ## 5. Phase A — Product & Experience Definition
 
@@ -175,7 +175,7 @@ Immediate next artifact:
 | News Integration Adapter | Existing news APIs through Context Broker | COMPLETE — typed boundary; live binding DEV-OPEN-007 |
 | LinkedIn Context Adapter | Existing LinkedIn API context under privacy rules | COMPLETE — typed boundary; live binding DEV-OPEN-007 |
 | Spam / Risk Signal Adapter | Existing spam filter into risk/control path | COMPLETE — typed boundary; live binding DEV-OPEN-007 |
-| Credential Runtime | Soulogram / VC / proof presentation integration | NEXT — SERA-RT-08 |
+| Credential Runtime | Soulogram / VC / proof presentation integration | IN PROGRESS — SERA-RT-08 |
 | Soul ID Runtime | did:soul holder context / recovery integration | PLANNED |
 | SVID4AI Runtime | Holder-bound SERA Agent DID / delegation integration | PLANNED |
 
