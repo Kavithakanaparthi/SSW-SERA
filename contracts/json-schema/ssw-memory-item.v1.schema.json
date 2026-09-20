@@ -1,0 +1,143 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.soulverse.world/ssw/json-schema/ssw-memory-item.v1.schema.json",
+  "title": "SSW Memory Item v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "memory_id",
+    "holder_did",
+    "sera_agent_did",
+    "domain",
+    "memory_key",
+    "value",
+    "provenance",
+    "confidence",
+    "retention_class",
+    "context_tier",
+    "external_transmission_allowed",
+    "scope",
+    "device_scope",
+    "authority_effect",
+    "status",
+    "version",
+    "created_at",
+    "updated_at",
+    "last_confirmed_at",
+    "expires_at"
+  ],
+  "properties": {
+    "schema": {
+      "const": "ssw.memory-item.v1"
+    },
+    "memory_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "holder_did": {
+      "type": "string",
+      "pattern": "^did:soul:[a-z0-9._:-]+$"
+    },
+    "sera_agent_did": {
+      "type": "string",
+      "pattern": "^did:soul:agent:[a-z0-9._:-]+$"
+    },
+    "domain": {
+      "type": "string",
+      "enum": [
+        "HOLDER_PREFERENCE",
+        "LANGUAGE_VOICE",
+        "ENTITY_ALIAS",
+        "BEHAVIORAL_CONVENIENCE"
+      ]
+    },
+    "memory_key": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9._-]+$"
+    },
+    "value": {
+      "type": "object"
+    },
+    "provenance": {
+      "type": "string",
+      "enum": [
+        "HOLDER_EXPLICIT",
+        "HOLDER_CORRECTION",
+        "SYSTEM_OBSERVED"
+      ]
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "retention_class": {
+      "type": "string",
+      "enum": [
+        "RT1",
+        "RT2",
+        "RT3"
+      ]
+    },
+    "context_tier": {
+      "type": "string",
+      "enum": [
+        "C1",
+        "C2",
+        "C3",
+        "C4"
+      ]
+    },
+    "external_transmission_allowed": {
+      "type": "boolean"
+    },
+    "scope": {
+      "const": "HOLDER"
+    },
+    "device_scope": {
+      "type": "string",
+      "enum": [
+        "ALL_AUTHORIZED_DEVICES",
+        "CURRENT_DEVICE_ONLY"
+      ]
+    },
+    "authority_effect": {
+      "const": "NONE"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ACTIVE",
+        "DELETED",
+        "EXPIRED"
+      ]
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "last_confirmed_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "expires_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    }
+  }
+}

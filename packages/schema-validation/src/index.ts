@@ -59,6 +59,7 @@ const schemaFiles = [
   "ssw-orchestration-record.v1.schema.json",
   "ssw-context-request.v1.schema.json",
   "ssw-context-manifest.v1.schema.json",
+  "ssw-memory-item.v1.schema.json",
   "ssw-counterparty-resolution.v1.schema.json"
 ] as const;
 
