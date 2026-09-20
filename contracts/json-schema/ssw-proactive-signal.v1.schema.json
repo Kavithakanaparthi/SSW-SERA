@@ -1,0 +1,164 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.soulverse.world/ssw/json-schema/ssw-proactive-signal.v1.schema.json",
+  "title": "SSW Proactive Signal v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "signal_id",
+    "holder_did",
+    "sera_agent_did",
+    "signal_class",
+    "event_type",
+    "source",
+    "subject",
+    "severity",
+    "freshness_seconds",
+    "evidence_refs",
+    "dedupe_key",
+    "observed_at",
+    "created_at"
+  ],
+  "properties": {
+    "schema": {
+      "const": "ssw.proactive-signal.v1"
+    },
+    "signal_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "holder_did": {
+      "type": "string",
+      "pattern": "^did:soul:[a-z0-9._:-]+$"
+    },
+    "sera_agent_did": {
+      "type": "string",
+      "pattern": "^did:soul:agent:[a-z0-9._:-]+$"
+    },
+    "signal_class": {
+      "type": "string",
+      "enum": [
+        "WALLET",
+        "CHAIN",
+        "CREDENTIAL",
+        "SECURITY",
+        "TRUST",
+        "NEWS",
+        "PROFESSIONAL_CONTEXT",
+        "SERVICE"
+      ]
+    },
+    "event_type": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9._-]+$"
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_id",
+        "source_class",
+        "confidence",
+        "veracity",
+        "retrieved_at",
+        "corroboration_count"
+      ],
+      "properties": {
+        "source_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_class": {
+          "type": "string",
+          "enum": [
+            "AUTHORITATIVE_WALLET",
+            "AUTHORITATIVE_CHAIN",
+            "AUTHORITATIVE_CREDENTIAL",
+            "SECURITY_ENGINE",
+            "TRUST_ENGINE",
+            "EXTERNAL_NEWS",
+            "EXTERNAL_PROFESSIONAL",
+            "SERVICE_PROVIDER"
+          ]
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "veracity": {
+          "type": "string",
+          "enum": [
+            "CONFIRMED",
+            "HIGH_CONFIDENCE",
+            "CORROBORATED",
+            "UNCONFIRMED",
+            "CONFLICTING",
+            "STALE"
+          ]
+        },
+        "retrieved_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "corroboration_count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "subject": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "id"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "LOW",
+        "MEDIUM",
+        "HIGH",
+        "CRITICAL"
+      ]
+    },
+    "freshness_seconds": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "evidence_refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "dedupe_key": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 256
+    },
+    "observed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

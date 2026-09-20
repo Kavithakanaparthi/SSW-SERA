@@ -39,6 +39,9 @@ export const contractSchemaIds = {
   contextManifest: "https://schemas.soulverse.world/ssw/json-schema/ssw-context-manifest.v1.schema.json",
   memoryItem: "https://schemas.soulverse.world/ssw/json-schema/ssw-memory-item.v1.schema.json",
   voiceConfidenceEnvelope: "https://schemas.soulverse.world/ssw/json-schema/ssw-voice-confidence-envelope.v1.schema.json",
+  monitoringGrant: "https://schemas.soulverse.world/ssw/json-schema/ssw-monitoring-grant.v1.schema.json",
+  proactiveSignal: "https://schemas.soulverse.world/ssw/json-schema/ssw-proactive-signal.v1.schema.json",
+  proactiveAssessment: "https://schemas.soulverse.world/ssw/json-schema/ssw-proactive-assessment.v1.schema.json",
   counterpartyResolution: "https://schemas.soulverse.world/ssw/json-schema/ssw-counterparty-resolution.v1.schema.json"
 } as const;
 
@@ -83,6 +86,9 @@ export type ContractKind =
   | "context-manifest"
   | "memory-item"
   | "voice-confidence-envelope"
+  | "monitoring-grant"
+  | "proactive-signal"
+  | "proactive-assessment"
   | "counterparty-resolution";
 
 export const contractKindToSchemaId: Readonly<Record<ContractKind, string>> = {
@@ -126,5 +132,8 @@ export const contractKindToSchemaId: Readonly<Record<ContractKind, string>> = {
   "context-manifest": contractSchemaIds.contextManifest,
   "memory-item": contractSchemaIds.memoryItem,
   "voice-confidence-envelope": contractSchemaIds.voiceConfidenceEnvelope,
+  "monitoring-grant": contractSchemaIds.monitoringGrant,
+  "proactive-signal": contractSchemaIds.proactiveSignal,
+  "proactive-assessment": contractSchemaIds.proactiveAssessment,
   "counterparty-resolution": contractSchemaIds.counterpartyResolution
 };

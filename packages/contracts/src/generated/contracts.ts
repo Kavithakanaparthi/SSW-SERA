@@ -132,6 +132,9 @@ export interface ContextRequestContract { schema:"ssw.context-request.v1"; [key:
 export interface ContextManifestContract { schema:"ssw.context-manifest.v1"; [key:string]: unknown; }
 export interface MemoryItemContract { schema:"ssw.memory-item.v1"; [key:string]: unknown; }
 export interface VoiceConfidenceEnvelopeContract { schema:"ssw.voice-confidence-envelope.v1"; holder_did:string; sera_agent_did:string; [key:string]: unknown; }
+export interface MonitoringGrantContract { schema:"ssw.monitoring-grant.v1"; holder_did:string; sera_agent_did:string; [key:string]: unknown; }
+export interface ProactiveSignalContract { schema:"ssw.proactive-signal.v1"; holder_did:string; sera_agent_did:string; [key:string]: unknown; }
+export interface ProactiveAssessmentContract { schema:"ssw.proactive-assessment.v1"; holder_did:string; sera_agent_did:string; [key:string]: unknown; }
 export interface CounterpartyResolution { schema:"ssw.counterparty-resolution.v1"; holder_did:string; [key:string]: unknown; }
 
 export interface AuthorityDecisionContract { schema:"ssw.authority-decision.v1"; [key:string]: unknown; }
@@ -205,5 +208,8 @@ export interface ContractTypeMap {
   "context-manifest": ContextManifestContract;
   "memory-item": MemoryItemContract;
   "voice-confidence-envelope": VoiceConfidenceEnvelopeContract;
+  "monitoring-grant": MonitoringGrantContract;
+  "proactive-signal": ProactiveSignalContract;
+  "proactive-assessment": ProactiveAssessmentContract;
   "counterparty-resolution": CounterpartyResolution;
 }

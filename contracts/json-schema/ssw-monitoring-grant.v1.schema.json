@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.soulverse.world/ssw/json-schema/ssw-monitoring-grant.v1.schema.json",
+  "title": "SSW Monitoring Grant v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "grant_id",
+    "holder_did",
+    "sera_agent_did",
+    "signal_class",
+    "scope",
+    "delivery_classes",
+    "processing",
+    "retention",
+    "enabled",
+    "authority_effect",
+    "created_at",
+    "updated_at",
+    "expires_at"
+  ],
+  "properties": {
+    "schema": {
+      "const": "ssw.monitoring-grant.v1"
+    },
+    "grant_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "holder_did": {
+      "type": "string",
+      "pattern": "^did:soul:[a-z0-9._:-]+$"
+    },
+    "sera_agent_did": {
+      "type": "string",
+      "pattern": "^did:soul:agent:[a-z0-9._:-]+$"
+    },
+    "signal_class": {
+      "type": "string",
+      "enum": [
+        "WALLET",
+        "CHAIN",
+        "CREDENTIAL",
+        "SECURITY",
+        "TRUST",
+        "NEWS",
+        "PROFESSIONAL_CONTEXT",
+        "SERVICE"
+      ]
+    },
+    "scope": {
+      "type": "object"
+    },
+    "delivery_classes": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "CRITICAL",
+          "ACTION_REQUIRED",
+          "RELEVANT",
+          "INFORMATIONAL"
+        ]
+      }
+    },
+    "processing": {
+      "type": "string",
+      "enum": [
+        "LOCAL_ONLY",
+        "LOCAL_PREFERRED",
+        "SERVER_ALLOWED"
+      ]
+    },
+    "retention": {
+      "type": "string",
+      "enum": [
+        "SESSION",
+        "7D",
+        "30D",
+        "90D",
+        "POLICY"
+      ]
+    },
+    "enabled": {
+      "type": "boolean"
+    },
+    "authority_effect": {
+      "const": "NONE"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expires_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    }
+  }
+}

@@ -1,0 +1,3 @@
+import test from "node:test";import assert from "node:assert/strict";import {renderNotification} from "../../packages/sera-proactive-runtime/src/index.js";
+test("critical locked notification hides sensitive detail",()=>{const x=renderNotification({notificationClass:"CRITICAL",locked:true,title:"$84,000 transfer warning",detail:"Sensitive details"});assert.equal(x.title,"SERA needs your attention");assert.doesNotMatch(x.detail,/84,000/);});
+test("informational unlocked notification can render supplied content",()=>{const x=renderNotification({notificationClass:"INFORMATIONAL",locked:false,title:"Daily briefing",detail:"Three updates"});assert.equal(x.title,"Daily briefing");});

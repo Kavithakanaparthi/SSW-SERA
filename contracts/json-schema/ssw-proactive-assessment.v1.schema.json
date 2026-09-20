@@ -1,0 +1,167 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.soulverse.world/ssw/json-schema/ssw-proactive-assessment.v1.schema.json",
+  "title": "SSW Proactive Assessment v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "assessment_id",
+    "signal_id",
+    "grant_id",
+    "holder_did",
+    "sera_agent_did",
+    "factors",
+    "relevance_score",
+    "urgency",
+    "notification_class",
+    "decision",
+    "reason_codes",
+    "evidence_refs",
+    "authority_effect",
+    "created_at"
+  ],
+  "properties": {
+    "schema": {
+      "const": "ssw.proactive-assessment.v1"
+    },
+    "assessment_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "signal_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "grant_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uuid"
+    },
+    "holder_did": {
+      "type": "string",
+      "pattern": "^did:soul:[a-z0-9._:-]+$"
+    },
+    "sera_agent_did": {
+      "type": "string",
+      "pattern": "^did:soul:agent:[a-z0-9._:-]+$"
+    },
+    "factors": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "exposure",
+        "relationship",
+        "actionability",
+        "risk_impact",
+        "holder_preference",
+        "recency",
+        "duplicate_penalty",
+        "fatigue_penalty"
+      ],
+      "properties": {
+        "exposure": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "relationship": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "actionability": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "risk_impact": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "holder_preference": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "recency": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "duplicate_penalty": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "fatigue_penalty": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "relevance_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "urgency": {
+      "type": "string",
+      "enum": [
+        "U0",
+        "U1",
+        "U2",
+        "U3",
+        "U4"
+      ]
+    },
+    "notification_class": {
+      "type": "string",
+      "enum": [
+        "LOW_VALUE",
+        "INFORMATIONAL",
+        "RELEVANT",
+        "ACTION_REQUIRED",
+        "CRITICAL"
+      ]
+    },
+    "decision": {
+      "type": "string",
+      "enum": [
+        "SUPPRESS",
+        "RECORD",
+        "DIGEST",
+        "SURFACE_IN_CONTEXT",
+        "NOTIFY",
+        "INTERRUPT"
+      ]
+    },
+    "reason_codes": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Z][A-Z0-9_]*$"
+      }
+    },
+    "evidence_refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "authority_effect": {
+      "const": "NONE"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}
