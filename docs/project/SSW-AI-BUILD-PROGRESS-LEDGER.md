@@ -1175,3 +1175,61 @@ CI evidence:
 **Dependencies closed:** production-shaped EVM submission and reconciliation boundary.
 
 **Next:** SSW-AI-PROD-07: Production SAEL Persistence / Checkpoint / Archive.
+
+
+---
+
+## Entry 033 — PROD-07 Production SAEL Persistence / Checkpoint / Archive
+
+**Date:** 2026-09-19  
+**Artifact:** SSW-AI-PROD-07  
+**Implementation Commit:** `6500b103fb18b15f3a2359d2f84534132d00f77f`  
+**Transactional Append Fix:** `c8a4203c6b4eebcccdf4c01ae5d39de7331dc789`  
+**Strict Type / Migration Atomicity Fixes:** `dcab8887df71480489862a13810c584556e614f8`, `c4f21d9b9f27b00b95d04979c02dd1a31e832dac`  
+**CI Run:** #44, ID `35478734811`  
+**Tracker Completion Commit:** `609ca252608c04618bec60992c318b7b92c34d4a`  
+**Status:** COMPLETE  
+**Stack:** TypeScript / Node.js 22 / PostgreSQL 16
+
+Implemented:
+
+- PostgreSQL authoritative SAEL append store;
+- per-stream sequence heads;
+- transactional sequence assignment;
+- previous-event hash verification;
+- immutable SAEL event rows enforced by database trigger;
+- persistent producer/idempotency enforcement;
+- durable evidence reservations;
+- reservation completion tracking;
+- deterministic Merkle checkpoint roots;
+- checkpoint hash chaining;
+- injected checkpoint signer boundary;
+- checkpoint persistence;
+- injected encrypted archive writer boundary;
+- archive manifest hashing and checkpoint linkage;
+- stream integrity verification;
+- disclosure-bounded queries;
+- migration-runner transaction ownership correction.
+
+Security and correctness decisions:
+
+- SAEL events cannot be updated or deleted in place;
+- all append-critical operations occur on the same PostgreSQL transaction-bound client;
+- evidence corrections require new events;
+- duplicate identical evidence is deduplicated;
+- conflicting duplicate evidence fails;
+- checkpoint construction rejects incomplete/non-contiguous ranges;
+- archive storage remains non-authoritative;
+- checkpoint signing and archive encryption providers are injected rather than hard-coded;
+- migration files retain stable checksums while the migration runner owns the actual transaction boundary.
+
+CI evidence:
+
+- PostgreSQL migrations: PASS;
+- npm ci: PASS;
+- 145 tests: PASS;
+- strict TypeScript: PASS.
+
+**Dependencies closed:** durable append-only SAEL, checkpoint, archive-provider and integrity-verification baseline.
+
+**Next:** SSW-AI-PROD-08: Staging Security Gate & Release Evidence.
