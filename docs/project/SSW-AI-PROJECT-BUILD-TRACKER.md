@@ -74,7 +74,7 @@ Current implementation milestone:
 
 Immediate next artifact:
 
-**SSW-AI-SERA-RT-01: Production Orchestrator Runtime**
+**SSW-AI-SERA-RT-02: Context Broker & Purpose-Bound Context Retrieval**
 
 ## 5. Phase A — Product & Experience Definition
 
@@ -165,8 +165,8 @@ Immediate next artifact:
 
 | Planned Area | Deliverable | Status |
 |---|---|---|
-| SERA Orchestrator | Production orchestration around typed contracts | NEXT — SERA-RT-01 |
-| Context Broker | Purpose-bound wallet/context retrieval | PLANNED |
+| SERA Orchestrator | Production orchestration around typed contracts | COMPLETE — SERA-RT-01 |
+| Context Broker | Purpose-bound wallet/context retrieval | NEXT — SERA-RT-02 |
 | SERA Memory | Holder preference / voice / alias memory domains | PLANNED |
 | Voice Runtime | Voice adaptation, numerical safety, correction learning | PLANNED |
 | Proactive Intelligence | Monitoring, prioritization, notification policy | PLANNED |
@@ -322,7 +322,7 @@ Completed implementation artifacts: 16.
 
 Completed productionization artifacts: 8. PROD-05 platform boundary is implemented and CI-verified; live Soul ID/SoulScan bindings are maintained as developer-owned open integration items DEV-OPEN-001 through DEV-OPEN-003.
 
-Immediate next implementation phase: SERA-RT-01 Production Orchestrator Runtime.
+Immediate next implementation phase: SERA-RT-02 Context Broker & Purpose-Bound Context Retrieval.
 
 Production signing enabled: no.
 
