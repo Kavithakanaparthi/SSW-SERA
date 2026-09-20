@@ -1724,3 +1724,68 @@ CI evidence:
 **Dependencies closed:** controlled credential disclosure, proof-generation and presentation runtime boundary.
 
 **Next:** SSW-AI-SERA-RT-09: Soul ID Runtime & did:soul Holder Context Integration.
+
+
+---
+
+## Entry 037 — SERA-RT-09 Soul ID Runtime & did:soul Holder Context Integration
+
+**Date:** 2026-09-19  
+**Artifact:** SSW-AI-SERA-RT-09  
+**Schema Commit:** `082248ef933b5bcbad98d73088eb47129d69c1ce`  
+**Runtime Commit:** `fc9e68332a238fdb6eef7e9d1df889fe1da280d4`  
+**Contract Test Commit:** `f9667f4a9b004223e600bbb15e974cd156afa894`  
+**Controlled Specification Commit:** `0737ab48e6e6cf6664960d4717bd2dc926370f97`  
+**Final CI Head:** `5e1c19084f7858b436547a0ede22f5ff8e7fcf41`  
+**CI Run:** #101, ID `35483318331`  
+**Release Evidence Hash:** `sha256:e8a2ba27bd8c0dea59108cece7cda56b51eda2b334edab5ad54717b1c20202f7`  
+**Status:** COMPLETE
+
+Implemented:
+
+- Holder Identity Context machine contract;
+- provider-neutral Soul ID holder-resolution interface;
+- authoritative Holder `did:soul` namespace validation;
+- Soul ID ACTIVE / SUSPENDED / REVOKED handling;
+- DID-document reference and monotonic version checks;
+- recovery-policy reference handling;
+- verification-method reference normalization;
+- provenance/integrity requirement;
+- Soul Super Wallet context resolution;
+- authorized SERA Agent DID binding;
+- Holder/SERA governance-binding status/version checks;
+- explicit freshness windows;
+- Context Broker-compatible minimized Holder identity source;
+- machine-enforced `wallet_ownership_root: SOUL_ID`;
+- machine-enforced `device_ownership_root: false`;
+- machine-enforced `recovery_root: SOUL_ID_SOULSCAN`;
+- machine-enforced `authority_effect: NONE`.
+
+Security decisions:
+
+- a device does not establish wallet ownership;
+- key possession does not establish wallet ownership;
+- Soul ID resolution does not create transaction authority;
+- SERA governance resolution does not create transaction authority;
+- revoked/suspended/stale identity state fails closed;
+- wrong Holder DID or wrong SERA Agent DID fails closed;
+- raw DID documents, recovery secrets and SoulScan biometric material are excluded from model context;
+- external transmission of Holder identity context is disabled by default.
+
+Developer handoff:
+
+- DEV-OPEN-009 records live binding of existing Soul ID and Soul Super Wallet identity services behind the RT-09 provider boundary.
+
+CI evidence:
+
+- PostgreSQL migrations: PASS;
+- contract verification: PASS — 50 JSON Schemas;
+- 202 tests: PASS;
+- failures: 0;
+- strict TypeScript: PASS;
+- hashed release evidence: PASS;
+- release decision remains `CI_BASELINE_PASS_PRODUCTION_BLOCKED`.
+
+**Dependencies closed:** controlled Holder Soul ID resolution, Soul Super Wallet identity anchoring, and SERA governance-context verification.
+
+**Next:** SSW-AI-SERA-RT-10: SVID4AI Runtime & Holder-Bound SERA Agent DID / Delegation Integration.
