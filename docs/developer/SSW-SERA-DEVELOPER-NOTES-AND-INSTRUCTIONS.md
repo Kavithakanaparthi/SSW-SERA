@@ -677,3 +677,31 @@ Required production responsibilities include:
 Native code may apply stricter privacy rules but may not weaken the shared concealment or authority separation.
 
 This item blocks completion of native Voice UI and Concealed Details UX under the Mobile Integration Gate.
+
+
+---
+
+## DEV-OPEN-014 — Native Cross-Device Handoff & OS Proactive Surface Binding
+
+**Status:** OPEN  
+**Introduced by:** SSW-AI-MOB-04
+
+Developers shall bind native iOS, Android, desktop/web and future wearable surfaces to the MOB-04 cross-device and proactive-surface contract.
+
+Required production responsibilities include:
+
+- persist and transport device-neutral task references without transporting approval or signing authority;
+- resolve source and target device trust/attestation state before handoff;
+- enforce target-device capability scopes;
+- re-enter fresh control-plane evaluation for every consequential continuation;
+- require fresh authentication for high-risk or wearable continuation where specified;
+- route high-risk wearable flows to a full trusted phone/desktop surface;
+- render privacy-filtered notification/widget/Live Activity/Dynamic Island/wearable payloads;
+- preserve MOB-03 concealment semantics on locked and ambient surfaces;
+- suppress stale or low-value proactive events according to priority/freshness policy;
+- never allow native notification actions to execute consequential wallet actions outside the deterministic approval/authentication path;
+- record handoff and proactive-surface lineage in SAEL without duplicating sensitive content.
+
+Pairing, push-delivery success, watch proximity or device synchronization must never be treated as authority.
+
+This item blocks native cross-device and proactive-surface completion under the Mobile Integration Gate.
