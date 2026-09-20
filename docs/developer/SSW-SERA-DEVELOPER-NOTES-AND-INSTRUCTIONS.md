@@ -33,6 +33,24 @@ If the production system differs materially from the controlled interface, stop 
 
 ---
 
+## 3. Standing Handoff Directive
+
+The following integration boundaries are intentionally left open for the development team and shall remain recorded in this document until live integration evidence is supplied:
+
+- DEV-OPEN-001 — Soul ID Portable Signing-Key Integration;
+- DEV-OPEN-002 — SoulScan Recovery Authorization Integration;
+- DEV-OPEN-003 — SERA Portable Signing-Key Integration.
+
+These open items do **not** pause continued SSW-SERA repository construction.
+
+The controlled interfaces, schemas, failure behavior and security invariants are considered the authoritative handoff boundary. Developers shall connect the existing Soul ID and SoulScan production implementations behind those interfaces without redesigning the custody or recovery architecture.
+
+The build program should continue through all independent runtime, mobile, observability, deployment and release-preparation work while these items remain open.
+
+Only the relevant production gates remain blocked until developers provide the required integration evidence.
+
+---
+
 # OPEN INTEGRATION ITEMS
 
 ## DEV-OPEN-001 — Soul ID Portable Signing-Key Integration
