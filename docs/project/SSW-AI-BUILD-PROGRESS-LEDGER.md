@@ -2084,3 +2084,61 @@ CI evidence:
 **Dependencies closed:** shared cross-device task continuity and OS-native proactive surface semantics.
 
 **Next:** SSW-AI-MOB-05: Staged SERA-First Migration, Cohort Rollout & Rollback Control.
+
+
+---
+
+## Entry 043 — MOB-05 Staged SERA-First Migration, Cohort Rollout & Rollback Control
+
+**Date:** 2026-09-19  
+**Artifact:** SSW-AI-MOB-05  
+**Runtime Commit:** `e4b045dec4f3c508872f5c8d308c06f804127a4a`  
+**Contract Test Commit:** `17468725425ab1c52bf5d8982e293c39eca0fb58`  
+**Controlled Specification Commit:** `636a7016975e93c005c8f0c7745ef6615c7aeac5`  
+**Developer Handoff Commit:** `283c7eee154ee14ea6883ab3f5ff8bcf2cf542d9`  
+**Type Collision Repair Commit:** `4f2665c0ee5d603307dd441facdeb3d4f39c7a2a`  
+**Final CI Run:** #154, ID `35486395608`  
+**Release Evidence Hash:** `sha256:6b6c835f2ed68fc31d899d80a785b0f25f8748073accd19f2f9843d32e094c1e`  
+**Status:** COMPLETE
+
+Implemented:
+
+- deterministic M0 through M4 migration progression;
+- stage-skip prohibition;
+- DB16 R0 through R6 release-sequence binding;
+- M3 non-regression evidence requirements;
+- all ten DB16 release-gate inputs;
+- conservative stage-specific cohort ceilings;
+- SERA-first opt-in/default distinctions;
+- production-signing requirement for M4 delegation;
+- R6 requirement for delegation pilot;
+- deterministic rollback modes;
+- critical/privacy/transaction/fallback incident rollback to conventional wallet;
+- control-plane degradation to read-only SERA;
+- signer outage degradation to delegation-disabled mode;
+- external-provider failure isolation;
+- compatibility preservation for Soul ID, wallet keys, credentials, transaction history, WalletConnect and current wallet state.
+
+Repair note:
+
+- CI Run #153 exposed a strict TypeScript export collision caused by a duplicate `MigrationStage` type.
+- The defect was repaired by reusing the shared MOB-01 `MigrationStage` type.
+- The repaired head passed the complete CI pipeline.
+
+Developer handoff:
+
+- DEV-OPEN-015 records production feature-flag, cohort, telemetry and rollback binding.
+
+CI evidence:
+
+- PostgreSQL migrations: PASS;
+- contract verification: PASS — 51 JSON Schemas;
+- 245 tests: PASS;
+- failures: 0;
+- strict TypeScript: PASS;
+- hashed release evidence: PASS;
+- release decision remains `CI_BASELINE_PASS_PRODUCTION_BLOCKED`.
+
+**Dependencies closed:** repository-level staged mobile migration, cohort governance and deterministic rollback controls.
+
+**Next:** SSW-AI-MOB-GATE-01: Mobile Integration Gate Evidence Package.
