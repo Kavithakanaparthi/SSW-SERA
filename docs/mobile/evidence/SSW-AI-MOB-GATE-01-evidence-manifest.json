@@ -1,0 +1,50 @@
+{
+  "schema": "ssw.mobile-integration-gate-evidence.v1",
+  "artifact_id": "SSW-AI-MOB-GATE-01",
+  "date": "2026-09-19",
+  "repository": "Kavithakanaparthi/SSW-SERA",
+  "decision": "MOBILE_REPOSITORY_BASELINE_PASS_LIVE_INTEGRATION_BLOCKED",
+  "repository_baseline": "PASS",
+  "live_mobile_integration_gate": "BLOCKED",
+  "final_mobile_ci": {
+    "run_number": 154,
+    "run_id": 35486395608,
+    "head_sha": "4f2665c0ee5d603307dd441facdeb3d4f39c7a2a",
+    "tests": 245,
+    "passed": 245,
+    "failed": 0,
+    "schemas": 51,
+    "typecheck": "PASS",
+    "postgres_migrations": "PASS",
+    "evidence_hash": "sha256:6b6c835f2ed68fc31d899d80a785b0f25f8748073accd19f2f9843d32e094c1e"
+  },
+  "mobile_artifacts": [
+    "MOB-01",
+    "MOB-02",
+    "MOB-03",
+    "MOB-04",
+    "MOB-05"
+  ],
+  "direct_mobile_blockers": [
+    "DEV-OPEN-006",
+    "DEV-OPEN-011",
+    "DEV-OPEN-012",
+    "DEV-OPEN-013",
+    "DEV-OPEN-014",
+    "DEV-OPEN-015"
+  ],
+  "related_live_dependencies": [
+    "DEV-OPEN-008",
+    "DEV-OPEN-009",
+    "DEV-OPEN-010"
+  ],
+  "production_gate_dependencies": [
+    "DEV-OPEN-001",
+    "DEV-OPEN-002",
+    "DEV-OPEN-003",
+    "DEV-OPEN-004",
+    "DEV-OPEN-005"
+  ],
+  "production_asset_movement_enabled": false,
+  "production_release_approved": false
+}
