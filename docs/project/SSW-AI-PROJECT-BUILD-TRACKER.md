@@ -324,7 +324,7 @@ Completed implementation artifacts: 16.
 
 Completed productionization artifacts: 8. PROD-05 platform boundary is implemented and CI-verified; live Soul ID/SoulScan bindings are maintained as developer-owned open integration items DEV-OPEN-001 through DEV-OPEN-003.
 
-Immediate next implementation phase: SERA-RT-07 External Intelligence & Risk Context Adapters.
+Immediate next implementation phase: SERA-RT-08 Credential Runtime & Soulogram Presentation Integration.
 
 Production signing enabled: no.
 
