@@ -520,3 +520,42 @@ A prepared credential presentation is not disclosure authority.
 The RT-08 controlled request hash, holder identity, SERA Agent identity, verifier identity, disclosed claim set and authorization evidence must remain invariant across proof generation and presentation.
 
 This item blocks live credential-presentation capability claims but does not block continued construction of independent SSW-SERA runtime work.
+
+
+---
+
+## DEV-OPEN-009 — Soul ID Holder Context & SERA Governance Live Binding
+
+**Status:** OPEN  
+**Introduced by:** SSW-AI-SERA-RT-09
+
+Developers shall bind the existing Soul ID and Soul Super Wallet identity services behind the RT-09 `SoulIdProvider` interface.
+
+Required production binding responsibilities include:
+
+- resolve the current Holder `did:soul`;
+- return current Soul ID ACTIVE / SUSPENDED / REVOKED state;
+- return the current DID-document reference and monotonic document version;
+- return the current Soul ID recovery-policy reference;
+- return controlled verification-method references and integrity provenance;
+- resolve the current Soul Super Wallet context for that Holder DID;
+- return the wallet's currently authorized SERA Agent DID;
+- return the Holder/SERA governance-binding status, version and provenance;
+- provide authoritative observation and validity timestamps;
+- reject stale or unverifiable identity state.
+
+The provider must not treat device registration, runtime registration or key possession as wallet ownership.
+
+The provider must not convert Soul ID resolution, SoulScan recovery or SERA governance resolution into transaction authority.
+
+The live binding must preserve CF-A02:
+
+```text
+Holder Soul ID
+  -> Soul Super Wallet
+  -> SERA Agent DID
+  -> SERA Runtime
+  -> Current Device / Environment
+```
+
+This item blocks claims of live Soul ID holder-context integration but does not block continued independent SSW-SERA construction.
