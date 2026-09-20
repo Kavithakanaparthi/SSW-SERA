@@ -54,10 +54,10 @@ export class SeraMemoryStore{
    const row=existing.rows[0]!;
    const nextVersion=Number(row.version)+1;
    await this.db.transaction(async s=>{
-    await (s as any).db.query(`UPDATE ssw.sera_memory SET value_json=$5::jsonb,provenance=$6,confidence=$7,retention_class=$8,context_tier=$9,
-      external_transmission_allowed=$10,device_scope=$11,status='ACTIVE',version=$12,updated_at=$13::timestamptz,last_confirmed_at=$13::timestamptz,expires_at=$14::timestamptz
+    await (s as any).db.query(`UPDATE ssw.sera_memory SET value_json=$3::jsonb,provenance=$4,confidence=$5,retention_class=$6,context_tier=$7,
+      external_transmission_allowed=$8,device_scope=$9,status='ACTIVE',version=$10,updated_at=$11::timestamptz,last_confirmed_at=$11::timestamptz,expires_at=$12::timestamptz
       WHERE memory_id=$1::uuid AND version=$2`,
-      [row.memory_id,row.version,input.holderDid,input.seraAgentDid,JSON.stringify(input.value),input.provenance,input.confidence,input.retentionClass,input.contextTier,input.externalTransmissionAllowed,input.deviceScope,nextVersion,input.now,input.expiresAt??null]);
+      [row.memory_id,row.version,JSON.stringify(input.value),input.provenance,input.confidence,input.retentionClass,input.contextTier,input.externalTransmissionAllowed,input.deviceScope,nextVersion,input.now,input.expiresAt??null]);
     await s.enqueueOutbox({eventId:randomUUID(),ownerService:"memory",topic:"MEMORY.ITEM_UPDATED",partitionKey:input.holderDid,payload:{memory_id:String(row.memory_id),domain:input.domain,memory_key:input.memoryKey,version:nextVersion,provenance:input.provenance}});
    });
    return (await this.getById(String(row.memory_id),input.now,true))!;
