@@ -2142,3 +2142,53 @@ CI evidence:
 **Dependencies closed:** repository-level staged mobile migration, cohort governance and deterministic rollback controls.
 
 **Next:** SSW-AI-MOB-GATE-01: Mobile Integration Gate Evidence Package.
+
+
+---
+
+## Entry 044 — MOB-GATE-01 Mobile Integration Gate Evidence Package
+
+**Date:** 2026-09-19  
+**Artifact:** SSW-AI-MOB-GATE-01  
+**Evidence Package Commit:** `aa329096a38a77c51eff8176568e0e65d0b5fbbb`  
+**Evidence Manifest Commit:** `c84ad50a7a0a7ff10844974b0e654d57471bd476`  
+**Final Mobile Baseline CI:** Run #154, ID `35486395608`  
+**Final Mobile Baseline Head:** `4f2665c0ee5d603307dd441facdeb3d4f39c7a2a`  
+**Release Evidence Hash:** `sha256:6b6c835f2ed68fc31d899d80a785b0f25f8748073accd19f2f9843d32e094c1e`  
+**Status:** REPOSITORY BASELINE COMPLETE — LIVE MOBILE INTEGRATION BLOCKED
+
+Gate decision:
+
+- repository mobile baseline: PASS;
+- live Mobile Integration Gate: BLOCKED;
+- production SERA-first mobile claims: NOT APPROVED;
+- production asset movement: DISABLED.
+
+Evidence package covers:
+
+- MOB-01 shared mobile shell and deterministic fallback;
+- MOB-02 adaptive workspace and canonical fallback views;
+- MOB-03 voice/text and concealed-detail interaction;
+- MOB-04 cross-device handoff and OS-native proactive surfaces;
+- MOB-05 staged migration, cohorts and rollback.
+
+Direct live mobile blockers:
+
+- DEV-OPEN-006;
+- DEV-OPEN-011;
+- DEV-OPEN-012;
+- DEV-OPEN-013;
+- DEV-OPEN-014;
+- DEV-OPEN-015.
+
+Related live dependencies:
+
+- DEV-OPEN-008;
+- DEV-OPEN-009;
+- DEV-OPEN-010.
+
+The package explicitly distinguishes repository-controlled completion from native/live integration evidence.
+
+**Decision:** `MOBILE_REPOSITORY_BASELINE_PASS_LIVE_INTEGRATION_BLOCKED`
+
+**Next:** SSW-AI-INFRA-01: Production Workload Identity Baseline.
