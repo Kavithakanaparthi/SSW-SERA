@@ -1338,3 +1338,57 @@ CI evidence:
 - release decision remains CI_BASELINE_PASS_PRODUCTION_BLOCKED.
 
 **Next:** SSW-AI-SERA-RT-02: Context Broker & Purpose-Bound Context Retrieval.
+
+
+---
+
+## Entry 036 — SERA-RT-02 Context Broker & Purpose-Bound Context Retrieval
+
+**Date:** 2026-09-19  
+**Artifact:** SSW-AI-SERA-RT-02  
+**Implementation Commit:** `5d687ceac8e763d92f7e17e9bc270548e6e8c552`  
+**CI Run:** #55, ID `35479311895`  
+**Release Evidence Artifact ID:** `10595840000`  
+**Release Evidence Hash:** `sha256:9850508cb2d9987bc5dfa6b17cce2e40c862d780ad4fcc6dd897759121f6a60c`  
+**Tracker Completion Commit:** `c8b50ff902dcceb9713c1f191694b6be0b0725d0`  
+**Status:** COMPLETE  
+**Stack:** TypeScript / Node.js 22 / PostgreSQL 16
+
+Implemented:
+
+- purpose-bound Context Broker;
+- typed context request and manifest contracts;
+- C0 through C5 context tiers;
+- NONE / ON_DEVICE / PROTECTED_CLOUD model-location policy;
+- capability-specific context allowlists;
+- field-level minimization;
+- required/optional context handling;
+- freshness checks;
+- cloud-transmission constraints;
+- hard prohibition of private keys, seed phrases, signing secrets, recovery secrets, raw biometric templates and unrestricted signing handles;
+- context provenance / confidence / retention metadata;
+- metadata-only Context Manifest audit persistence;
+- transactional outbox evidence;
+- transfer.asset and credential.find baseline policies.
+
+Security decisions:
+
+- models cannot directly query wallet databases through the Context Broker;
+- source adapters return classified structured data;
+- C5 data is prohibited regardless of requested policy;
+- stale required context results in INCOMPLETE;
+- unauthorized/prohibited requested context results in BLOCKED;
+- cloud context receives stricter tier limits;
+- persisted context audit excludes actual context values;
+- context assists reasoning but never creates authority.
+
+CI evidence:
+
+- PostgreSQL migrations: PASS;
+- npm ci: PASS;
+- 156 tests: PASS;
+- strict TypeScript: PASS;
+- release evidence generation/upload: PASS;
+- release decision remains CI_BASELINE_PASS_PRODUCTION_BLOCKED.
+
+**Next:** SSW-AI-SERA-RT-03: SERA Memory Domains & Holder-Controlled Personalization.
