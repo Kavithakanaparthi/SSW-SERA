@@ -74,7 +74,7 @@ Current implementation milestone:
 
 Immediate next artifact:
 
-**SSW-AI-PROD-05: SoulScan / IPFS Portable Signing Key Integration**
+**SSW-AI-PROD-06: Production Chain Adapters & Execution Reconciliation**
 
 ## 5. Phase A — Product & Experience Definition
 
@@ -230,12 +230,26 @@ A paired wearable never automatically inherits phone authority.
 | PROD-02 | Production Service Framework & Runtime Conventions | COMPLETE |
 | PROD-03 | Persistence & Durable Event Transport | COMPLETE |
 | PROD-04 | Production Trust / REV Service Integration | COMPLETE |
-| PROD-05 | SoulScan / IPFS Portable Signing Key Integration | IN PROGRESS — custody model corrected; SoulScan/IPFS adapters next |
-| PROD-06 | Production Chain Adapters & Execution Reconciliation | PLANNED |
+| PROD-05 | SoulScan / IPFS Portable Signing Key Integration | COMPLETE — platform boundary; live Soul ID/SoulScan bindings delegated to DEV-OPEN-001..003 |
+| PROD-06 | Production Chain Adapters & Execution Reconciliation | NEXT |
 | PROD-07 | Production SAEL Persistence / Checkpoint / Archive | PLANNED |
 | PROD-08 | Staging Security Gate & Release Evidence | PLANNED |
 
 PROD-01 is complete. GitHub Actions Run #8 generated and verified the committed lockfile, npm ci passed, all 104 tests passed, strict TypeScript passed, and CI was converted to steady-state read-only operation.
+
+## 12B. Developer-Owned Open Integration Items
+
+Authoritative handoff record:
+
+`docs/developer/SSW-SERA-DEVELOPER-NOTES-AND-INSTRUCTIONS.md`
+
+| ID | Integration | Status | Blocks |
+|---|---|---|---|
+| DEV-OPEN-001 | Soul ID portable signing-key production binding | OPEN | Signing Gate / Release Gate |
+| DEV-OPEN-002 | SoulScan recovery authorization production binding | OPEN | Signing Gate / Recovery Gate / Release Gate |
+| DEV-OPEN-003 | SERA portable signing-key production binding | OPEN | Signing Gate / Release Gate |
+
+These items do not block continued controlled repository construction.
 
 ## 13. Phase I — Production Security & Release Gates
 
@@ -300,9 +314,9 @@ Completed controlled design/specification layers: all currently scheduled pre-co
 
 Completed implementation artifacts: 16.
 
-Completed productionization artifacts: 4. PROD-05 control boundary is implemented and CI-verified; custody model amended to SoulScan/IPFS portable keys and remains open pending concrete recovery/storage integration.
+Completed productionization artifacts: 5. PROD-05 platform boundary is implemented and CI-verified; live Soul ID/SoulScan bindings are maintained as developer-owned open integration items DEV-OPEN-001 through DEV-OPEN-003.
 
-Immediate next implementation phase: PROD-05 SoulScan recovery adapter + encrypted IPFS key-object adapter + key-manifest profile.
+Immediate next implementation phase: PROD-06 Production Chain Adapters & Execution Reconciliation.
 
 Production signing enabled: no.
 
