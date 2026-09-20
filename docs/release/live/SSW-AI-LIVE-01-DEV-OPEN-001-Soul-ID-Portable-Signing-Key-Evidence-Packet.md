@@ -3,11 +3,15 @@
 **Program:** Soul Super Wallet AI-First / SERA Companion Architecture  
 **Artifact ID:** SSW-AI-LIVE-01  
 **Mapped Integration:** DEV-OPEN-001  
-**Status:** Evidence Intake Prepared — LIVE EVIDENCE NOT YET SUBMITTED  
+**Status:** ACTION REQUIRED — EXECUTE LIVE SIGNING INTEGRATION TEST AND SUBMIT EVIDENCE  
 **Date:** 2026-09-20  
 **Blocks:** Signing Gate / Release Gate
 
 ## 1. Purpose
+
+This packet is now the execution instruction for the DEV-OPEN-001 live signing integration test.
+
+The developer shall perform the staging live integration run, capture the required E1-E10 evidence, populate the controlled submission template, update the DEV-OPEN registry to EVIDENCE_SUBMITTED, and request independent verification.
 
 This packet converts DEV-OPEN-001 from a prose handoff into an exact live-evidence submission checklist.
 
@@ -31,6 +35,43 @@ The live implementation must bind behind the existing repository interfaces:
 - `PortableSigningSession`.
 
 No evidence submission may redefine custody architecture.
+
+## 2A. Required Live Test Execution
+
+Run the complete production-equivalent signing flow in the approved staging environment using the actual live bindings behind the controlled interfaces.
+
+The executed path must be:
+
+```text
+Holder Soul ID
+  -> authoritative signed/current key manifest
+  -> production-equivalent encrypted key object retrieval
+  -> CID/hash verification
+  -> SoulScan-authorized recovery/key access
+  -> production-equivalent envelope opening
+  -> ephemeral signing session
+  -> controlled signing operation
+  -> session expiry and key-material cleanup
+```
+
+The test run must use one identifiable integration version and commit/build SHA so all positive and negative evidence belongs to the same implementation.
+
+The live run must include:
+
+- one successful manifest resolution;
+- one successful encrypted key-object retrieval and integrity verification;
+- one successful SoulScan-authorized access;
+- one successful ephemeral signing-session establishment;
+- one successful controlled signing operation;
+- one successful replacement-device recovery;
+- wrong CID/hash rejection;
+- stale key-version rejection;
+- wrong Holder DID rejection;
+- expired/invalid recovery authorization rejection where applicable;
+- expired signing-session rejection;
+- verification that no plaintext private key is persisted or exposed.
+
+Do not replace this run with mocks, unit-only tests, screenshots or design attestations.
 
 ## 3. Mandatory Evidence Set
 
@@ -160,7 +201,22 @@ Provide a security review reference confirming:
 
 Acceptance condition: review has no unresolved finding that invalidates the controlled architecture.
 
-## 4. Evidence Submission Metadata
+## 4. Evidence Submission Procedure
+
+After the live run completes, the developer shall:
+
+1. populate all E1-E10 fields in `docs/release/evidence/submissions/DEV-OPEN-001-evidence-submission-template.json`;
+2. set the template status to `EVIDENCE_SUBMITTED`;
+3. provide the staging environment, integration version, commit SHA, submission timestamp and submitter;
+4. update DEV-OPEN-001 in `docs/release/evidence/SSW-SERA-Live-Integration-Evidence-Registry.json`;
+5. attach or reference all stable run IDs, test artifacts, configuration attestations and review references;
+6. commit the evidence submission and registry update together;
+7. leave Signing Gate blocked;
+8. request independent review.
+
+Only after independent verification may DEV-OPEN-001 move to `VERIFIED`.
+
+## 4A. Evidence Submission Metadata
 
 Every evidence reference shall include:
 
