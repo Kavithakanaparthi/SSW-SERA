@@ -890,3 +890,37 @@ Required evidence:
 - production deployment dry-run with signing and asset movement still disabled.
 
 This item blocks the live Production Deployment Gate.
+
+
+---
+
+## DEV-OPEN-020 — Live Deployment Evidence & Production Deployment Gate Closure
+
+**Status:** OPEN  
+**Introduced by:** SSW-AI-INFRA-05
+
+Platform engineering shall produce the live evidence required to move the Production Deployment Gate beyond the repository baseline.
+
+Required evidence includes:
+
+- provider-specific IaC binding complete;
+- generated provider plan/diff;
+- no-inline-secret verification;
+- trust-zone/network verification;
+- workload identity binding;
+- sanitized observability binding;
+- controlled secret-provider binding;
+- datastore encryption evidence;
+- backup-policy evidence;
+- deployed staging environment;
+- health/readiness checks;
+- rollback drill;
+- drift check;
+- zero open deployment blockers;
+- PRODUCTION_CANDIDATE release evidence before production deployment;
+- dedicated staging security execution COMPLETE;
+- manual deployment approval.
+
+A successful deployment-gate result does not enable wallet signing or production asset movement. Those remain separately gated.
+
+This item blocks live Production Deployment Gate closure.
