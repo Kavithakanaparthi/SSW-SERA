@@ -488,3 +488,35 @@ They do block:
 - any claim that live Soul ID/SoulScan-backed signing is operational.
 
 The controlled interfaces and security invariants are considered complete unless a developer discovers a material incompatibility with the existing Soul ID/SoulScan implementation.
+
+
+---
+
+## DEV-OPEN-008 — Soulogram / OpenID4VP Live Credential Presentation Binding
+
+**Status:** OPEN  
+**Introduced by:** SSW-AI-SERA-RT-08
+
+Developers shall bind the existing Soul Super Wallet credential store and Soulogram/OpenID4VC implementation behind the RT-08 credential runtime interfaces.
+
+Required production binding responsibilities include:
+
+- credential metadata lookup without exposing raw credential values to SERA/model context;
+- canonical verifier identity resolution;
+- OpenID4VP request-object and presentation-definition validation;
+- nonce/domain/audience binding;
+- supported credential/proof format negotiation;
+- selective-disclosure proof generation;
+- proof/presentation signing using the existing controlled credential key path;
+- presentation delivery;
+- verifier receipt/result normalization;
+- revocation/status checks where applicable;
+- SAEL evidence references without duplicating sensitive claim values.
+
+The live provider may not reinterpret or widen the authorized disclosure plan.
+
+A prepared credential presentation is not disclosure authority.
+
+The RT-08 controlled request hash, holder identity, SERA Agent identity, verifier identity, disclosed claim set and authorization evidence must remain invariant across proof generation and presentation.
+
+This item blocks live credential-presentation capability claims but does not block continued construction of independent SSW-SERA runtime work.
