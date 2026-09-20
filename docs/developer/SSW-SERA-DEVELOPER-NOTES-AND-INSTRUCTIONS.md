@@ -730,3 +730,42 @@ Required production responsibilities include:
 - avoid logging private conversational contents, keys, raw credentials or concealed details in rollout telemetry.
 
 This item blocks production rollout governance and the live Mobile Integration Gate.
+
+
+---
+
+## DEV-OPEN-016 — Production Workload Identity Issuance & mTLS/SPIFFE Binding
+
+**Status:** OPEN  
+**Introduced by:** SSW-AI-INFRA-01
+
+Developers / platform engineering shall bind the production service environment to the INFRA-01 workload-identity verifier.
+
+Required production responsibilities include:
+
+- select and configure the approved workload identity issuance mechanism;
+- establish the production SPIFFE trust domain and trust bundle;
+- map each SSW-SERA service workload to a unique SPIFFE ID;
+- provision mTLS transport or an approved service-mesh equivalent that preserves authenticated peer identity;
+- configure certificate/SVID issuance, renewal and rotation;
+- configure service-to-service authorization grants;
+- demonstrate rejection of unauthenticated, expired, wrong-domain and unapproved workload identities;
+- demonstrate certificate rotation without widening service authority;
+- ensure holder/session bearer tokens and HTTP identity headers cannot become workload identity;
+- ensure workload private keys/certificates are never committed to the repository.
+
+Required evidence:
+
+- trust-domain definition;
+- service-to-SPIFFE mapping;
+- trust-bundle/issuer mapping;
+- issuance and rotation procedure;
+- staging mTLS handshake evidence;
+- expired certificate rejection;
+- wrong trust-domain rejection;
+- ambiguous SPIFFE identity rejection;
+- unauthorized target-service rejection;
+- unauthorized action rejection;
+- plain HTTP / asserted-header rejection.
+
+This item blocks live workload identity claims and contributes to production environment/release gating.
