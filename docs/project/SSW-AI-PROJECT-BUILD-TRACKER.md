@@ -74,7 +74,7 @@ Current implementation milestone:
 
 Immediate next artifact:
 
-**SSW-AI-MOB-03: Voice/Text Interaction & Concealed Detail Presentation Binding — IN PROGRESS**
+**SSW-AI-MOB-04: Cross-Device Handoff & OS-Native Proactive Surface Binding**
 
 ## 5. Phase A — Product & Experience Definition
 
@@ -187,10 +187,10 @@ Immediate next artifact:
 | Android SERA Shell | SERA-first primary wallet experience | COMPLETE — MOB-01 shared shell baseline; native binding DEV-OPEN-011 |
 | Adaptive Workspace | Contextual structured views instead of static tabs | COMPLETE — MOB-02; native rendering DEV-OPEN-012 |
 | Deterministic Fallback UI | Assets / Send / Receive / Swap / Credentials / Activity / Security | COMPLETE — MOB-02; native rendering DEV-OPEN-012 |
-| Voice UI | Text + voice parity and safe confirmation | IN PROGRESS — MOB-03 |
-| Concealed Details UX | Reveal/re-hide / approval separation | IN PROGRESS — MOB-03 |
-| Cross-Device Handoff | Phone / desktop / wearable-safe task continuation | PLANNED |
-| Notifications / Widgets | OS-native proactive SERA surfaces | PLANNED |
+| Voice UI | Text + voice parity and safe confirmation | COMPLETE — MOB-03; native binding DEV-OPEN-013 |
+| Concealed Details UX | Reveal/re-hide / approval separation | COMPLETE — MOB-03; native binding DEV-OPEN-013 |
+| Cross-Device Handoff | Phone / desktop / wearable-safe task continuation | NEXT — MOB-04 |
+| Notifications / Widgets | OS-native proactive SERA surfaces | NEXT — MOB-04 |
 | Migration from Current SSW | staged SERA-first rollout with rollback | PLANNED |
 
 ## 11. Phase G — Wearables
@@ -257,6 +257,7 @@ Authoritative handoff record:
 | DEV-OPEN-010 | SVID4AI agent identity / holder delegation live binding | OPEN | live SVID4AI capability claims |
 | DEV-OPEN-011 | Native iOS / Android SERA shell binding | OPEN | Mobile Integration Gate / live SERA-first shell claims |
 | DEV-OPEN-012 | Native adaptive workspace / fallback rendering | OPEN | Mobile Integration Gate / native workspace completion |
+| DEV-OPEN-013 | Native voice/text and concealed-detail interaction binding | OPEN | Mobile Integration Gate / native voice and privacy completion |
 
 These items do not block continued controlled repository construction.
 
@@ -329,7 +330,7 @@ Completed implementation artifacts: 16.
 
 Completed productionization artifacts: 8. PROD-05 platform boundary is implemented and CI-verified; live Soul ID/SoulScan bindings are maintained as developer-owned open integration items DEV-OPEN-001 through DEV-OPEN-003.
 
-Immediate next implementation phase: MOB-03 Voice/Text Interaction & Concealed Detail Presentation Binding.
+Immediate next implementation phase: MOB-04 Cross-Device Handoff & OS-Native Proactive Surface Binding.
 
 Production signing enabled: no.
 
