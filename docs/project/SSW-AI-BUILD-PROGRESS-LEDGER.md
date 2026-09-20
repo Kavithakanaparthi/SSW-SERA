@@ -1552,3 +1552,61 @@ CI evidence:
 - hashed release evidence: PASS.
 
 **Next:** SSW-AI-SERA-RT-06: Multi-Chain Routing & Existing SSW Capability Adapters.
+
+
+---
+
+## Entry 034 — SERA-RT-06 Multi-Chain Routing & Existing SSW Capability Adapters
+
+**Date:** 2026-09-19  
+**Artifact:** SSW-AI-SERA-RT-06  
+**Implementation Commit:** `75deda4ee7c30ed3d5ef7a5eff05ed910cf4d82d`  
+**CI Run:** #72, ID `35480206131`  
+**Tracker Completion Commit:** `3e0cd7a66a5cbf0d96ba62006c956af7cfdb2f4a`  
+**Status:** COMPLETE
+
+Implemented:
+
+- Route Request and Route Decision machine contracts;
+- deterministic multi-chain route eligibility;
+- exact atomic-unit balance and fee comparison with BigInt;
+- explicit-chain no-fallback rule;
+- recipient compatibility gate;
+- chain availability gate;
+- asset verification gate;
+- blocked-risk route exclusion;
+- bridge penalty;
+- holder route preferences;
+- stable deterministic tie-breaking;
+- inspectable alternatives and exclusion reasons;
+- material chain-change detection;
+- mandatory fresh review when a previously reviewed chain changes;
+- typed adapters for balances, fees, payment preparation, receive, swap, WalletConnect inspection, credentials and asset risk;
+- capability descriptors limited to READ/PREPARE effects;
+- no generic sign/broadcast/submit capability.
+
+Developer handoff:
+
+- DEV-OPEN-006 records binding of existing SSW chain/config, balances, fees, send/receive, swap, WalletConnect, credential and asset-risk services to the typed interfaces.
+- Existing SSW services remain the live source systems and are not unnecessarily rebuilt.
+
+Security decisions:
+
+- route recommendation has `authority_effect: NONE`;
+- holder preference cannot override hard route ineligibility;
+- a requested chain never silently falls back to another chain;
+- route changes after review are material;
+- adapter layer cannot bypass the controlled signing/execution path;
+- WalletConnect inspection is not approval;
+- credential presentation preparation is not disclosure authority.
+
+CI evidence:
+
+- clean npm ci: PASS;
+- PostgreSQL migrations: PASS;
+- schema/scaffold verification: PASS;
+- 185 tests: PASS;
+- strict TypeScript: PASS;
+- hashed release evidence: PASS.
+
+**Next:** SSW-AI-SERA-RT-07: External Intelligence & Risk Context Adapters.
