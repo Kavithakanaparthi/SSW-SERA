@@ -74,7 +74,7 @@ Current implementation milestone:
 
 Immediate next artifact:
 
-**SSW-AI-SERA-RT-05: Proactive Intelligence, Monitoring & Notification Runtime**
+**SSW-AI-SERA-RT-06: Multi-Chain Routing & Existing SSW Capability Adapters**
 
 ## 5. Phase A — Product & Experience Definition
 
@@ -169,8 +169,8 @@ Immediate next artifact:
 | Context Broker | Purpose-bound wallet/context retrieval | COMPLETE — SERA-RT-02 |
 | SERA Memory | Holder preference / voice / alias memory domains | COMPLETE — SERA-RT-03 |
 | Voice Runtime | Voice adaptation, numerical safety, correction learning | COMPLETE — SERA-RT-04 |
-| Proactive Intelligence | Monitoring, prioritization, notification policy | NEXT — SERA-RT-05 |
-| Multi-Chain Routing | Chain / fee / compatibility route evaluation | PLANNED |
+| Proactive Intelligence | Monitoring, prioritization, notification policy | COMPLETE — SERA-RT-05 |
+| Multi-Chain Routing | Chain / fee / compatibility route evaluation | NEXT — SERA-RT-06 |
 | Existing SSW Capability Adapters | balances, send, receive, swap, WalletConnect, credentials | PLANNED |
 | News Integration Adapter | Existing news APIs through Context Broker | PLANNED |
 | LinkedIn Context Adapter | Existing LinkedIn API context under privacy rules | PLANNED |
