@@ -74,7 +74,7 @@ Current implementation milestone:
 
 Immediate next artifact:
 
-**SSW-AI-INFRA-05: Deployment Evidence & Production Deployment Gate Baseline**
+**SSW-AI-INFRA-05: Deployment Evidence & Production Deployment Gate Baseline — IN PROGRESS**
 
 ## 5. Phase A — Product & Experience Definition
 
