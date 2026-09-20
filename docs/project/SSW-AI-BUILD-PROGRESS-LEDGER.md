@@ -2331,3 +2331,54 @@ CI evidence:
 **Dependencies closed:** repository-level environment separation and promotion-control baseline.
 
 **Next:** SSW-AI-INFRA-04: Infrastructure-as-Code & Deployment Manifest Baseline.
+
+
+---
+
+## Entry 048 — INFRA-04 Infrastructure-as-Code & Deployment Manifest Baseline
+
+**Date:** 2026-09-20  
+**Artifact:** SSW-AI-INFRA-04  
+**Runtime Commit:** `aede4dfc6abfe8357f953b42db0298c1701c9068`  
+**Contract Test Commit:** `e86215d0b7c799a08832dae173afa0520a5166d5`  
+**Controlled Specification Commit:** `147e5ec26bc7dcf19fffc4c2aa9464dd823c4b1d`  
+**Final CI Head:** `c591d9828444c4dfe1a6bcacec5ca144d0f403b7`  
+**CI Run:** #190, ID `35514189909`  
+**Release Evidence Hash:** `sha256:ae2843e5411b84c9c58eac2f0d1e3a7b85bc625a1a202618d8a59e2bddae7674`  
+**Status:** COMPLETE
+
+Implemented:
+
+- provider-neutral deployment manifest;
+- DB15 trust-zone placement;
+- public/internal/no-ingress exposure model;
+- workload identity requirements;
+- caller/service boundaries;
+- environment-scoped secret references;
+- environment-scoped datastore namespaces;
+- encryption-at-rest requirements;
+- mandatory backup requirements for authority/evidence stores;
+- external-provider adapter binding;
+- replica bounds;
+- rejection of production-capable providers in non-production;
+- explicit prohibition on inline secret values;
+- explicit `productionSigningEnabled: false`;
+- explicit `productionAssetMovementEnabled: false`.
+
+Developer handoff:
+
+- DEV-OPEN-019 records provider-specific IaC, network, datastore and deployment binding.
+
+CI evidence:
+
+- PostgreSQL migrations: PASS;
+- contract verification: PASS — 51 JSON Schemas;
+- 274 tests: PASS;
+- failures: 0;
+- strict TypeScript: PASS;
+- hashed release evidence: PASS;
+- release decision remains `CI_BASELINE_PASS_PRODUCTION_BLOCKED`.
+
+**Dependencies closed:** repository-level provider-neutral deployment/IaC contract.
+
+**Next:** SSW-AI-INFRA-05: Deployment Evidence & Production Deployment Gate Baseline.
