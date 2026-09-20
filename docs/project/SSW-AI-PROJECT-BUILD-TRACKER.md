@@ -74,7 +74,7 @@ Current implementation milestone:
 
 Immediate next artifact:
 
-**SSW-AI-SERA-RT-09: Soul ID Runtime & did:soul Holder Context Integration**
+**SSW-AI-SERA-RT-09: Soul ID Runtime & did:soul Holder Context Integration — IN PROGRESS**
 
 ## 5. Phase A — Product & Experience Definition
 
@@ -176,7 +176,7 @@ Immediate next artifact:
 | LinkedIn Context Adapter | Existing LinkedIn API context under privacy rules | COMPLETE — typed boundary; live binding DEV-OPEN-007 |
 | Spam / Risk Signal Adapter | Existing spam filter into risk/control path | COMPLETE — typed boundary; live binding DEV-OPEN-007 |
 | Credential Runtime | Soulogram / VC / proof presentation integration | COMPLETE — SERA-RT-08; live binding DEV-OPEN-008 |
-| Soul ID Runtime | did:soul holder context / recovery integration | NEXT — SERA-RT-09 |
+| Soul ID Runtime | did:soul holder context / recovery integration | IN PROGRESS — SERA-RT-09 |
 | SVID4AI Runtime | Holder-bound SERA Agent DID / delegation integration | PLANNED |
 
 ## 10. Phase F — Mobile Product Integration
