@@ -1,12 +1,12 @@
 {
-  "name": "@soulverse/service-execution",
-  "version": "0.2.0",
+  "name": "@soulverse/evm-production-adapter",
+  "version": "0.1.0",
   "private": true,
   "type": "module",
   "main": "./src/index.ts",
   "types": "./src/index.ts",
   "dependencies": {
     "@soulverse/execution-router": "0.1.0",
-    "@soulverse/evm-production-adapter": "0.1.0"
+    "@soulverse/persistence-postgres": "0.1.0"
   }
 }

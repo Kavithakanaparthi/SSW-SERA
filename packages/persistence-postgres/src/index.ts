@@ -84,6 +84,11 @@ export class PostgresSession{
   return updated.rows[0]!;
  }
 
+ async getExecutionStateByIdempotency(idempotencyKey:string){
+  const r=await this.db.query(`SELECT * FROM ssw.execution_state WHERE idempotency_key=$1`,[idempotencyKey]);
+  return r.rows[0]??null;
+ }
+
  async putExecutionState(input:{executionRequestId:string;actionId:string;status:string;signedPayloadHash?:string|null;idempotencyKey:string;submissionRef?:string|null;networkTxId?:string|null}){
   const r=await this.db.query(`INSERT INTO ssw.execution_state(execution_request_id,action_id,status,signed_payload_hash,idempotency_key,submission_ref,network_tx_id)
     VALUES($1,$2,$3,$4,$5,$6,$7)
