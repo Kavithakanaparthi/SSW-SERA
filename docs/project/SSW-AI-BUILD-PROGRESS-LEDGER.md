@@ -1610,3 +1610,56 @@ CI evidence:
 - hashed release evidence: PASS.
 
 **Next:** SSW-AI-SERA-RT-07: External Intelligence & Risk Context Adapters.
+
+
+---
+
+## Entry 035 — SERA-RT-07 External Intelligence & Risk Context Adapters
+
+**Date:** 2026-09-19  
+**Artifact:** SSW-AI-SERA-RT-07  
+**Implementation Commit:** `c14bc7ee78778a92e55d7188d8ecaf1cda423a70`  
+**CI Run:** #75, ID `35480375118`  
+**Tracker Completion Commit:** `f31ec112639e7b71d3d5a9c3ebd5835dd9e2a6ca`  
+**Status:** COMPLETE
+
+Implemented:
+
+- common External Context Record machine contract;
+- existing-news provider interface;
+- professional-context provider interface;
+- spam/asset-risk provider interface;
+- controlled text normalization and size limits;
+- explicit UNTRUSTED_EXTERNAL_TEXT classification;
+- structured asset-risk classification;
+- machine-enforced `identity_authority: false`;
+- machine-enforced `authority_effect: NONE`;
+- News ContextSource adapter;
+- Professional ContextSource adapter;
+- Asset Risk ContextSource adapter;
+- Context Broker-compatible provenance, retention and transmission metadata.
+
+Security decisions:
+
+- external text is data, never an instruction channel;
+- transport sanitation does not upgrade external text to trusted content;
+- professional-profile verification does not become Soul ID/DID/credential proof;
+- news cannot establish transaction authority;
+- spam/risk classification cannot itself transfer, burn or dispose of an asset;
+- unrestricted raw provider payloads are not passed into model context;
+- source provenance is preserved.
+
+Developer handoff:
+
+- DEV-OPEN-007 records live binding of existing SSW news APIs, professional-context integration and spam/risk services.
+
+CI evidence:
+
+- clean npm ci: PASS;
+- PostgreSQL migrations: PASS;
+- schema/scaffold verification: PASS;
+- 190 tests: PASS;
+- strict TypeScript: PASS;
+- hashed release evidence: PASS.
+
+**Next:** SSW-AI-SERA-RT-08: Credential Runtime & Soulogram Presentation Integration.
