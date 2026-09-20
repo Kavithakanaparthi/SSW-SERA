@@ -1,4 +1,4 @@
-export type MigrationStage="M0"|"M1"|"M2"|"M3"|"M4";
+import type {MigrationStage} from "./mobile-shell.js";
 export type ReleaseStep="R0"|"R1"|"R2"|"R3"|"R4"|"R5"|"R6";
 export type RollbackMode="NONE"|"READ_ONLY_SERA"|"DISABLE_SERA_FIRST"|"DISABLE_PROACTIVE"|"DISABLE_VOICE"|"DISABLE_DELEGATION"|"CONVENTIONAL_WALLET";
 
