@@ -1663,3 +1663,64 @@ CI evidence:
 - hashed release evidence: PASS.
 
 **Next:** SSW-AI-SERA-RT-08: Credential Runtime & Soulogram Presentation Integration.
+
+
+---
+
+## Entry 036 — SERA-RT-08 Credential Runtime & Soulogram Presentation Integration
+
+**Date:** 2026-09-19  
+**Artifact:** SSW-AI-SERA-RT-08  
+**Runtime Commit:** `7dd89b540c1a985d6e276a54423eeb8fd7bde69f`  
+**Contract Test Commit:** `96768e2d4471f32c776cceaf64cab89206aaa271`  
+**Controlled Specification Commit:** `9e8248e978c3c0a1549b618088b617ffae2dd43e`  
+**Final CI Head:** `b543878fad057f8077ec0c79e66b4d6ff91c29d8`  
+**CI Run:** #89, ID `35481773682`  
+**Release Evidence Hash:** `sha256:eef6b47e1f36f0d67b6c4cb5d604ebf7e9c356125c5e3c96cde6fb8bee9a1962`  
+**Status:** COMPLETE
+
+Implemented:
+
+- controlled credential-presentation request normalization;
+- domain-separated deterministic request hashing;
+- exact Holder DID / SERA Agent DID / verifier binding;
+- deterministic credential eligibility and ambiguity blocking;
+- exact requested-claim coverage;
+- selective-disclosure planning without raw credential values;
+- claim-sensitivity classification;
+- explicit holder review and disclosure authorization requirement;
+- Trust Protocol and REV gating where required;
+- injected Soulogram proof-generation boundary;
+- injected presentation-delivery boundary;
+- OpenID4VP and direct Soulogram protocol classification;
+- W3C VC JWT, SD-JWT VC, JWT VP and Soulogram VP format boundary;
+- exact request/authorization binding across proof generation and presentation.
+
+Security decisions:
+
+- verifier requests are input, never authority;
+- presentation preparation is not disclosure authority;
+- raw credentials and signing material remain outside SERA/model context;
+- ambiguous eligible credentials fail closed;
+- proof generation cannot proceed without exact review/authorization evidence;
+- Trust/REV requirements cannot be bypassed;
+- request mutation invalidates the prior control binding;
+- the live Soulogram/OpenID provider may not widen the authorized disclosure plan.
+
+Developer handoff:
+
+- DEV-OPEN-008 records live Soul Super Wallet credential-store and Soulogram/OpenID4VP provider binding.
+
+CI evidence:
+
+- PostgreSQL migrations: PASS;
+- contract verification: PASS — 49 JSON Schemas;
+- 196 tests: PASS;
+- failures: 0;
+- strict TypeScript: PASS;
+- hashed release evidence: PASS;
+- release decision remains `CI_BASELINE_PASS_PRODUCTION_BLOCKED`.
+
+**Dependencies closed:** controlled credential disclosure, proof-generation and presentation runtime boundary.
+
+**Next:** SSW-AI-SERA-RT-09: Soul ID Runtime & did:soul Holder Context Integration.
