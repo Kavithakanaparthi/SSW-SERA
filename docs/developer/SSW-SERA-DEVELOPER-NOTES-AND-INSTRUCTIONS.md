@@ -848,3 +848,45 @@ Required evidence:
 - audit record of promotion approvals.
 
 This item blocks live environment-separation claims and contributes to production release gating.
+
+
+---
+
+## DEV-OPEN-019 — Provider-Specific IaC, Network & Deployment Binding
+
+**Status:** OPEN  
+**Introduced by:** SSW-AI-INFRA-04
+
+Developers / platform engineering shall bind the provider-neutral INFRA-04 deployment manifest to the selected production infrastructure stack.
+
+Required responsibilities include:
+
+- select the approved cloud/private/sovereign deployment provider(s);
+- compile the logical trust-zone manifest into provider-specific IaC;
+- preserve environment-specific database, secret, workload-identity and telemetry namespaces;
+- enforce public-edge exposure only where explicitly declared;
+- prevent direct public exposure of intelligence and evidence zones;
+- configure internal service-to-service authentication and authorization;
+- configure encrypted data stores and backup policies;
+- bind secret references without embedding secret values in source or generated plans;
+- route external providers only through controlled adapter services;
+- configure staging and production replicas/availability consistent with the controlled manifest;
+- demonstrate that infrastructure deployment does not enable production signing or asset movement;
+- produce an auditable infrastructure plan/diff for every promotion.
+
+Required evidence:
+
+- selected provider and deployment model;
+- generated IaC source;
+- plan/diff output;
+- trust-zone/network map;
+- service exposure inventory;
+- datastore encryption evidence;
+- backup policy evidence;
+- secret-reference validation;
+- workload identity binding;
+- staging deployment evidence;
+- rollback/destroy safety procedure;
+- production deployment dry-run with signing and asset movement still disabled.
+
+This item blocks the live Production Deployment Gate.
