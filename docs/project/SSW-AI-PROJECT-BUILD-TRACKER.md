@@ -74,7 +74,7 @@ Current implementation milestone:
 
 Immediate next artifact:
 
-**SSW-AI-MOB-01: Mobile SERA Shell Integration Baseline, Feature Flags & Deterministic Fallback**
+**SSW-AI-MOB-01: Mobile SERA Shell Integration Baseline, Feature Flags & Deterministic Fallback — IN PROGRESS**
 
 ## 5. Phase A — Product & Experience Definition
 
@@ -183,8 +183,8 @@ Immediate next artifact:
 
 | Area | Deliverable | Status |
 |---|---|---|
-| iOS SERA Shell | SERA-first primary wallet experience | NEXT — MOB-01 shared shell baseline |
-| Android SERA Shell | SERA-first primary wallet experience | NEXT — MOB-01 shared shell baseline |
+| iOS SERA Shell | SERA-first primary wallet experience | IN PROGRESS — MOB-01 shared shell baseline |
+| Android SERA Shell | SERA-first primary wallet experience | IN PROGRESS — MOB-01 shared shell baseline |
 | Adaptive Workspace | Contextual structured views instead of static tabs | PLANNED |
 | Deterministic Fallback UI | Assets / Send / Receive / Swap / Credentials / Activity / Security | PLANNED |
 | Voice UI | Text + voice parity and safe confirmation | PLANNED |
