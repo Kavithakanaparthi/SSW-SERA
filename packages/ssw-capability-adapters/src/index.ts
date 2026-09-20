@@ -43,3 +43,5 @@ export interface SswCapabilityAdapters{
  credentials:CredentialAdapter;
  assetRisk:AssetRiskAdapter;
 }
+
+export * from "./credential-runtime.js";
