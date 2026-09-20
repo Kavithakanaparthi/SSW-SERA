@@ -1,0 +1,122 @@
+{
+  "schema": "ssw.release-blockers.v1",
+  "blockers": [
+    {
+      "id": "DEV-OPEN-001",
+      "category": "DEVELOPER_INTEGRATION",
+      "description": "Soul ID portable signing-key production binding",
+      "blocks": [
+        "SIGNING",
+        "RELEASE"
+      ]
+    },
+    {
+      "id": "DEV-OPEN-002",
+      "category": "DEVELOPER_INTEGRATION",
+      "description": "SoulScan recovery authorization production binding",
+      "blocks": [
+        "SIGNING",
+        "RECOVERY",
+        "RELEASE"
+      ]
+    },
+    {
+      "id": "DEV-OPEN-003",
+      "category": "DEVELOPER_INTEGRATION",
+      "description": "SERA portable signing-key production binding",
+      "blocks": [
+        "SIGNING",
+        "RELEASE"
+      ]
+    },
+    {
+      "id": "DEV-OPEN-004",
+      "category": "DEVELOPER_INTEGRATION",
+      "description": "Production EVM RPC and signed-payload resolver binding",
+      "blocks": [
+        "EXECUTION",
+        "RELEASE"
+      ]
+    },
+    {
+      "id": "DEV-OPEN-005",
+      "category": "DEVELOPER_INTEGRATION",
+      "description": "SAEL checkpoint signer and encrypted archive provider binding",
+      "blocks": [
+        "SAEL",
+        "RELEASE"
+      ]
+    },
+    {
+      "id": "INFRA-001",
+      "category": "INFRASTRUCTURE",
+      "description": "Production workload identity and service credential issuance",
+      "blocks": [
+        "CONTROL_PLANE",
+        "SIGNING",
+        "EXECUTION",
+        "SAEL",
+        "RELEASE"
+      ]
+    },
+    {
+      "id": "INFRA-002",
+      "category": "INFRASTRUCTURE",
+      "description": "Production secret delivery and rotation",
+      "blocks": [
+        "CONTROL_PLANE",
+        "SIGNING",
+        "EXECUTION",
+        "SAEL",
+        "RELEASE"
+      ]
+    },
+    {
+      "id": "INFRA-003",
+      "category": "INFRASTRUCTURE",
+      "description": "Production observability, alerting and sensitive-data controls",
+      "blocks": [
+        "SECURITY",
+        "RELEASE"
+      ]
+    },
+    {
+      "id": "INFRA-004",
+      "category": "INFRASTRUCTURE",
+      "description": "Environment separation and staging deployment",
+      "blocks": [
+        "SECURITY",
+        "PILOT",
+        "RELEASE"
+      ]
+    },
+    {
+      "id": "INFRA-005",
+      "category": "INFRASTRUCTURE",
+      "description": "Reproducible infrastructure-as-code and deployment recovery",
+      "blocks": [
+        "PILOT",
+        "RELEASE"
+      ]
+    },
+    {
+      "id": "MOBILE-001",
+      "category": "PRODUCT_INTEGRATION",
+      "description": "iOS and Android SERA control-path integration",
+      "blocks": [
+        "MOBILE",
+        "PILOT",
+        "RELEASE"
+      ]
+    },
+    {
+      "id": "PILOT-001",
+      "category": "RELEASE",
+      "description": "Controlled user pilot and release-readiness review",
+      "blocks": [
+        "PILOT",
+        "RELEASE"
+      ]
+    }
+  ]
+}

@@ -55,6 +55,7 @@ const schemaFiles = [
   "ssw-portable-key-manifest.v1.schema.json",
   "ssw-soulscan-recovery-authorization.v1.schema.json",
   "ssw-encrypted-key-object-ref.v1.schema.json",
+  "ssw-release-evidence.v1.schema.json",
   "ssw-counterparty-resolution.v1.schema.json"
 ] as const;
 

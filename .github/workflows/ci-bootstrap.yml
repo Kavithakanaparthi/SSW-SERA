@@ -6,6 +6,24 @@ on:
   pull_request:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      evidence_environment:
+        description: Release evidence environment
+        required: false
+        default: CI
+        type: choice
+        options:
+          - CI
+          - STAGING
+      staging_attack_execution:
+        description: Dedicated deployed-staging security exercise state
+        required: false
+        default: NOT_RUN
+        type: choice
+        options:
+          - NOT_RUN
+          - PARTIAL
+          - COMPLETE
 
 permissions:
   contents: read
@@ -35,6 +53,8 @@ jobs:
           --health-retries 10
     env:
       DATABASE_URL: postgresql://ssw:ssw_ci@127.0.0.1:5432/ssw_sera
+      RELEASE_EVIDENCE_ENVIRONMENT: ${{ inputs.evidence_environment || 'CI' }}
+      STAGING_ATTACK_EXECUTION: ${{ inputs.staging_attack_execution || 'NOT_RUN' }}
 
     steps:
       - name: Checkout
@@ -65,7 +85,22 @@ jobs:
         run: npm run verify:contracts
 
       - name: Run contract, integration and security tests
-        run: npm test
+        shell: bash
+        run: |
+          mkdir -p .artifacts
+          set -o pipefail
+          npm test | tee .artifacts/test-output.log
 
       - name: Strict TypeScript check
         run: npm run typecheck
+
+      - name: Generate hashed release evidence
+        run: npm run release:evidence
+
+      - name: Upload release evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: ssw-sera-release-evidence-${{ github.run_id }}
+          path: .artifacts/release-evidence.json
+          if-no-files-found: error
+          retention-days: 30

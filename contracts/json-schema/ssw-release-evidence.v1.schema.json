@@ -1,0 +1,297 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.soulverse.world/ssw/json-schema/ssw-release-evidence.v1.schema.json",
+  "title": "SSW Release Evidence v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "evidence_id",
+    "repository",
+    "commit_sha",
+    "branch",
+    "environment",
+    "generated_at",
+    "workflow",
+    "verification",
+    "security",
+    "open_blockers",
+    "production_gates",
+    "decision",
+    "evidence_hash"
+  ],
+  "properties": {
+    "schema": {
+      "const": "ssw.release-evidence.v1"
+    },
+    "evidence_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "repository": {
+      "type": "string",
+      "minLength": 1
+    },
+    "commit_sha": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "branch": {
+      "type": "string",
+      "minLength": 1
+    },
+    "environment": {
+      "type": "string",
+      "enum": [
+        "CI",
+        "STAGING"
+      ]
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "workflow": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "run_id",
+        "run_number"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "run_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "run_number": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "migrations",
+        "scaffold",
+        "contracts",
+        "tests",
+        "typecheck"
+      ],
+      "properties": {
+        "migrations": {
+          "const": "PASS"
+        },
+        "scaffold": {
+          "const": "PASS"
+        },
+        "contracts": {
+          "const": "PASS"
+        },
+        "typecheck": {
+          "const": "PASS"
+        },
+        "tests": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "count",
+            "passed",
+            "failed"
+          ],
+          "properties": {
+            "status": {
+              "const": "PASS"
+            },
+            "count": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "passed": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "failed": {
+              "const": 0
+            }
+          }
+        }
+      }
+    },
+    "security": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required_case_ids",
+        "source_manifest_coverage",
+        "dedicated_staging_attack_execution"
+      ],
+      "properties": {
+        "required_case_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^SEC-[0-9]{3}$"
+          }
+        },
+        "source_manifest_coverage": {
+          "type": "boolean"
+        },
+        "dedicated_staging_attack_execution": {
+          "type": "string",
+          "enum": [
+            "NOT_RUN",
+            "PARTIAL",
+            "COMPLETE"
+          ]
+        }
+      }
+    },
+    "open_blockers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "category",
+          "description",
+          "blocks"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "category": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          },
+          "blocks": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    },
+    "production_gates": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "control_plane",
+        "signing",
+        "execution",
+        "recovery",
+        "sael",
+        "security",
+        "mobile",
+        "pilot",
+        "release"
+      ],
+      "properties": {
+        "control_plane": {
+          "type": "string",
+          "enum": [
+            "COMPLETE",
+            "NOT_GATED",
+            "BLOCKED"
+          ]
+        },
+        "signing": {
+          "type": "string",
+          "enum": [
+            "COMPLETE",
+            "NOT_GATED",
+            "BLOCKED"
+          ]
+        },
+        "execution": {
+          "type": "string",
+          "enum": [
+            "COMPLETE",
+            "NOT_GATED",
+            "BLOCKED"
+          ]
+        },
+        "recovery": {
+          "type": "string",
+          "enum": [
+            "COMPLETE",
+            "NOT_GATED",
+            "BLOCKED"
+          ]
+        },
+        "sael": {
+          "type": "string",
+          "enum": [
+            "COMPLETE",
+            "NOT_GATED",
+            "BLOCKED"
+          ]
+        },
+        "security": {
+          "type": "string",
+          "enum": [
+            "COMPLETE",
+            "NOT_GATED",
+            "BLOCKED"
+          ]
+        },
+        "mobile": {
+          "type": "string",
+          "enum": [
+            "COMPLETE",
+            "NOT_GATED",
+            "BLOCKED"
+          ]
+        },
+        "pilot": {
+          "type": "string",
+          "enum": [
+            "COMPLETE",
+            "NOT_GATED",
+            "BLOCKED"
+          ]
+        },
+        "release": {
+          "type": "string",
+          "enum": [
+            "COMPLETE",
+            "NOT_GATED",
+            "BLOCKED"
+          ]
+        }
+      }
+    },
+    "decision": {
+      "type": "string",
+      "enum": [
+        "CI_BASELINE_PASS_PRODUCTION_BLOCKED",
+        "STAGING_GATE_PASS_PRODUCTION_BLOCKED",
+        "PRODUCTION_CANDIDATE"
+      ]
+    },
+    "evidence_hash": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    }
+  }
+}

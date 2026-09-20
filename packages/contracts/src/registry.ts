@@ -33,6 +33,7 @@ export const contractSchemaIds = {
   portableKeyManifest: "https://schemas.soulverse.world/ssw/json-schema/ssw-portable-key-manifest.v1.schema.json",
   soulscanRecoveryAuthorization: "https://schemas.soulverse.world/ssw/json-schema/ssw-soulscan-recovery-authorization.v1.schema.json",
   encryptedKeyObjectRef: "https://schemas.soulverse.world/ssw/json-schema/ssw-encrypted-key-object-ref.v1.schema.json",
+  releaseEvidence: "https://schemas.soulverse.world/ssw/json-schema/ssw-release-evidence.v1.schema.json",
   counterpartyResolution: "https://schemas.soulverse.world/ssw/json-schema/ssw-counterparty-resolution.v1.schema.json"
 } as const;
 
@@ -71,6 +72,7 @@ export type ContractKind =
   | "portable-key-manifest"
   | "soulscan-recovery-authorization"
   | "encrypted-key-object-ref"
+  | "release-evidence"
   | "counterparty-resolution";
 
 export const contractKindToSchemaId: Readonly<Record<ContractKind, string>> = {
@@ -108,5 +110,6 @@ export const contractKindToSchemaId: Readonly<Record<ContractKind, string>> = {
   "portable-key-manifest": contractSchemaIds.portableKeyManifest,
   "soulscan-recovery-authorization": contractSchemaIds.soulscanRecoveryAuthorization,
   "encrypted-key-object-ref": contractSchemaIds.encryptedKeyObjectRef,
+  "release-evidence": contractSchemaIds.releaseEvidence,
   "counterparty-resolution": contractSchemaIds.counterpartyResolution
 };

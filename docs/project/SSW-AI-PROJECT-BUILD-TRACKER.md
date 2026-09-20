@@ -248,6 +248,8 @@ Authoritative handoff record:
 | DEV-OPEN-001 | Soul ID portable signing-key production binding | OPEN | Signing Gate / Release Gate |
 | DEV-OPEN-002 | SoulScan recovery authorization production binding | OPEN | Signing Gate / Recovery Gate / Release Gate |
 | DEV-OPEN-003 | SERA portable signing-key production binding | OPEN | Signing Gate / Release Gate |
+| DEV-OPEN-004 | Production EVM RPC / signed-payload resolver binding | OPEN | Execution Gate / Release Gate |
+| DEV-OPEN-005 | SAEL checkpoint signer / encrypted archive binding | OPEN | SAEL Gate / Release Gate |
 
 These items do not block continued controlled repository construction.
 

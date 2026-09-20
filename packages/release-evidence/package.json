@@ -1,0 +1,13 @@
+{
+  "name": "@soulverse/release-evidence",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "dependencies": {
+    "@soulverse/canonicalization": "0.2.0",
+    "@soulverse/schema-validation": "0.2.0",
+    "@soulverse/security-harness": "0.1.0"
+  }
+}
