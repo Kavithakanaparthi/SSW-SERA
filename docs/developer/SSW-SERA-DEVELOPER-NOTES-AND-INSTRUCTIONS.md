@@ -248,9 +248,104 @@ Provide:
 
 ---
 
+
+---
+
+## DEV-OPEN-004 — Production EVM RPC & Signed Payload Resolver Binding
+
+**Source Artifact**
+
+- SSW-AI-PROD-06
+
+**Status:** OPEN — DEVELOPER INTEGRATION REQUIRED
+
+### Controlled Architecture
+
+The production EVM adapter is provider-neutral.
+
+The repository supplies:
+
+- `HttpsEvmJsonRpcClient`;
+- `SignedPayloadResolver`;
+- `submitEvmProduction`;
+- `reconcileEvmExecution`.
+
+### Developer Action Required
+
+1. connect an approved production EVM RPC endpoint or provider set;
+2. provide environment-specific endpoint/credential configuration;
+3. bind `SignedPayloadResolver` to the actual signed-transaction storage/output of the Soul ID/SERA signing implementation;
+4. ensure the resolver returns the exact raw signed transaction, signed payload hash, chain ID and expected EVM transaction hash;
+5. configure failover without blind resubmission;
+6. execute staging submission/reconciliation tests on approved test networks before production.
+
+### Required Completion Evidence
+
+- endpoint/provider mapping;
+- credential delivery mechanism;
+- chain-ID mismatch rejection test;
+- signed-payload hash mismatch test;
+- network transaction-hash mismatch test;
+- timeout/unknown-outcome reconciliation test;
+- identical retry/no-resubmission test;
+- staging transaction evidence.
+
+**Blocks:** Production Execution Gate / Production Release Gate.
+
+---
+
+## DEV-OPEN-005 — SAEL Checkpoint Signer & Encrypted Archive Provider Binding
+
+**Source Artifact**
+
+- SSW-AI-PROD-07
+
+**Status:** OPEN — DEVELOPER INTEGRATION REQUIRED
+
+### Controlled Architecture
+
+The repository supplies:
+
+- PostgreSQL immutable SAEL append store;
+- deterministic Merkle checkpoint roots;
+- `SaelCheckpointSigner` interface;
+- `SaelArchiveWriter` interface;
+- checkpoint/archive persistence and verification boundaries.
+
+### Developer Action Required
+
+1. bind `SaelCheckpointSigner` to the approved production checkpoint-signing key service;
+2. bind `SaelArchiveWriter` to the approved encrypted archive storage implementation;
+3. define the archive encryption profile and retention configuration;
+4. verify archive retrieval against checkpoint/event hashes;
+5. perform a recovery drill from archive;
+6. configure integrity monitoring and alerting.
+
+### Do Not
+
+Developers must not:
+
+- make the archive provider authoritative for event history;
+- rewrite immutable SAEL events during archive/restore;
+- store unencrypted sensitive evidence in an external archive;
+- use the SAEL checkpoint key for wallet or SERA transaction signing.
+
+### Required Completion Evidence
+
+- checkpoint key/service mapping;
+- checkpoint signature verification test;
+- archive encryption profile;
+- archive provider configuration;
+- mutation-detection test;
+- restore/recovery drill;
+- retention configuration;
+- integrity-monitoring evidence.
+
+**Blocks:** Production SAEL Gate / Production Release Gate.
+
 # COMPLETION RULE
 
-DEV-OPEN-001, DEV-OPEN-002 and DEV-OPEN-003 are intentionally open-ended developer integration items.
+DEV-OPEN-001 through DEV-OPEN-005 are intentionally open-ended developer integration items.
 
 They do not block continued repository construction.
 
