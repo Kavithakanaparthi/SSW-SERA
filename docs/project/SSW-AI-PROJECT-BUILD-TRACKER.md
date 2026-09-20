@@ -74,7 +74,7 @@ Current implementation milestone:
 
 Immediate next artifact:
 
-**SSW-AI-REL-01: Consolidated Production Release Gate & Pilot Readiness Baseline**
+**SSW-AI-REL-01: Consolidated Production Release Gate & Pilot Readiness Baseline — IN PROGRESS**
 
 ## 5. Phase A — Product & Experience Definition
 
@@ -285,6 +285,7 @@ Open developer integrations, infrastructure blockers and release gates remain au
 | Security Gate | threat-model test suite passed | NOT GATED |
 | Mobile Integration Gate | iOS / Android control-path integration verified | REPOSITORY BASELINE COMPLETE — LIVE BLOCKED by DEV-OPEN-006, DEV-OPEN-011..015 |
 | Pilot Gate | controlled user pilot | NOT GATED |
+| Release Consolidation | pilot and production readiness aggregation | IN PROGRESS — REL-01 |
 | Production Release Gate | final release readiness review | NOT GATED |
 
 ## 14. Required Security Tests Before Production Signing
