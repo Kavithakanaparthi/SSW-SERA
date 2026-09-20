@@ -2,7 +2,7 @@
   "schema": "ssw.live-integration-evidence-submission.v1",
   "item_id": "DEV-OPEN-001",
   "artifact_id": "SSW-AI-LIVE-01",
-  "status": "TEMPLATE_ONLY",
+  "status": "READY_FOR_LIVE_TEST",
   "environment": "staging",
   "integration_version": "",
   "commit_sha": "",
@@ -89,5 +89,42 @@
   "restrictions": {
     "production_signing_enabled": false,
     "production_asset_movement_enabled": false
+  },
+  "execution": {
+    "required": true,
+    "instruction": "Execute the production-equivalent Soul ID portable signing integration test in approved staging, complete all positive and negative tests in SSW-AI-LIVE-01, then populate E1-E10 and change status to EVIDENCE_SUBMITTED.",
+    "required_path": [
+      "authoritative manifest resolution",
+      "encrypted key object retrieval",
+      "CID/hash verification",
+      "SoulScan-authorized access",
+      "envelope opening",
+      "ephemeral signing session",
+      "controlled signing operation",
+      "session expiry and cleanup"
+    ],
+    "mandatory_negative_tests": [
+      "wrong CID/hash rejection",
+      "stale key-version rejection",
+      "wrong Holder DID rejection",
+      "expired/invalid recovery authorization rejection where applicable",
+      "expired signing-session rejection",
+      "plaintext-key persistence/exposure scan"
+    ]
+  },
+  "submission_instructions": {
+    "on_test_completion": [
+      "populate environment, integration_version, commit_sha, submitted_at and submitted_by",
+      "populate all E1-E10 evidence refs",
+      "set status to EVIDENCE_SUBMITTED",
+      "update DEV-OPEN-001 in SSW-SERA-Live-Integration-Evidence-Registry.json to EVIDENCE_SUBMITTED",
+      "commit submission and registry update together",
+      "request independent verification"
+    ],
+    "do_not": [
+      "mark VERIFIED before independent review",
+      "enable production signing",
+      "enable production asset movement"
+    ]
   }
 }
