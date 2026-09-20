@@ -74,7 +74,7 @@ Current implementation milestone:
 
 Immediate next artifact:
 
-**SSW-AI-SERA-RT-10: SVID4AI Runtime & Holder-Bound SERA Agent DID / Delegation Integration — IN PROGRESS**
+**SSW-AI-MOB-01: Mobile SERA Shell Integration Baseline, Feature Flags & Deterministic Fallback**
 
 ## 5. Phase A — Product & Experience Definition
 
@@ -177,14 +177,14 @@ Immediate next artifact:
 | Spam / Risk Signal Adapter | Existing spam filter into risk/control path | COMPLETE — typed boundary; live binding DEV-OPEN-007 |
 | Credential Runtime | Soulogram / VC / proof presentation integration | COMPLETE — SERA-RT-08; live binding DEV-OPEN-008 |
 | Soul ID Runtime | did:soul holder context / recovery integration | COMPLETE — SERA-RT-09; live binding DEV-OPEN-009 |
-| SVID4AI Runtime | Holder-bound SERA Agent DID / delegation integration | IN PROGRESS — SERA-RT-10 |
+| SVID4AI Runtime | Holder-bound SERA Agent DID / delegation integration | COMPLETE — SERA-RT-10; live binding DEV-OPEN-010 |
 
 ## 10. Phase F — Mobile Product Integration
 
 | Area | Deliverable | Status |
 |---|---|---|
-| iOS SERA Shell | SERA-first primary wallet experience | PLANNED |
-| Android SERA Shell | SERA-first primary wallet experience | PLANNED |
+| iOS SERA Shell | SERA-first primary wallet experience | NEXT — MOB-01 shared shell baseline |
+| Android SERA Shell | SERA-first primary wallet experience | NEXT — MOB-01 shared shell baseline |
 | Adaptive Workspace | Contextual structured views instead of static tabs | PLANNED |
 | Deterministic Fallback UI | Assets / Send / Receive / Swap / Credentials / Activity / Security | PLANNED |
 | Voice UI | Text + voice parity and safe confirmation | PLANNED |
@@ -254,6 +254,7 @@ Authoritative handoff record:
 | DEV-OPEN-007 | News / professional context / asset-risk provider binding | OPEN | live external-intelligence capability claims |
 | DEV-OPEN-008 | Soulogram / OpenID4VP live credential presentation binding | OPEN | live credential-presentation capability claims |
 | DEV-OPEN-009 | Soul ID holder context / SERA governance live binding | OPEN | live Soul ID holder-context capability claims |
+| DEV-OPEN-010 | SVID4AI agent identity / holder delegation live binding | OPEN | live SVID4AI capability claims |
 
 These items do not block continued controlled repository construction.
 
@@ -326,7 +327,7 @@ Completed implementation artifacts: 16.
 
 Completed productionization artifacts: 8. PROD-05 platform boundary is implemented and CI-verified; live Soul ID/SoulScan bindings are maintained as developer-owned open integration items DEV-OPEN-001 through DEV-OPEN-003.
 
-Immediate next implementation phase: SERA-RT-10 SVID4AI Runtime & Holder-Bound SERA Agent DID / Delegation Integration.
+Immediate next implementation phase: MOB-01 Mobile SERA Shell Integration Baseline, Feature Flags & Deterministic Fallback.
 
 Production signing enabled: no.
 
