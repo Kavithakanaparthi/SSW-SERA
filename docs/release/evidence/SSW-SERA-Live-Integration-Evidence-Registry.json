@@ -1,0 +1,197 @@
+{
+  "schema": "ssw.live-integration-evidence-registry.v1",
+  "generatedAt": "2026-09-20T14:29:00-04:00",
+  "status": "INITIAL_BASELINE",
+  "instructions": "Update status only through reviewed evidence. Do not mark VERIFIED without an evidence reference and verifier record.",
+  "items": [
+    {
+      "id": "DEV-OPEN-001",
+      "status": "OPEN",
+      "applicable": true,
+      "evidence": [],
+      "verificationNotes": [],
+      "verifiedBy": null,
+      "verifiedAt": null
+    },
+    {
+      "id": "DEV-OPEN-002",
+      "status": "OPEN",
+      "applicable": true,
+      "evidence": [],
+      "verificationNotes": [],
+      "verifiedBy": null,
+      "verifiedAt": null
+    },
+    {
+      "id": "DEV-OPEN-003",
+      "status": "OPEN",
+      "applicable": true,
+      "evidence": [],
+      "verificationNotes": [],
+      "verifiedBy": null,
+      "verifiedAt": null
+    },
+    {
+      "id": "DEV-OPEN-004",
+      "status": "OPEN",
+      "applicable": true,
+      "evidence": [],
+      "verificationNotes": [],
+      "verifiedBy": null,
+      "verifiedAt": null
+    },
+    {
+      "id": "DEV-OPEN-005",
+      "status": "OPEN",
+      "applicable": true,
+      "evidence": [],
+      "verificationNotes": [],
+      "verifiedBy": null,
+      "verifiedAt": null
+    },
+    {
+      "id": "DEV-OPEN-006",
+      "status": "OPEN",
+      "applicable": true,
+      "evidence": [],
+      "verificationNotes": [],
+      "verifiedBy": null,
+      "verifiedAt": null
+    },
+    {
+      "id": "DEV-OPEN-007",
+      "status": "OPEN",
+      "applicable": true,
+      "evidence": [],
+      "verificationNotes": [],
+      "verifiedBy": null,
+      "verifiedAt": null
+    },
+    {
+      "id": "DEV-OPEN-008",
+      "status": "OPEN",
+      "applicable": true,
+      "evidence": [],
+      "verificationNotes": [],
+      "verifiedBy": null,
+      "verifiedAt": null
+    },
+    {
+      "id": "DEV-OPEN-009",
+      "status": "OPEN",
+      "applicable": true,
+      "evidence": [],
+      "verificationNotes": [],
+      "verifiedBy": null,
+      "verifiedAt": null
+    },
+    {
+      "id": "DEV-OPEN-010",
+      "status": "OPEN",
+      "applicable": true,
+      "evidence": [],
+      "verificationNotes": [],
+      "verifiedBy": null,
+      "verifiedAt": null
+    },
+    {
+      "id": "DEV-OPEN-011",
+      "status": "OPEN",
+      "applicable": true,
+      "evidence": [],
+      "verificationNotes": [],
+      "verifiedBy": null,
+      "verifiedAt": null
+    },
+    {
+      "id": "DEV-OPEN-012",
+      "status": "OPEN",
+      "applicable": true,
+      "evidence": [],
+      "verificationNotes": [],
+      "verifiedBy": null,
+      "verifiedAt": null
+    },
+    {
+      "id": "DEV-OPEN-013",
+      "status": "OPEN",
+      "applicable": true,
+      "evidence": [],
+      "verificationNotes": [],
+      "verifiedBy": null,
+      "verifiedAt": null
+    },
+    {
+      "id": "DEV-OPEN-014",
+      "status": "OPEN",
+      "applicable": true,
+      "evidence": [],
+      "verificationNotes": [],
+      "verifiedBy": null,
+      "verifiedAt": null
+    },
+    {
+      "id": "DEV-OPEN-015",
+      "status": "OPEN",
+      "applicable": true,
+      "evidence": [],
+      "verificationNotes": [],
+      "verifiedBy": null,
+      "verifiedAt": null
+    },
+    {
+      "id": "DEV-OPEN-016",
+      "status": "OPEN",
+      "applicable": true,
+      "evidence": [],
+      "verificationNotes": [],
+      "verifiedBy": null,
+      "verifiedAt": null
+    },
+    {
+      "id": "DEV-OPEN-017",
+      "status": "OPEN",
+      "applicable": true,
+      "evidence": [],
+      "verificationNotes": [],
+      "verifiedBy": null,
+      "verifiedAt": null
+    },
+    {
+      "id": "DEV-OPEN-018",
+      "status": "OPEN",
+      "applicable": true,
+      "evidence": [],
+      "verificationNotes": [],
+      "verifiedBy": null,
+      "verifiedAt": null
+    },
+    {
+      "id": "DEV-OPEN-019",
+      "status": "OPEN",
+      "applicable": true,
+      "evidence": [],
+      "verificationNotes": [],
+      "verifiedBy": null,
+      "verifiedAt": null
+    },
+    {
+      "id": "DEV-OPEN-020",
+      "status": "OPEN",
+      "applicable": true,
+      "evidence": [],
+      "verificationNotes": [],
+      "verifiedBy": null,
+      "verifiedAt": null
+    },
+    {
+      "id": "DEV-OPEN-021",
+      "status": "OPEN",
+      "applicable": true,
+      "evidence": [],
+      "verificationNotes": [],
+      "verifiedBy": null,
+      "verifiedAt": null
+    }
+  ]
+}
