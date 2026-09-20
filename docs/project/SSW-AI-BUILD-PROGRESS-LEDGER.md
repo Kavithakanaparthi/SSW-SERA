@@ -1088,3 +1088,39 @@ CI evidence:
 
 **Remaining PROD-05 dependency:** bind the adapter interfaces to the existing Soul ID SoulScan recovery service and existing production key-envelope cryptographic implementation. No new custody-provider decision is required.
 
+
+
+---
+
+## Entry 031 — Soul ID / SoulScan Developer Integration Handoff
+
+**Date:** 2026-09-19  
+**Artifact:** SSW-SERA-DEV-NOTES-001  
+**Handoff Commit:** `1503a84d170f32b0cc1d6cd1ed9408ed8cdd8a14`  
+**Status:** CONTROLLED DEVELOPER HANDOFF
+
+Created and established the maintained developer handoff record:
+
+`docs/developer/SSW-SERA-DEVELOPER-NOTES-AND-INSTRUCTIONS.md`
+
+Open developer integration items:
+
+- DEV-OPEN-001 — Soul ID Portable Signing-Key Integration;
+- DEV-OPEN-002 — SoulScan Recovery Authorization Integration;
+- DEV-OPEN-003 — SERA Portable Signing-Key Integration.
+
+The SoulScan/IPFS portable key interfaces, contracts, transport adapters and security invariants remain controlled repository architecture.
+
+The live connection to existing Soul ID/SoulScan production systems is intentionally delegated to developers.
+
+These open items do not block continued repository construction.
+
+They do block:
+
+- Production Signing Gate closure;
+- applicable Recovery Gate closure;
+- Production Release Gate closure;
+- any representation that live Soul ID/SoulScan-backed production signing is operational.
+
+PROD-05 is closed at the platform/interface boundary and PROD-06 advances to NEXT.
+
