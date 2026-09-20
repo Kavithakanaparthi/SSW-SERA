@@ -1854,3 +1854,60 @@ CI evidence:
 **Dependencies closed:** controlled SVID4AI agent identity, Holder/Operator governance binding, and identity-to-mandate separation.
 
 **Next:** SSW-AI-MOB-01: Mobile SERA Shell Integration Baseline, Feature Flags & Deterministic Fallback.
+
+
+---
+
+## Entry 039 — MOB-01 Mobile SERA Shell Integration Baseline, Feature Flags & Deterministic Fallback
+
+**Date:** 2026-09-19  
+**Artifact:** SSW-AI-MOB-01  
+**Runtime Commit:** `4509d51d0074fad6613c19ea116451db27389bc7`  
+**Contract Test Commit:** `caed75c5ee520ff21c94fab0de5d7eccd33d97d2`  
+**Controlled Specification Commit:** `9e1f6cdd0520fed1a34450b5799faf127f744cc2`  
+**Final CI Head:** `e1d05f0cf445f14fec4b0ffc745a9ba283880b8b`  
+**CI Run:** #121, ID `35484623500`  
+**Release Evidence Hash:** `sha256:f619388395ee1873e14e86309f37df9c11e7fab289dc1087caf498998dd58c46`  
+**Status:** COMPLETE
+
+Implemented:
+
+- shared iOS / Android SERA shell decision runtime;
+- migration stages M0 through M4;
+- DB16 feature-flag vocabulary;
+- conventional-wallet deterministic fallback;
+- SERA-unavailable fallback;
+- wallet-core-unavailable fallback;
+- control-plane outage degradation to read-only SERA;
+- signer-outage blocking for delegated/autonomous execution;
+- SERA-primary-home gating on recovery and security-control availability;
+- independent delegated-payment, conditional-automation and autonomous-execution flags;
+- platform-neutral shell authority semantics.
+
+Security and product decisions:
+
+- conventional wallet access survives every migration stage;
+- SERA-first home cannot hide recovery or security controls;
+- feature flags do not create execution authority;
+- platform-specific UI cannot widen shared capabilities;
+- SERA outage cannot trap the holder;
+- control-plane failure removes consequential SERA operations;
+- signer failure blocks execution while preserving safe wallet access.
+
+Developer handoff:
+
+- DEV-OPEN-011 records native iOS / Android SERA shell binding.
+
+CI evidence:
+
+- PostgreSQL migrations: PASS;
+- contract verification: PASS — 51 JSON Schemas;
+- 216 tests: PASS;
+- failures: 0;
+- strict TypeScript: PASS;
+- hashed release evidence: PASS;
+- release decision remains `CI_BASELINE_PASS_PRODUCTION_BLOCKED`.
+
+**Dependencies closed:** shared mobile migration semantics, shell fallback, feature-flag capability gating.
+
+**Next:** SSW-AI-MOB-02: Adaptive Workspace & Deterministic Fallback View Contract.
