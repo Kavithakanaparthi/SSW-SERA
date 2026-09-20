@@ -24,18 +24,18 @@ export interface SaelCheckpointRecord{
  previous_checkpoint_hash:string|null;signature_ref:string;created_at:string;
 }
 
-function hashPair(left:Buffer,right:Buffer){
+function hashPair(left:Uint8Array,right:Uint8Array):Uint8Array{
  return createHash("sha256").update(MERKLE_DOMAIN).update(left).update(right).digest();
 }
 export function merkleRoot(eventHashes:readonly string[]):string{
  if(eventHashes.length===0)throw new SaelPersistenceError("SAEL_CHECKPOINT_EMPTY_RANGE");
- let layer=eventHashes.map(h=>Buffer.from(h.replace(/^sha256:/,""),"hex"));
+ let layer:Uint8Array[]=eventHashes.map(h=>new Uint8Array(Buffer.from(h.replace(/^sha256:/,""),"hex")));
  while(layer.length>1){
-  const next:Buffer[]=[];
+  const next:Uint8Array[]=[];
   for(let i=0;i<layer.length;i+=2){const left=layer[i]!;const right=layer[i+1]??left;next.push(hashPair(left,right));}
   layer=next;
  }
- return"sha256:"+layer[0]!.toString("hex");
+ return"sha256:"+Buffer.from(layer[0]!).toString("hex");
 }
 
 export class PostgresSaelStore{
