@@ -960,3 +960,29 @@ Required final-release evidence includes:
 Pilot and final-release candidacy do not themselves enable signing or production asset movement. Separate activation controls remain required.
 
 This item blocks Pilot Gate and Production Release Gate closure.
+
+
+---
+
+## Live Integration Evidence Submission Procedure
+
+**Introduced by:** SSW-AI-REL-02
+
+All DEV-OPEN items shall use the controlled live-integration evidence registry before status changes are made in the project tracker.
+
+Evidence submission procedure:
+
+1. keep the DEV-OPEN item status OPEN until evidence exists;
+2. add one or more evidence references to the registry;
+3. set status to EVIDENCE_SUBMITTED;
+4. include environment, commit SHA where applicable, submitter and timestamp;
+5. have an independent reviewer evaluate the evidence;
+6. mark VERIFIED only when the evidence demonstrates the exact live binding described by the DEV-OPEN item;
+7. if evidence is insufficient, mark REJECTED and preserve the review notes;
+8. never delete rejected evidence to make the history appear clean;
+9. use WAIVED only through an explicit release-governance decision that records scope and expiry;
+10. update the project tracker gate state only after the mapped DEV-OPEN items are VERIFIED or validly WAIVED.
+
+Preferred evidence references include GitHub CI runs, staging execution IDs, provider configuration attestations, native test runs, security test runs, rollback drills and signed/manual approval records.
+
+Screenshots or prose assertions alone are not sufficient for release-blocking items when machine-verifiable evidence is available.
