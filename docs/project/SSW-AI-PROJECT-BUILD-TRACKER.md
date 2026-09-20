@@ -74,7 +74,7 @@ Current implementation milestone:
 
 Immediate next artifact:
 
-**SSW-AI-INFRA-01: Production Workload Identity Baseline — IN PROGRESS**
+**SSW-AI-INFRA-02: Observability, Telemetry Privacy & Operational Signal Baseline**
 
 ## 5. Phase A — Product & Experience Definition
 
@@ -215,9 +215,9 @@ A paired wearable never automatically inherits phone authority.
 | Service Framework Selection | production framework / runtime conventions | COMPLETE — Node 22 + @soulverse/service-host |
 | Database Architecture | state ownership / persistence implementation | COMPLETE — PostgreSQL baseline |
 | Event Transport | durable event/message transport | COMPLETE — transactional outbox/inbox baseline |
-| Workload Identity | runtime service identity | IN PROGRESS — INFRA-01 |
+| Workload Identity | runtime service identity | COMPLETE — INFRA-01; live binding DEV-OPEN-016 |
 | Secret Management | SoulScan/IPFS portable key lifecycle + service secrets | IN PROGRESS |
-| Observability | logs, traces, metrics without sensitive leakage | PLANNED |
+| Observability | logs, traces, metrics without sensitive leakage | NEXT — INFRA-02 |
 | CI/CD | contract, security, conformance and release gates | BASELINE COMPLETE — steady-state read-only CI active |
 | Environment Separation | dev / test / staging / production | PLANNED |
 | Infrastructure-as-Code | reproducible deployments | PLANNED |
@@ -260,6 +260,7 @@ Authoritative handoff record:
 | DEV-OPEN-013 | Native voice/text and concealed-detail interaction binding | OPEN | Mobile Integration Gate / native voice and privacy completion |
 | DEV-OPEN-014 | Native cross-device handoff / OS proactive surface binding | OPEN | Mobile Integration Gate / native continuity and notification completion |
 | DEV-OPEN-015 | Production feature-flag / cohort / telemetry / rollback binding | OPEN | Mobile Integration Gate / live rollout governance |
+| DEV-OPEN-016 | Production workload identity issuance / mTLS-SPIFFE binding | OPEN | live workload identity / environment release gating |
 
 These items do not block continued controlled repository construction.
 
@@ -332,7 +333,7 @@ Completed implementation artifacts: 16.
 
 Completed productionization artifacts: 8. PROD-05 platform boundary is implemented and CI-verified; live Soul ID/SoulScan bindings are maintained as developer-owned open integration items DEV-OPEN-001 through DEV-OPEN-003.
 
-Immediate next implementation phase: INFRA-01 Production Workload Identity Baseline.
+Immediate next implementation phase: INFRA-02 Observability, Telemetry Privacy & Operational Signal Baseline.
 
 Production signing enabled: no.
 
