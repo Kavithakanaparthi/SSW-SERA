@@ -74,7 +74,7 @@ Current implementation milestone:
 
 Immediate next artifact:
 
-**SSW-AI-MOB-05: Staged SERA-First Migration, Cohort Rollout & Rollback Control — IN PROGRESS**
+**SSW-AI-MOB-GATE-01: Mobile Integration Gate Evidence Package**
 
 ## 5. Phase A — Product & Experience Definition
 
@@ -191,7 +191,7 @@ Immediate next artifact:
 | Concealed Details UX | Reveal/re-hide / approval separation | COMPLETE — MOB-03; native binding DEV-OPEN-013 |
 | Cross-Device Handoff | Phone / desktop / wearable-safe task continuation | COMPLETE — MOB-04; native binding DEV-OPEN-014 |
 | Notifications / Widgets | OS-native proactive SERA surfaces | COMPLETE — MOB-04; native binding DEV-OPEN-014 |
-| Migration from Current SSW | staged SERA-first rollout with rollback | IN PROGRESS — MOB-05 |
+| Migration from Current SSW | staged SERA-first rollout with rollback | COMPLETE — MOB-05; live rollout binding DEV-OPEN-015 |
 
 ## 11. Phase G — Wearables
 
@@ -259,6 +259,7 @@ Authoritative handoff record:
 | DEV-OPEN-012 | Native adaptive workspace / fallback rendering | OPEN | Mobile Integration Gate / native workspace completion |
 | DEV-OPEN-013 | Native voice/text and concealed-detail interaction binding | OPEN | Mobile Integration Gate / native voice and privacy completion |
 | DEV-OPEN-014 | Native cross-device handoff / OS proactive surface binding | OPEN | Mobile Integration Gate / native continuity and notification completion |
+| DEV-OPEN-015 | Production feature-flag / cohort / telemetry / rollback binding | OPEN | Mobile Integration Gate / live rollout governance |
 
 These items do not block continued controlled repository construction.
 
@@ -331,7 +332,7 @@ Completed implementation artifacts: 16.
 
 Completed productionization artifacts: 8. PROD-05 platform boundary is implemented and CI-verified; live Soul ID/SoulScan bindings are maintained as developer-owned open integration items DEV-OPEN-001 through DEV-OPEN-003.
 
-Immediate next implementation phase: MOB-05 Staged SERA-First Migration, Cohort Rollout & Rollback Control.
+Immediate next implementation phase: MOB-GATE-01 Mobile Integration Gate Evidence Package.
 
 Production signing enabled: no.
 
