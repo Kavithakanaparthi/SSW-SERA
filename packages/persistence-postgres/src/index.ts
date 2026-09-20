@@ -167,8 +167,12 @@ export async function applyMigrations(pool:Pool,migrationsDir:string){
   const sql=await readFile(join(migrationsDir,name),"utf8");const checksum="sha256:"+createHash("sha256").update(sql).digest("hex");
   const existing=await pool.query("SELECT checksum_sha256 FROM ssw.schema_migration WHERE migration_id=$1",[name]);
   if(existing.rowCount){if(existing.rows[0]!.checksum_sha256!==checksum)throw new Error("MIGRATION_CHECKSUM_MISMATCH");continue;}
+  // Controlled migration files may contain explicit BEGIN/COMMIT for standalone use.
+  // The runner strips only the outer transaction wrapper so migration + checksum record
+  // commit atomically under this client-owned transaction.
+  const executable=sql.replace(/^\s*BEGIN;\s*/i,"").replace(/\s*COMMIT;\s*$/i,"");
   const client=await pool.connect();
-  try{await client.query("BEGIN");await client.query(sql);await client.query("INSERT INTO ssw.schema_migration(migration_id,checksum_sha256) VALUES($1,$2)",[name,checksum]);await client.query("COMMIT");}
+  try{await client.query("BEGIN");await client.query(executable);await client.query("INSERT INTO ssw.schema_migration(migration_id,checksum_sha256) VALUES($1,$2)",[name,checksum]);await client.query("COMMIT");}
   catch(error){await client.query("ROLLBACK");throw error;}finally{client.release();}
  }
 }
