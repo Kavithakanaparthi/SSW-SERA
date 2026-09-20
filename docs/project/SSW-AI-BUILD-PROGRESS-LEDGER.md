@@ -1392,3 +1392,56 @@ CI evidence:
 - release decision remains CI_BASELINE_PASS_PRODUCTION_BLOCKED.
 
 **Next:** SSW-AI-SERA-RT-03: SERA Memory Domains & Holder-Controlled Personalization.
+
+
+---
+
+## Entry 031 — SERA-RT-03 Memory Domains & Holder-Controlled Personalization
+
+**Date:** 2026-09-19  
+**Artifact:** SSW-AI-SERA-RT-03  
+**Implementation Commit:** `013b6b79d0e9cd1cc0615254c0e41eb6e5962c18`  
+**SQL Fix Commit:** `3f58dd8d2beb8ad5a97acd1babeade6123d94770`  
+**Developer Handoff Directive Commit:** `4742e6db860ae39bf6b22fdf004b26fc66c44d31`  
+**CI Run:** #60, ID `35479554916`  
+**Tracker Completion Commit:** `5908868c4374b3d5422e965e221b657bb4f1fa66`  
+**Status:** COMPLETE
+
+Implemented:
+
+- PostgreSQL-backed SERA memory store;
+- M1 holder preferences;
+- M2 language / voice memory;
+- M3 entity aliases;
+- M4 behavioral convenience memory;
+- provenance classes for holder explicit, holder correction and system observation;
+- confidence, retention and context-tier metadata;
+- holder-scoped inspection;
+- correction/versioning;
+- forget/delete tombstones;
+- expiry handling;
+- Context Broker memory source adapter;
+- recursive secret-shaped material rejection;
+- machine-enforced `authority_effect: NONE`;
+- outbox evidence for create/update/delete/expiry events.
+
+Security boundaries:
+
+- M5 delegation remains in deterministic mandate/policy stores;
+- M6 evidence remains in SAEL;
+- M7 signing/recovery/key material is prohibited from SERA memory;
+- entity aliases may assist interpretation but cannot establish payment authority;
+- system observation cannot create entity aliases;
+- memory unavailability does not block deterministic wallet use.
+
+The living Developer Notes & Instructions document was also reaffirmed as the authoritative handoff record for intentionally open Soul ID/SoulScan developer integrations. Those open items do not pause independent repository construction.
+
+CI evidence:
+
+- PostgreSQL migrations: PASS;
+- contract/scaffold verification: PASS;
+- full tests: PASS;
+- strict TypeScript: PASS;
+- hashed release evidence generation: PASS.
+
+**Next:** SSW-AI-SERA-RT-04: Voice Runtime, Numerical Safety & Correction Learning.
