@@ -1,0 +1,91 @@
+{
+  "schema": "ssw.context-policies.v1",
+  "policies": [
+    {
+      "capability": "transfer.asset",
+      "max_tier": "C4",
+      "max_cloud_tier": "C2",
+      "retention_class": "RT0",
+      "keys": [
+        {
+          "context_key": "recipient_alias",
+          "required": true,
+          "max_tier": "C2",
+          "allowed_fields": [
+            "label",
+            "canonical_candidate_ref"
+          ]
+        },
+        {
+          "context_key": "available_chains",
+          "required": true,
+          "max_tier": "C2",
+          "allowed_fields": [
+            "chain_ids"
+          ]
+        },
+        {
+          "context_key": "fee_estimates",
+          "required": false,
+          "max_tier": "C1",
+          "allowed_fields": [
+            "estimates"
+          ]
+        },
+        {
+          "context_key": "holder_chain_preference",
+          "required": false,
+          "max_tier": "C2",
+          "allowed_fields": [
+            "preferred_chain",
+            "preference_basis"
+          ]
+        },
+        {
+          "context_key": "spam_risk_signal",
+          "required": false,
+          "max_tier": "C2",
+          "allowed_fields": [
+            "classification",
+            "reason_codes"
+          ]
+        },
+        {
+          "context_key": "last_transfer_summary",
+          "required": false,
+          "max_tier": "C3",
+          "allowed_fields": [
+            "amount_atomic",
+            "asset_id",
+            "chain_id"
+          ]
+        }
+      ]
+    },
+    {
+      "capability": "credential.find",
+      "max_tier": "C3",
+      "max_cloud_tier": "C2",
+      "retention_class": "RT0",
+      "keys": [
+        {
+          "context_key": "credential_inventory_summary",
+          "required": true,
+          "max_tier": "C2",
+          "allowed_fields": [
+            "credential_types",
+            "status_summary"
+          ]
+        },
+        {
+          "context_key": "holder_language_preference",
+          "required": false,
+          "max_tier": "C2",
+          "allowed_fields": [
+            "language"
+          ]
+        }
+      ]
+    }
+  ]
+}

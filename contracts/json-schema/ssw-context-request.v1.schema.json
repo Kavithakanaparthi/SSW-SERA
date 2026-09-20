@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.soulverse.world/ssw/json-schema/ssw-context-request.v1.schema.json",
+  "title": "SSW Context Request v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "request_id",
+    "holder_did",
+    "sera_agent_did",
+    "capability",
+    "purpose",
+    "model_location",
+    "requested_context",
+    "prohibited_context",
+    "retention_class",
+    "external_transmission",
+    "issued_at",
+    "expires_at"
+  ],
+  "properties": {
+    "schema": {
+      "const": "ssw.context-request.v1"
+    },
+    "request_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "holder_did": {
+      "type": "string",
+      "pattern": "^did:soul:[a-z0-9._:-]+$"
+    },
+    "sera_agent_did": {
+      "type": "string",
+      "pattern": "^did:soul:agent:[a-z0-9._:-]+$"
+    },
+    "capability": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9._-]+$"
+    },
+    "purpose": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9._-]+$"
+    },
+    "model_location": {
+      "type": "string",
+      "enum": [
+        "NONE",
+        "ON_DEVICE",
+        "PROTECTED_CLOUD"
+      ]
+    },
+    "requested_context": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9._-]+$"
+      }
+    },
+    "prohibited_context": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9._-]+$"
+      }
+    },
+    "retention_class": {
+      "type": "string",
+      "enum": [
+        "RT0",
+        "RT1",
+        "RT2",
+        "RT3",
+        "RT4",
+        "RT5"
+      ]
+    },
+    "external_transmission": {
+      "type": "boolean"
+    },
+    "issued_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

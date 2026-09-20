@@ -35,6 +35,8 @@ export const contractSchemaIds = {
   encryptedKeyObjectRef: "https://schemas.soulverse.world/ssw/json-schema/ssw-encrypted-key-object-ref.v1.schema.json",
   releaseEvidence: "https://schemas.soulverse.world/ssw/json-schema/ssw-release-evidence.v1.schema.json",
   orchestrationRecord: "https://schemas.soulverse.world/ssw/json-schema/ssw-orchestration-record.v1.schema.json",
+  contextRequest: "https://schemas.soulverse.world/ssw/json-schema/ssw-context-request.v1.schema.json",
+  contextManifest: "https://schemas.soulverse.world/ssw/json-schema/ssw-context-manifest.v1.schema.json",
   counterpartyResolution: "https://schemas.soulverse.world/ssw/json-schema/ssw-counterparty-resolution.v1.schema.json"
 } as const;
 
@@ -75,6 +77,8 @@ export type ContractKind =
   | "encrypted-key-object-ref"
   | "release-evidence"
   | "orchestration-record"
+  | "context-request"
+  | "context-manifest"
   | "counterparty-resolution";
 
 export const contractKindToSchemaId: Readonly<Record<ContractKind, string>> = {
@@ -114,5 +118,7 @@ export const contractKindToSchemaId: Readonly<Record<ContractKind, string>> = {
   "encrypted-key-object-ref": contractSchemaIds.encryptedKeyObjectRef,
   "release-evidence": contractSchemaIds.releaseEvidence,
   "orchestration-record": contractSchemaIds.orchestrationRecord,
+  "context-request": contractSchemaIds.contextRequest,
+  "context-manifest": contractSchemaIds.contextManifest,
   "counterparty-resolution": contractSchemaIds.counterpartyResolution
 };

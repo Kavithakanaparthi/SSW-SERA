@@ -57,6 +57,8 @@ const schemaFiles = [
   "ssw-encrypted-key-object-ref.v1.schema.json",
   "ssw-release-evidence.v1.schema.json",
   "ssw-orchestration-record.v1.schema.json",
+  "ssw-context-request.v1.schema.json",
+  "ssw-context-manifest.v1.schema.json",
   "ssw-counterparty-resolution.v1.schema.json"
 ] as const;
 

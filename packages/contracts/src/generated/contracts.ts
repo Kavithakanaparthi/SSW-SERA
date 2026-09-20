@@ -128,6 +128,8 @@ export interface SoulScanRecoveryAuthorizationContract { schema:"ssw.soulscan-re
 export interface EncryptedKeyObjectRefContract { schema:"ssw.encrypted-key-object-ref.v1"; subject_did:string; governing_holder_did:string; [key:string]: unknown; }
 export interface ReleaseEvidenceContract { schema:"ssw.release-evidence.v1"; [key:string]: unknown; }
 export interface OrchestrationRecordContract { schema:"ssw.orchestration-record.v1"; [key:string]: unknown; }
+export interface ContextRequestContract { schema:"ssw.context-request.v1"; [key:string]: unknown; }
+export interface ContextManifestContract { schema:"ssw.context-manifest.v1"; [key:string]: unknown; }
 export interface CounterpartyResolution { schema:"ssw.counterparty-resolution.v1"; holder_did:string; [key:string]: unknown; }
 
 export interface AuthorityDecisionContract { schema:"ssw.authority-decision.v1"; [key:string]: unknown; }
@@ -197,5 +199,7 @@ export interface ContractTypeMap {
   "encrypted-key-object-ref": EncryptedKeyObjectRefContract;
   "release-evidence": ReleaseEvidenceContract;
   "orchestration-record": OrchestrationRecordContract;
+  "context-request": ContextRequestContract;
+  "context-manifest": ContextManifestContract;
   "counterparty-resolution": CounterpartyResolution;
 }
