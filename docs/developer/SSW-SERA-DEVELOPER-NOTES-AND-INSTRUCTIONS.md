@@ -769,3 +769,41 @@ Required evidence:
 - plain HTTP / asserted-header rejection.
 
 This item blocks live workload identity claims and contributes to production environment/release gating.
+
+
+---
+
+## DEV-OPEN-017 — Production Observability Exporter, Retention & Residency Binding
+
+**Status:** OPEN  
+**Introduced by:** SSW-AI-INFRA-02
+
+Developers / platform engineering shall bind the production telemetry pipeline to the INFRA-02 sanitization contract.
+
+Required production responsibilities include:
+
+- select the approved production telemetry/export stack;
+- ensure sanitization occurs before exporter submission;
+- map logs, metrics, traces and security signals to approved destinations;
+- configure retention by telemetry class;
+- configure data residency / regional placement where applicable;
+- preserve request, correlation, action and trace lineage;
+- prohibit holder DIDs, wallet addresses, recipient addresses and free-form holder content as metric labels;
+- ensure seed phrases, private keys, raw credentials, bearer tokens, signed payloads, biometric material and unrestricted prompts/conversation contents are not exported;
+- configure access control for operations/security staff;
+- demonstrate that administrative observability cannot approve, sign or execute holder actions;
+- provide alert routing for critical service, Trust/REV, signer, replay, reconciliation and SAEL-integrity signals.
+
+Required evidence:
+
+- exporter architecture;
+- sanitized sample log/trace/metric payloads;
+- secret-field rejection test;
+- high-cardinality label rejection test;
+- retention matrix;
+- residency mapping;
+- access-control mapping;
+- critical alert test;
+- incident reconstruction drill using references without sensitive payload duplication.
+
+This item blocks live production observability claims and contributes to environment/release gating.
