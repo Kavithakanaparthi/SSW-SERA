@@ -74,7 +74,7 @@ Current implementation milestone:
 
 Immediate next artifact:
 
-**SSW-AI-MOB-03: Voice/Text Interaction & Concealed Detail Presentation Binding**
+**SSW-AI-MOB-03: Voice/Text Interaction & Concealed Detail Presentation Binding — IN PROGRESS**
 
 ## 5. Phase A — Product & Experience Definition
 
@@ -187,8 +187,8 @@ Immediate next artifact:
 | Android SERA Shell | SERA-first primary wallet experience | COMPLETE — MOB-01 shared shell baseline; native binding DEV-OPEN-011 |
 | Adaptive Workspace | Contextual structured views instead of static tabs | COMPLETE — MOB-02; native rendering DEV-OPEN-012 |
 | Deterministic Fallback UI | Assets / Send / Receive / Swap / Credentials / Activity / Security | COMPLETE — MOB-02; native rendering DEV-OPEN-012 |
-| Voice UI | Text + voice parity and safe confirmation | NEXT — MOB-03 |
-| Concealed Details UX | Reveal/re-hide / approval separation | NEXT — MOB-03 |
+| Voice UI | Text + voice parity and safe confirmation | IN PROGRESS — MOB-03 |
+| Concealed Details UX | Reveal/re-hide / approval separation | IN PROGRESS — MOB-03 |
 | Cross-Device Handoff | Phone / desktop / wearable-safe task continuation | PLANNED |
 | Notifications / Widgets | OS-native proactive SERA surfaces | PLANNED |
 | Migration from Current SSW | staged SERA-first rollout with rollback | PLANNED |
