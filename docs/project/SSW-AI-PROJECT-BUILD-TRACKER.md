@@ -74,7 +74,7 @@ Current implementation milestone:
 
 Immediate next artifact:
 
-**SSW-AI-INFRA-GATE-01: Phase H Infrastructure Gate Evidence Package**
+**SSW-AI-REL-01: Consolidated Production Release Gate & Pilot Readiness Baseline**
 
 ## 5. Phase A — Product & Experience Definition
 
@@ -337,7 +337,7 @@ Completed implementation artifacts: 16.
 
 Completed productionization artifacts: 8. PROD-05 platform boundary is implemented and CI-verified; live Soul ID/SoulScan bindings are maintained as developer-owned open integration items DEV-OPEN-001 through DEV-OPEN-003.
 
-Immediate next implementation phase: INFRA-GATE-01 Phase H Infrastructure Gate Evidence Package.
+Immediate next implementation phase: REL-01 Consolidated Production Release Gate & Pilot Readiness Baseline.
 
 Production signing enabled: no.
 
