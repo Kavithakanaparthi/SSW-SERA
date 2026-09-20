@@ -1969,3 +1969,60 @@ CI evidence:
 **Dependencies closed:** shared adaptive workspace semantics, inspectability, and deterministic fallback-view contract.
 
 **Next:** SSW-AI-MOB-03: Voice/Text Interaction & Concealed Detail Presentation Binding.
+
+
+---
+
+## Entry 041 — MOB-03 Voice/Text Interaction & Concealed Detail Presentation Binding
+
+**Date:** 2026-09-19  
+**Artifact:** SSW-AI-MOB-03  
+**Runtime Commit:** `172b726861c1d7361897c1e4b6fc6ae6e84f55d8`  
+**Contract Test Commit:** `39d37e3be61df0bc039348a6cba5bb85f90ab82c`  
+**Controlled Specification Commit:** `10c5273bf6c9434f424b3bbb476d567ffe45bb49`  
+**Final CI Head:** `c2c6464eeafa0bdcdac6368b3b3724af6f33c314`  
+**CI Run:** #137, ID `35485365280`  
+**Release Evidence Hash:** `sha256:0ff8b1a5e7050ec190fabcef7bdee720ff25a20d6434d7a2cf05359d59d29765`  
+**Status:** COMPLETE
+
+Implemented:
+
+- shared text / voice mobile interaction safety binding;
+- inheritance of SERA-RT-04 voice-safety decisions;
+- consequential interaction independent-authorization requirement;
+- H0/H1/H2/H3 concealed-detail presentation model;
+- authenticated reveal gating;
+- required-review-field enforcement;
+- auto-rehide on backgrounding, lock, device change, timeout and explicit hide;
+- concealed spoken-output protection;
+- explicit `authorityEffect: NONE`;
+- strict Reveal / Review / Approval separation;
+- distinct reveal and approval evidence references.
+
+Security decisions:
+
+- neither text nor voice input is standalone authorization;
+- voice confidence does not create authority;
+- Reveal does not imply Review;
+- Review does not imply Approval;
+- H2/H3 sensitive details cannot be spoken by the shared contract;
+- presentation state cannot mutate canonical action terms;
+- native implementations may be stricter but cannot weaken concealment or approval separation.
+
+Developer handoff:
+
+- DEV-OPEN-013 records native iOS / Android voice/text and concealed-detail interaction binding.
+
+CI evidence:
+
+- PostgreSQL migrations: PASS;
+- contract verification: PASS — 51 JSON Schemas;
+- 231 tests: PASS;
+- failures: 0;
+- strict TypeScript: PASS;
+- hashed release evidence: PASS;
+- release decision remains `CI_BASELINE_PASS_PRODUCTION_BLOCKED`.
+
+**Dependencies closed:** mobile voice/text parity, concealed-detail behavior, reveal/review/approval separation.
+
+**Next:** SSW-AI-MOB-04: Cross-Device Handoff & OS-Native Proactive Surface Binding.
