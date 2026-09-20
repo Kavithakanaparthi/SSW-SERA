@@ -112,3 +112,5 @@ export class ServiceHost{
 }
 
 export * from "./workload-identity.js";
+
+export * from "./observability.js";
