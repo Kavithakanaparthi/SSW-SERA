@@ -1,0 +1,63 @@
+{
+  "schema": "ssw.release-gate-evidence.v1",
+  "artifact_id": "SSW-AI-REL-GATE-01",
+  "date": "2026-09-20",
+  "repository": "Kavithakanaparthi/SSW-SERA",
+  "decision": "RELEASE_REPOSITORY_BASELINE_PASS_PILOT_AND_PRODUCTION_BLOCKED",
+  "repository_baseline": "PASS",
+  "pilot_candidate": false,
+  "production_release_candidate": false,
+  "production_signing_enabled": false,
+  "production_asset_movement_enabled": false,
+  "latest_ci": {
+    "run_number": 210,
+    "run_id": 35515902139,
+    "head_sha": "c6202556b2c3004d3ee8f711749a743a22b1c991",
+    "tests": 287,
+    "passed": 287,
+    "failed": 0,
+    "schemas": 51,
+    "typecheck": "PASS",
+    "postgres_migrations": "PASS",
+    "evidence_hash": "sha256:ebcde43e0ce2a94c4f0a7a18804b38a666f01e7f22d609cf79d138b5bb7ca9d7"
+  },
+  "gate_state": {
+    "contract": "COMPLETE",
+    "control_plane": "REPOSITORY_COMPLETE_LIVE_BINDINGS_REQUIRED",
+    "signing": "BLOCKED",
+    "execution": "BLOCKED",
+    "recovery": "BLOCKED",
+    "sael": "BLOCKED",
+    "security": "REPOSITORY_COMPLETE_STAGING_EXECUTION_REQUIRED",
+    "mobile": "REPOSITORY_PASS_LIVE_BLOCKED",
+    "infrastructure": "REPOSITORY_PASS_LIVE_BLOCKED",
+    "pilot": "BLOCKED",
+    "production_release": "BLOCKED"
+  },
+  "open_integrations": [
+    "DEV-OPEN-001",
+    "DEV-OPEN-002",
+    "DEV-OPEN-003",
+    "DEV-OPEN-004",
+    "DEV-OPEN-005",
+    "DEV-OPEN-006",
+    "DEV-OPEN-007",
+    "DEV-OPEN-008",
+    "DEV-OPEN-009",
+    "DEV-OPEN-010",
+    "DEV-OPEN-011",
+    "DEV-OPEN-012",
+    "DEV-OPEN-013",
+    "DEV-OPEN-014",
+    "DEV-OPEN-015",
+    "DEV-OPEN-016",
+    "DEV-OPEN-017",
+    "DEV-OPEN-018",
+    "DEV-OPEN-019",
+    "DEV-OPEN-020",
+    "DEV-OPEN-021"
+  ],
+  "release_note": {
+    "dev_open_007": "conditional blocker depending on enabled release capability set"
+  }
+}
