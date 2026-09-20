@@ -42,6 +42,8 @@ export const contractSchemaIds = {
   monitoringGrant: "https://schemas.soulverse.world/ssw/json-schema/ssw-monitoring-grant.v1.schema.json",
   proactiveSignal: "https://schemas.soulverse.world/ssw/json-schema/ssw-proactive-signal.v1.schema.json",
   proactiveAssessment: "https://schemas.soulverse.world/ssw/json-schema/ssw-proactive-assessment.v1.schema.json",
+  routeRequest: "https://schemas.soulverse.world/ssw/json-schema/ssw-route-request.v1.schema.json",
+  routeDecision: "https://schemas.soulverse.world/ssw/json-schema/ssw-route-decision.v1.schema.json",
   counterpartyResolution: "https://schemas.soulverse.world/ssw/json-schema/ssw-counterparty-resolution.v1.schema.json"
 } as const;
 
@@ -89,6 +91,8 @@ export type ContractKind =
   | "monitoring-grant"
   | "proactive-signal"
   | "proactive-assessment"
+  | "route-request"
+  | "route-decision"
   | "counterparty-resolution";
 
 export const contractKindToSchemaId: Readonly<Record<ContractKind, string>> = {
@@ -135,5 +139,7 @@ export const contractKindToSchemaId: Readonly<Record<ContractKind, string>> = {
   "monitoring-grant": contractSchemaIds.monitoringGrant,
   "proactive-signal": contractSchemaIds.proactiveSignal,
   "proactive-assessment": contractSchemaIds.proactiveAssessment,
+  "route-request": contractSchemaIds.routeRequest,
+  "route-decision": contractSchemaIds.routeDecision,
   "counterparty-resolution": contractSchemaIds.counterpartyResolution
 };

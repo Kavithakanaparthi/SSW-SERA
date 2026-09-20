@@ -1,0 +1,166 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.soulverse.world/ssw/json-schema/ssw-route-request.v1.schema.json",
+  "title": "SSW Route Request v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "route_request_id",
+    "holder_did",
+    "sera_agent_did",
+    "action_type",
+    "asset_id",
+    "amount_atomic",
+    "recipient_id",
+    "requested_chain_id",
+    "previously_reviewed_chain_id",
+    "holder_preference",
+    "candidates",
+    "created_at",
+    "expires_at"
+  ],
+  "properties": {
+    "schema": {
+      "const": "ssw.route-request.v1"
+    },
+    "route_request_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "holder_did": {
+      "type": "string",
+      "pattern": "^did:soul:[a-z0-9._:-]+$"
+    },
+    "sera_agent_did": {
+      "type": "string",
+      "pattern": "^did:soul:agent:[a-z0-9._:-]+$"
+    },
+    "action_type": {
+      "type": "string",
+      "enum": [
+        "payment.send",
+        "swap.prepare"
+      ]
+    },
+    "asset_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "amount_atomic": {
+      "type": "string",
+      "pattern": "^[1-9][0-9]*$"
+    },
+    "recipient_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "requested_chain_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "previously_reviewed_chain_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "holder_preference": {
+      "type": "string",
+      "enum": [
+        "NONE",
+        "LOWER_FEE",
+        "FASTER_SETTLEMENT",
+        "LOWER_RISK"
+      ]
+    },
+    "candidates": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 32,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "route_id",
+          "chain_id",
+          "balance_atomic",
+          "recipient_compatible",
+          "fee_atomic",
+          "estimated_settlement_seconds",
+          "bridge_required",
+          "risk_level",
+          "chain_available",
+          "asset_verified",
+          "provider_ref"
+        ],
+        "properties": {
+          "route_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "chain_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "balance_atomic": {
+            "type": "string",
+            "pattern": "^(0|[1-9][0-9]*)$"
+          },
+          "recipient_compatible": {
+            "type": "boolean"
+          },
+          "fee_atomic": {
+            "type": "string",
+            "pattern": "^(0|[1-9][0-9]*)$"
+          },
+          "estimated_settlement_seconds": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 604800
+          },
+          "bridge_required": {
+            "type": "boolean"
+          },
+          "risk_level": {
+            "type": "string",
+            "enum": [
+              "LOW",
+              "MEDIUM",
+              "HIGH",
+              "BLOCKED"
+            ]
+          },
+          "chain_available": {
+            "type": "boolean"
+          },
+          "asset_verified": {
+            "type": "boolean"
+          },
+          "provider_ref": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

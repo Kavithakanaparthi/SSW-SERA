@@ -135,6 +135,8 @@ export interface VoiceConfidenceEnvelopeContract { schema:"ssw.voice-confidence-
 export interface MonitoringGrantContract { schema:"ssw.monitoring-grant.v1"; holder_did:string; sera_agent_did:string; [key:string]: unknown; }
 export interface ProactiveSignalContract { schema:"ssw.proactive-signal.v1"; holder_did:string; sera_agent_did:string; [key:string]: unknown; }
 export interface ProactiveAssessmentContract { schema:"ssw.proactive-assessment.v1"; holder_did:string; sera_agent_did:string; [key:string]: unknown; }
+export interface RouteRequestContract { schema:"ssw.route-request.v1"; holder_did:string; sera_agent_did:string; [key:string]: unknown; }
+export interface RouteDecisionContract { schema:"ssw.route-decision.v1"; holder_did:string; sera_agent_did:string; [key:string]: unknown; }
 export interface CounterpartyResolution { schema:"ssw.counterparty-resolution.v1"; holder_did:string; [key:string]: unknown; }
 
 export interface AuthorityDecisionContract { schema:"ssw.authority-decision.v1"; [key:string]: unknown; }
@@ -211,5 +213,7 @@ export interface ContractTypeMap {
   "monitoring-grant": MonitoringGrantContract;
   "proactive-signal": ProactiveSignalContract;
   "proactive-assessment": ProactiveAssessmentContract;
+  "route-request": RouteRequestContract;
+  "route-decision": RouteDecisionContract;
   "counterparty-resolution": CounterpartyResolution;
 }

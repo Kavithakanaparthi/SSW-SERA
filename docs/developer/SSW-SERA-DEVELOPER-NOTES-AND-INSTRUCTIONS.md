@@ -361,9 +361,71 @@ Developers must not:
 
 **Blocks:** Production SAEL Gate / Production Release Gate.
 
+## DEV-OPEN-006 — Existing SSW Capability & Multi-Chain Provider Binding
+
+**Source Artifact**
+
+- SSW-AI-SERA-RT-06
+
+**Status:** OPEN — DEVELOPER INTEGRATION REQUIRED
+
+### Controlled Architecture
+
+The repository supplies:
+
+- deterministic route evaluation through `@soulverse/sera-routing-runtime`;
+- typed existing-wallet interfaces through `@soulverse/ssw-capability-adapters`;
+- route/capability safety tests.
+
+The existing Soul Super Wallet implementations remain the source systems for live wallet functionality.
+
+### Developer Action Required
+
+Map the current SSW production services behind the typed adapter interfaces for:
+
+1. supported chain/config registry;
+2. chain-specific balance services;
+3. gas/fee estimators;
+4. payment preparation;
+5. receive request generation;
+6. swap quote/preparation providers;
+7. WalletConnect request inspection;
+8. credential listing and presentation preparation;
+9. spam/token-risk signals.
+
+Also provide the current production provider/configuration inventory requested by DB02.
+
+### Do Not
+
+Developers must not:
+
+- create a bypass from these adapters to signing or broadcast;
+- silently switch chains after holder review;
+- use floating-point arithmetic for atomic asset values;
+- allow holder route preferences to override hard risk or compatibility failures;
+- treat WalletConnect inspection as approval;
+- treat a credential-preparation adapter as disclosure authority;
+- rebuild existing SSW services merely to satisfy the adapter boundary when a safe wrapper is sufficient.
+
+### Required Completion Evidence
+
+- adapter-to-existing-service mapping;
+- supported-chain registry evidence;
+- exact-balance and fee test evidence;
+- recipient compatibility test;
+- explicit-chain no-fallback test;
+- route-change fresh-review test;
+- WalletConnect no-auto-approval test;
+- credential no-auto-disclosure test;
+- staging integration results.
+
+**Blocks:** Mobile Integration Gate / live SSW capability binding claims.
+
+---
+
 # COMPLETION RULE
 
-DEV-OPEN-001 through DEV-OPEN-005 are intentionally open-ended developer integration items.
+DEV-OPEN-001 through DEV-OPEN-006 are intentionally open-ended developer integration items.
 
 They do not block continued repository construction.
 
