@@ -622,3 +622,31 @@ Required production responsibilities include:
 MOB-01 is platform-neutral. Native Swift/SwiftUI, Kotlin/Compose or existing application-framework bindings remain implementation choices of the mobile codebase and must consume, not redefine, the shared authority/fallback semantics.
 
 This item blocks the Mobile Integration Gate and live SERA-first mobile claims.
+
+
+---
+
+## DEV-OPEN-012 — Native Adaptive Workspace & Fallback View Rendering
+
+**Status:** OPEN  
+**Introduced by:** SSW-AI-MOB-02
+
+Developers shall render MOB-02 adaptive workspace decisions and deterministic fallback surfaces in the existing iOS and Android Soul Super Wallet applications.
+
+Required production responsibilities include:
+
+- map each shared workspace kind to an OS-appropriate native surface;
+- preserve the shared READ / PREPARE / NAVIGATE effect boundary;
+- never implement workspace-local authority that bypasses the wallet approval/authentication path;
+- visibly distinguish authoritative wallet state from external context;
+- expose source/inspectability actions for the universal "Show me" path;
+- navigate every generated workspace back to a canonical deterministic wallet surface;
+- invalidate expired transient workspaces and request fresh authoritative state;
+- preserve canonical fallback surfaces for Assets, Send, Receive, Swap, Credentials, Activity, Security, Identity, WalletConnect and Settings;
+- keep Security and Identity directly reachable independent of SERA;
+- respect subsystem availability and disable only the affected manual capability;
+- ensure accessibility equivalents exist for every generated workspace action and fallback control.
+
+Platform-specific presentation code may change layout, animation and native component selection, but may not widen the shared workspace effect model.
+
+This item blocks native adaptive-workspace completion under the Mobile Integration Gate.
