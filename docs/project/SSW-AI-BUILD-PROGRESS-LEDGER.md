@@ -1501,3 +1501,54 @@ CI evidence:
 - hashed release evidence: PASS.
 
 **Next:** SSW-AI-SERA-RT-05: Proactive Intelligence, Monitoring & Notification Runtime.
+
+
+---
+
+## Entry 033 — SERA-RT-05 Proactive Intelligence, Monitoring & Notification Runtime
+
+**Date:** 2026-09-19  
+**Artifact:** SSW-AI-SERA-RT-05  
+**Implementation Commit:** `dab00433a2a84c3a865e09e63816e0d5961038cb`  
+**Duplicate-Lineage Fix:** `e94ec331daa5b12198e2166a519ef695f6ac0c04`  
+**CI Run:** #69, ID `35479979266`  
+**Tracker Completion Commit:** `e6462d47f856208bacd1795cc3be0584def25059`  
+**Status:** COMPLETE
+
+Implemented:
+
+- Monitoring Grant contract and durable store;
+- normalized Proactive Signal contract;
+- Proactive Assessment contract;
+- source identity/confidence/veracity metadata;
+- holder-scoped signal deduplication;
+- deterministic relevance scoring;
+- urgency classes U0-U4;
+- notification classes LOW_VALUE through CRITICAL;
+- deterministic decisions SUPPRESS / RECORD / DIGEST / SURFACE_IN_CONTEXT / NOTIFY / INTERRUPT;
+- external-news/professional-context critical-escalation cap without corroboration;
+- monitoring-grant delivery-class enforcement;
+- privacy-safe lock-screen rendering;
+- durable proactive signal and assessment persistence;
+- explicit evidence references;
+- machine-enforced `authority_effect: NONE`.
+
+Security decisions:
+
+- monitoring permission is separate from execution authority;
+- no monitoring grant means no proactive interruption;
+- duplicate delivery cannot repeatedly interrupt the holder;
+- uncorroborated external news cannot independently become a critical execution-driving alert;
+- proactive assessment cannot produce EXECUTE;
+- any action originating from an alert must enter the normal Action Contract / authority / Trust Protocol / REV path.
+
+CI evidence:
+
+- clean npm ci: PASS;
+- PostgreSQL migrations: PASS;
+- scaffold and contract verification: PASS;
+- 176 tests: PASS;
+- strict TypeScript: PASS;
+- hashed release evidence: PASS.
+
+**Next:** SSW-AI-SERA-RT-06: Multi-Chain Routing & Existing SSW Capability Adapters.
