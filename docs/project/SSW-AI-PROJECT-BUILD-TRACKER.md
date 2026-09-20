@@ -74,7 +74,7 @@ Current implementation milestone:
 
 Immediate next artifact:
 
-**SSW-AI-INFRA-02: Observability, Telemetry Privacy & Operational Signal Baseline**
+**SSW-AI-INFRA-02: Observability, Telemetry Privacy & Operational Signal Baseline — IN PROGRESS**
 
 ## 5. Phase A — Product & Experience Definition
 
@@ -217,7 +217,7 @@ A paired wearable never automatically inherits phone authority.
 | Event Transport | durable event/message transport | COMPLETE — transactional outbox/inbox baseline |
 | Workload Identity | runtime service identity | COMPLETE — INFRA-01; live binding DEV-OPEN-016 |
 | Secret Management | SoulScan/IPFS portable key lifecycle + service secrets | IN PROGRESS |
-| Observability | logs, traces, metrics without sensitive leakage | NEXT — INFRA-02 |
+| Observability | logs, traces, metrics without sensitive leakage | IN PROGRESS — INFRA-02 |
 | CI/CD | contract, security, conformance and release gates | BASELINE COMPLETE — steady-state read-only CI active |
 | Environment Separation | dev / test / staging / production | PLANNED |
 | Infrastructure-as-Code | reproducible deployments | PLANNED |
