@@ -62,3 +62,5 @@ export function evaluateMandate(input:{
  const decision:MandateEvaluationDecision={schema:"ssw.mandate-evaluation-decision.v1",decision_id:input.decisionId,action_id:action.action_id,action_version:action.version,mandate_id:mandate.mandate_id,mandate_version:mandate.version,material_terms_hash:input.materialTermsHash,mandate_terms_hash:mandate.integrity.mandate_terms_hash,status,condition_results:conditionResults,reason_codes:[...new Set(reasons)],evaluated_at:input.evaluatedAt};
  return assertContract("mandate-evaluation-decision",decision) as unknown as MandateEvaluationDecision;
 }
+
+export * from "./svid4ai-runtime.js";
