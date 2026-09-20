@@ -29,3 +29,5 @@ export function advanceRecoveryState(session:RecoverySession,next:RecoverySessio
  if(order.indexOf(next)!==order.indexOf(s.state)+1)throw new Error("RECOVERY_STATE_TRANSITION_INVALID");
  return assertContract("recovery-session",{...s,state:next}) as unknown as RecoverySession;
 }
+
+export * from "./soul-id-runtime.js";
