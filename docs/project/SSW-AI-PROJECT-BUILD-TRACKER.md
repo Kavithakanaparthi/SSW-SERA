@@ -74,7 +74,7 @@ Current implementation milestone:
 
 Immediate next artifact:
 
-**SSW-AI-REL-02: Live Integration Evidence Registry & Gate Intake Baseline — IN PROGRESS**
+**SSW-AI-REL-03: Automated Gate Status Derivation — IN PROGRESS**
 
 ## 5. Phase A — Product & Experience Definition
 
@@ -289,7 +289,8 @@ Open developer integrations, infrastructure blockers and release gates remain au
 | Release Consolidation | pilot and production readiness aggregation | COMPLETE — REL-01; live pilot binding DEV-OPEN-021 |
 | Production Release Gate | final release readiness review | NOT GATED |
 | Release Gate Evidence | consolidated blocker and readiness package | COMPLETE — repository baseline; pilot/production live blocked |
-| Live Integration Evidence Registry | structured DEV-OPEN evidence intake | IN PROGRESS — REL-02 |
+| Live Integration Evidence Registry | structured DEV-OPEN evidence intake | COMPLETE — REL-02 |
+| Automated Gate Status Derivation | derive gate state from verified evidence | IN PROGRESS — REL-03 |
 
 ## 14. Required Security Tests Before Production Signing
 
@@ -341,7 +342,7 @@ Completed implementation artifacts: 16.
 
 Completed productionization artifacts: 8. PROD-05 platform boundary is implemented and CI-verified; live Soul ID/SoulScan bindings are maintained as developer-owned open integration items DEV-OPEN-001 through DEV-OPEN-003.
 
-Immediate next implementation phase: REL-02 Live Integration Evidence Registry & Gate Intake Baseline.
+Immediate next implementation phase: REL-03 Automated Gate Status Derivation.
 
 Production signing enabled: no.
 
