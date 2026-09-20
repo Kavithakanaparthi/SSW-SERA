@@ -2239,3 +2239,48 @@ CI evidence:
 **Dependencies closed:** repository-level production workload identity verifier and service authorization baseline.
 
 **Next:** SSW-AI-INFRA-02: Observability, Telemetry Privacy & Operational Signal Baseline.
+
+
+---
+
+## Entry 046 — INFRA-02 Observability, Telemetry Privacy & Operational Signal Baseline
+
+**Date:** 2026-09-20  
+**Artifact:** SSW-AI-INFRA-02  
+**Runtime Commit:** `9eaa9193832a6f6c10f803f8627f7f0e2acc7942`  
+**Contract Test Commit:** `bfcdddedfa7c9be25493a8a9eb4c3056b1d397e1`  
+**Controlled Specification Commit:** `75329f9a585226da49e8931145f6a99e28e04c8f`  
+**Final CI Head:** `51c25f4411262ec373b8bd3fba023faa86c53bbe`  
+**CI Run:** #174, ID `35513734506`  
+**Release Evidence Hash:** `sha256:02186bc571fc86cde65c5ae1ceb974a2174439e42c39b4f4ea8466fcfe31fd82`  
+**Status:** COMPLETE
+
+Implemented:
+
+- privacy-classified logs, metrics, traces and security signals;
+- secret-field dropping;
+- holder-sensitive hashing/redaction;
+- low-cardinality metric-label enforcement;
+- trace/correlation/action reference propagation;
+- operational signal creation by trust zone;
+- exporter-neutral telemetry sanitization boundary;
+- prohibition on telemetry becoming a duplicate holder/wallet/credential store;
+- secret telemetry detection tests.
+
+Developer handoff:
+
+- DEV-OPEN-017 records production exporter, retention, residency and alerting binding.
+
+CI evidence:
+
+- PostgreSQL migrations: PASS;
+- contract verification: PASS — 51 JSON Schemas;
+- 259 tests: PASS;
+- failures: 0;
+- strict TypeScript: PASS;
+- hashed release evidence: PASS;
+- release decision remains `CI_BASELINE_PASS_PRODUCTION_BLOCKED`.
+
+**Dependencies closed:** repository-level privacy-safe observability and operational-signal baseline.
+
+**Next:** SSW-AI-INFRA-03: Environment Separation & Promotion Controls.
