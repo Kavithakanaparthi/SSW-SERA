@@ -1124,3 +1124,54 @@ They do block:
 
 PROD-05 is closed at the platform/interface boundary and PROD-06 advances to NEXT.
 
+
+
+---
+
+## Entry 032 — PROD-06 Production Chain Adapters & Execution Reconciliation
+
+**Date:** 2026-09-19  
+**Artifact:** SSW-AI-PROD-06  
+**Implementation Commit:** `8aba98faebb2cff237430e8a7353705af0b627d7`  
+**CI Run:** #38, ID `35478525569`  
+**Tracker Completion Commit:** `fcf8bd1374ecf7b15129153eaec8cb068d937db1`  
+**Status:** COMPLETE  
+**Stack:** TypeScript / Node.js 22 / PostgreSQL 16 / EVM JSON-RPC
+
+Implemented:
+
+- provider-neutral production EVM adapter;
+- HTTPS JSON-RPC client;
+- signed-payload resolver boundary;
+- independent signed-payload hash verification;
+- independent chain binding;
+- expected EVM transaction hash binding;
+- durable execution-state persistence;
+- idempotent retry handling;
+- eth_sendRawTransaction submission;
+- explicit EXECUTION_STATUS_UNKNOWN handling;
+- eth_getTransactionByHash reconciliation;
+- eth_getTransactionReceipt reconciliation;
+- confirmed / failed receipt interpretation;
+- no blind resubmission after uncertain outcomes.
+
+Security and correctness decisions:
+
+- RPC vendor is not hard-coded;
+- execution adapter cannot choose or reinterpret transaction material;
+- signed payload reference/hash/chain must match before submission;
+- returned network transaction hash must match the expected signed transaction hash;
+- an uncertain network outcome is reconciled instead of assumed failed;
+- identical retries reconcile existing execution state rather than broadcast again;
+- production asset movement remains disabled until production execution gates close.
+
+CI evidence:
+
+- PostgreSQL migrations: PASS;
+- npm ci: PASS;
+- 138 tests: PASS;
+- strict TypeScript: PASS.
+
+**Dependencies closed:** production-shaped EVM submission and reconciliation boundary.
+
+**Next:** SSW-AI-PROD-07: Production SAEL Persistence / Checkpoint / Archive.
